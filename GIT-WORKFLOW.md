@@ -1,35 +1,46 @@
-# طريقة العمل على Git — لازم كل واحد يقراها قبل ما يبلش
+# Git Workflow — Read Before You Start
 
-## القاعدة الأساسية
-فرع main هو النسخة الرسمية النظيفة من المشروع. ممنوع أي حدا يرفع (push) عليه مباشرة.
-كل واحد لازم يشتغل على فرع (Branch) لحاله، وبعدين يطلب دمج شغله عن طريق Pull Request.
+## The Basic Rule
+The main branch is the official, clean version of the project.
+No one is allowed to push directly to main.
+Everyone must work on their own branch, then request a merge through a Pull Request.
 
-## الخطوات بالترتيب
+## Steps to Follow
 
-### 1. نزلي المشروع لأول مرة
-git clone الرابط
-cd اسم-الفولدر
+### 1. Clone the project (only once)
+git clone <repo-link>
+cd <folder-name>
 npm install
 
-### 2. قبل ما تبلشي أي مهمة جديدة
+### 2. Before starting any new task
 git checkout main
 git pull origin main
 
-### 3. سوي فرع جديد لحالك
-git checkout -b feature/اسم-المهمة
+### 3. Create a new branch for your task
+git checkout -b feature/task-name
 
-### 4. اشتغلي عادي على الكود
+Examples: feature/products-page, feature/orders-page, feature/cart-page, feature/login-page
 
-### 5. لما تخلصي جزء
+### 4. Work on your code normally
+
+### 5. Save your work
 git add .
-git commit -m "وصف قصير وواضح"
+git commit -m "Short, clear description of what you did"
 
-### 6. ارفعي فرعك
-git push -u origin feature/اسم-المهمة
+### 6. Push your branch (NOT main!)
+git push -u origin feature/task-name
 
-### 7. سوي Pull Request من صفحة GitHub وانتظري موافقة الـ Team Lead
+### 7. Open a Pull Request
+Go to the repository page on GitHub, click "Compare & pull request",
+write a short description, click "Create pull request",
+and wait for the Team Lead to review and approve.
 
-## قواعد مهمة
-- ممنوع الشغل مباشرة على main
-- كل مهمة = فرع لحالها
-- لو صار تعارض بالكود، بلغي الـ Team Lead
+## Important Rules
+- Never work directly on main
+- One task = one branch
+- Commit messages must be clear
+- Always run git pull origin main before starting a new branch
+- If you hit a conflict, tell the Team Lead
+
+## If you're stuck
+Ask the Team Lead before running any command you're not sure about.
