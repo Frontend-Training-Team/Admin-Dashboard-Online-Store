@@ -1,8 +1,11 @@
 import logo from '../assets/fonts/logo.png';
-
 import React, { useState } from 'react';
+import { useTheme } from '../hooks/usetheme';
+import { Mail, Lock, Eye, EyeOff } from 'lucide-react';
 
-const Login = () => {
+export default function Login() {
+  const { theme, toggleTheme } = useTheme();
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -21,27 +24,35 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-surface-lightBg dark:bg-surface-darkBg p-4 transition-colors duration-300">
-      
+    <div className="relative min-h-screen flex items-center justify-center bg-surface-light dark:bg-surface-dark transition-colors p-4">
+      {/* Theme Toggle Button */}
+      <button
+        type="button"
+        onClick={toggleTheme}
+        className="absolute top-4 right-4 z-50 px-3 py-1.5 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-100 text-sm font-medium shadow transition-colors"
+      >
+        {theme === 'dark' ? '☀️ Light Mode' : '🌙 Dark Mode'}
+      </button>
+
       {/* Main Container */}
-      <div className="w-full max-w-4xl bg-surface-lightCard dark:bg-surface-darkCard rounded-3xl shadow-2xl overflow-hidden grid grid-cols-1 md:grid-cols-2 border border-borderCustom-light dark:border-borderCustom-dark">
+      <div className="w-full max-w-4xl bg-surface-cardLight dark:bg-surface-cardDark rounded-2xl shadow-xl overflow-hidden border border-brand-200 dark:border-brand-800 flex flex-col md:flex-row">
         
         {/* Left Side: Hero Section */}
-        <div className="bg-brand-500 text-white p-8 md:p-12 flex flex-col justify-between relative overflow-hidden">
+        <div className="relative w-full md:w-1/2 bg-brand-500 text-white p-8 md:p-12 flex flex-col justify-between overflow-hidden">
           
           {/* Header Brand */}
-          <div className="flex items-center gap-2 mb-8">
-            <div className="p-6 bg-white/10 rounded-xl backdrop-blur-sm">
+          <div className="flex items-center gap-2 mb-8 z-10">
+            <div className="p-3 bg-white/10 rounded-xl backdrop-blur-sm">
               <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
               </svg>
             </div>
-            <span className="font-serif font-bold text-xxl tracking-wide">LAMSA Home furniture</span>
+            <span className="font-serif font-bold text-2xl tracking-wide">Lamsa Home Furniture</span>
           </div>
 
           {/* Hero Content */}
-          <div className="my-auto py-6">
-            <h1 className="text-3xl md:text-4xl font-serif font-bold mb-1 leading-tight">
+          <div className="my-auto py-6 z-10">
+            <h1 className="text-3xl md:text-4xl font-serif font-bold mb-2 leading-tight">
               Manage Your Store Like a Pro
             </h1>
             <p className="text-white/80 text-sm mb-6 leading-relaxed">
@@ -70,22 +81,25 @@ const Login = () => {
         </div>
 
         {/* Right Side: Form Section */}
-        <div className="p-8 md:p-12 flex flex-col justify-center">
+        <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
           
           {/* Logo & Subtitle */}
-          <div className="text-center mb-8">
-            <img src={logo} alt="Lamsa Logo" className="w-16 h-16 mx-auto mb-2 object-contain" />
-        
-            <p className="text-[10px] uppercase tracking-widest text-muted-light dark:text-muted-dark font-medium">
-    Home Furniture | ONLINE STORE
-  </p>
-  
-  <h3 className="text-2xl font-bold text-brand-900 dark:text-brand-100 mt-6 mb-1">
-    Welcome Back
-  </h3>
-  <p className="text-xs text-muted-light dark:text-muted-dark">
-    Sign in to your admin dashboard
-    </p>
+          <div className="text-center mb-6">
+            <img 
+              src={logo} 
+              alt="Lamsa Logo" 
+              className="mx-auto h-24 w-auto object-contain mb-2" 
+            />
+            <p className="text-[10px] uppercase tracking-widest text-brand-700/60 dark:text-brand-200/60 font-medium mb-4">
+              HOME FURNITURE | ONLINE STORE
+            </p>
+            
+            <h3 className="text-2xl font-bold text-brand-900 dark:text-brand-100">
+              Welcome Back
+            </h3>
+            <p className="text-sm text-brand-700 dark:text-brand-200">
+              Sign in to your admin dashboard
+            </p>
           </div>
 
           {/* Form */}
@@ -93,13 +107,11 @@ const Login = () => {
             
             {/* Email Field */}
             <div>
-              <label className="block text-xs font-semibold text-brand-900 dark:text-brand-100 mb-1">
+              <label className="block text-sm font-medium text-brand-900 dark:text-brand-100 mb-1">
                 Email Address
               </label>
-              <div className="relative">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-muted-light dark:text-muted-dark">
-                  ✉️
-                </span>
+              <div className="relative flex items-center">
+                <Mail className="absolute left-3 w-5 h-5 text-brand-700/60 dark:text-brand-200/60 pointer-events-none" />
                 <input
                   type="email"
                   name="email"
@@ -107,48 +119,50 @@ const Login = () => {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Enter your email"
-                  className="w-full pl-9 pr-4 py-2.5 bg-brand-50 dark:bg-surface-darkBg text-brand-900 dark:text-brand-100 text-sm border border-borderCustom-light dark:border-borderCustom-dark rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition duration-200"
+                  className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-surface-light dark:bg-surface-dark border border-brand-200 dark:border-brand-800 text-brand-900 dark:text-brand-100 placeholder-brand-700/50 focus:outline-none focus:ring-2 focus:ring-brand-500"
                 />
               </div>
             </div>
 
             {/* Password Field */}
             <div>
-              <label className="block text-xs font-semibold text-brand-900 dark:text-brand-100 mb-1">
+              <label className="block text-sm font-medium text-brand-900 dark:text-brand-100 mb-1">
                 Password
               </label>
-              <div className="relative">
-                <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-muted-light dark:text-muted-dark">
-                  🔒
-                </span>
+              <div className="relative flex items-center">
+                <Lock className="absolute left-3 w-5 h-5 text-brand-700/60 dark:text-brand-200/60 pointer-events-none" />
                 <input
-                  type="password"
+                  type={showPassword ? "text" : "password"}
                   name="password"
                   required
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="Enter your password"
-                  className="w-full pl-9 pr-4 py-2.5 bg-brand-50 dark:bg-surface-darkBg text-brand-900 dark:text-brand-100 text-sm border border-borderCustom-light dark:border-borderCustom-dark rounded-xl focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none transition duration-200"
+                  className="w-full pl-10 pr-10 py-2.5 rounded-lg bg-surface-light dark:bg-surface-dark border border-brand-200 dark:border-brand-800 text-brand-900 dark:text-brand-100 placeholder-brand-700/50 focus:outline-none focus:ring-2 focus:ring-brand-500"
                 />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 text-brand-700/60 dark:text-brand-200/60 hover:text-brand-900 dark:hover:text-brand-100 transition-colors"
+                >
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
               </div>
             </div>
 
             {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-brand-500 hover:bg-brand-300 text-white font-medium py-2.5 rounded-xl transition duration-200 shadow-md active:scale-[0.99] text-sm mt-2"
+              className="w-full py-2.5 rounded-lg bg-brand-500 hover:bg-brand-700 text-white dark:bg-brand-300 dark:hover:bg-brand-500 dark:text-brand-950 font-semibold transition-colors mt-2"
             >
               Sign In
             </button>
           </form>
 
           {/* Divider */}
-          <div className="relative my-6 text-center">
-            <div className="absolute inset-0 flex items-center">
-              <div className="w-full border-t border-borderCustom-light dark:border-borderCustom-dark"></div>
-            </div>
-            <div className="relative flex justify-center text-xs uppercase"></div>
-            <span className="relative bg-surface-lightCard dark:bg-surface-darkCard px-6 text-[11px] uppercase tracking-wider text-muted-light dark:text-muted-dark">
+          <div className="my-6 flex items-center justify-center relative">
+            <div className="w-full border-t border-brand-200 dark:border-brand-800"></div>
+            <span className="absolute bg-surface-cardLight dark:bg-surface-cardDark px-3 text-[11px] uppercase tracking-wider text-brand-700/60 dark:text-brand-200/60 font-medium">
               OR
             </span>
           </div>
@@ -156,7 +170,7 @@ const Login = () => {
           {/* Google Auth Button */}
           <button
             type="button"
-            className="w-full flex items-center justify-center gap-2 border border-borderCustom-light dark:border-borderCustom-dark bg-surface-lightBg dark:bg-surface-darkBg hover:bg-brand-50 dark:hover:bg-borderCustom-dark text-brand-900 dark:text-brand-100 font-medium py-2.5 rounded-xl transition duration-200 text-sm"
+            className="w-full flex items-center justify-center gap-2 border border-brand-200 dark:border-brand-800 bg-surface-light dark:bg-surface-dark hover:bg-brand-50 dark:hover:bg-brand-900/20 text-brand-900 dark:text-brand-100 font-medium py-2.5 rounded-xl transition duration-200 text-sm"
           >
             <svg className="w-4 h-4" viewBox="0 0 24 24">
               <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" />
@@ -168,7 +182,7 @@ const Login = () => {
           </button>
 
           {/* Footer Text */}
-          <p className="text-center text-[11px] text-muted-light dark:text-muted-dark mt-6">
+          <p className="text-center text-[11px] text-brand-700/60 dark:text-brand-200/60 mt-6">
             Secure Admin Access
           </p>
 
@@ -176,6 +190,4 @@ const Login = () => {
       </div>
     </div>
   );
-};
-
-export default Login;
+}
