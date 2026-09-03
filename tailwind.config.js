@@ -9,7 +9,8 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                serif: ['"Playfair Display"', 'serif'],
+                Serif: ['"Playfair Display"', 'serif'],
+                Inter: ['"Inter"', 'sans-serif']
             },
             colors: {
                 brand: {
