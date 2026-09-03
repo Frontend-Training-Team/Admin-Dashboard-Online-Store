@@ -1,13 +1,14 @@
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
+import { Box, House, ShoppingCart, Users, Settings } from 'lucide-react'
 
 const navigationItems = [
-  { label: 'Dashboard', to: '/' },
-  { label: 'Users', to: '/users' },
-  { label: 'Products', to: '/products' },
-  { label: 'Orders', to: '/orders' },
-  { label: 'Carts', to: '/carts' },
-  { label: 'Settings', to: '/settings' },
+  { label: 'Dashboard', to: '/' , icon: <House/>},
+  { label: 'Users', to: '/users' , icon: <Users/>},
+  { label: 'Products', to: '/products' , icon: <ShoppingCart/>},
+  { label: 'Orders', to: '/orders' , icon: <Box/>},
+  { label: 'Carts', to: '/carts' , icon: <ShoppingCart/>},
+  { label: 'Settings', to: '/settings', icon: <Settings/> },
 ]
 
 function Sidebar() {
@@ -48,7 +49,7 @@ function Sidebar() {
               onClick={closeSidebar}
               className={({ isActive }) => `flex items-center gap-3 rounded-lg px-3 py-3 text-sm font-medium transition ${isActive ? 'bg-brand-800 text-brand-50 shadow-inner shadow-brand-300/10' : 'text-brand-200 hover:bg-brand-900 hover:text-brand-100'}`}
             >
-              {/* <icon /> */}
+              {item.icon}
               {item.label}
             </NavLink>
           ))}

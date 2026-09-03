@@ -2,11 +2,15 @@ import { Lock, Mail, Settings, TextAlignJustify } from "lucide-react";
 import Btn from "./components/ui/IconButton";
 import IconInput from "./components/ui/IconInput";
 import Input from "./components/ui/Input";
+import Sidebar from "./components/layout/Sidebar";
+import { BrowserRouter } from "react-router-dom";
 
 function App() {
   return (
     <>
+    <BrowserRouter>
       <div className="min-h-screen text-white bg-black flex justify-center items-center font-serif">
+      <Sidebar/>
         <div className="border p-5">
           <h2 className="text-center text-2xl">font:Lamsa</h2>
           <h2 className="text-center text-2xl font-Serif">fontSerif:Lamsa</h2>
@@ -26,6 +30,7 @@ function App() {
           <IconInput Icon={<Lock size={28} />} />
         </div>
       </div>
+    </BrowserRouter>
     </>
   )
 }
