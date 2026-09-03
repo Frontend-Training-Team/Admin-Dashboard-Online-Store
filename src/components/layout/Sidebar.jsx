@@ -31,7 +31,7 @@ function Sidebar() {
         <button type="button" className="fixed inset-0 z-40 bg-brand-950/70 lg:hidden" aria-label="Close navigation" onClick={closeSidebar}/>
       )}
 
-      <aside className={`fixed inset-y-0 left-0 z-50 flex w-80 flex-col border-r border-brand-800 bg-brand-950 px-5 py-6 transition-transform duration-200 lg:static lg:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+      <aside className={`min-h-screen fixed z-50 inset-y-0 left-0 flex w-80 flex-col border-r border-brand-800 bg-brand-950 px-5 py-6 transition-transform duration-200 lg:static lg:translate-x-0 ${isOpen ? 'translate-x-0' : '-translate-x-full'}`}>
         <div className="flex items-start justify-between border-b border-brand-800 pb-7">
           <div>
             <p className="text-xs font-semibold uppercase tracking-[0.35em] text-brand-300">LAMSA</p>
