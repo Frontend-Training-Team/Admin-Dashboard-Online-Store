@@ -1,21 +1,39 @@
+import { Routes, Route, Navigate } from 'react-router-dom';
+import ProtectedRoute from './components/ProtectedRoute';
+import DashboardLayout from './components/DashboardLayout'; // sidebar + <Outlet>
+import Login from './pages/Login';
+import Dashboard from './pages/Dashboard';
+import Products from './pages/Products';
+import AddProduct from './pages/AddProduct';
+import EditProduct from './pages/EditProduct';
+import Orders from './pages/Orders';
+import OrderDetails from './pages/OrderDetails';
+import Users from './pages/Users';
+import Carts from './pages/Carts';
+import Settings from './pages/Settings';
+
 function App() {
   return (
-    <>
-      <div className="min-h-screen text-white bg-black flex justify-center items-center">
-        <div className="border p-5">
-          <h2 className="text-6xl mb-3">Admin Dashboard</h2>
-          <ul className="">
-            <li className="text-3xl ">1.Make sure you know which branch you're at.📌</li>
-            <li className="text-3xl ">2.Create a new branch for your task.</li>
-            <li className="text-3xl ">3.Work on your code normally.</li>
-            <li className="text-3xl ">4.Save your work and Commit messages must be clear</li>
-            <li className="text-3xl ">5.Push your branch (NOT main!!!)📌</li>
-            <li className="text-3xl ">5.git pull origin main</li>
-            <li className="text-3xl ">6.git push origin &lt;nameBranch&gt;</li>
-          </ul>
-        </div>
-      </div>
-    </>
+     <Routes>
+      {/* Public route */}
+      <Route path="/" element={<Navigate to="/dashboard" replace />} />
+      <Route path="/login" element={<Login />} />
+
+      {/* Private routes — everything inside requires admin auth */}
+      <Route element={<ProtectedRoute allowedRole="admin" />}>
+        <Route element={<DashboardLayout />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard/products" element={<Products />} />
+          <Route path="/dashboard/products/new" element={<AddProduct />} />
+          <Route path="/dashboard/products/:id/edit" element={<EditProduct />} />
+          <Route path="/dashboard/orders" element={<Orders />} />
+          <Route path="/dashboard/orders/:id" element={<OrderDetails />} />
+          <Route path="/dashboard/users" element={<Users />} />
+          <Route path="/dashboard/carts" element={<Carts />} />
+          <Route path="/dashboard/settings" element={<Settings />} />
+        </Route>
+      </Route>
+    </Routes>
   )
 
 
