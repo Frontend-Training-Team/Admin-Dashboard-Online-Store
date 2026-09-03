@@ -1,21 +1,32 @@
+import { Lock, Mail, Settings, TextAlignJustify } from "lucide-react";
+import Btn from "./components/ui/IconButton";
+import IconInput from "./components/ui/IconInput";
+import Input from "./components/ui/Input";
+
 function App() {
   return (
     <>
-      <div className="min-h-screen text-white bg-black flex justify-center items-center">
+      <div className="min-h-screen text-white bg-black flex justify-center items-center font-serif">
         <div className="border p-5">
-          <h2 className="text-6xl mb-3">Admin Dashboard</h2>
-          <ul className="">
-            <li className="text-3xl ">1.Make sure you know which branch you're at.📌</li>
-            <li className="text-3xl ">2.Create a new branch for your task.</li>
-            <li className="text-3xl ">3.Work on your code normally.</li>
-            <li className="text-3xl ">4.Save your work and Commit messages must be clear</li>
-            <li className="text-3xl ">5.Push your branch (NOT main!!!)📌</li>
-            <li className="text-3xl ">5.git pull origin main</li>
-            <li className="text-3xl ">6.git push origin &lt;nameBranch&gt;</li>
-          </ul>
+          <h2 className="text-center text-2xl">font:Lamsa</h2>
+          <h2 className="text-center text-2xl font-Serif">fontSerif:Lamsa</h2>
+          <h2 className="text-center text-2xl font-Inter">fontInter:Lamsa</h2>
+          <div className="flex">
+            <Btn Text="Settings" className={"m-5"} Icon={<Settings size={30} />} />
+            <Btn Text="account" className={"m-5"} />
+            <Btn Text="account" className={"m-5"} />
+            <Btn Text="" className={"m-5"} Icon={<TextAlignJustify size={30} />} />
+          </div>
+          <div className="mb-5">
+            <IconInput Icon={<Mail size={28} />} />
+          </div>
+          <div className="mb-5">
+            <Input Type={"password"} />
+          </div>
+          <IconInput Icon={<Lock size={28} />} />
         </div>
       </div>
-    </BrowserRouter>
+    </>
   )
 }
 
