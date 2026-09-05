@@ -1,6 +1,9 @@
 import logo from '../assets/fonts/logo.png';
 import React, { useState } from 'react';
 import { Mail, Lock, Eye, EyeOff, Loader2 } from 'lucide-react';
+import { login as loginApi } from '../api/auth.api';       
+import { useAuth } from '../context/Authcontext';          
+
 
 export default function Login({ onLoginSuccess }) {
   const [showPassword, setShowPassword] = useState(false);
@@ -10,6 +13,10 @@ export default function Login({ onLoginSuccess }) {
     password: '',
   });
 
+   const [errorMessage, setErrorMessage] = useState('');     
+  
+    const { login } = useAuth();     
+
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -17,22 +24,38 @@ export default function Login({ onLoginSuccess }) {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (isLoading) return;
-
-    setIsLoading(true);
-
-    // Simulate authentication process
-    setTimeout(() => {
-      setIsLoading(false);
-      if (onLoginSuccess) {
-        onLoginSuccess();
-      } else {
-        window.location.href = '/dashboard'; 
-      }
-    }, 2000);
-  };
+ const handleSubmit = async (e) => {                      
+     e.preventDefault();
+     if (isLoading) return;
+ 
+     setIsLoading(true);
+     setErrorMessage('');                                   
+ 
+     try {                                                    
+       const response = await loginApi({
+         email: formData.email,
+         password: formData.password,
+       });
+ 
+       const { token, user } = response.data;
+ 
+       login(token, user);
+ 
+       setIsLoading(false);
+ 
+       if (onLoginSuccess) {
+         onLoginSuccess();
+       } else {
+         window.location.href = '/dashboard';
+       }
+     } catch (error) {                                       
+       setIsLoading(false);
+       const message =
+         error.response?.data?.message ||
+          'An error occurred during login. Please try again.';
+       setErrorMessage(message);
+     }
+   };
 
   return (
     <div className="relative min-h-screen flex items-center justify-center bg-[#FAFAF8] dark:bg-[#141110] transition-colors p-4">
@@ -110,6 +133,11 @@ export default function Login({ onLoginSuccess }) {
           </div>
 
           {/* Form */}
+          {errorMessage && (
+            <div className="bg-red-100 text-red-700 px-4 py-2 rounded mb-4 text-sm">
+              {errorMessage}
+            </div>
+          )}
           <form onSubmit={handleSubmit} className="space-y-4">
             
             {/* Email Field */}
