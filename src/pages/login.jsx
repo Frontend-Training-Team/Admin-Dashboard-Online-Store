@@ -1,192 +1,162 @@
-import logo from '../assets/fonts/logo.png';
 import React, { useState } from 'react';
-import { Mail, Lock, Eye, EyeOff, Loader2 } from 'lucide-react';
+import { Mail, Lock, Eye, EyeOff, Check, Loader2 } from 'lucide-react';
 
-export default function Login({ onLoginSuccess }) {
+import logo from '../images/logo.svg';
+import heroBg from '../images/hero-bg.webp';
+
+
+
+export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState('admin@koda.com');
+  const [password, setPassword] = useState('admin1212');
   const [isLoading, setIsLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    email: '',
-    password: '',
-  });
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (isLoading) return;
+    if (isLoading || isGoogleLoading) return;
 
     setIsLoading(true);
-
-    // Simulate authentication process
     setTimeout(() => {
       setIsLoading(false);
-      if (onLoginSuccess) {
-        onLoginSuccess();
-      } else {
-        window.location.href = '/dashboard'; 
-      }
     }, 2000);
   };
 
-  return (
-    <div className="relative min-h-screen flex items-center justify-center bg-[#FAFAF8] dark:bg-[#141110] transition-colors p-4">
-      
-      {/* Main Container */}
-      <div className="w-full max-w-4xl bg-white dark:bg-[#1F1A17] rounded-2xl shadow-2xl overflow-hidden border border-[#E5DEC9] dark:border-[#2B231F] flex flex-col md:flex-row">
-        
-        {/* Left Side: Hero Section */}
-        <div className="relative w-full md:w-1/2 bg-[#B67352] text-white p-8 md:p-10 flex flex-col justify-between overflow-hidden">
-          
-          {/* Header Brand */}
-          <div className="flex items-center gap-3 z-10 pt-2">
-            <div className="p-3 bg-white/10 rounded-xl backdrop-blur-sm flex items-center justify-center">
-              <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
-              </svg>
-            </div>
-            <span className="font-serif font-bold text-xl md:text-2xl tracking-wide leading-none text-white">
-              Lamsa Home Furniture
-            </span>
-          </div>
+  const handleGoogleLogin = () => {
+    if (isLoading || isGoogleLoading) return;
 
-          {/* Hero Content */}
-          <div className="my-auto py-6 z-10">
-            <h1 className="text-3xl md:text-4xl font-serif font-bold mb-3 leading-tight text-white">
+    setIsGoogleLoading(true);
+
+    setTimeout(() => {
+      setIsGoogleLoading(false);
+      window.location.href = 'https://your-backend-api.com/auth/google';
+    }, 1500);
+  };
+
+  const isAnyLoading = isLoading || isGoogleLoading;
+
+  return (
+    <div className="min-h-screen w-full flex items-center justify-center p-4 md:p-8 bg-[#1a1a1a]">
+      <div className="w-full max-w-6xl bg-[#1e1e1e] rounded-xl shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-2 min-h-[650px]">
+        
+        {/* Left Side */}
+        <div 
+          className="relative hidden lg:flex flex-col justify-between p-12 bg-cover bg-center bg-no-repeat text-white"
+          style={{ 
+            backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url(${heroBg})` 
+          }}
+        >
+          <div className="relative z-10 space-y-5 pt-12 xl:pt-16">
+            <p className="text-gray-100 text-3xl font-bold tracking-wide">
+              Lamsa Admin Dashboard
+            </p>
+
+            <h1 className="text-5xl xl:text-6xl font-bold leading-tight drop-shadow-sm text-gray-200">
               Manage Your Store Like a Pro
             </h1>
-            <p className="text-white/90 text-sm mb-6 leading-relaxed">
+<p className="text-gray-400 text-xl xl:text-base max-w-md leading-relaxed font-normal pt-14">
               Control products, orders, users, carts and analytics from a modern dashboard experience.
             </p>
-
-            {/* Feature List */}
-            <div className="space-y-3">
-              <div className="flex items-center gap-3 bg-black/15 backdrop-blur-md px-4 py-3 rounded-xl border border-white/20 text-white">
-                <span className="text-white font-bold">✓</span>
-                <span className="text-sm font-medium">Product Management</span>
-              </div>
-              <div className="flex items-center gap-3 bg-black/15 backdrop-blur-md px-4 py-3 rounded-xl border border-white/20 text-white">
-                <span className="text-white font-bold">✓</span>
-                <span className="text-sm font-medium">Order Tracking</span>
-              </div>
-              <div className="flex items-center gap-3 bg-black/15 backdrop-blur-md px-4 py-3 rounded-xl border border-white/20 text-white">
-                <span className="text-white font-bold">✓</span>
-                <span className="text-sm font-medium">Customer Insights</span>
-              </div>
-            </div>
           </div>
 
-          {/* Background Decorative Element */}
-          <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white/5 rounded-full blur-2xl pointer-events-none"></div>
+          <div className="relative z-10 space-y-4 my-auto pt-6">
+            {[
+              'Product Management',
+              'Order Tracking',
+              'Customer Insights'
+            ].map((feature, idx) => (
+              <div 
+                key={idx}
+                className="flex items-center space-x-3 bg-white/20 backdrop-blur-md border border-white/20 px-5 py-3.5 rounded-xl font-medium shadow-sm"
+              >
+                <Check className="w-5 h-5 text-white" />
+                <span className="text-sm xl:text-base text-white">{feature}</span>
+              </div>
+            ))}
+          </div>
+
+          <div className="relative z-10 text-xs text-gray-400">
+            © Lamsa Home Furniture. All rights reserved.
+          </div>
         </div>
 
-        {/* Right Side: Form Section */}
-        <div className="w-full md:w-1/2 p-8 md:p-10 flex flex-col justify-between bg-white dark:bg-[#1F1A17]">
-          
-          {/* Logo Container */}
-          <div className="text-center pt-0">
-            <div className="inline-block p-3 bg-white rounded-2xl shadow-md mb-2 border border-[#E5DEC9]">
-              <img 
-                src={logo} 
-                alt="Lamsa Logo" 
-                className="mx-auto h-24 w-auto object-contain" 
-              />
-            </div>
-            <p className="text-[11px] uppercase tracking-widest text-[#B67352] dark:text-[#D88D68] font-bold mb-3">
-              HOME FURNITURE | ONLINE STORE
-            </p>
+        {/* Right Side */}
+        <div className="bg-white p-8 md:p-12 flex flex-col justify-center items-center">
+          <div className="w-full max-w-md space-y-6">
             
-            <h3 className="text-2xl font-bold text-[#2B231F] dark:text-[#FAFAF8]">
-              Welcome Back
-            </h3>
-            <p className="text-sm text-[#2B231F]/70 dark:text-[#FAFAF8]/70 mb-2 font-medium">
-              Sign in to your admin dashboard
-            </p>
-          </div>
-
-          {/* Form */}
-          <form onSubmit={handleSubmit} className="space-y-4">
-            
-            {/* Email Field */}
-            <div>
-              <label className="block text-sm font-semibold text-[#2B231F] dark:text-[#FAFAF8] mb-1">
-                Email Address
-              </label>
-              <div className="relative flex items-center">
-                <Mail className="absolute left-3 w-5 h-5 text-[#2B231F]/50 dark:text-[#E5DEC9]/60 pointer-events-none" />
-                <input
-                  type="email"
-                  name="email"
-                  disabled={isLoading}
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Enter your email"
-                  className="w-full pl-10 pr-4 py-2.5 rounded-lg bg-[#F7F4EF] dark:bg-[#141110] border border-[#E5DEC9] dark:border-[#2B231F] text-[#2B231F] dark:text-[#FAFAF8] placeholder-[#2B231F]/40 dark:placeholder-[#FAFAF8]/40 focus:outline-none focus:ring-2 focus:ring-[#B67352] disabled:opacity-60 disabled:cursor-not-allowed transition-all font-medium"
-                />
+            <div className="text-center space-y-2">
+              <div className="inline-block p-2 mb-2">
+               <img src={logo} alt="Lamsa Logo" className="h-40 w-auto object-contain mx-auto" />
               </div>
+              <p className="text-xs uppercase tracking-widest text-[#B67352] font-semibold">
+                HOME FURNITURE | ONLINE STORE
+              </p>
+              <h2 className="text-2xl font-bold text-gray-800">Welcome Back</h2>
+              <p className="text-sm text-gray-500">Sign in to your admin dashboard</p>
             </div>
 
-            {/* Password Field */}
-            <div>
-              <label className="block text-sm font-semibold text-[#2B231F] dark:text-[#FAFAF8] mb-1">
-                Password
-              </label>
-              <div className="relative flex items-center">
-                <Lock className="absolute left-3 w-5 h-5 text-[#2B231F]/50 dark:text-[#E5DEC9]/60 pointer-events-none" />
-                <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  disabled={isLoading}
-                  value={formData.password}
-                  onChange={handleChange}
-                  placeholder="Enter your password"
-                  className="w-full pl-10 pr-10 py-2.5 rounded-lg bg-[#F7F4EF] dark:bg-[#141110] border border-[#E5DEC9] dark:border-[#2B231F] text-[#2B231F] dark:text-[#FAFAF8] placeholder-[#2B231F]/40 dark:placeholder-[#FAFAF8]/40 focus:outline-none focus:ring-2 focus:ring-[#B67352] disabled:opacity-60 disabled:cursor-not-allowed transition-all font-medium"
-                />
-                <button
-                  type="button"
-                  disabled={isLoading}
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 text-[#2B231F]/50 hover:text-[#2B231F] dark:text-[#E5DEC9]/60 dark:hover:text-[#FAFAF8] transition-colors disabled:cursor-not-allowed"
-                >
-                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                </button>
-              </div>
-            </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              disabled={isLoading}
-              className={`w-full py-2.5 rounded-lg font-semibold transition-all mt-2 flex items-center justify-center gap-2 text-sm ${
-                isLoading
-                  ? 'bg-[#B67352]/70 dark:bg-[#D88D68]/70 cursor-not-allowed opacity-80'
-                  : 'bg-[#B67352] hover:bg-[#8F553A] dark:bg-[#D88D68] dark:hover:bg-[#B67352] text-white dark:text-[#141110] cursor-pointer active:scale-[0.99]'
-              }`}
-            >
-              {isLoading ? (
-                <div className="flex items-center justify-center gap-2">
-                  <Loader2 className="w-5 h-5 animate-spin" />
-                  <span>Signing In...</span>
+            <form onSubmit={handleSubmit} className="space-y-4 pt-2">
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-gray-700 block">Email Address</label>
+                <div className="relative">
+                  <Mail className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                  <input 
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    disabled={isAnyLoading}
+                    className="w-full pl-10 pr-4 py-2.5 bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#B67352] focus:border-transparent transition disabled:opacity-60 disabled:cursor-not-allowed"
+                  />
                 </div>
-              ) : (
-                'Sign In'
-              )}
-            </button>
-          </form>
+              </div>
 
-          {/* Divider */}
-          <div className="my-4 flex items-center justify-center relative">
-            <div className="w-full border-t border-[#E5DEC9] dark:border-[#2B231F]"></div>
-            <span className="absolute bg-white dark:bg-[#1F1A17] px-3 text-[11px] uppercase tracking-wider text-[#2B231F]/60 dark:text-[#E5DEC9]/60 font-semibold">
-              OR
-            </span>
-          </div>
+              <div className="space-y-1.5">
+                <label className="text-xs font-semibold text-gray-700 block">Password</label>
+                <div className="relative">
+                  <Lock className="w-5 h-5 text-gray-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                  <input 
+                    type={showPassword ? 'text' : 'password'}
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter your password"
+                    disabled={isAnyLoading}
+                    className="w-full pl-10 pr-10 py-2.5 bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-[#B67352] focus:border-transparent transition disabled:opacity-60 disabled:cursor-not-allowed"
+                  />
+                  <button 
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    disabled={isAnyLoading}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
+                  </button>
+                </div>
+              </div>
 
+              <button 
+                type="submit"
+                disabled={isAnyLoading}
+                className="w-full py-3 bg-[#B67352] hover:bg-[#a06243] text-white font-medium rounded-lg shadow-md transition duration-200 text-sm mt-2 flex items-center justify-center space-x-2 disabled:bg-[#B67352]/70 disabled:cursor-not-allowed"
+              >
+                {isLoading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    <span>Signing in...</span>
+                  </>
+                ) : (
+                  <span>Sign In</span>
+                )}
+              </button>
+            </form>
+
+            <div className="relative flex items-center justify-center py-1">
+              <div className="border-t border-gray-200 w-full"></div>
+              <span className="bg-white px-3 text-xs text-gray-400 uppercase font-semibold absolute">OR</span>
+            </div>
+
+           
           {/* Google Auth Link */}
           <a
             href="https://accounts.google.com"
@@ -202,12 +172,14 @@ export default function Login({ onLoginSuccess }) {
             <span>Continue with Google</span>
           </a>
 
-          {/* Footer Text */}
-          <p className="text-center text-[11px] text-[#2B231F]/50 dark:text-[#E5DEC9]/50 mt-4 font-medium">
-            Secure Admin Access
-          </p>
 
+            <p className="text-center text-xs text-gray-400 pt-1 select-none">
+              Secure Admin Access
+            </p>
+
+          </div>
         </div>
+
       </div>
     </div>
   );
