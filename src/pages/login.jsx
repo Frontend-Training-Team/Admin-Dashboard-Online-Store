@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Mail, Lock, Eye, EyeOff, Check, Loader2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { login } from '../api/auth.api';
 import toast from 'react-hot-toast';
-import logo from '../images/logo.svg';
+import logo from '../images/logo.png';
 import heroBg from '../images/hero-bg.webp';
 
 export default function Login() {
@@ -45,30 +45,27 @@ export default function Login() {
   };
 
   return (
-    <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-3 min-h-[650px]">
-      
+    <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-3">
+
       {/* Left Side - Hero Section */}
       <div 
         className="relative flex flex-col lg:col-span-2 justify-between p-12 bg-cover bg-center"
-        style={{ 
-          backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url(${heroBg})` 
-        }}
+        style={{ backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url(${heroBg})` }}
       >
         <div className="relative z-10 space-y-5 pt-12 xl:pt-16">
-          <p className="text-gray-100 text-3xl font-bold tracking-wide">
+          <p className="text-gray-100 text-5xl font-semibold tracking-wide">
             Lamsa Admin Dashboard
           </p>
 
-          <h1 className="text-5xl xl:text-6xl font-bold leading-tight drop-shadow-sm text-gray-200">
-            Manage Your Store Like a Pro
+          <h1 className="text-5xl xl:text-8xl font-bold leading-tight drop-shadow-sm text-gray-200">
+            Manage Your <br /> Store Like a Pro
           </h1>
 
-          <p className="text-gray-400 text-xl xl:text-base max-w-md leading-relaxed font-normal pt-14">
-            Control products, orders, users, carts and analytics from a modern dashboard experience.
+          <p className="text-gray-400 text-xl xl:text-2xl leading-relaxed font-normal">
+            Control products, orders, users, carts and analytics from a modern <br /> dashboard experience.
           </p>
-        </div>
 
-        <div className="relative z-10 space-y-4 my-auto pt-6 w-full max-w-sm">
+          <div className="relative z-10 space-y-4 my-auto mb-6 pt-6 w-full max-w-2xl">
           {[
             'Product Management',
             'Order Tracking',
@@ -82,11 +79,12 @@ export default function Login() {
               <span className="text-sm xl:text-base text-white">{feature}</span>
             </div>
           ))}
-        </div>
+          </div>
 
-        <div className="relative z-10 text-xs text-gray-400">
-          © Lamsa Home Furniture. All rights reserved.
-        </div>
+          <div className="relative z-10 text-xs text-gray-400">
+            © Lamsa Home Furniture. All rights reserved.
+          </div>
+        </div> 
       </div>
 
       {/* Right Side - Form Section */}
@@ -97,9 +95,6 @@ export default function Login() {
             <div className="inline-block p-2 mb-2">
               <img src={logo} alt="Lamsa Logo" className="h-40 w-auto object-contain mx-auto" />
             </div>
-            <p className="text-xs uppercase tracking-widest text-[#B67352] font-semibold">
-              HOME FURNITURE | ONLINE STORE
-            </p>
             <h2 className="text-2xl font-bold text-gray-800">Welcome Back</h2>
             <p className="text-sm text-gray-500">Sign in to your admin dashboard</p>
           </div>
