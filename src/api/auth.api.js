@@ -5,15 +5,15 @@ export const postRegisterSendOtp = (payload) => { return api.post('/auth/registe
 // Verify registration OTP
 export const postRegisterVerifyOtp = (payload) => { return api.post('/auth/register/verify-otp', payload) }
 // Login 
-export const postLogin = (payload) => api.post('/auth/login', payload)
+export const postLogin = (payload) => { return api.post('/auth/login', payload) }
 // Logout 
-export const postLogout = () => api.post('/auth/logout')
+export const postLogout = () => { return api.post('/auth/logout') }
 // Send password reset OTP
 export const postForgotPasswordSendOtp = (payload) => { return api.post('/auth/forgot-password/send-otp', payload) }
 // Verify reset OTP and set new password
 export const postForgotPasswordVerifyOtp = (payload) => { return api.post('/auth/forgot-password/verify-otp', payload) }
 // Get current user
-export const getCurrentUser = () => api.get('/auth/me')
+export const getCurrentUser = () => { return api.get('/auth/me')}
 // Adrnm test route
 export const getAdminTest = () => { return api.get('/auth/admin-test') }
 // Change user role (Admin)
