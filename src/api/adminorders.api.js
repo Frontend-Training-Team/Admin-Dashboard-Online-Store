@@ -1,30 +1,18 @@
+import api from "./axios"
 
-import api from "./axios";
-
-export const getAdminDashboard=()=>{
-    return api.get('/orders/admin/dashboard');
-}
-
+// Admin dashboard stats
+export const getAdminDashboard = () => { return api.get('/orders/admin/dashboard') }
+/************************************************************************************/
+// Get all active carts (Admin) ????
 export const getAllActiveCarts = ({ page = 1, limit = 20 } = {}) => {
-  return api.get('/orders/admin/carts', {
-    params: { page, limit },
-  });
-};
-
-export const getallOrders=()=>{
-    return api.get('/orders/admin')
+  return api.get('/orders/admin/carts', { params: { page, limit } })
 }
-
-// filter = page ,limit ,from ,to ,sortby ,sortDir,paymentStatus,status
-export const getAllOrdersAdmin = (filters = {}) => {
-  return api.get('/orders/admin', { params: filters });
-}
-
-export const getsingleOrder = (orderId) => {
-  return api.get(`/orders/admin/${orderId}`);
-}
-
-
-export const updateOrders = (orderId ,data) => {
-  return api.patch(`/orders/admin/${orderId}/status` , data);
-}
+/************************************************************************************/
+// Get all orders (Admin)
+export const getAllOrders = () => { return api.get('/orders/admin') }
+// Get single order (Admin)
+export const getAllOrdersAdmin = (filters = {}) => { return api.get('/orders/admin', { params: filters }) }
+// Get single order (Admin)
+export const getSingleOrder = (orderId) => { return api.get(`/orders/admin/${orderId}`) }
+// Update order status (Admin)
+export const patchUpdateOrders = (orderId, data) => { return api.patch(`/orders/admin/${orderId}/status`, data) }
