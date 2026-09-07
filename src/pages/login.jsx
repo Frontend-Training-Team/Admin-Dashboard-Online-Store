@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 import logo from '../images/logo.png';
 import heroBg from '../images/hero-bg.webp';
 
-export default function Login() {
+export default function LoginPage() {
   const [form, setForm] = useState({
     email: 'admin@koda.com',
     password: 'admin1212'
@@ -153,7 +153,7 @@ export default function Login() {
                 <span>Sign In</span>
               )}
             </button>
-            
+
           </form>
 
           <div className="relative flex items-center justify-center py-1">
