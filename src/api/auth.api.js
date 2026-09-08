@@ -13,7 +13,7 @@ export const postForgotPasswordSendOtp = (payload) => { return api.post('/auth/f
 // Verify reset OTP and set new password
 export const postForgotPasswordVerifyOtp = (payload) => { return api.post('/auth/forgot-password/verify-otp', payload) }
 // Get current user
-export const getCurrentUser = () => { return api.get('/auth/me')}
+export const getCurrentUser = () => { return api.get('/auth/me') }
 // Adrnm test route
 export const getAdminTest = () => { return api.get('/auth/admin-test') }
 // Change user role (Admin)
