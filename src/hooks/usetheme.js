@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 
 export function useTheme() {
   const [theme, setTheme] = useState(() => {
-    
+
     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
   });
 
@@ -15,7 +15,7 @@ export function useTheme() {
       root.classList.remove('dark');
     }
 
-        const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
     const handleChange = (e) => {
       setTheme(e.matches ? 'dark' : 'light');
     };

@@ -1,6 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
-import DashboardLayout from './components/DashboardLayout'; // sidebar + <Outlet>
 import Dashboard from './pages/Dashboard';
 import Products from './pages/Products';
 import AddProduct from './pages/AddProduct';
@@ -10,9 +9,11 @@ import OrderDetails from './pages/OrderDetails';
 import Users from './pages/Users';
 import Carts from './pages/Carts';
 import Settings from './pages/Settings';
-import LoginPage from './pages/Login';
+import LoginPage from './pages/login';
+import DashboardLayout from './components/Layout/dashboardLayout';
 
 function App() {
+
   return (
     <Routes>
       {/* Public route */}

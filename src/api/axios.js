@@ -23,18 +23,18 @@ api.interceptors.response.use(
     return response;
   },
   (error) => {
-  
+
     if (!error.response) {
       error.userMessage =
         error.code === 'ECONNABORTED'
-          ?'The request time has ended, try again'
+          ? 'The request time has ended, try again'
           : 'Unable to connect to the server, check your internet connection'
       return Promise.reject(error);
     }
 
     const { status, data } = error.response;
 
-   
+
     const apiMessage = data?.message || data?.error;
 
     switch (status) {
@@ -77,8 +77,8 @@ api.interceptors.response.use(
         break;
 
       case 503:
-        error.userMessage = apiMessage || 'The service is currently under maintenance';   
-             break;
+        error.userMessage = apiMessage || 'The service is currently under maintenance';
+        break;
 
       case 504:
         error.userMessage = apiMessage || 'The server took a long time to respond, try again later'
