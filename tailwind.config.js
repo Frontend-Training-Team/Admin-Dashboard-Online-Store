@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 export default {
-    darkMode: 'class',
+    darkMode: 'media',
     content: [
         "./index.html",
         "./src/**/*.{js,ts,jsx,tsx}",
@@ -9,7 +9,8 @@ export default {
     theme: {
         extend: {
             fontFamily: {
-                serif: ['"Playfair Display"', 'serif'],
+                Serif: ['"Playfair Display"', 'serif'],
+                Inter: ['"Inter"', 'sans-serif']
             },
             colors: {
                 brand: {

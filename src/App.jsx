@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import ProtectedRoute from './components/ProtectedRoute';
 import DashboardLayout from './components/DashboardLayout'; // sidebar + <Outlet>
-import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Products from './pages/Products';
 import AddProduct from './pages/AddProduct';
@@ -11,13 +10,14 @@ import OrderDetails from './pages/OrderDetails';
 import Users from './pages/Users';
 import Carts from './pages/Carts';
 import Settings from './pages/Settings';
+import LoginPage from './pages/Login';
 
 function App() {
   return (
      <Routes>
       {/* Public route */}
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
-      <Route path="/login" element={<Login />} />
+      <Route path="/login" element={<LoginPage />} />
 
       {/* Private routes — everything inside requires admin auth */}
       <Route element={<ProtectedRoute allowedRole="admin" />}>
