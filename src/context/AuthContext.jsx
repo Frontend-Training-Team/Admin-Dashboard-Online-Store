@@ -1,33 +1,35 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useState, useEffect } from 'react';
+import { getCurrentUser } from '../api/auth.api';
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  // eslint-disable-next-line no-unused-vars
+  const [user, setUser] = useState(async () => {
+    let res = await getCurrentUser()
+    let user = res.data.user
+    return user
+  });
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      // TODO: call GET /auth/me here to fetch the real user
-      // for now, just fake it so routing logic works
-      setUser({ role: 'admin' });
-    }
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLoading(false);
+
   }, []);
 
-  const login = (userData, token) => {
-    localStorage.setItem('token', token);
-    setUser(userData);
+
+  const getToken = () => {
+    return localStorage.getItem('token');
   };
 
   const logout = () => {
     localStorage.removeItem('token');
-    setUser(null);
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout, loading }}>
+    <AuthContext.Provider value={{ user, getToken, logout, loading }}>
       {children}
     </AuthContext.Provider>
   );
