@@ -6,4 +6,4 @@ export const getMyOrders = ({ page = 1, limit = 20 } = {}) => { return api.get('
 // Get single order
 export const getSingleOrder = (orderId) => { return api.get(`/orders/my/${orderId}`) }
 // Cancel order
-export const patchCancelOrder = (orderId) => { return api.patch(`/orders/my/${orderId}/cancel`)}
+export const patchCancelOrder = (orderId) => { return api.patch(`/orders/my/${orderId}/cancel`) }

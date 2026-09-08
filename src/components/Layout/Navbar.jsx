@@ -1,7 +1,5 @@
-
-import React from 'react';
 import { useDarkMode } from '../../hooks/useDarkMode';
-import { Bell, Moon, Sun , Menu} from 'lucide-react';
+import { Bell, Moon, Sun, Menu } from 'lucide-react';
 import logo from '../../assets/images/4.png';
 import imgUser from '../../assets/images/Guest.jpg';
 
@@ -22,8 +20,8 @@ export default function Navbar({ onToggleSidebar }) {
           <Menu size={20} />
         </button>
 
-        <img src={logo} alt="Lamsa Logo" 
-          className="w-40 sm:w-50 h-12 sm:h-20 rounded-xl object-contain shrink-0" 
+        <img src={logo} alt="Lamsa Logo"
+          className="w-40 sm:w-50 h-12 sm:h-20 rounded-xl object-contain shrink-0"
         />
 
         <div className="min-w-0">
@@ -37,8 +35,8 @@ export default function Navbar({ onToggleSidebar }) {
       </div>
 
       <div className="flex items-center gap-2 sm:gap-3 pr-0 sm:pr-4 shrink-0">
-        
-        <button 
+
+        <button
           className="p-2 sm:p-3 bg-brand-100 rounded-xl text-brand-700 dark:bg-brand-900 dark:text-brand-300 hover:bg-brand-100/60 dark:hover:bg-brand-900/40 transition-colors">
           <Bell size={18} />
         </button>

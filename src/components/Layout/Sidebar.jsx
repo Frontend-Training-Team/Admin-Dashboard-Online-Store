@@ -1,16 +1,4 @@
-
-import React from 'react';
-import { 
-  House, 
-  Users, 
-  Package, 
-  PlusCircle, 
-  ClipboardList, 
-  ShoppingCart, 
-  Settings,
-  LogOut,
-  X
-} from 'lucide-react';
+import { House, Users, Package, PlusCircle, ClipboardList, ShoppingCart, Settings, LogOut, X } from 'lucide-react';
 
 function Sidebar({ isOpen, onClose }) {
   const menuItems = [
@@ -33,11 +21,10 @@ function Sidebar({ isOpen, onClose }) {
       )}
 
       <aside
-        className={`w-64 h-screen shrink-0 p-5 flex flex-col justify-between border-r border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark transition-transform duration-200 z-50 fixed inset-y-0 left-0 lg:static ${
-          isOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full lg:translate-x-0'
-        }`}
+        className={`w-64 h-screen shrink-0 p-5 flex flex-col justify-between border-r border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark transition-transform duration-200 z-50 fixed inset-y-0 left-0 lg:static ${isOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full lg:translate-x-0'
+          }`}
       >
-        
+
         <div>
 
           <div className="flex items-start justify-between mb-8 px-2">
@@ -64,11 +51,10 @@ function Sidebar({ isOpen, onClose }) {
               <button
                 key={item.name}
                 onClick={onClose}
-                className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
-                  item.active
-                    ? 'bg-brand-900 dark:bg-brand-800 text-white shadow-sm'
-                    : 'text-brand-700 dark:text-brand-300 hover:bg-brand-100/70 dark:hover:bg-brand-900/30'
-                }`}
+                className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${item.active
+                  ? 'bg-brand-900 dark:bg-brand-800 text-white shadow-sm'
+                  : 'text-brand-700 dark:text-brand-300 hover:bg-brand-100/70 dark:hover:bg-brand-900/30'
+                  }`}
               >
                 {item.icon}
                 <span>{item.name}</span>

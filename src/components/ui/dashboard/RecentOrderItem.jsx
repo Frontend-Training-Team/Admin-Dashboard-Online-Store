@@ -1,9 +1,7 @@
-import React from 'react';
-
 function RecentOrderItem({ customer, product, status, price }) {
   return (
     <div className="flex items-center justify-between p-2.5 sm:p-3 rounded-xl bg-surface-light/60 dark:bg-brand-950/30 border border-brand-200/50 dark:border-brand-900/20 gap-3">
-      
+
       <div className="min-w-0 flex-1">
         <h4 className="text-base sm:text-xl font-semibold text-brand-900 dark:text-brand-50 truncate">
           {customer}

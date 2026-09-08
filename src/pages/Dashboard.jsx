@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { ShoppingBag, Clock, DollarSign, ShoppingCart, Package, Users } from 'lucide-react';
 import imgUser from '../assets/images/Guest.jpg'
 
@@ -12,7 +12,7 @@ function DashboardPage() {
 
   const scrollRef = useRef(null)
 
-    useEffect(() => {
+  useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
     const interval = setInterval(() => {
@@ -24,7 +24,7 @@ function DashboardPage() {
 
         container.scrollBy({ left: 300, behavior: 'smooth' });
       }
-    }, 3000); 
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
