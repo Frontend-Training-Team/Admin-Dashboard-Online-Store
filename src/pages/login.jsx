@@ -1,43 +1,43 @@
 /* eslint-disable no-unused-vars */
-import { useState } from 'react';
-import { Mail, Lock, Eye, EyeOff, Check, Loader2 } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
-import { postLogin } from '../api/auth.api';
-import toast from 'react-hot-toast';
-import logo from '../images/logo.png';
-import heroBg from '../images/hero-bg.webp';
+import { useState } from 'react'
+import { Mail, Lock, Eye, EyeOff, Check, Loader2 } from 'lucide-react'
+import { useNavigate } from 'react-router-dom'
+import { postLogin } from '../api/auth.api'
+import toast from 'react-hot-toast'
+import logo from '../images/logo.png'
+import heroBg from '../images/hero-bg.webp'
 
 export default function LoginPage() {
   const [form, setForm] = useState({
     email: 'admin@koda.com',
     password: 'admin1212'
-  });
+  })
 
-  const [showPassword, setShowPassword] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [errorMessage, setErrorMessage] = useState('');
+  const [showPassword, setShowPassword] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const onSubmit = async (e) => {
-    e.preventDefault();
-    setIsLoading(true);
+    e.preventDefault()
+    setIsLoading(true)
 
     try {
-      let res = await postLogin(form);
+      let res = await postLogin(form)
       localStorage.setItem("token", res.data.token)
-      toast.success("Login successfully");
+      toast.success("Login successfully")
 
       setTimeout(() => {
-        navigate('/dashboard');
-      }, 1000);
+        navigate('/dashboard')
+      }, 1000)
 
     } catch (error) {
-      toast.error(error.response?.data?.message || "Unable to login");
+      toast.error(error.response?.data?.message || "Unable to login")
     } finally {
-      setIsLoading(false);
+      setIsLoading(false)
     }
-  };
+  }
 
   return (
     <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-[55%_45%]">
@@ -185,5 +185,5 @@ export default function LoginPage() {
       </div>
 
     </div>
-  );
+  )
 }

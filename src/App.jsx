@@ -14,7 +14,7 @@ import LoginPage from './pages/Login';
 
 function App() {
   return (
-     <Routes>
+    <Routes>
       {/* Public route */}
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
       <Route path="/login" element={<LoginPage />} />
@@ -38,5 +38,6 @@ function App() {
 
 
 }
+
 
 export default App;
