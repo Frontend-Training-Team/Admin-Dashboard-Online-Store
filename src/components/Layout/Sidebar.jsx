@@ -1,14 +1,16 @@
+import { NavLink } from 'react-router-dom';
 import { House, Users, Package, PlusCircle, ClipboardList, ShoppingCart, Settings, LogOut, X } from 'lucide-react';
 
 function Sidebar({ isOpen, onClose }) {
+
   const menuItems = [
-    { name: 'Dashboard', icon: <House size={18} />, active: true },
-    { name: 'Users', icon: <Users size={18} />, active: false },
-    { name: 'Products', icon: <Package size={18} />, active: false },
-    { name: 'Add Product', icon: <PlusCircle size={18} />, active: false },
-    { name: 'Orders', icon: <ClipboardList size={18} />, active: false },
-    { name: 'Carts', icon: <ShoppingCart size={18} />, active: false },
-    { name: 'Settings', icon: <Settings size={18} />, active: false },
+    { name: 'Dashboard', path: '/dashboard', icon: <House size={18} /> },
+    { name: 'Users', path: '/users', icon: <Users size={18} /> },
+    { name: 'Products', path: '/products', icon: <Package size={18} /> },
+    { name: 'Add Product', path: '/products/new', icon: <PlusCircle size={18} /> },
+    { name: 'Orders', path: '/orders', icon: <ClipboardList size={18} /> },
+    { name: 'Carts', path: '/carts', icon: <ShoppingCart size={18} /> },
+    { name: 'Settings', path: '/settings', icon: <Settings size={18} /> },
   ];
 
   return (
@@ -21,12 +23,11 @@ function Sidebar({ isOpen, onClose }) {
       )}
 
       <aside
-        className={`w-64 h-screen shrink-0 p-5 flex flex-col justify-between border-r border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark transition-transform duration-200 z-50 fixed inset-y-0 left-0 lg:static ${isOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full lg:translate-x-0'
-          }`}
+        className={`w-64 h-screen shrink-0 p-5 flex flex-col justify-between border-r border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark transition-transform duration-200 z-50 fixed inset-y-0 left-0 lg:static ${
+          isOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full lg:translate-x-0'
+        }`}
       >
-
         <div>
-
           <div className="flex items-start justify-between mb-8 px-2">
             <div>
               <span className="text-[11px] font-bold tracking-widest text-brand-500 uppercase">
@@ -48,17 +49,22 @@ function Sidebar({ isOpen, onClose }) {
 
           <nav className="space-y-1.5">
             {menuItems.map((item) => (
-              <button
+              <NavLink
                 key={item.name}
+                to={item.path}
+                end={item.path === '/dashboard'}
                 onClick={onClose}
-                className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${item.active
-                  ? 'bg-brand-900 dark:bg-brand-800 text-white shadow-sm'
-                  : 'text-brand-700 dark:text-brand-300 hover:bg-brand-100/70 dark:hover:bg-brand-900/30'
-                  }`}
+                className={({ isActive }) =>
+                  `w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
+                    isActive
+                      ? 'bg-brand-900 dark:bg-brand-800 text-white shadow-sm'
+                      : 'text-brand-700 dark:text-brand-300 hover:bg-brand-100/70 dark:hover:bg-brand-900/30'
+                  }`
+                }
               >
                 {item.icon}
                 <span>{item.name}</span>
-              </button>
+              </NavLink>
             ))}
           </nav>
         </div>
@@ -72,10 +78,9 @@ function Sidebar({ isOpen, onClose }) {
             <span>Logout</span>
           </button>
         </div>
-
       </aside>
     </>
   );
 }
 
-export default Sidebar
+export default Sidebar;

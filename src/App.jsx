@@ -11,6 +11,7 @@ import Carts from './pages/Carts';
 import Settings from './pages/Settings';
 import LoginPage from './pages/login';
 import DashboardLayout from './components/Layout/dashboardLayout';
+import ViewProduct from './pages/ViewProduct';
 
 function App() {
 
@@ -24,14 +25,15 @@ function App() {
       <Route element={<ProtectedRoute allowedRole="admin" />}>
         <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/products" element={<Products />} />
-          <Route path="/dashboard/products/new" element={<AddProduct />} />
-          <Route path="/dashboard/products/:id/edit" element={<EditProduct />} />
-          <Route path="/dashboard/orders" element={<Orders />} />
-          <Route path="/dashboard/orders/:id" element={<OrderDetails />} />
-          <Route path="/dashboard/users" element={<Users />} />
-          <Route path="/dashboard/carts" element={<Carts />} />
-          <Route path="/dashboard/settings" element={<Settings />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/new" element={<AddProduct />} />
+          <Route path="/products/:id/edit" element={<EditProduct />} />
+          <Route path="/products/view" element={<ViewProduct />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/orders/:id" element={<OrderDetails />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/carts" element={<Carts />} />
+          <Route path="/settings" element={<Settings />} />
         </Route>
       </Route>
     </Routes>
