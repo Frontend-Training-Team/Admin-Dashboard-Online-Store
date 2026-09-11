@@ -18,3 +18,9 @@ export const getCurrentUser = () => { return api.get('/auth/me') }
 export const getAdminTest = () => { return api.get('/auth/admin-test') }
 // Change user role (Admin)
 export const patchChangeRole = (payload) => { return api.patch('/auth/change-role', payload) }
+
+/*
+    User ID: "6aa2af49aec1e8248ed875dc"
+    Order ID: "6aa2af4eaec1e8248ed875e1"
+    Product ID: "6a9d2dbe648864c4a0781c09"
+*/

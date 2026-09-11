@@ -1,6 +1,6 @@
 function BestSellerItem({ name, details, img }) {
   return (
-    <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-xl bg-surface-light/60 dark:bg-brand-950/30 border border-brand-200/50 dark:border-brand-900/20">
+    <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-xl bg-surface-light/60 dark:bg-brand-950/30 border border-brand-200/50 dark:border-brand-900/20  duration-150 hover:scale-x-[1.02]">
 
       <img
         src={img}
