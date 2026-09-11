@@ -148,31 +148,31 @@ export default function DashboardPage() {
       price: `$${data?.dashboard?.recentOrders[0].items[0].price || 0}`
     },
     {
-      customer: `${data?.dashboard?.recentOrders[1].user.username || "username"}`,
+      customer: `${data?.dashboard?.recentOrders[1].user?.username || "username"}`,
       product: `${data?.dashboard?.recentOrders[1].items[0].name || "product name"}`,
       status: `${data?.dashboard?.recentOrders[1].status || "status"}`,
       price: `$${data?.dashboard?.recentOrders[1].items[0].price || 0}`
     },
     {
-      customer: `${data?.dashboard?.recentOrders[2].user.username || "username"}`,
+      customer: `${data?.dashboard?.recentOrders[2].user?.username || "username"}`,
       product: `${data?.dashboard?.recentOrders[2].items[0].name || "product name"}`,
       status: `${data?.dashboard?.recentOrders[2].status || "status"}`,
       price: `$${data?.dashboard?.recentOrders[2].items[0].price || 0}`
     },
     {
-      customer: `${data?.dashboard?.recentOrders[3].user.username || "username"}`,
+      customer: `${data?.dashboard?.recentOrders[3].user?.username || "username"}`,
       product: `${data?.dashboard?.recentOrders[3].items[0].name || "product name"}`,
       status: `${data?.dashboard?.recentOrders[3].status || "status"}`,
       price: `$${data?.dashboard?.recentOrders[3].items[0].price || 0}`
     },
     {
-      customer: `${data?.dashboard?.recentOrders[3].user.username || "username"}`,
+      customer: `${data?.dashboard?.recentOrders[3].user?.username || "username"}`,
       product: `${data?.dashboard?.recentOrders[3].items[0].name || "product name"}`,
       status: `${data?.dashboard?.recentOrders[3].status || "status"}`,
       price: `$${data?.dashboard?.recentOrders[3].items[0].price || 0}`
     },
     {
-      customer: `${data?.dashboard?.recentOrders[3].user.username || "username"}`,
+      customer: `${data?.dashboard?.recentOrders[3].user?.username || "username"}`,
       product: `${data?.dashboard?.recentOrders[3].items[0].name || "product name"}`,
       status: `${data?.dashboard?.recentOrders[3].status || "status"}`,
       price: `$${data?.dashboard?.recentOrders[3].items[0].price || 0}`
