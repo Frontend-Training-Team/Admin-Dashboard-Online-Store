@@ -14,3 +14,9 @@ export const postApplyCoupon = (payload) => { return api.post('/carts/coupon', p
 export const deleteCoupon = () => { return api.delete('/carts/coupon') }
 // clear cart
 export const deleteClearCart = () => { return api.delete('/carts/clear') }
+
+/*
+    User ID: "6aa2af49aec1e8248ed875dc"
+    Order ID: "6aa2af4eaec1e8248ed875e1"
+    Product ID: "6a9d2dbe648864c4a0781c09"
+*/

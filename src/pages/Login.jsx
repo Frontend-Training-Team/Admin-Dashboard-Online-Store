@@ -3,9 +3,9 @@ import { useState } from 'react'
 import { Mail, Lock, Eye, EyeOff, Check, Loader2 } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { postLogin } from '../api/auth.api'
-import toast from 'react-hot-toast'
-import logo from '../images/logo.png'
-import heroBg from '../images/hero-bg.webp'
+import toast from 'react-hot-toast';
+import logo from "../assets/images/logo.png"
+import heroBg from '../assets/images/hero-bg.webp'
 
 export default function LoginPage() {
   const [form, setForm] = useState({
@@ -90,17 +90,17 @@ export default function LoginPage() {
             <div className="inline-block p-2 mb-2">
               <img src={logo} alt="Lamsa Logo" className="h-28 sm:h-32 lg:h-40 w-auto object-contain mx-auto" />
             </div>
-            <h2 className="text-xl sm:text-2xl font-bold text-gray-800">Welcome Back</h2>
-            <p className="text-xs sm:text-sm text-gray-500">Sign in to your admin dashboard</p>
+            <h2 className="text-xl sm:text-4xl font-semibold font-Inter text-gray-800">Welcome Back</h2>
+            <p className="text-xs sm:text-lg font-Inter text-gray-500">Sign in to your admin dashboard</p>
           </div>
 
           {errorMessage && (
-            <div className="p-3 bg-red-50 border border-red-200 text-red-600 rounded-lg text-sm text-center">
+            <div className="p-3 bg-red-50 border border-red-200 text-red-600 rounded-lg text-sm font-Inter text-center">
               {errorMessage}
             </div>
           )}
 
-          <form onSubmit={onSubmit} className="space-y-4 pt-2">
+          <form onSubmit={onSubmit} className="space-y-4 pt-2  font-Inter">
             <div className="space-y-1.5">
               <label className="text-xs font-semibold mb-3 text-gray-700 block">Email Address</label>
               <div className="relative">
@@ -112,7 +112,9 @@ export default function LoginPage() {
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   disabled={isLoading}
                   required
-                  className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#B67352] focus:border-transparent transition disabled:opacity-60"
+                  className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 text-gray-900  font-Inter
+                  placeholder-gray-400 rounded-md text-sm focus:outline-none focus:ring-2
+                  focus:ring-[#B67352] focus:border-transparent transition disabled:opacity-60"
                 />
               </div>
             </div>
@@ -128,7 +130,9 @@ export default function LoginPage() {
                   onChange={(e) => setForm({ ...form, password: e.target.value })}
                   disabled={isLoading}
                   required
-                  className="w-full h-14 pl-12 pr-12 bg-gray-50 border border-gray-200 text-gray-900 placeholder-gray-400 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-[#B67352] focus:border-transparent transition disabled:opacity-60"
+                  className="w-full h-14 pl-12 pr-12 bg-gray-50 border border-gray-200 text-gray-900
+                  font-Inter placeholder-gray-400 rounded-md text-sm focus:outline-none focus:ring-2
+                  focus:ring-[#B67352] focus:border-transparent transition disabled:opacity-60"
                 />
                 <button
                   type="button"
@@ -144,7 +148,10 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full h-12 bg-brand-300 hover:bg-[#a06243] text-white font-bold rounded-md shadow-md transition duration-200 text-sm mt-2 flex items-center justify-center space-x-2 disabled:bg-[#B67352]/70 disabled:cursor-not-allowed"
+              className="
+              w-full h-12 bg-brand-300 hover:bg-[#a06243] text-white font-bold rounded-md
+              shadow-md transition duration-200 text-sm mt-2 flex items-center justify-center space-x-2
+              disabled:bg-[#B67352]/70 disabled:cursor-not-allowed active:scale-95"
             >
               {isLoading ? (
                 <>
@@ -167,7 +174,9 @@ export default function LoginPage() {
             href="https://accounts.google.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full h-12 flex items-center justify-center gap-2 border border-[#CCCCCC] hover:bg-black hover:text-white text-[#2B231F] font-semibold rounded-md transition duration-200 text-sm no-underline cursor-pointer"
+            className="w-full h-12 flex items-center justify-center gap-2 border border-[#CCCCCC] 
+            hover:bg-black hover:text-white text-[#2B231F] font-semibold rounded-md transition
+            duration-200 text-sm no-underline cursor-pointer active:scale-95"
           >
             <img
               src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"

@@ -2,7 +2,7 @@
 import { useState } from 'react';
 import Sidebar from './Sidebar';
 import Navbar from './Navbar';
-import DashboardPage from '../../pages/Dashboard';
+import { Outlet } from 'react-router-dom';
 
 function dashboardLayout() {
 
@@ -20,7 +20,7 @@ function dashboardLayout() {
         <Navbar onToggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
 
         <main className="flex-1 p-8 overflow-y-scroll">
-          <DashboardPage />
+          <Outlet />
         </main>
 
       </div>
