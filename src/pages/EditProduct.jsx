@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductForm from "../components/ui/products/AddProductForm";
 import ProductFormHeader from "../components/ui/products/ProductFormHeader";
-import { getProductById, patchUpdateProductAdmin } from "../api/products.api";
+import { getSingleproduct, patchUpdateProductAdmin } from "../api/products.api";
 
 function EditProduct() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    getProductById(id).then((res) => setProduct(res.data));
+    getSingleproduct(id).then((res) => setProduct(res.data));
   }, [id]);
 
   const handleUpdate = async (formData) => {

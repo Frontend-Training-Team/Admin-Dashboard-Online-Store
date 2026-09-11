@@ -17,8 +17,6 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel }) {
 
   const [images, setImages] = useState([]);
   const [deletedImageIds, setDeletedImageIds] = useState([]);
-  // deletedImageIds -> tracks which EXISTING images the user removed, so we can tell
-  // the backend to delete them via the "deleteImages" field (edit mode only)
 
   const [tags, setTags] = useState([]);
   const [featured, setFeatured] = useState(false);
