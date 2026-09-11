@@ -9,12 +9,14 @@ import OrderDetails from './pages/OrderDetails';
 import Users from './pages/Users';
 import Carts from './pages/Carts';
 import Settings from './pages/Settings';
-import LoginPage from './pages/login';
+import LoginPage from './pages/Login';
 import DashboardLayout from './components/Layout/dashboardLayout';
-
+// import { ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+import { Toaster } from 'react-hot-toast';
 function App() {
 
-  return (
+  return (<>
     <Routes>
       {/* Public route */}
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
@@ -24,18 +26,28 @@ function App() {
       <Route element={<ProtectedRoute allowedRole="admin" />}>
         <Route element={<DashboardLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/dashboard/products" element={<Products />} />
-          <Route path="/dashboard/products/new" element={<AddProduct />} />
-          <Route path="/dashboard/products/:id/edit" element={<EditProduct />} />
-          <Route path="/dashboard/orders" element={<Orders />} />
-          <Route path="/dashboard/orders/:id" element={<OrderDetails />} />
-          <Route path="/dashboard/users" element={<Users />} />
-          <Route path="/dashboard/carts" element={<Carts />} />
-          <Route path="/dashboard/settings" element={<Settings />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/new" element={<AddProduct />} />
+          <Route path="/products/:id/edit" element={<EditProduct />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/orders/:id" element={<OrderDetails />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/carts" element={<Carts />} />
+          <Route path="/settings" element={<Settings />} />
         </Route>
       </Route>
     </Routes>
-  )
+    <Toaster
+      position="top-center"
+      toastOptions={{
+        duration: 2000,
+        style: {
+          background: '#1f1a17',
+          color: '#fff',
+        },
+      }}
+    />
+  </>)
 
 
 }

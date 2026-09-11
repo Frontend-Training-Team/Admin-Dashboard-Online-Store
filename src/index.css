@@ -65,6 +65,20 @@
     src: url('../fonts/inter-v20-latin-700.woff2') format('woff2');
 }
 
+@layer utilities {
+    ::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: gray;
+    }
+}
+
 /* body {
     font-family: 'Inter', sans-serif;
 } */
