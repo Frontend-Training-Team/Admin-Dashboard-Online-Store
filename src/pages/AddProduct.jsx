@@ -1,5 +1,5 @@
-import ProductForm from "../components/ui/addProducts/ProductForm";
-import ProductFormHeader from "../components/ui/addProducts/ProductFormHeader";
+import ProductForm from "../components/ui/products/AddProductForm";
+import ProductFormHeader from "../components/ui/products/ProductFormHeader";
 import { postCreateProductAdmin } from "../api/products.api";
 
 function AddProduct() {
