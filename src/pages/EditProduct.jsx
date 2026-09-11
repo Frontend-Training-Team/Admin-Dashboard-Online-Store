@@ -1,18 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ProductForm from "../components/ui/products/AddProductForm";
-import { getSingleproduct, patchUpdateProductAdmin } from "../api/products.api";
+import ProductForm from "../components/ui/addProducts/ProductForm";
+import ProductFormHeader from "../components/ui/addProducts/ProductFormHeader";
+import { getProductById, patchUpdateProductAdmin } from "../api/products.api";
 
 function EditProduct() {
   const { id } = useParams();
-  // :id comes from the URL, e.g. /dashboard/products/64abc.../edit -> id = "64abc..."
-
   const [product, setProduct] = useState(null);
-  // starts as null -> we don't have the product data yet, still loading
 
   useEffect(() => {
-    getSingleproduct(id).then((res) => setProduct(res.data));
-    // fetch the product once, when the page first loads
+    getProductById(id).then((res) => setProduct(res.data));
   }, [id]);
 
   const handleUpdate = async (formData) => {
@@ -20,9 +17,17 @@ function EditProduct() {
   };
 
   if (!product) return <p>Loading...</p>;
-  // don't render the form until we actually have data to pre-fill it with
 
-  return <ProductForm mode="edit" initialData={product} onSubmit={handleUpdate} />;
+  return (
+    <div>
+      <ProductFormHeader
+        mode="edit"
+        statusLabel="LIVE"
+        statusDescription="Connected to the real product update API."
+      />
+      <ProductForm mode="edit" initialData={product} onSubmit={handleUpdate} />
+    </div>
+  );
 }
 
 export default EditProduct;

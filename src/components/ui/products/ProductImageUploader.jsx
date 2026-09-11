@@ -12,11 +12,11 @@ function ProductImageUploader({ images, onChange, onRemoveExisting }) {
   const removeImage = (index) => {
     const imageToRemove = images[index];
 
-    // if it's a plain string, it's an EXISTING image from the backend -> track it for deletion
+    
     if (typeof imageToRemove === "string" && onRemoveExisting) {
       onRemoveExisting(imageToRemove);
     }
-    // if it's an object (a new upload not yet saved), we just drop it — nothing to tell the backend
+   
 
     onChange(images.filter((_, i) => i !== index));
   };

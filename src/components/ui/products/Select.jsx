@@ -1,7 +1,5 @@
-// Same idea as Input, but for a dropdown <select>
 function Select({ label, options = [], ...rest }) {
-  // options -> array of strings to show as dropdown choices, e.g. ["electronics", "clothing"]
-  //            defaults to an empty array so it never crashes if you forget to pass any
+
 
   const baseStyle =
     "w-full rounded-lg px-3 py-2 text-sm border " +
@@ -16,7 +14,6 @@ function Select({ label, options = [], ...rest }) {
         </label>
       )}
       <select {...rest} className={baseStyle}>
-        {/* .map() loops over the options array and creates one <option> per item */}
         {options.map((opt) => (
           <option key={opt} value={opt}>
             {opt}
