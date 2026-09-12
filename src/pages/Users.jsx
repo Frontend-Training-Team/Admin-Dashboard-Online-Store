@@ -1,10 +1,9 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import { useEffect, useState, useMemo } from 'react';
-import {Users as UsersIcon, UserCheck, ShieldCheck, CheckCircle2, UserPlus, Search, X, ChevronDown,} from 'lucide-react';
+import { Search, X, ChevronDown, UsersRound, UserRoundPlus, UserRound, UserRoundCheck, ShieldUser, } from 'lucide-react';
 import toast from 'react-hot-toast';
-
 import { getUserAll, deleteUser } from '../api/users.api';
 import { patchChangeRole } from '../api/auth.api';
-
 import UserStatCard from '../components/ui/user/UserStatCard';
 import AddUserCollapse from '../components/ui/user/AddUserCollapse';
 import UserTable from '../components/ui/user/UserTable';
@@ -121,7 +120,7 @@ export default function Users() {
       >
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <p className="text-[12px] font-semibold tracking-wider text-[#A05A32] uppercase">
+            <p className="text-[12px] font-semibold tracking-wider text-brand-500 uppercase">
               USER MANAGEMENT
             </p>
             <h1 className="text-2xl sm:text-[28px] font-bold text-[#592309] mt-0.5 tracking-tight">
@@ -162,13 +161,12 @@ export default function Users() {
               onClick={() => setIsAddOpen((prev) => !prev)}
               className="flex items-center justify-center gap-2.5 px-5 h-11 sm:h-12 rounded-xl border border-white/25 bg-white/10 hover:bg-white/20 backdrop-blur-md text-sm font-medium text-white shadow-sm transition active:scale-95 shrink-0 cursor-pointer"
             >
-              <UserPlus size={17} className="text-white/90" />
+              <UserRoundPlus size={20} className="text-white/90" />
               <span>Add User</span>
               <ChevronDown
                 size={16}
-                className={`text-white/80 transition-transform duration-200 ${
-                  isAddOpen ? 'rotate-180' : ''
-                }`}
+                className={`text-white/80 transition-transform duration-200 ${isAddOpen ? 'rotate-180' : ''
+                  }`}
               />
             </button>
           </div>
@@ -187,22 +185,22 @@ export default function Users() {
         <UserStatCard
           title="Total Users"
           value={stats.total}
-          icon={<UsersIcon size={20} />}
+          icon={<UsersRound size={24} />}
         />
         <UserStatCard
           title="Admins"
           value={stats.admins}
-          icon={<ShieldCheck size={20} />}
+          icon={<ShieldUser size={24} />}
         />
         <UserStatCard
           title="Customers"
           value={stats.customers}
-          icon={<UserCheck size={20} />}
+          icon={<UserRound size={24} />}
         />
         <UserStatCard
           title="Verified"
           value={stats.verified}
-          icon={<CheckCircle2 size={20} />}
+          icon={<UserRoundCheck size={24} />}
         />
       </div>
 

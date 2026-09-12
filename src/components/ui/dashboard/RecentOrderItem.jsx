@@ -15,7 +15,7 @@ function RecentOrderItem({ customer, product, status, price }) {
         <span className="text-[11px] sm:text-xs px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full font-medium bg-emerald-500/10 text-emerald-600 dark:text-emerald-400">
           {status}
         </span>
-        <span className="text-xs sm:text-sm font-semibold text-[#666666] dark:text-brand-50 text-right min-w-[55px]">
+        <span className="text-xs sm:text-sm font-semibold text-[#666666] dark:text-brand-50 text-right min-w-13.75">
           {price}
         </span>
       </div>

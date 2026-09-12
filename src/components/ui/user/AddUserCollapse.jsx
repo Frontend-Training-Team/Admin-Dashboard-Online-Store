@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { UserPlus, X, Loader2 } from 'lucide-react';
+import { X, Loader2, UserRoundPlus } from 'lucide-react';
 import { postAddUser } from '../../../api/users.api';
 import toast from 'react-hot-toast';
 import bannerBg from '../../../assets/images/users-banner-bg.jpg';
@@ -99,11 +99,10 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
 
   return (
     <div
-      className={`grid transition-all duration-300 ease-out ${
-        isOpen
-          ? 'grid-rows-[1fr] opacity-100 translate-y-0'
-          : 'grid-rows-[0fr] opacity-0 -translate-y-3 pointer-events-none'
-      }`}
+      className={`grid transition-all duration-300 ease-out ${isOpen
+        ? 'grid-rows-[1fr] opacity-100 translate-y-0'
+        : 'grid-rows-[0fr] opacity-0 -translate-y-3 pointer-events-none hidden'
+        }`}
     >
       <div className="overflow-hidden">
         <div className="rounded-2xl border border-gray-200/80 dark:border-0 bg-white dark:bg-[#1E2435] shadow-md overflow-hidden">
@@ -114,7 +113,8 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
           >
             <div className="flex items-center gap-3.5">
               <div className="rounded-xl bg-[#A36037] p-2 sm:p-2.5 text-white shadow-sm flex items-center justify-center shrink-0">
-                <UserPlus size={20} />
+                {/* <UserPlus size={20} /> */}
+                <UserRoundPlus size={20} className="text-white/90" />
               </div>
               <div>
                 <h3 className="text-base sm:text-lg font-bold text-[#592309] leading-tight">
@@ -150,11 +150,10 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
                   value={formData.username}
                   onChange={handleChange}
                   placeholder="eg. user_name"
-                  className={`w-full rounded-xl border px-4 py-3 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-[#5E6C84] outline-none transition ${
-                    errors.username
-                      ? 'border-rose-400 dark:border-rose-500 bg-rose-50/40 dark:bg-rose-950/30 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/30'
-                      : 'border-gray-200 dark:border-[#242B3F] bg-white dark:bg-[#161B26] focus:border-brand-500 dark:focus:border-brand-500 focus:ring-1 focus:ring-brand-500/20'
-                  }`}
+                  className={`w-full rounded-xl border px-4 py-3 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-[#5E6C84] outline-none transition ${errors.username
+                    ? 'border-rose-400 dark:border-rose-500 bg-rose-50/40 dark:bg-rose-950/30 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/30'
+                    : 'border-gray-200 dark:border-[#242B3F] bg-white dark:bg-[#161B26] focus:border-brand-500 dark:focus:border-brand-500 focus:ring-1 focus:ring-brand-500/20'
+                    }`}
                 />
                 {errors.username && (
                   <p className="text-[12px] text-rose-500 dark:text-rose-400 mt-1.5 font-medium animate-fade-in">
@@ -174,11 +173,10 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="e.g. name@email.com"
-                  className={`w-full rounded-xl border px-4 py-3 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-[#5E6C84] outline-none transition ${
-                    errors.email
-                      ? 'border-rose-400 dark:border-rose-500 bg-rose-50/40 dark:bg-rose-950/30 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/30'
-                      : 'border-gray-200 dark:border-[#242B3F] bg-white dark:bg-[#161B26] focus:border-brand-500 dark:focus:border-brand-500 focus:ring-1 focus:ring-brand-500/20'
-                  }`}
+                  className={`w-full rounded-xl border px-4 py-3 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-[#5E6C84] outline-none transition ${errors.email
+                    ? 'border-rose-400 dark:border-rose-500 bg-rose-50/40 dark:bg-rose-950/30 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/30'
+                    : 'border-gray-200 dark:border-[#242B3F] bg-white dark:bg-[#161B26] focus:border-brand-500 dark:focus:border-brand-500 focus:ring-1 focus:ring-brand-500/20'
+                    }`}
                 />
                 {errors.email && (
                   <p className="text-[12px] text-rose-500 dark:text-rose-400 mt-1.5 font-medium animate-fade-in">
@@ -198,11 +196,10 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="Min. 6 characters"
-                  className={`w-full rounded-xl border px-4 py-3 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-[#5E6C84] outline-none transition ${
-                    errors.password
-                      ? 'border-rose-400 dark:border-rose-500 bg-rose-50/40 dark:bg-rose-950/30 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/30'
-                      : 'border-gray-200 dark:border-[#242B3F] bg-white dark:bg-[#161B26] focus:border-brand-500 dark:focus:border-brand-500 focus:ring-1 focus:ring-brand-500/20'
-                  }`}
+                  className={`w-full rounded-xl border px-4 py-3 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-[#5E6C84] outline-none transition ${errors.password
+                    ? 'border-rose-400 dark:border-rose-500 bg-rose-50/40 dark:bg-rose-950/30 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/30'
+                    : 'border-gray-200 dark:border-[#242B3F] bg-white dark:bg-[#161B26] focus:border-brand-500 dark:focus:border-brand-500 focus:ring-1 focus:ring-brand-500/20'
+                    }`}
                 />
                 {errors.password && (
                   <p className="text-[12px] text-rose-500 dark:text-rose-400 mt-1.5 font-medium animate-fade-in">
@@ -222,11 +219,10 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="e.g. +1 234 567 890"
-                  className={`w-full rounded-xl border px-4 py-3 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-[#5E6C84] outline-none transition ${
-                    errors.phone
-                      ? 'border-rose-400 dark:border-rose-500 bg-rose-50/40 dark:bg-rose-950/30 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/30'
-                      : 'border-gray-200 dark:border-[#242B3F] bg-white dark:bg-[#161B26] focus:border-brand-500 dark:focus:border-brand-500 focus:ring-1 focus:ring-brand-500/20'
-                  }`}
+                  className={`w-full rounded-xl border px-4 py-3 text-sm text-gray-900 dark:text-white placeholder:text-gray-400 dark:placeholder:text-[#5E6C84] outline-none transition ${errors.phone
+                    ? 'border-rose-400 dark:border-rose-500 bg-rose-50/40 dark:bg-rose-950/30 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/30'
+                    : 'border-gray-200 dark:border-[#242B3F] bg-white dark:bg-[#161B26] focus:border-brand-500 dark:focus:border-brand-500 focus:ring-1 focus:ring-brand-500/20'
+                    }`}
                 />
                 {errors.phone && (
                   <p className="text-[12px] text-rose-500 dark:text-rose-400 mt-1.5 font-medium animate-fade-in">
@@ -270,7 +266,7 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
                     </>
                   ) : (
                     <>
-                      <UserPlus size={16} />
+                      <UserRoundPlus size={20} className="text-white/90" />
                       <span>Add User</span>
                     </>
                   )}

@@ -152,7 +152,7 @@ function EditUserModal({ isOpen, user, onClose, onUserUpdated }) {
           {/* Avatar URL */}
           <div className="flex flex-col gap-1.5">
             <label className="text-xs font-semibold uppercase tracking-wider text-gray-600 dark:text-[#8E9BAE] flex items-center gap-1.5">
-              <ImageIcon size={13} />
+              <ImageIcon size={18} />
               <span>Avatar Image URL</span>
             </label>
             <input

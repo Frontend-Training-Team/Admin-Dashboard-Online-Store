@@ -12,7 +12,7 @@ function UserStatCard({ title, value, icon }) {
       </div>
 
       {/* Right side: Icon Badge */}
-      <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-[#8F4F28] dark:bg-[#733E2A] flex items-center justify-center text-white dark:text-[#E2D4CD] shrink-0 shadow-sm">
+      <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#8F4F28] dark:bg-[#733E2A] flex items-center justify-center text-white dark:text-[#E2D4CD] shrink-0 shadow-sm">
         {icon}
       </div>
     </div>

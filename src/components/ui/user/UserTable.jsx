@@ -4,11 +4,11 @@ import { Users, SearchX } from 'lucide-react';
 function UserTable({ users, loading, onEdit, onToggleRole, onDelete, togglingUserId, searchQuery, onClearSearch,}) {
   
   return (
-    <div className="overflow-hidden rounded-2xl border border-gray-100 dark:border-0 bg-white dark:bg-[#1E2435] shadow-sm">
+    <div className="overflow-hidden rounded-2xl border border-gray-100 dark:border-0 bg-white dark:bg-gray-900 shadow-sm">
       <div className="overflow-x-auto">
         <table className="min-w-full text-left">
           {/* Table Header matching Figma (#FFEFDD in light, #1E2435 in dark) */}
-          <thead className="bg-[#FFEFDD] dark:bg-[#1E2435]">
+          <thead className="bg-[#FFEFDD] dark:bg-gray-900">
             <tr>
               <th className="px-6 py-4 text-xs sm:text-[13px] font-semibold text-gray-700 dark:text-[#D1D5DB]">
                 User
