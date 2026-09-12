@@ -26,8 +26,9 @@ function Sidebar({ isOpen, onClose }) {
       )}
 
       <aside
-        className={`w-64 h-screen shrink-0 p-5 flex flex-col justify-between border-r border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark transition-transform duration-200 z-50 fixed inset-y-0 left-0 lg:static ${isOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full lg:translate-x-0'
-          }`}
+        className={`w-64 h-screen shrink-0 p-5 flex flex-col justify-between border-r border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark transition-transform duration-200 z-50 fixed inset-y-0 left-0 lg:static ${
+          isOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full lg:translate-x-0'
+        }`}
       >
         <div>
           <div className="flex items-start justify-between mb-8 px-2">

@@ -11,6 +11,8 @@ import Carts from './pages/Carts';
 import Settings from './pages/Settings';
 import LoginPage from './pages/Login';
 import DashboardLayout from './components/Layout/dashboardLayout';
+import ViewProduct from './pages/ViewProduct';
+
 // import { ToastContainer } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 import { Toaster } from 'react-hot-toast';
@@ -29,6 +31,7 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/products/new" element={<AddProduct />} />
           <Route path="/products/:id/edit" element={<EditProduct />} />
+          <Route path="/products/view/:id" element={<ViewProduct />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/orders/:id" element={<OrderDetails />} />
           <Route path="/users" element={<Users />} />
