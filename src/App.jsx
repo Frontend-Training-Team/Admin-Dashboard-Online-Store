@@ -11,6 +11,7 @@ import Carts from './pages/Carts';
 import Settings from './pages/Settings';
 import LoginPage from './pages/Login';
 import DashboardLayout from './components/Layout/dashboardLayout';
+import TestQuickEdit from './pages/TestQuickEdit';
 import { ToastContainer, Slide  } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Toaster } from 'react-hot-toast';
@@ -42,6 +43,7 @@ function App() {
           <Route path="/users" element={<Users />} />
           <Route path="/carts" element={<Carts />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/test-quick-edit" element={<TestQuickEdit />} />
         </Route>
       </Route>
     </Routes>

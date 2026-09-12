@@ -1,4 +1,4 @@
-import ProductForm from "./ui/addProducts/ProductForm";
+import AddProductForm from "./AddProductForm.jsx";
 
 function QuickEditModal({ product, onClose, onSubmit }) {
  
@@ -10,7 +10,7 @@ function QuickEditModal({ product, onClose, onSubmit }) {
           <h2 className="font-semibold">Edit Product</h2>
           <button onClick={onClose}>✕</button>
         </div>
-        <ProductForm 
+        <AddProductForm 
           mode="edit" 
           initialData={product} 
           onSubmit={onSubmit} 
