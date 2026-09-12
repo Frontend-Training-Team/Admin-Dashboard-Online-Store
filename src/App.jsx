@@ -43,7 +43,6 @@ function App() {
           <Route path="/users" element={<Users />} />
           <Route path="/carts" element={<Carts />} />
           <Route path="/settings" element={<Settings />} />
-          <Route path="/test-quick-edit" element={<TestQuickEdit />} />
         </Route>
       </Route>
     </Routes>
