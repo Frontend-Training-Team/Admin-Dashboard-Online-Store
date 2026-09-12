@@ -1,8 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import { House, Users, Package, PlusCircle, ClipboardList, ShoppingCart, Settings, LogOut, X } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
+
+
 
 function Sidebar({ isOpen, onClose }) {
-
+  const { logout } = useAuth();
   const menuItems = [
     { name: 'Dashboard', path: '/dashboard', icon: <House size={18} /> },
     { name: 'Users', path: '/users', icon: <Users size={18} /> },
@@ -30,7 +33,7 @@ function Sidebar({ isOpen, onClose }) {
         <div>
           <div className="flex items-start justify-between mb-8 px-2">
             <div>
-              <span className="text-[11px] font-bold tracking-widest text-brand-500 uppercase">
+              <span className="text-xs font-bold tracking-widest text-brand-500 uppercase">
                 COMMERCE
               </span>
               <h1 className="text-xl font-bold text-brand-900 dark:text-brand-50">
@@ -45,20 +48,20 @@ function Sidebar({ isOpen, onClose }) {
             >
               <X size={20} />
             </button>
-          </div>
+          </div> {/* Button Close */}
 
           <nav className="space-y-1.5">
             {menuItems.map((item) => (
               <NavLink
                 key={item.name}
                 to={item.path}
-                end={item.path === '/dashboard'}
                 onClick={onClose}
                 className={({ isActive }) =>
-                  `w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-sm font-medium transition-all duration-150 ${
-                    isActive
-                      ? 'bg-brand-900 dark:bg-brand-800 text-white shadow-sm'
-                      : 'text-brand-700 dark:text-brand-300 hover:bg-brand-100/70 dark:hover:bg-brand-900/30'
+                  `w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-[18px] font-Inter
+                  font-medium transition-all duration-150 active:scale-90 hover:scale-105 
+                ${isActive
+                    ? 'bg-brand-900 dark:bg-brand-800 text-white shadow-sm'
+                    : 'text-brand-700 dark:text-brand-300 hover:bg-brand-100/70 dark:hover:bg-brand-900'
                   }`
                 }
               >
@@ -69,16 +72,17 @@ function Sidebar({ isOpen, onClose }) {
           </nav>
         </div>
 
-        <div className="pt-4 border-t border-brand-200/60 dark:border-brand-900/40">
+        <div className="pt-4 border-t border-brand-200 dark:border-brand-900/40">
           <button
-            onClick={() => alert("Logged out")}
-            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-600 text-white text-sm font-semibold shadow-sm transition-colors"
+            onClick={() => { logout(); }}
+            className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-rose-600 active:scale-90
+            text-[18px] font-semibold text-red-500  hover:bg-rose-600 hover:text-white shadow-sm transition-all"
           >
             <LogOut size={16} />
             <span>Logout</span>
           </button>
-        </div>
-      </aside>
+        </div>{/* Logout button */}
+      </aside>{/* aside */}
     </>
   );
 }

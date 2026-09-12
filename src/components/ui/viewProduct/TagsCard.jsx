@@ -1,7 +1,7 @@
 const TagsCard = ({ tags }) => {
   return (
-    <div className="p-5 rounded-2xl border border-gray-100 shadow-sm">
-      <h2 className="text-[16px] text-[#8E4726] block mb-2">
+    <div className="p-5 rounded-2xl border border-gray-100 dark:border-brand-800 shadow-sm">
+      <h2 className="text-[16px] text-gray-400 dark:text-brand-500 block mb-2">
         Tags
       </h2>
 

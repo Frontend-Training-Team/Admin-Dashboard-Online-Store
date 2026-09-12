@@ -8,7 +8,7 @@ const ProductGallery = ({ images = [], productName = 'Product' }) => {
     <section className="flex h-full flex-col gap-4" aria-label={`${productName} gallery`}>
       <div className="flex min-h-70 flex-1 items-center justify-center overflow-hidden rounded-2xl border border-gray-100 bg-gray-50 dark:border-brand-900/40 dark:bg-brand-950/20">
         <img
-          src={activeImage}
+          src={activeImage.url}
           alt={`${productName} view ${selectedImage + 1}`}
           className="h-full w-full object-cover"
         />
@@ -29,7 +29,7 @@ const ProductGallery = ({ images = [], productName = 'Product' }) => {
             }`}
           >
             <img
-              src={image}
+              src={image.url}
               alt=""
               aria-hidden="true"
               className="h-full w-full object-cover"

@@ -20,7 +20,7 @@ function dashboardLayout() {
         <Navbar onToggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
 
         <main className="flex-1 p-8 overflow-y-scroll">
-          <Outlet/>
+          <Outlet />
         </main>
 
       </div>

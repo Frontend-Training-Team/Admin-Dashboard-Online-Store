@@ -9,13 +9,16 @@ import OrderDetails from './pages/OrderDetails';
 import Users from './pages/Users';
 import Carts from './pages/Carts';
 import Settings from './pages/Settings';
-import LoginPage from './pages/login';
+import LoginPage from './pages/Login';
 import DashboardLayout from './components/Layout/dashboardLayout';
 import ViewProduct from './pages/ViewProduct';
 
+// import { ToastContainer } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
+import { Toaster } from 'react-hot-toast';
 function App() {
 
-  return (
+  return (<>
     <Routes>
       {/* Public route */}
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
@@ -28,7 +31,7 @@ function App() {
           <Route path="/products" element={<Products />} />
           <Route path="/products/new" element={<AddProduct />} />
           <Route path="/products/:id/edit" element={<EditProduct />} />
-          <Route path="/products/view" element={<ViewProduct />} />
+          <Route path="/products/view/:id" element={<ViewProduct />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/orders/:id" element={<OrderDetails />} />
           <Route path="/users" element={<Users />} />
@@ -37,7 +40,17 @@ function App() {
         </Route>
       </Route>
     </Routes>
-  )
+    <Toaster
+      position="top-center"
+      toastOptions={{
+        duration: 2000,
+        style: {
+          background: '#1f1a17',
+          color: '#fff',
+        },
+      }}
+    />
+  </>)
 
 
 }

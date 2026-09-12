@@ -4,11 +4,10 @@ import CategoryCard from '../components/ui/viewProduct/CategoryCard';
 import HighlightsCard from '../components/ui/viewProduct/HighlightsCard';
 import TagsCard from "../components/ui/viewProduct/TagsCard";
 import ProductGallery from '../components/ui/viewProduct/ProductGallery';
-import Image1 from '../images/images.jpg';
-import Image2 from '../images/hero-bg.webp';
+import Image1 from '../assets/images/hero-bg.webp'
 import { useEffect, useState } from "react";
 import { getSingleproduct } from "../api/products.api";
-
+let img = [{ url: { Image1 } }]
 
 const ViewProduct = () => {
     let [data, setData] = useState({})
@@ -16,10 +15,9 @@ const ViewProduct = () => {
         (
             async () => {
                 try {
-                    let res = await getSingleproduct('6aa175bfb35bfb91ee8c77c8');
+                    let res = await getSingleproduct('6aa14197ac3ec0acaa3e2ef8');
                     let response = res.data
                     setData(response)
-                    console.log(response)
                 }
                 catch (error) {
                     console.log(error)
@@ -28,21 +26,21 @@ const ViewProduct = () => {
         )()
     }, []);
 
-    console.log(data)
 
     const productData = {
-        title: `${data?.product?.name?data.product.name:"Product Name"}`,
-        discount: `$${data?.product?.discountPrice?data.product.discountPrice:"Discount"}`,
-        description: `${data?.product?.description?data.product.description:"Description"}`,
-        price: `$${data?.product?.price?data.product.price:"price"}`,
-        stock: `${data?.product?.stock?data.product.stock:"stock"}`,
-        sku: `${data?.product?.sku?data.product.sku:"sku"}`,
-        category: `${data?.product?.category?data.product.category:"category"}`,
-        subcategory: `${data?.product?.subcategory?data.product.subcategory:"subcategory"}`,
-        brand: `${data?.product?.brand?data.product.brand:"brand"}`,
-        tags: ['bmw', 'm5cs', 'sports', 'yellow'],
-        highlights: `${data?.product?.shortDescription?data.product.shortDescription:"shortDescription"}`,
-        images: [Image1, Image2]
+        title: `${data?.product?.name || "Product Name"}`,
+        discount: `$${data?.product?.discountPrice || "Discount"}`,
+        description: `${data?.product?.description || "Description"}`,
+        price: `$${data?.product?.price || "price"}`,
+        stock: `${data?.product?.stock || "stock"}`,
+        sku: `${data?.product?.sku || "sku"}`,
+        category: `${data?.product?.category || "category"}`,
+        subcategory: `${data?.product?.subcategory || "subcategory"}`,
+        brand: `${data?.product?.brand || "brand"}`,
+        // tags: data?.product?.tags ? data.product.tags : `${['bmw', 'm5cs', 'sports', 'yellow']}`,
+        highlights: `${data?.product?.shortDescription || "shortDescription"}`,
+        tags: data?.product?.tags || ['bmw', 'm5cs', 'sports', 'yellow'],
+        images: data?.product?.images || img
     };
 
     return (
