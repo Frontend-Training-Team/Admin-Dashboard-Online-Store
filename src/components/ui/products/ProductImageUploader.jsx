@@ -37,7 +37,7 @@ function ProductImageUploader({ images, onChange, onRemoveExisting }) {
         {images.map((img, i) => (
           <ProductImageCard
             key={i}
-            src={img.previewUrl || img}
+            src={img.previewUrl || img.url}
             index={i}
             onRemove={() => removeImage(i)}
           />
