@@ -24,8 +24,12 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCar
     formState: { errors }, 
   } = useForm();
 
+  const getImageKey = (img) => img.public_id || img.previewUrl;
+
   const [images, setImages] = useState([]);
-  const [deletedImageIds, setDeletedImageIds] = useState([]);
+  const [markedKeys, setMarkedKeys] = useState([]);
+
+  const imageDisplayStyle = mode === "create" ? "instant" : showCard ? "overlay" : "pill";
 
   const [tags, setTags] = useState([]);
   const [featured, setFeatured] = useState(false);
@@ -59,11 +63,22 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCar
     setDeletedImageIds([...deletedImageIds, imageId]);
   };
 
+  const toggleMark = (key) => {
+  setMarkedKeys((prev) => (prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]));
+};
+
   const submitHandler = (data) => {
-    if (images.length === 0) {
-      setImageError("At least one image is required");
-      return; 
-    }
+
+    const remainingCount = images.filter((img) => {
+    const key = img.public_id || img.previewUrl; // stable identity per image
+    return !markedKeys.includes(key); // keep it if it's NOT marked for removal
+  }).length;
+
+  if (remainingCount === 0) {
+    setImageError("At least one image is required");
+    toast.error("At least one image is required");
+    return;
+  }
   
     setImageError(""); 
 
@@ -78,12 +93,21 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCar
 
     tags.forEach((tag) => formData.append("tags", tag));
 
+    const deletedImageIds = [];
+
     formData.append("featured", featured);
     formData.append("isActive", isActive);
 
    
     images.forEach((img) => {
-      if (img.file) formData.append("images", img.file);
+      const key = img.public_id || img.previewUrl;
+      const marked = markedKeys.includes(key);
+
+      if (img.file) {
+        if (!marked) formData.append("images", img.file);
+      } else {
+      if (marked) deletedImageIds.push(img.public_id);
+      }  
     });
 
 
@@ -100,7 +124,9 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCar
         <ProductImageUploader
           images={images}
           onChange={setImages}
-          onRemoveExisting={handleRemoveExistingImage}
+          markedKeys={markedKeys}
+          onToggleMark={toggleMark}
+          displayStyle={imageDisplayStyle}
         />
         {imageError && <p className="text-red-500 text-xs mt-2">{imageError}</p>}
       </div>
@@ -177,8 +203,8 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCar
         <ProductTagsInput tags={tags} onChange={setTags} />
 
         <div className="flex gap-3">
-          <ToggleButton label="Featured" active={featured} onClick={() => setFeatured(!featured)} />
-          <ToggleButton label="Active" active={isActive} onClick={() => setIsActive(!isActive)} />
+          <ToggleButton label="Featured" active={featured} onClick={() => setFeatured(!featured)} circular={!showCard} />
+          <ToggleButton label="Active" active={isActive} onClick={() => setIsActive(!isActive)} circular={!showCard} />
         </div>
       </div>
 

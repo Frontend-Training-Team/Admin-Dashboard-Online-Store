@@ -2,7 +2,7 @@ import ProductImageCard from "./ProductImageCard";
 import placeholderImage from "../../../assets/images/imgPlaceholder.jpg";
 import { ImagePlus } from "lucide-react";
 
-function ProductImageUploader({ images, onChange, onRemoveExisting }) {
+function ProductImageUploader({ images, onChange, markedKeys, onToggleMark, displayStyle  }) {
   const handleFiles = (fileList) => {
     const newFiles = Array.from(fileList).map((file) => ({
       file,
@@ -11,13 +11,11 @@ function ProductImageUploader({ images, onChange, onRemoveExisting }) {
     onChange([...images, ...newFiles]);
   };
 
-  const removeImage = (index) => {
-    const imageToRemove = images[index];
-    if (typeof imageToRemove === "string" && onRemoveExisting) {
-      onRemoveExisting(imageToRemove);
-    }
+  const removeInstant = (index) => {
     onChange(images.filter((_, i) => i !== index));
   };
+
+  const getKey = (img) => img.public_id || img.previewUrl;
 
   return (
     <div className="flex flex-col gap-3 ">
@@ -36,10 +34,13 @@ function ProductImageUploader({ images, onChange, onRemoveExisting }) {
       <div className="grid grid-cols-3 gap-3">
         {images.map((img, i) => (
           <ProductImageCard
-            key={i}
+            key={getKey(img)}
             src={img.previewUrl || img.url}
             index={i}
-            onRemove={() => removeImage(i)}
+            displayStyle={displayStyle}
+              marked={displayStyle !== "instant" && markedKeys?.includes(getKey(img))}
+              onRemove={() => removeInstant(i)}
+              onToggleMark={() => onToggleMark(getKey(img))}
           />
         ))}
       </div>
