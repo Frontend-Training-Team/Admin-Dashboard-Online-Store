@@ -60,18 +60,23 @@ export const ProductsProvider = ({ children }) => {
 
   const products = useMemo(() => {
     if (status === "all") return rawProducts;
-    if (status === "inStock") return rawProducts.filter((p) => p.stock > 0);
-    if (status === "outOfStock") return rawProducts.filter((p) => p.stock === 0);
-    if (status === "featured") return rawProducts.filter((p) => p.tags?.includes("featured"));
+    if (status === "inStock") return rawProducts.filter((p) => (p.stock ?? 0) > 0);
+    if (status === "outOfStock") return rawProducts.filter((p) => (p.stock ?? 0) === 0);
+    if (status === "featured") {
+      return rawProducts.filter((p) =>
+        Boolean(p.featured === true || p.isFeatured === true || p.tags?.includes("featured"))
+      );
+    }
     return rawProducts;
   }, [rawProducts, status]);
-
   const stats = useMemo(
     () => ({
       total: totalProducts,
-      inStock: rawProducts.filter((p) => p.stock > 0).length,
-      outOfStock: rawProducts.filter((p) => p.stock === 0).length,
-      featured: rawProducts.filter((p) => p.tags?.includes("featured")).length,
+      inStock: rawProducts.filter((p) => (p.stock ?? 0) > 0).length,
+      outOfStock: rawProducts.filter((p) => (p.stock ?? 0) === 0).length,
+      featured: rawProducts.filter((p) =>
+        Boolean(p.featured === true || p.isFeatured === true || p.tags?.includes("featured"))
+      ).length,
     }),
     [rawProducts, totalProducts]
   );

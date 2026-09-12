@@ -1,3 +1,5 @@
+import { Star } from "lucide-react";
+
 const MAX_TAGS = 4;
 
 const ProductCard = ({
@@ -23,7 +25,9 @@ const ProductCard = ({
   } = product;
 
   const inStock = stock > 0;
-  const featured = tags.includes("featured");
+  const isFeatured = Boolean(
+    product.featured === true || product.isFeatured === true || tags.includes("featured")
+  );
   const visibleTags = tags.filter((t) => t !== "featured").slice(0, MAX_TAGS);
   const breadcrumb = [category, subcategory, brand].filter(Boolean).join(" · ");
   const image = images?.[0]?.url;
@@ -66,9 +70,12 @@ const ProductCard = ({
         >
           ›
         </button>
-        {featured && (
-          <span className="absolute left-2 top-2 flex items-center gap-1 rounded-md bg-amber-400 px-2 py-0.5 text-[11px] font-semibold text-brand-900">
-            Featured
+
+        {/* ===== New Code Below ===== */}
+        {isFeatured && (
+          <span className="absolute left-2.5 top-2.5 z-10 flex items-center gap-1 rounded-md bg-amber-400 px-2.5 py-0.5 text-[11px] font-bold text-gray-950 shadow-sm">
+            <Star size={12} className="fill-current text-gray-950" />
+            <span>Featured</span>
           </span>
         )}
 
