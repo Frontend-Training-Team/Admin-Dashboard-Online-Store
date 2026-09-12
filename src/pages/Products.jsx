@@ -4,6 +4,9 @@ import ProductCard from "../components/ui/products/ProductCard";
 import ProductsStats from "../components/ui/products/ProductsStats";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import QuickEditModal from "../components/ui/products/QuickEditModal";
+import { patchUpdateProductAdmin } from "../api/products.api";
+import toast from "react-hot-toast";
 
 const STATUS_OPTIONS = [
   { key: "all", label: "Total" },
@@ -18,6 +21,7 @@ const ProductsContent = () => {
   const isAdmin = user?.role === "admin";
   const [searchInput, setSearchInput] = useState("");
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [quickEditProduct, setQuickEditProduct] = useState(null);
 
   const {
     products,
@@ -35,11 +39,25 @@ const ProductsContent = () => {
     applySubcategory,
     applyStatus,
     removeProduct,
+    refetch,
   } = useProductsState();
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     applySearch(searchInput.trim());
+  };
+
+  const handleQuickEditSubmit = async (formData) => {
+    try {
+      const productId = quickEditProduct._id || quickEditProduct.id;
+      await patchUpdateProductAdmin(productId, formData);
+      toast.success("Product updated successfully!");
+      setQuickEditProduct(null);
+      refetch();
+    } catch (err) {
+      console.error("Failed to quick edit product:", err);
+      toast.error(err.response?.data?.message || err.userMessage || "Failed to update product");
+    }
   };
 
   const handleDelete = async (id) => {
@@ -175,11 +193,10 @@ const ProductsContent = () => {
           <button
             key={opt.key}
             onClick={() => applyStatus(opt.key)}
-            className={`rounded-full px-3 py-1.5 text-xs font-medium ${
-              status === opt.key
-                ? "bg-brand-900 text-white dark:bg-brand-800"
-                : "bg-brand-100/70 text-brand-700 hover:bg-brand-100 dark:bg-brand-900/30 dark:text-brand-300 dark:hover:bg-brand-900/50"
-            }`}
+            className={`rounded-full px-3 py-1.5 text-xs font-medium ${status === opt.key
+              ? "bg-brand-900 text-white dark:bg-brand-800"
+              : "bg-brand-100/70 text-brand-700 hover:bg-brand-100 dark:bg-brand-900/30 dark:text-brand-300 dark:hover:bg-brand-900/50"
+              }`}
           >
             {opt.label}
           </button>
@@ -201,8 +218,8 @@ const ProductsContent = () => {
             product={product}
             isAdmin={isAdmin}
             onView={(p) => navigate(`/products/view/${p._id || p.id}`)}
-            onQuickEdit={(p) => console.log("quick edit", p._id)}
-            onEdit={(p) => console.log("edit", p._id)}
+            onQuickEdit={(p) => setQuickEditProduct(p)}
+            onEdit={(p) => navigate(`/products/${p._id || p.id}/edit`)}
             onDelete={handleDelete}
           />
         ))}
@@ -229,6 +246,15 @@ const ProductsContent = () => {
             Next
           </button>
         </div>
+      )}
+      
+      {/* Quick Edit Modal */}
+      {quickEditProduct && (
+        <QuickEditModal
+          product={quickEditProduct}
+          onClose={() => setQuickEditProduct(null)}
+          onSubmit={handleQuickEditSubmit}
+        />
       )}
     </div>
   );

@@ -3,7 +3,7 @@ import {
   getAllProducts,
   getSearchProducts,
   deleteProductAdmin as deleteProductAdminApi,
-} from "../../../api/products.api"; 
+} from "../../../api/products.api";
 
 const ProductsContext = createContext(null);
 
@@ -22,7 +22,7 @@ export const ProductsProvider = ({ children }) => {
   const [category, setCategory] = useState("");
   const [subcategory, setSubcategory] = useState("");
   const [sort, setSort] = useState("");
-  const [status, setStatus] = useState("all"); 
+  const [status, setStatus] = useState("all");
 
   const hasServerFilters =
     searchQuery.trim() !== "" || category !== "" || subcategory !== "" || sort !== "";
@@ -42,12 +42,12 @@ export const ProductsProvider = ({ children }) => {
         });
       }
 
-      const data = res.data; 
+      const data = res.data;
       setRawProducts(data.products || []);
       setTotalPages(data.totalPages || 1);
       setTotalProducts(data.totalProducts || 0);
     } catch (err) {
-      
+
       setError(err.userMessage || "Failed to fetch products. Please try again.");
     } finally {
       setLoading(false);
