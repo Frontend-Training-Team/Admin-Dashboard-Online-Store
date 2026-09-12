@@ -11,12 +11,21 @@ import Carts from './pages/Carts';
 import Settings from './pages/Settings';
 import LoginPage from './pages/Login';
 import DashboardLayout from './components/Layout/dashboardLayout';
-// import { ToastContainer } from 'react-toastify';
-// import 'react-toastify/dist/ReactToastify.css';
+import TestQuickEdit from './pages/TestQuickEdit';
+import { ToastContainer, Slide  } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { Toaster } from 'react-hot-toast';
 function App() {
 
   return (<>
+  <ToastContainer 
+    position="top-right" 
+    autoClose={2000} 
+    hideProgressBar={true} 
+    transition={Slide}
+    toastClassName="!rounded-2xl !shadow-md !h-12 !w-60 !text-sm !p-2 !m-2 !text-center"
+    closeButton={false}
+  />
     <Routes>
       {/* Public route */}
       <Route path="/" element={<Navigate to="/dashboard" replace />} />
@@ -34,6 +43,7 @@ function App() {
           <Route path="/users" element={<Users />} />
           <Route path="/carts" element={<Carts />} />
           <Route path="/settings" element={<Settings />} />
+          <Route path="/test-quick-edit" element={<TestQuickEdit />} />
         </Route>
       </Route>
     </Routes>
