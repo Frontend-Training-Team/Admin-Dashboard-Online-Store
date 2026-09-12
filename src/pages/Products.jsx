@@ -3,6 +3,7 @@ import { ProductsProvider, useProductsState } from "../components/ui/products/Pr
 import ProductCard from "../components/ui/products/ProductCard";
 import ProductsStats from "../components/ui/products/ProductsStats";
 import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const STATUS_OPTIONS = [
   { key: "all", label: "Total" },
@@ -16,7 +17,7 @@ const ProductsContent = () => {
   const isAdmin = user?.role === "admin";
   const [searchInput, setSearchInput] = useState("");
   const [filtersOpen, setFiltersOpen] = useState(false);
-
+const navigate = useNavigate();
   const {
     products,
     loading,
@@ -46,12 +47,12 @@ const ProductsContent = () => {
     }
   };
 
-  return (
+ return (
     <div>
-      {/* Header banner — دلوقتي فيه Tint خفيف بلون البراند بدل الأبيض العادي */}
-      <div className="mb-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-brand-200/60 bg-gradient-to-r from-brand-50 to-white p-6 dark:border-brand-900/40 dark:from-brand-900/20 dark:to-surface-dark">
+      {/* Header banner */}
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-brand-200/60 bg-white p-4 dark:border-brand-900/40 dark:bg-brand-950/40">
         <div className="flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-100 text-brand-700 dark:bg-brand-900/40 dark:text-brand-300">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-100 text-brand-700 dark:bg-brand-900/50 dark:text-brand-300">
             📦
           </div>
           <div>
@@ -64,17 +65,13 @@ const ProductsContent = () => {
           </div>
         </div>
 
-        {isAdmin && (
-          <button
-            onClick={() => {
-              /* افتح modal / روح لصفحة Add Product */
-            }}
-            className="flex items-center gap-1.5 rounded-full bg-brand-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-brand-800 dark:bg-brand-700 dark:hover:bg-brand-600"
-          >
-            <span>+</span>
-            <span>Add Product</span>
-          </button>
-        )}
+        <button
+  onClick={() => navigate('/add-product')}
+  className="flex items-center gap-1.5 rounded-full bg-brand-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-brand-800 transition-colors"
+>
+  <span>+</span>
+  <span>Add Product</span>
+</button>
       </div>
 
       {/* Stats */}
@@ -129,7 +126,7 @@ const ProductsContent = () => {
           </button>
         </form>
 
-        {/* Category / Subcategory — بنفس عرض Koda، وبتظهر لما تدوس Filters بس */}
+        
         {filtersOpen && (
           <div className="mt-4 grid grid-cols-1 gap-4 border-t border-brand-200/60 pt-4 sm:grid-cols-2 dark:border-brand-900/40">
             <div>
