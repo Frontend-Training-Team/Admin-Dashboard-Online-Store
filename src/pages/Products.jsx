@@ -3,6 +3,7 @@ import { ProductsProvider, useProductsState } from "../components/ui/products/Pr
 import ProductCard from "../components/ui/products/ProductCard";
 import ProductsStats from "../components/ui/products/ProductsStats";
 import { useAuth } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
 
 const STATUS_OPTIONS = [
   { key: "all", label: "Total" },
@@ -12,6 +13,7 @@ const STATUS_OPTIONS = [
 ];
 
 const ProductsContent = () => {
+  const navigate = useNavigate();
   const { user } = useAuth();
   const isAdmin = user?.role === "admin";
   const [searchInput, setSearchInput] = useState("");
@@ -198,7 +200,7 @@ const ProductsContent = () => {
             key={product._id}
             product={product}
             isAdmin={isAdmin}
-            onView={(p) => console.log("view", p._id)}
+            onView={(p) => navigate(`/products/view/${p._id || p.id}`)}
             onQuickEdit={(p) => console.log("quick edit", p._id)}
             onEdit={(p) => console.log("edit", p._id)}
             onDelete={handleDelete}
