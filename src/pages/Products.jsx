@@ -1,15 +1,20 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { ProductsProvider, useProductsState } from '../components/ui/products/ProductsState';
-import ProductCard from '../components/ui/products/ProductCard';
-import ProductStats from '../components/ui/products/ProductsStats';
-import { useAuth } from '../context/AuthContext';
+import { useState } from "react";
+import { ProductsProvider, useProductsState } from "../components/ui/products/ProductsState";
+import ProductCard from "../components/ui/products/ProductCard";
+import ProductsStats from "../components/ui/products/ProductsStats";
+import { useAuth } from "../context/AuthContext";
 
-function ProductsContent() {
+const STATUS_OPTIONS = [
+  { key: "all", label: "Total" },
+  { key: "inStock", label: "In Stock" },
+  { key: "outOfStock", label: "Out of Stock" },
+  { key: "featured", label: "Featured" },
+];
+
+const ProductsContent = () => {
   const { user } = useAuth();
-  const isAdmin = user?.role === 'admin';
-
-  const [searchInput, setSearchInput] = useState('');
+  const isAdmin = user?.role === "admin";
+  const [searchInput, setSearchInput] = useState("");
   const [filtersOpen, setFiltersOpen] = useState(false);
 
   const {
@@ -20,8 +25,13 @@ function ProductsContent() {
     page,
     totalPages,
     setPage,
+    status,
+    category,
+    subcategory,
     applySearch,
     applyCategory,
+    applySubcategory,
+    applyStatus,
     removeProduct,
   } = useProductsState();
 
@@ -31,130 +41,201 @@ function ProductsContent() {
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm("Are you sure you want to delete this product?")) {
+    if (window.confirm("متأكد إنك عايز تمسح المنتج ده؟")) {
       await removeProduct(id);
     }
   };
 
   return (
-    <div className="p-4 sm:p-6 space-y-6">
-      
-      <div className="flex items-center justify-between rounded-2xl bg-surface-cardLight dark:bg-surface-cardDark p-4 sm:p-6 shadow-sm border border-brand-200/60 dark:border-brand-900/40">
-        <div className="flex items-center gap-3">
-          <div className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-xl bg-brand-100 dark:bg-brand-900/50 text-brand-900 dark:text-brand-100">
-            <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
-            </svg>
+    <div>
+      {/* Header banner — دلوقتي فيه Tint خفيف بلون البراند بدل الأبيض العادي */}
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-brand-200/60 bg-gradient-to-r from-brand-50 to-white p-6 dark:border-brand-900/40 dark:from-brand-900/20 dark:to-surface-dark">
+        <div className="flex items-center gap-4">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-100 text-brand-700 dark:bg-brand-900/40 dark:text-brand-300">
+            📦
           </div>
           <div>
-            <p className="text-[11px] font-semibold tracking-wider text-brand-700/80 dark:text-brand-300 uppercase">
-              PRODUCT DASHBOARD
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-brand-500">
+              Product Dashboard
             </p>
-            <h1 className="text-xl sm:text-2xl font-bold text-brand-900 dark:text-brand-50">
+            <h1 className="text-2xl font-bold text-brand-900 dark:text-brand-50">
               Products
             </h1>
           </div>
         </div>
 
-        <Link
-          to="/add-product"
-          className="flex items-center gap-2 rounded-xl bg-brand-900 dark:bg-brand-50 text-surface-cardLight dark:text-brand-900 px-4 py-2 text-sm font-semibold shadow-sm hover:opacity-90 transition-all"
-        >
-          <span>+</span>
-          <span>Add Product</span>
-        </Link>
+        {isAdmin && (
+          <button
+            onClick={() => {
+              /* افتح modal / روح لصفحة Add Product */
+            }}
+            className="flex items-center gap-1.5 rounded-full bg-brand-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-brand-800 dark:bg-brand-700 dark:hover:bg-brand-600"
+          >
+            <span>+</span>
+            <span>Add Product</span>
+          </button>
+        )}
       </div>
 
-      <ProductStats stats={stats} />
+      {/* Stats */}
+      <ProductsStats stats={stats} />
 
-      <div className="rounded-2xl bg-surface-cardLight dark:bg-surface-cardDark border border-brand-200/60 dark:border-brand-900/40 p-3.5 sm:p-4 shadow-sm">
-        <form onSubmit={handleSearchSubmit} className="flex gap-2 sm:gap-3">
-          <input
-            type="text"
-            value={searchInput}
-            onChange={(e) => setSearchInput(e.target.value)}
-            placeholder="Search products..."
-            className="flex-1 rounded-xl border border-brand-200/60 dark:border-brand-900/50 bg-surface-light/60 dark:bg-brand-950/30 px-3.5 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm text-brand-900 dark:text-brand-50 placeholder-[#666666] dark:placeholder-brand-300 outline-none focus:border-brand-500"
-          />
-          
+      {/* Search bar */}
+      <div className="mb-4 rounded-2xl border border-brand-200/60 bg-white p-4 dark:border-brand-900/40 dark:bg-surface-dark">
+        <form onSubmit={handleSearchSubmit} className="flex flex-wrap items-center gap-2">
+          <div className="relative min-w-[240px] flex-1">
+            {/* أيقونة العدسة جوه الصندوق */}
+            <svg
+              className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-brand-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"
+              />
+            </svg>
+            <input
+              type="text"
+              value={searchInput}
+              onChange={(e) => setSearchInput(e.target.value)}
+              placeholder="Search products..."
+              className="w-full rounded-full border border-brand-200/60 bg-white py-2 pl-9 pr-3 text-sm text-brand-900 placeholder:text-brand-400 focus:border-brand-500 focus:outline-none dark:border-brand-900/40 dark:bg-surface-dark dark:text-brand-50"
+            />
+          </div>
+
           <button
             type="button"
-            onClick={() => setFiltersOpen(!filtersOpen)}
-            className="rounded-xl border border-brand-200/60 dark:border-brand-900/50 bg-surface-light/60 dark:bg-brand-950/30 px-3.5 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm font-medium text-brand-900 dark:text-brand-300 hover:bg-brand-100 dark:hover:bg-brand-900/40 transition-colors"
+            onClick={() => setFiltersOpen((v) => !v)}
+            className="flex items-center gap-1.5 rounded-full border border-brand-200/60 bg-white px-4 py-2 text-sm font-medium text-brand-700 hover:bg-brand-50 dark:border-brand-900/40 dark:bg-surface-dark dark:text-brand-300 dark:hover:bg-brand-900/30"
           >
+            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 4h18M6 8h12M10 12h4" />
+            </svg>
             Filters
           </button>
 
           <button
             type="submit"
-            className="rounded-xl bg-brand-900 dark:bg-brand-50 text-surface-cardLight dark:text-brand-900 px-4 sm:px-6 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold hover:opacity-90 transition-opacity"
+            className="flex items-center gap-1.5 rounded-full bg-brand-900 px-5 py-2 text-sm font-medium text-white hover:bg-brand-800 dark:bg-brand-700 dark:hover:bg-brand-600"
           >
+            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
+            </svg>
             Search
           </button>
         </form>
 
+        {/* Category / Subcategory — بنفس عرض Koda، وبتظهر لما تدوس Filters بس */}
         {filtersOpen && (
-          <div className="mt-3 pt-3 border-t border-brand-200/60 dark:border-brand-900/40 flex gap-3">
-            <select
-              onChange={(e) => applyCategory(e.target.value)}
-              className="rounded-xl border border-brand-200/60 dark:border-brand-900/50 bg-surface-light/60 dark:bg-brand-950/30 p-2 text-xs text-brand-900 dark:text-brand-300 outline-none"
-            >
-              <option value="">All Categories</option>
-              <option value="electronics">Electronics</option>
-            </select>
+          <div className="mt-4 grid grid-cols-1 gap-4 border-t border-brand-200/60 pt-4 sm:grid-cols-2 dark:border-brand-900/40">
+            <div>
+              <label className="mb-1 flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wide text-brand-500">
+                📁 Category
+              </label>
+              <select
+                value={category}
+                onChange={(e) => applyCategory(e.target.value)}
+                className="w-full rounded-full border border-brand-200/60 bg-white px-4 py-2 text-sm text-brand-700 dark:border-brand-900/40 dark:bg-surface-dark dark:text-brand-300"
+              >
+                <option value="">All Categories</option>
+                <option value="electronics">Electronics</option>
+                <option value="phones">Phones</option>
+                <option value="fashion">Fashion</option>
+                <option value="home">Home</option>
+                <option value="beauty">Beauty</option>
+                <option value="sports">Sports</option>
+              </select>
+            </div>
+
+            <div>
+              <label className="mb-1 flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wide text-brand-500">
+                🏷️ Subcategory
+              </label>
+              <input
+                type="text"
+                value={subcategory}
+                onChange={(e) => applySubcategory(e.target.value)}
+                placeholder="e.g. smartphones"
+                className="w-full rounded-full border border-brand-200/60 bg-white px-4 py-2 text-sm text-brand-900 placeholder:text-brand-400 focus:border-brand-500 focus:outline-none dark:border-brand-900/40 dark:bg-surface-dark dark:text-brand-50"
+              />
+            </div>
           </div>
         )}
       </div>
 
-      {/* Statuses */}
-      {loading && <p className="text-xs sm:text-sm text-[#666666] dark:text-brand-300">Loading products...</p>}
-      {error && <p className="text-xs sm:text-sm text-rose-500">{error}</p>}
+      {/* Status pills */}
+      <div className="mb-6 flex flex-wrap gap-2">
+        {STATUS_OPTIONS.map((opt) => (
+          <button
+            key={opt.key}
+            onClick={() => applyStatus(opt.key)}
+            className={`rounded-full px-3 py-1.5 text-xs font-medium ${
+              status === opt.key
+                ? "bg-brand-900 text-white dark:bg-brand-800"
+                : "bg-brand-100/70 text-brand-700 hover:bg-brand-100 dark:bg-brand-900/30 dark:text-brand-300 dark:hover:bg-brand-900/50"
+            }`}
+          >
+            {opt.label}
+          </button>
+        ))}
+      </div>
 
-      {/* 4. Products Grid */}
-      {!loading && !error && (
-        <div className="grid grid-cols-1 gap-4 sm:gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {products.map((product) => (
-            <ProductCard
-              key={product._id}
-              product={product}
-              isAdmin={isAdmin}
-              onDelete={handleDelete}
-            />
-          ))}
-        </div>
+      {/* Grid */}
+      {loading && <p className="text-sm text-brand-500">Loading products...</p>}
+      {error && <p className="text-sm text-rose-500">{error}</p>}
+
+      {!loading && !error && products.length === 0 && (
+        <p className="text-sm text-brand-500">مفيش منتجات مطابقة لبحثك.</p>
       )}
+
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {products.map((product) => (
+          <ProductCard
+            key={product._id}
+            product={product}
+            isAdmin={isAdmin}
+            onView={(p) => console.log("view", p._id)}
+            onQuickEdit={(p) => console.log("quick edit", p._id)}
+            onEdit={(p) => console.log("edit", p._id)}
+            onDelete={handleDelete}
+          />
+        ))}
+      </div>
 
       {/* Pagination */}
       {totalPages > 1 && (
-        <div className="flex justify-center items-center gap-3 pt-2">
+        <div className="mt-6 flex justify-center gap-2">
           <button
             disabled={page === 1}
             onClick={() => setPage(page - 1)}
-            className="rounded-xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark px-4 py-2 text-xs font-semibold text-brand-900 dark:text-brand-300 disabled:opacity-40"
+            className="rounded-md border border-brand-200/60 px-3 py-1.5 text-xs text-brand-700 disabled:opacity-40 dark:border-brand-900/40 dark:text-brand-300"
           >
             Prev
           </button>
-          <span className="text-xs font-semibold text-[#666666] dark:text-brand-300">
+          <span className="px-2 py-1.5 text-xs text-brand-500">
             {page} / {totalPages}
           </span>
           <button
             disabled={page === totalPages}
             onClick={() => setPage(page + 1)}
-            className="rounded-xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark px-4 py-2 text-xs font-semibold text-brand-900 dark:text-brand-300 disabled:opacity-40"
+            className="rounded-md border border-brand-200/60 px-3 py-1.5 text-xs text-brand-700 disabled:opacity-40 dark:border-brand-900/40 dark:text-brand-300"
           >
             Next
           </button>
         </div>
       )}
-
     </div>
   );
-}
+};
 
-export default function Products() {
-  return (
-    <ProductsProvider>
-      <ProductsContent />
-    </ProductsProvider>
-  );
-}
+const Products = () => (
+  <ProductsProvider>
+    <ProductsContent />
+  </ProductsProvider>
+);
+
+export default Products;
