@@ -41,7 +41,7 @@ const ProductsContent = () => {
   };
 
   const handleDelete = async (id) => {
-    if (window.confirm("متأكد إنك عايز تمسح المنتج ده؟")) {
+    if (window.confirm("Are you sure you want to delete this product?")) {
       await removeProduct(id);
     }
   };
@@ -189,7 +189,7 @@ const ProductsContent = () => {
       {error && <p className="text-sm text-rose-500">{error}</p>}
 
       {!loading && !error && products.length === 0 && (
-        <p className="text-sm text-brand-500">مفيش منتجات مطابقة لبحثك.</p>
+        <p className="text-sm text-brand-500">No products found matching your search.</p>
       )}
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
