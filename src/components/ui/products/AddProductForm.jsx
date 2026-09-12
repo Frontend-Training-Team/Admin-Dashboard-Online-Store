@@ -59,10 +59,6 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCar
   }, [initialData, reset]);
 
 
-  const handleRemoveExistingImage = (imageId) => {
-    setDeletedImageIds([...deletedImageIds, imageId]);
-  };
-
   const toggleMark = (key) => {
   setMarkedKeys((prev) => (prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]));
 };
@@ -118,112 +114,102 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCar
     onSubmit(formData);
   };
 
-    const formContent = (
-      <form onSubmit={handleSubmit(submitHandler, onInvalid)} className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-      <div>
-        <ProductImageUploader
-          images={images}
-          onChange={setImages}
-          markedKeys={markedKeys}
-          onToggleMark={toggleMark}
-          displayStyle={imageDisplayStyle}
-        />
-        {imageError && <p className="text-red-500 text-xs mt-2">{imageError}</p>}
+    const fieldsContent = (
+  <>
+    <div>
+      <ProductImageUploader
+        images={images}
+        onChange={setImages}
+        markedKeys={markedKeys}
+        onToggleMark={toggleMark}
+        displayStyle={imageDisplayStyle}
+        compact={!showCard}
+      />
+      {imageError && <p className="text-red-500 text-xs mt-2">{imageError}</p>}
+    </div>
+
+    <div className={`flex flex-col ${showCard ? "gap-4" : "gap-2"} `}>
+      <Input label="Product Name" placeholder="Example" error={errors.name?.message} compact={!showCard} {...register("name", { required: "Product name is required" })} />
+      <Input label="Short Description" placeholder="Minimum 10 characters" error={errors.shortDescription?.message} compact={!showCard} {...register("shortDescription", { required: "Short description is required", minLength: { value: 10, message: "Minimum 10 characters" } })} />
+      <Input label="Description" textarea placeholder="Minimum 20 characters" error={errors.description?.message} compact={!showCard} {...register("description", { required: "Description is required", minLength: { value: 20, message: "Minimum 20 characters" } })} />
+
+      {showCard ? (
+  <>
+    <div className="grid grid-cols-2 gap-3">
+      <Input label="Price" type="number" step="0.1" error={errors.price?.message} {...register("price", { required: "Price is required", min: { value: 0.01, message: "Price must be greater than 0" } })} />
+      <Input label="Discount Price" type="number" step="0.01" {...register("discountPrice")} />
+    </div>
+
+    <div className="grid grid-cols-2 gap-3">
+      <Input label="Stock" type="number" error={errors.stock?.message} {...register("stock", { required: "Stock is required", min: { value: 0, message: "Stock cannot be negative" } })} />
+      <Input label="SKU" {...register("sku")} />
+    </div>
+
+    <div className="grid grid-cols-2 gap-3 text-sm">
+      <Select label="Category" options={["electronics", "phones", "fashion", "home", "beauty", "sports"]} error={errors.category?.message} {...register("category", { required: "Category is required" })} />
+      <Input label="Subcategory" {...register("subcategory")} />
+    </div>
+  </>
+) : (
+  <>
+    <div className="grid grid-cols-3 gap-3">
+      <Input label="Price" type="number" step="0.1" error={errors.price?.message} compact {...register("price", { required: "Price is required", min: { value: 0.01, message: "Price must be greater than 0" } })} />
+      <Input label="Discount Price" type="number" step="0.01" compact {...register("discountPrice")} />
+      <Input label="Stock" type="number" error={errors.stock?.message} compact {...register("stock", { required: "Stock is required", min: { value: 0, message: "Stock cannot be negative" } })} />
+    </div>
+
+    <div className="grid grid-cols-3 gap-3 text-sm">
+      <Input label="SKU" compact {...register("sku")} />
+      <Select label="Category" options={["electronics", "phones", "fashion", "home", "beauty", "sports"]} error={errors.category?.message} compact {...register("category", { required: "Category is required" })} />
+      <Input label="Subcategory" compact {...register("subcategory")} />
+    </div>
+  </>
+)}
+
+      <Input label="Brand" compact={!showCard} {...register("brand")} />
+
+      <ProductTagsInput tags={tags} onChange={setTags} compact={!showCard} />
+
+      <div className="flex gap-3">
+        <ToggleButton label="Featured" active={featured} onClick={() => setFeatured(!featured)} circular={!showCard} />
+        <ToggleButton label="Active" active={isActive} onClick={() => setIsActive(!isActive)} circular={!showCard} />
       </div>
+    </div>
+  </>
+);
 
-      <div className="flex flex-col gap-4">
-        <Input
-          label="Product Name"
-          placeholder="Example"
-          error={errors.name?.message}
-          {...register("name", { required: "Product name is required" })}
-        />
+const buttonsContent = (
+  <>
+    <Button variant="secondary" type="button" onClick={onCancel}>Cancel</Button>
+    <Button variant="primary" type="submit">
+      {mode === "create" ? "Create Product" : "Save Changes"}
+    </Button>
+  </>
+);
 
-        <Input
-          label="Short Description"
-          placeholder="Minimum 10 characters"
-          error={errors.shortDescription?.message}
-          {...register("shortDescription", {
-            required: "Short description is required",
-            minLength: { value: 10, message: "Minimum 10 characters" },
-          })}
-        />
-
-        <Input
-          label="Description"
-          textarea
-          placeholder="Minimum 20 characters"
-          error={errors.description?.message}
-          {...register("description", {
-            required: "Description is required",
-            minLength: { value: 20, message: "Minimum 20 characters" },
-          })}
-        />
-
-        <div className="grid grid-cols-2 gap-3">
-          <Input
-            label="Price"
-            type="number"
-            step="0.1"
-            error={errors.price?.message}
-            {...register("price", {
-              required: "Price is required",
-              min: { value: 0.01, message: "Price must be greater than 0" },
-            
-            })}
-          />
-          <Input label="Discount Price" type="number" step="0.01" {...register("discountPrice")} />
-        </div>
-
-        <div className="grid grid-cols-2 gap-3">
-          <Input
-            label="Stock"
-            type="number"
-            error={errors.stock?.message}
-            {...register("stock", {
-              required: "Stock is required",
-              min: { value: 0, message: "Stock cannot be negative" },
-            })}
-          />
-          <Input label="SKU" {...register("sku")} />
-        </div>
-
-        <div className="grid grid-cols-2 gap-3 text-sm">
-          <Select
-            label="Category"
-            options={["electronics", "phones", "fashion", "home", "beauty", "sports"]}
-            error={errors.category?.message}
-            {...register("category", { required: "Category is required" })}
-          />
-          <Input label="Subcategory" {...register("subcategory")} />
-        </div>
-
-        <Input label="Brand" {...register("brand")} />
-
-        <ProductTagsInput tags={tags} onChange={setTags} />
-
-        <div className="flex gap-3">
-          <ToggleButton label="Featured" active={featured} onClick={() => setFeatured(!featured)} circular={!showCard} />
-          <ToggleButton label="Active" active={isActive} onClick={() => setIsActive(!isActive)} circular={!showCard} />
-        </div>
+if (!showCard) {
+  return (
+    <form onSubmit={handleSubmit(submitHandler, onInvalid)} className="flex flex-col h-full">
+      <div className="flex-1 overflow-y-auto grid grid-cols-1 lg:grid-cols-2 gap-3">
+        {fieldsContent}
       </div>
-
-      <div className="col-span-full flex justify-end gap-3 pt-4 dark:border-slate-700">
-        <Button variant="secondary" type="button" onClick={onCancel}>Cancel</Button>
-        <Button variant="primary" type="submit">
-          {mode === "create" ? "Create Product" : "Save Changes"}
-        </Button>
+      <div className="shrink-0 flex justify-end gap-3 pt-2 mt-2 border-t border-gray-200 dark:border-slate-700">
+        {buttonsContent}
       </div>
     </form>
   );
-  if (!showCard) {
-    return formContent;
 }
+
 return (
-    <div className=" dark:shadow-xl rounded-2xl bg-white dark:bg-[#0000] p-6 shadow-sm">
-      {formContent}
-    </div>
-  );
+  <div className=" dark:shadow-xl rounded-2xl bg-white dark:bg-[#0000] p-6 shadow-sm">
+    <form onSubmit={handleSubmit(submitHandler, onInvalid)} className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      {fieldsContent}
+      <div className="col-span-full flex justify-end gap-3 pt-4">
+        {buttonsContent}
+      </div>
+    </form>
+  </div>
+);
 }
 
 export default ProductForm;

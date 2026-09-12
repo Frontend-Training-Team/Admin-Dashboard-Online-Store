@@ -1,4 +1,4 @@
-function Button({ variant = "primary", children, ...rest }) {
+function Button({ variant = "primary", children, compact=false, ...rest }) {
   
   const styles = {
     primary: "bg-[#8E4726BF] text-white font-inter dark: bg-[#8E4726BF] hover:opacity-80  w-40",
@@ -6,7 +6,7 @@ function Button({ variant = "primary", children, ...rest }) {
   };
 
   return (
-    <button {...rest} className={` h-10 rounded-lg px-4 py-2 text-sm font-medium ${styles[variant]}`}>
+    <button {...rest} className={` h-10 rounded-lg px-4 py-2 text-sm font-medium ${styles[variant]} ${compact? "h-8" : "h10"}`}>
       {children}
     </button>
   );

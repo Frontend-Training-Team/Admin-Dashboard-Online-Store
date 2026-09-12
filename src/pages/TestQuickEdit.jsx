@@ -7,7 +7,7 @@ function TestQuickEdit() {
   const [product, setProduct] = useState(null);
 
   // Paste a REAL product ID here — one you know exists in your database
-  const testProductId = "6aa4ef58e9bc44b30790385f";
+  const testProductId = "6aa5a038f28c616e0feda34e";
 
   const openModal = async () => {
     const res = await getSingleproduct(testProductId);

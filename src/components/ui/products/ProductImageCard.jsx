@@ -1,13 +1,23 @@
 import { Trash2, X } from "lucide-react";
-function ProductImageCard({ src, index, onRemove, marked, displayStyle = "instant",onToggleMark }) {
- 
+function ProductImageCard({ src, index, onRemove, marked, displayStyle = "instant",onToggleMark, compact=false }) {
+  if (displayStyle === "pill") {
+    return (
+      <div className={`relative rounded-lg overflow-hidden border border-gray-300 dark:border-[#2E364F] aspect-square`}>
+        <img src={src} alt="Product" className="w-full h-full object-cover" />
+        <span className="absolute bottom-1.5 left-1.5 bg-black/60 text-white text-xs font-medium rounded px-1.5 py-0.5">
+          Image {index + 1}
+        </span>
+      </div>
+    );
+  }
+
   return (
-    <div className={`flex flex-col gap-2 h-50 border border-gray-300 dark:border-[#2E364F] dark:bg-[#1E2435] rounded-lg ${marked ? "opacity-50" : ""}`}>
+    <div className={`flex flex-col gap-2 border border-gray-300 dark:border-[#2E364F] dark:bg-[#1E2435] rounded-lg ${compact ? "h-40" : "h-50"} ${marked ? "opacity-80" : ""}`}>
     <div className="relative  ">
       <img
         src={src}
         alt={`Product`}
-        className="w-full h-40 object-cover rounded-lg "
+        className={`w-full object-cover rounded-lg ${compact ? "h-30" : "h-40"}`}
       />
 
       {displayStyle === "instant" && onRemove && (
@@ -34,21 +44,8 @@ function ProductImageCard({ src, index, onRemove, marked, displayStyle = "instan
 
       {displayStyle === "overlay" && (
         <span className={`block text-center text-xs font-medium ${marked ? "text-red-500" : "text-gray-500"}`}>
-          {marked ? "MARKED TO REMOVE" : "Image"}
+          {marked ? "MARKED TO REMOVE" : `Image ${index + 1}` }
         </span>
-      )}
-
-      {displayStyle === "pill" && (
-        <button
-          type="button"
-          onClick={onToggleMark}
-          className={`flex items-center justify-center gap-1 text-xs border rounded-full px-3 py-1 w-fit mx-auto ${
-            marked ? "border-red-500 text-red-500 bg-red-500/10" : "border-gray-300 text-gray-400 dark:border-[#2E364F]"
-          }`}
-        >
-          <X size={12} />
-          {marked ? "Marked to remove" : "Remove"}
-        </button>
       )}
   
     </div>
