@@ -1,5 +1,6 @@
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 import Input from "./Input";
 import Select from "./Select";
 import Button from "./Button";
@@ -7,12 +8,20 @@ import ToggleButton from "./ToggleButton";
 import ProductImageUploader from "./ProductImageUploader";
 import ProductTagsInput from "./ProductTagsInput";
 
-function ProductForm({ mode = "create", initialData, onSubmit, onCancel }) {
+function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCard=true }) {
+  const onInvalid = (errors) => { 
+      const firstErrorField = Object.keys(errors)[0];
+      const firstErrorMessage = errors[firstErrorField]?.message;
+      if (firstErrorMessage) {
+        toast.error(firstErrorMessage);
+      }
+  };
+  
   const {
     register,
     handleSubmit,
     reset,
-    formState: { errors }, // <-- errors object, auto-filled by react-hook-form when validation fails
+    formState: { errors }, 
   } = useForm();
 
   const [images, setImages] = useState([]);
@@ -21,11 +30,9 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel }) {
   const [tags, setTags] = useState([]);
   const [featured, setFeatured] = useState(false);
   const [isActive, setIsActive] = useState(false);
-  // renamed from "active" -> "isActive" to match the API's exact field name
-
+  
   const [imageError, setImageError] = useState("");
-  // separate error just for images, since react-hook-form doesn't track our custom image state
-
+  
   useEffect(() => {
     if (initialData) {
       reset({
@@ -47,53 +54,48 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel }) {
     }
   }, [initialData, reset]);
 
-  // Called by ProductImageUploader whenever an EXISTING image (a string URL/id) gets removed
+
   const handleRemoveExistingImage = (imageId) => {
     setDeletedImageIds([...deletedImageIds, imageId]);
   };
 
   const submitHandler = (data) => {
-    // Manual check for images, since react-hook-form only manages register()'d fields
     if (images.length === 0) {
       setImageError("At least one image is required");
-      return; // stop here, don't submit
+      return; 
     }
-    if (images.length > 5) {
-      setImageError("Maximum 5 images allowed");
-      return;
-    }
-    setImageError(""); // clear any previous error if we got this far
+  
+    setImageError(""); 
 
     const formData = new FormData();
 
     Object.entries(data).forEach(([key, value]) => {
-      // skip empty optional fields so we don't send blank strings for things like discountPrice
+    
       if (value !== "" && value !== undefined) {
         formData.append(key, value);
       }
     });
 
-    // tags must be ONE JSON string, not repeated keys — e.g. '["wireless","audio"]'
-    formData.append("tags", JSON.stringify(tags));
+    tags.forEach((tag) => formData.append("tags", tag));
 
     formData.append("featured", featured);
     formData.append("isActive", isActive);
 
-    // only append NEW files (objects with .file); existing URL strings are already saved
+   
     images.forEach((img) => {
       if (img.file) formData.append("images", img.file);
     });
 
-    // only relevant in edit mode — tells backend which existing images to delete
-    if (mode === "edit" && deletedImageIds.length > 0) {
-      formData.append("deleteImages", JSON.stringify(deletedImageIds));
-    }
+
+    if (mode === "edit") {
+  formData.append("deletedImages", JSON.stringify(deletedImageIds));
+  }
 
     onSubmit(formData);
   };
 
-  return (
-    <form onSubmit={handleSubmit(submitHandler)} className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    const formContent = (
+      <form onSubmit={handleSubmit(submitHandler, onInvalid)} className="grid grid-cols-1 lg:grid-cols-2 gap-6">
       <div>
         <ProductImageUploader
           images={images}
@@ -136,12 +138,12 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel }) {
           <Input
             label="Price"
             type="number"
-            step="0.01"
+            step="0.1"
             error={errors.price?.message}
             {...register("price", {
               required: "Price is required",
               min: { value: 0.01, message: "Price must be greater than 0" },
-              // exact wording matches the toast you showed me
+            
             })}
           />
           <Input label="Discount Price" type="number" step="0.01" {...register("discountPrice")} />
@@ -160,10 +162,10 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel }) {
           <Input label="SKU" {...register("sku")} />
         </div>
 
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-3 text-sm">
           <Select
             label="Category"
-            options={["electronics", "clothing", "home", "toys"]}
+            options={["electronics", "phones", "fashion", "home", "beauty", "sports"]}
             error={errors.category?.message}
             {...register("category", { required: "Category is required" })}
           />
@@ -180,13 +182,21 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel }) {
         </div>
       </div>
 
-      <div className="col-span-full flex justify-end gap-3 pt-4 border-t dark:border-slate-700">
+      <div className="col-span-full flex justify-end gap-3 pt-4 dark:border-slate-700">
         <Button variant="secondary" type="button" onClick={onCancel}>Cancel</Button>
         <Button variant="primary" type="submit">
           {mode === "create" ? "Create Product" : "Save Changes"}
         </Button>
       </div>
     </form>
+  );
+  if (!showCard) {
+    return formContent;
+}
+return (
+    <div className=" dark:shadow-xl rounded-2xl bg-white dark:bg-[#0000] p-6 shadow-sm">
+      {formContent}
+    </div>
   );
 }
 

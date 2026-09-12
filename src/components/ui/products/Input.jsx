@@ -1,5 +1,6 @@
-// Same as before, but with "error" added back — shows a red message under the field
-function Input({ label, error, textarea = false, ...rest }) {
+import { forwardRef } from "react";
+
+function Input({ label, error, textarea = false, ...rest }, ref) {
   const baseStyle =
     "w-full rounded-lg px-3 py-2 text-sm border-1 border-[#CCCCCC] " +
     " text-gray-900 border-gray-300 " +
@@ -8,15 +9,15 @@ function Input({ label, error, textarea = false, ...rest }) {
   return (
     <div className="flex flex-col gap-1">
       {label && (
-        <label className="text-xs font-medium text-gray-500 dark:text-gray-400">
+        <label className="text-sm font-medium text-gray-500 dark:text-gray-400">
           {label}
         </label>
       )}
 
       {textarea ? (
-        <textarea rows={4} {...rest} className={baseStyle} />
+        <textarea ref={ref} rows={4} {...rest} className={baseStyle} />
       ) : (
-        <input {...rest} className={baseStyle} />
+        <input ref={ref} {...rest} className={baseStyle} />
       )}
 
       {error && (
