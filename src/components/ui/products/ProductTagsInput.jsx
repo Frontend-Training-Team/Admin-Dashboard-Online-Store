@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function ProductTagsInput({ tags, onChange }) {
+function ProductTagsInput({ tags, onChange , compact=false}) {
   const [draft, setDraft] = useState("");
 
   const addTag = () => {
@@ -10,7 +10,7 @@ function ProductTagsInput({ tags, onChange }) {
   };
 
   return (
-    <div className="border border-gray-200 dark:border-slate-600 rounded-xl p-4">
+    <div className={`border border-gray-200 dark:border-slate-600 rounded-xl ${compact ? "p-2" : "p-4"}`}>
       <p className="text-sm font-medium mb-2 dark:text-gray-400">Tags</p>
 
       <div className="flex gap-2">

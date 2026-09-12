@@ -13,6 +13,7 @@ import LoginPage from './pages/Login';
 import DashboardLayout from './components/Layout/dashboardLayout';
 import ViewProduct from './pages/ViewProduct';
 
+// import TestQuickEdit from './pages/TestQuickEdit';
 import { ToastContainer, Slide  } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Toaster } from 'react-hot-toast';
