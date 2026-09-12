@@ -8,8 +8,8 @@ import BestSellerItem from '../components/ui/dashboard/BestSellerItem';
 import RecentOrderItem from '../components/ui/dashboard/RecentOrderItem';
 import StatCardSkeleton from '../components/ui/skeletons/StatCardSkeleton';
 import ProductCardSkeleton from '../components/ui/skeletons/ProductCardSkeleton';
-import SkeletonLine from '../components/ui/skeletons/SkeletonLine';
-import SkeletonBlock from '../components/ui/skeletons/SkeletonBlock';
+// import SkeletonLine from '../components/ui/skeletons/SkeletonLine';
+// import SkeletonBlock from '../components/ui/skeletons/SkeletonBlock';
 
 export default function DashboardPage() {
   const [data, setData] = useState({});
@@ -182,12 +182,12 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-6">
-{/* Top Header Section */}
+      {/* Top Header Section */}
       {isLoading ? (
         <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark shadow-sm animate-pulse space-y-3">
-          <div className="h-3.5 w-32 bg-gray-200 dark:bg-gray-700 rounded"></div>
-          <div className="h-8 w-72 bg-gray-200 dark:bg-gray-700 rounded"></div>
-          <div className="h-4 w-60 bg-gray-200 dark:bg-gray-700 rounded"></div>
+          <div className="h-3.5 w-32 bg-gray-200 dark:bg-brand-800 rounded"></div>
+          <div className="h-8 w-72 bg-gray-200 dark:bg-brand-800 rounded"></div>
+          <div className="h-4 w-60 bg-gray-200 dark:bg-brand-800 rounded"></div>
         </div>
       ) : (
         <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark shadow-sm">
@@ -229,28 +229,28 @@ export default function DashboardPage() {
       {/* Order Status Section */}
       <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark shadow-sm">
         {isLoading ? (
-  <div className="space-y-2 mb-4 animate-pulse">
-    <div className="h-3.5 w-28 bg-gray-200 dark:bg-gray-700 rounded"></div>
-    <div className="h-7 w-64 bg-gray-200 dark:bg-gray-700 rounded"></div>
-  </div>
-) : (
-  <div className="flex items-center justify-between mb-4">
-    <div>
-      <span className="text-[14px] font-Regular tracking-widest text-brand-500 uppercase">
-        ORDER STATUS
-      </span>
-      <h2 className="text-2xl font-bold text-brand-900 dark:text-brand-50">
-        Live Fulfillment Breakdown
-      </h2>
-    </div>
-    <span className="block text-[11px] px-4 py-1.5 rounded-full font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
-      Updated from API
-    </span>
-  </div>
-)}
+          <div className="space-y-2 mb-4 animate-pulse">
+            <div className="h-3.5 w-28 bg-gray-200 dark:bg-brand-800 rounded"></div>
+            <div className="h-7 w-64 bg-gray-200 dark:bg-brand-800 rounded"></div>
+          </div>
+        ) : (
+          <div className="flex items-center justify-between mb-4">
+            <div>
+              <span className="text-[14px] font-Regular tracking-widest text-brand-500 uppercase">
+                ORDER STATUS
+              </span>
+              <h2 className="text-2xl font-bold text-brand-900 dark:text-brand-50">
+                Live Fulfillment Breakdown
+              </h2>
+            </div>
+            <span className="block text-[11px] px-4 py-1.5 rounded-full font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+              Updated from API
+            </span>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-6 gap-3">
-          {isLoading ?(
+          {isLoading ? (
             <>
               <StatCardSkeleton />
               <StatCardSkeleton />
@@ -278,20 +278,20 @@ export default function DashboardPage() {
         {/* Best Sellers */}
         <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark shadow-sm">
           {isLoading ? (
-  <div className="space-y-2 mb-4 animate-pulse">
-    <div className="h-3.5 w-28 bg-gray-200 dark:bg-gray-700 rounded"></div>
-    <div className="h-7 w-48 bg-gray-200 dark:bg-gray-700 rounded"></div>
-  </div>
-) : (
-  <div className="mb-4">
-    <span className="text-[14px] font-Regular tracking-widest text-brand-500 uppercase">
-      TOP PRODUCTS
-    </span>
-    <h2 className="text-2xl font-bold text-brand-900 dark:text-brand-50">
-      Best Sellers
-    </h2>
-  </div>
-)}
+            <div className="space-y-2 mb-4 animate-pulse">
+              <div className="h-3.5 w-28 bg-gray-200 dark:bg-brand-800 rounded"></div>
+              <div className="h-7 w-48 bg-gray-200 dark:bg-brand-800 rounded"></div>
+            </div>
+          ) : (
+            <div className="mb-4">
+              <span className="text-[14px] font-Regular tracking-widest text-brand-500 uppercase">
+                TOP PRODUCTS
+              </span>
+              <h2 className="text-2xl font-bold text-brand-900 dark:text-brand-50">
+                Best Sellers
+              </h2>
+            </div>
+          )}
 
           <div className="space-y-3">
             {isLoading ? (
@@ -317,20 +317,20 @@ export default function DashboardPage() {
         {/* Recent Orders */}
         <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark shadow-sm">
           {isLoading ? (
-  <div className="space-y-2 mb-4 animate-pulse">
-    <div className="h-3.5 w-28 bg-gray-200 dark:bg-gray-700 rounded"></div>
-    <div className="h-7 w-64 bg-gray-200 dark:bg-gray-700 rounded"></div>
-  </div>
-) : (
-  <div className="mb-4">
-    <span className="text-[14px] font-Regular tracking-widest text-brand-500 uppercase">
-      RECENT ORDERS
-    </span>
-    <h2 className="text-2xl font-bold text-brand-900 dark:text-brand-50">
-      Latest Customer Activity
-    </h2>
-  </div>
-)}
+            <div className="space-y-2 mb-4 animate-pulse">
+              <div className="h-3.5 w-28 bg-gray-200 dark:bg-brand-800 rounded"></div>
+              <div className="h-7 w-64 bg-gray-200 dark:bg-brand-800 rounded"></div>
+            </div>
+          ) : (
+            <div className="mb-4">
+              <span className="text-[14px] font-Regular tracking-widest text-brand-500 uppercase">
+                RECENT ORDERS
+              </span>
+              <h2 className="text-2xl font-bold text-brand-900 dark:text-brand-50">
+                Latest Customer Activity
+              </h2>
+            </div>
+          )}
 
           <div className="space-y-3">
             {isLoading ? (

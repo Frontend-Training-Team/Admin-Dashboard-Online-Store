@@ -1,17 +1,16 @@
-import SkeletonLine from './SkeletonLine';
-import SkeletonBlock from './SkeletonBlock';
-
 function ProductCardSkeleton() {
+  // making Skeleton on the RecentOrderItem and BestSellerItem
   return (
-    <div className="flex items-center justify-between p-3 rounded-xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark shadow-sm h-[64px] w-full">
-      <div className="flex items-center gap-3">
-        <SkeletonBlock className="w-10 h-10 rounded-lg shrink-0" />
+    <div className="flex items-center justify-between p-3 rounded-xl border border-brand-200/60 dark:border-brand-900/4
+        bg-surface-cardLight dark:bg-surface-cardDark shadow-sm h-[64px] w-full ">
+      <div className="flex items-center gap-3 ">
+        <div className={`bg-gray-200 dark:bg-brand-800 animate-pulse w-10 h-10 rounded-lg shrink-0`} />
         <div className="space-y-1.5">
-          <SkeletonLine width="w-32" height="h-4" />
-          <SkeletonLine width="w-24" height="h-3" />
+          <div className={`w-32 h-4 bg-gray-200 dark:bg-brand-800 rounded-md animate-pulse`} />
+          <div className={`w-24 h-3 bg-gray-200 dark:bg-brand-800 rounded-md animate-pulse`} />
         </div>
       </div>
-      <SkeletonLine width="w-12" height="h-4" />
+      <div className={`w-12 h-4 bg-gray-200 dark:bg-brand-800 rounded-md animate-pulse`} />
     </div>
   );
 }
