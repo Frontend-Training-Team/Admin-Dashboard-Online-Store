@@ -1,12 +1,12 @@
-const DetailsCard = ({ title , cardData }) => {
+const DetailsCard = ({ title, cardData }) => {
   return (
-    <div className="p-6 border border-gray-100 dark:border-brand-800 rounded-2xl shadow-sm">
-      <h2 className="text-lg font-normal text-gray-400 dark:text-brand-500 block mb-2">
+    <div className="p-5 border border-brand-200/60 dark:border-white/[0.06] bg-brand-50/20 dark:bg-[#181B22] rounded-2xl shadow-xs">
+      <span className="text-xs font-medium uppercase tracking-wider text-brand-500 dark:text-[#8A8378] block mb-1.5">
         {title}
-      </h2>
-      <h2 className="text-2xl font-bold text-black dark:text-white mb-1">
+      </span>
+      <h3 className="text-xl sm:text-2xl font-serif font-bold text-brand-950 dark:text-[#F5F1EA]">
         {cardData}
-      </h2>
+      </h3>
     </div>
   );
 };

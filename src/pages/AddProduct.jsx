@@ -4,7 +4,6 @@ import { postCreateProductAdmin } from "../api/products.api";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-
 function AddProduct() {
   const navigate = useNavigate();
   const handleCreate = async (formData) => {
@@ -13,7 +12,6 @@ function AddProduct() {
       const newProduct = res.data.product;
 
       toast.success(`"${newProduct.name}" created successfully`);
-
       navigate("/products");
     } catch (err) {
       console.error(err);
@@ -22,16 +20,16 @@ function AddProduct() {
   };
 
   return (
-    <div>
+    <div className="space-y-6">
       <ProductFormHeader
         mode="create"
         statusLabel="READY"
         statusDescription="Create, validate, and save with one click."
       />
       <ProductForm 
-      mode="create" 
-      onSubmit={handleCreate}
-      onCancel={() => navigate("/products")}
+        mode="create" 
+        onSubmit={handleCreate}
+        onCancel={() => navigate("/products")}
       />
     </div>
   );

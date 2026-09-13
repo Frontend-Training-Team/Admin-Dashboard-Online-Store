@@ -1,17 +1,17 @@
 const TagsCard = ({ tags }) => {
   return (
-    <div className="p-5 rounded-2xl border border-gray-100 dark:border-brand-800 shadow-sm">
-      <h2 className="text-[16px] text-gray-400 dark:text-brand-500 block mb-2">
+    <div className="p-5 rounded-2xl border border-brand-200/60 dark:border-white/[0.06] bg-brand-50/20 dark:bg-[#181B22] shadow-xs">
+      <span className="text-xs font-medium uppercase tracking-wider text-brand-500 dark:text-[#8A8378] block mb-2.5">
         Tags
-      </h2>
+      </span>
 
       <div className="flex flex-wrap gap-2">
         {tags.map((tag, index) => (
           <span
             key={`${tag}-${index}`}
-            className="rounded-md bg-gray-100 px-2 py-1 text-sm text-gray-600 dark:bg-brand-900/40 dark:text-brand-300"
+            className="rounded-lg bg-brand-50 dark:bg-[#1F232B] border border-brand-200/60 dark:border-white/[0.06] px-3 py-1 text-xs font-medium text-brand-800 dark:text-[#B9B2A8]"
           >
-            {tag}
+            #{tag}
           </span>
         ))}
       </div>

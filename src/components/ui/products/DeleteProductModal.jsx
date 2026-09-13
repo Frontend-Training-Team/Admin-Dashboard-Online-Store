@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Trash2, AlertTriangle, Loader2, X } from 'lucide-react';
 
-function DeleteUserModal({ isOpen, user, onClose, onConfirm, loading }) {
+function DeleteProductModal({ isOpen, product, onClose, onConfirm, loading }) {
   useEffect(() => {
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') onClose();
@@ -10,7 +10,11 @@ function DeleteUserModal({ isOpen, user, onClose, onConfirm, loading }) {
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [onClose]);
 
-  if (!isOpen || !user) return null;
+  if (!isOpen || !product) return null;
+
+  const productName = product.name || product.title || 'this product';
+  const categoryName = product.category || '';
+  const priceDisplay = product.price ? `$${product.price}` : null;
 
   return (
     <div
@@ -30,7 +34,7 @@ function DeleteUserModal({ isOpen, user, onClose, onConfirm, loading }) {
             type="button"
             onClick={onClose}
             disabled={loading}
-            className="rounded-xl p-2 text-gray-400 dark:text-[#8E9BAE] hover:text-gray-600 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-[#161B26] transition"
+            className="rounded-xl p-2 text-gray-400 dark:text-[#8E9BAE] hover:text-gray-600 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-[#161B26] transition cursor-pointer"
           >
             <X size={18} />
           </button>
@@ -39,14 +43,20 @@ function DeleteUserModal({ isOpen, user, onClose, onConfirm, loading }) {
         {/* Content */}
         <div className="mt-4">
           <h3 className="text-lg font-bold text-gray-900 dark:text-[#F5F1EA]">
-            Delete User Account
+            Delete Product
           </h3>
           <p className="mt-2 text-xs sm:text-sm text-gray-600 dark:text-[#B9B2A8] leading-relaxed">
-            Are you sure you want to permanently delete user{' '}
+            Are you sure you want to permanently delete product{' '}
             <strong className="font-semibold text-gray-900 dark:text-[#F5F1EA]">
-              {user.username || 'this user'}
-            </strong>{' '}
-            (<span className="text-gray-700 dark:text-slate-300">{user.email}</span>)?
+              {productName}
+            </strong>
+            {categoryName || priceDisplay ? (
+              <> (
+                <span className="text-gray-700 dark:text-slate-300">
+                  {[categoryName, priceDisplay].filter(Boolean).join(' • ')}
+                </span>
+              )</>
+            ) : null}?
             This action cannot be undone.
           </p>
         </div>
@@ -57,7 +67,7 @@ function DeleteUserModal({ isOpen, user, onClose, onConfirm, loading }) {
             type="button"
             onClick={onClose}
             disabled={loading}
-            className="px-5 py-2.5 rounded-xl border border-gray-200 dark:border-[#262B34] text-sm font-semibold text-gray-700 dark:text-[#B9B2A8] hover:bg-gray-50 dark:hover:bg-[#22262F] transition disabled:opacity-50"
+            className="px-5 py-2.5 rounded-xl border border-gray-200 dark:border-[#262B34] text-sm font-semibold text-gray-700 dark:text-[#B9B2A8] hover:bg-gray-50 dark:hover:bg-[#22262F] transition disabled:opacity-50 cursor-pointer"
           >
             Cancel
           </button>
@@ -65,7 +75,7 @@ function DeleteUserModal({ isOpen, user, onClose, onConfirm, loading }) {
             type="button"
             onClick={onConfirm}
             disabled={loading}
-            className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-600 dark:bg-[#F87171] dark:hover:bg-[#EF4444] text-sm font-semibold text-white dark:text-[#14100C] shadow-sm transition disabled:opacity-60 active:scale-95"
+            className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-rose-500 hover:bg-rose-600 dark:bg-[#F87171] dark:hover:bg-[#EF4444] text-sm font-semibold text-white dark:text-[#14100C] shadow-sm transition disabled:opacity-60 active:scale-95 cursor-pointer"
           >
             {loading ? (
               <>
@@ -75,7 +85,7 @@ function DeleteUserModal({ isOpen, user, onClose, onConfirm, loading }) {
             ) : (
               <>
                 <Trash2 size={16} />
-                <span>Delete User</span>
+                <span>Delete Product</span>
               </>
             )}
           </button>
@@ -85,4 +95,4 @@ function DeleteUserModal({ isOpen, user, onClose, onConfirm, loading }) {
   );
 }
 
-export default DeleteUserModal;
+export default DeleteProductModal;
