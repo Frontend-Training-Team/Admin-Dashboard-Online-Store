@@ -1,9 +1,9 @@
-function UserStatCard({ title, value, icon }) {
+function UserStatCard({ title, value, icon,className = "" }) {
   return (
     <div className="flex items-center justify-between p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#1E2435] border border-gray-100/80 dark:border-0 shadow-sm transition-all hover:shadow-md">
       {/* Left side: Label + Value */}
       <div className="min-w-0 pr-3">
-        <p className="text-xs sm:text-[16px] font-medium text-[#AB755D] dark:text-[#AB755D] truncate">
+        <p className={`text-xs sm:text-[16px] font-medium text-[#AB755D] dark:text-[#AB755D] truncate ${className}`}>
           {title}
         </p>
         <h3 className="text-2xl sm:text-4xl font-bold text-gray-900 dark:text-white mt-1 truncate">
