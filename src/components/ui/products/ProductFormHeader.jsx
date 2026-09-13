@@ -20,7 +20,7 @@ function ProductFormHeader({ mode = "create", statusLabel, statusDescription }) 
     <div className="flex flex-col gap-4 mb-6 ">
 
       <div
-        className="relative rounded-2xl p-2  overflow-hidden bg-cover bg-center"
+        className="relative rounded-lg p-2 overflow-hidden bg-cover bg-center"
         style={{ backgroundImage: `url(${bannerImage})` }}
       >
         <div className="w-200 h-24 m-2.5 text-[#8E4726]">

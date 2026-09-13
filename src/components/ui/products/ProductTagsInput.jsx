@@ -10,7 +10,7 @@ function ProductTagsInput({ tags, onChange , compact=false}) {
   };
 
   return (
-    <div className={`border border-gray-200 dark:border-slate-600 rounded-xl ${compact ? "p-2" : "p-4"}`}>
+    <div className={`border border-gray-200 dark:border-slate-600 rounded-lg ${compact ? "p-3" : "p-4"}`}>
       <p className="text-sm font-medium mb-2 dark:text-gray-400">Tags</p>
 
       <div className="flex gap-2">
@@ -43,11 +43,11 @@ function ProductTagsInput({ tags, onChange , compact=false}) {
         {tags.map((tag, i) => (
           <span
             key={i}
-            className="bg-[#8E4726BF] text-[white] dark:bg-slate-700 dark:text-gray-100 text-xs px-2 py-1 rounded-full"
+            className="bg-[#8E4726BF] text-[white] dark:bg-slate-700 dark:text-gray-100 text-xs px-2 py-1 rounded-lg"
           >
             #{tag}{" "}
             <span
-              className="cursor-pointer text-gray-400 "
+              className="ml-1 cursor-pointer text-white"
               onClick={() => onChange(tags.filter((_, idx) => idx !== i))}
             >
               ✕
