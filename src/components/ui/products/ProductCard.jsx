@@ -1,28 +1,13 @@
-import { Star } from "lucide-react";
+import { Star, Trash } from "lucide-react";
+import DeleteUserModal from "../user/DeleteUserModal";
+import { useState } from "react";
+import { deleteProductAdmin } from "../../../api/products.api";
+import toast from "react-hot-toast";
 
 const MAX_TAGS = 4;
 
-const ProductCard = ({
-  product,
-  isAdmin = false,
-  onView,
-  onQuickEdit,
-  onEdit,
-  onDelete,
-}) => {
-  const {
-    _id,
-    name,
-    images,
-    shortDescription,
-    stock,
-    category,
-    subcategory,
-    brand,
-    tags = [],
-    price,
-    discountPrice,
-  } = product;
+const ProductCard = ({ product, isAdmin = false, onView, onQuickEdit, onEdit, onDelete, }) => {
+  const { _id, name, images, shortDescription, stock, category, subcategory, brand, tags = [], price, discountPrice, } = product;
 
   const inStock = stock > 0;
   const isFeatured = Boolean(
@@ -32,9 +17,34 @@ const ProductCard = ({
   const breadcrumb = [category, subcategory, brand].filter(Boolean).join(" · ");
   const image = images?.[0]?.url;
 
-  return (
+  const [deletingProduct, setDeletingProduct] = useState(null);
+  const [isDeleting, setIsDeleting] = useState(false);
+  // Delete user confirmation handler
+  const SendDeleteProduct = async () => {
+    if (!deletingProduct) return;
+    console.log("lol")
+    try {
+      console.log("lol2")
+      setIsDeleting(true);
+      let res = await deleteProductAdmin(deletingProduct._id);
+      console.log(res.data)
+      toast.success(
+        `User ${deletingProduct.username || ''} deleted successfully`
+      );
+      setDeletingProduct(null);
+    } catch (error) {
+      const msg =
+        error.response?.data?.message ||
+        error.userMessage ||
+        'Failed to delete user';
+      toast.error(msg);
+    } finally {
+      setIsDeleting(false);
+    }
+  };
+  return (<>
     <div className="group relative flex flex-col overflow-hidden rounded-xl border border-brand-200/60 bg-white dark:border-brand-900/40 dark:bg-brand-950/20 transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg hover:border-gray-300 dark:hover:border-gray-700">
-      
+
       {/* Image Container */}
       <div className="relative h-65 w-full overflow-hidden bg-brand-100/60 dark:bg-brand-900/30">
         {image ? (
@@ -48,12 +58,12 @@ const ProductCard = ({
             No Image
           </div>
         )}
-      {/* Carousel Navigation Arrows */}
+        {/* Carousel Navigation Arrows */}
         <button
           type="button"
           onClick={(e) => {
             e.stopPropagation();
-            
+
           }}
           className="opacity-0 group-hover:opacity-100 absolute left-2 top-1/2 -translate-y-1/2 flex h-7 w-7 items-center justify-center rounded-full bg-white/80 text-gray-800 shadow-md hover:bg-white dark:bg-gray-800/80 dark:text-white transition-opacity duration-200 z-10"
         >
@@ -64,7 +74,7 @@ const ProductCard = ({
           type="button"
           onClick={(e) => {
             e.stopPropagation();
-           
+
           }}
           className="opacity-0 group-hover:opacity-100 absolute right-2 top-1/2 -translate-y-1/2 flex h-7 w-7 items-center justify-center rounded-full bg-white/80 text-gray-800 shadow-md hover:bg-white dark:bg-gray-800/80 dark:text-white transition-opacity duration-200 z-10"
         >
@@ -80,11 +90,10 @@ const ProductCard = ({
         )}
 
         <span
-          className={`absolute bottom-2 right-2 rounded-full px-2.5 py-1 text-[11px] font-semibold ${
-            inStock
-              ? "bg-emerald-500/90 text-white"
-              : "bg-rose-500/90 text-white"
-          }`}
+          className={`absolute bottom-2 right-2 rounded-full px-2.5 py-1 text-[11px] font-semibold ${inStock
+            ? "bg-emerald-500/90 text-white"
+            : "bg-rose-500/90 text-white"
+            }`}
         >
           {inStock ? `${stock} in stock` : "Out of stock"}
         </span>
@@ -119,7 +128,7 @@ const ProductCard = ({
             {visibleTags.map((tag) => (
               <span
                 key={tag}
-               className="rounded-full border border-brand-200/60 px-2.5 py-0.5 text-[11px] text-brand-600 dark:border-brand-800 dark:text-brand-300"
+                className="rounded-full border border-brand-200/60 px-2.5 py-0.5 text-[11px] text-brand-600 dark:border-brand-800 dark:text-brand-300"
               >
                 {tag}
               </span>
@@ -128,7 +137,7 @@ const ProductCard = ({
         )}
       </div>
 
-    {/* Actions */}
+      {/* Actions */}
       <div className="mt-4 flex items-center justify-between gap-1 border-t border-brand-200/60 pt-3 dark:border-brand-900/40 px-2 py-3">
         <div className="flex items-center gap-1.5">
           <button
@@ -164,23 +173,31 @@ const ProductCard = ({
             </svg>
             <span>Quick Edit</span>
           </button>
-       
-</div>    
-  
-     {/* Delete Button */}
-    <button
-      type="button"
-      onClick={() => onDelete?.(product._id || product.id)}
-      className="ml-auto flex shrink-0 items-center gap-1 rounded-lg border border-rose-200/80 bg-rose-50 px-3 py-2 text-xs font-medium text-rose-600 hover:bg-rose-100 dark:border-rose-900/40 dark:bg-rose-950/30 dark:text-rose-400 dark:hover:bg-rose-900/50 transition-colors mx-2 my-3"
-    >
-      <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-      </svg>
-      <span>Delete</span>
-    </button>
-</div>
-</div>
-);
+
+        </div>
+
+        {/* Delete Button */}
+        <button
+          type="button"
+          onClick={() => { setDeletingProduct(product); SendDeleteProduct() }}
+          className="ml-auto flex shrink-0 items-center gap-1 rounded-lg border border-rose-200/80 bg-rose-50 px-3 py-2 text-xs font-medium text-rose-600 hover:bg-rose-100 dark:border-rose-900/40 dark:bg-rose-950/30 dark:text-rose-400 dark:hover:bg-rose-900/50 transition-colors mx-2 my-3"
+        >
+          <Trash size={18} />
+          <span>Delete</span>
+        </button>
+
+
+      </div>
+    </div>
+
+    <DeleteUserModal
+      isOpen={Boolean(deletingProduct)}
+      user={name}
+      onClose={() => setDeletingProduct(null)}
+      onConfirm={SendDeleteProduct}
+      loading={isDeleting}
+    />
+  </>);
 };
 
 export default ProductCard;

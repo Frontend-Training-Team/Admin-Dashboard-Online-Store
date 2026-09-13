@@ -76,7 +76,7 @@ function Sidebar({ isOpen, onClose }) {
           <button
             onClick={() => { logout(); }}
             className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-rose-600 active:scale-90
-            text-[18px] font-semibold text-red-500  hover:bg-rose-600 hover:text-white shadow-sm transition-all"
+            text-lg font-semibold text-red-500  hover:bg-rose-600 hover:text-white shadow-sm transition-all"
           >
             <LogOut size={16} />
             <span>Logout</span>

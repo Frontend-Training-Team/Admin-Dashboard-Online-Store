@@ -2,11 +2,12 @@ import { useState } from "react";
 import { ProductsProvider, useProductsState } from "../components/ui/products/ProductsState";
 import ProductCard from "../components/ui/products/ProductCard";
 import ProductsStats from "../components/ui/products/ProductsStats";
-import { useAuth } from "../context/AuthContext";
+// import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import QuickEditModal from "../components/ui/products/QuickEditModal";
 import { patchUpdateProductAdmin } from "../api/products.api";
 import toast from "react-hot-toast";
+import { Funnel, Package, Plus, Search, SearchX, Users } from "lucide-react";
 
 const STATUS_OPTIONS = [
   { key: "all", label: "Total" },
@@ -17,8 +18,7 @@ const STATUS_OPTIONS = [
 
 const ProductsContent = () => {
   const navigate = useNavigate();
-  const { user } = useAuth();
-  const isAdmin = user?.role === "admin";
+  // const { user } = useAuth();
   const [searchInput, setSearchInput] = useState("");
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [quickEditProduct, setQuickEditProduct] = useState(null);
@@ -72,7 +72,7 @@ const ProductsContent = () => {
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-brand-200/60 bg-gradient-to-r from-brand-50 to-white p-6 dark:border-brand-900/40 dark:from-brand-900/20 dark:to-surface-dark">
         <div className="flex items-center gap-4">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-100 text-brand-700 dark:bg-brand-900/40 dark:text-brand-300">
-            📦
+            <Package size={24} />
           </div>
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-widest text-brand-500">
@@ -84,17 +84,19 @@ const ProductsContent = () => {
           </div>
         </div>
 
-        {isAdmin && (
-          <button
-            onClick={() => {
-              /* افتح modal / روح لصفحة Add Product */
-            }}
-            className="flex items-center gap-1.5 rounded-full bg-brand-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-brand-800 dark:bg-brand-700 dark:hover:bg-brand-600"
-          >
-            <span>+</span>
-            <span>Add Product</span>
-          </button>
-        )}
+
+        <button
+          onClick={() => {
+            navigate("/products/new")
+          }}
+          className="flex items-center px-4 py-3 gap-1.5 rounded-xl border bg-brand-200/30 hover:bg-brand-200/50 border-brand-200/60
+            dark:text-brand-300 dark:hover:bg-brand-900/30 active:scale-90 duration-200
+            dark:border-brand-900/40 dark:bg-surface-darkdark:text-brand-300 dark:bg-surface-dark
+            "
+        >
+          <span> <Plus /> </span>
+          <span>Add Product</span>
+        </button> {/* Add Product */}
       </div>
 
       {/* Stats */}
@@ -103,50 +105,38 @@ const ProductsContent = () => {
       {/* Search bar */}
       <div className="mb-4 rounded-2xl border border-brand-200/60 bg-white p-4 dark:border-brand-900/40 dark:bg-surface-dark">
         <form onSubmit={handleSearchSubmit} className="flex flex-wrap items-center gap-2">
-          <div className="relative min-w-[240px] flex-1">
-            {/* أيقونة العدسة جوه الصندوق */}
-            <svg
-              className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-brand-400"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z"
-              />
-            </svg>
+          <div className="relative py-1 flex-1">
+            {/* Icon */}
+            <Search className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-brand-400" size={20} />
             <input
               type="text"
               value={searchInput}
+              placeholder="Search Products ..."
               onChange={(e) => setSearchInput(e.target.value)}
-              placeholder="Search products..."
-              className="w-full rounded-full border border-brand-200/60 bg-white py-2 pl-9 pr-3 text-sm text-brand-900 placeholder:text-brand-400 focus:border-brand-500 focus:outline-none dark:border-brand-900/40 dark:bg-surface-dark dark:text-brand-50"
+              className="w-full pl-10 p-3 border border-gray-400 rounded-2xl font-semibold cursor-pointer"
             />
-          </div>
+          </div>{/* Search Input */}
 
           <button
             type="button"
             onClick={() => setFiltersOpen((v) => !v)}
-            className="flex items-center gap-1.5 rounded-full border border-brand-200/60 bg-white px-4 py-2 text-sm font-medium text-brand-700 hover:bg-brand-50 dark:border-brand-900/40 dark:bg-surface-dark dark:text-brand-300 dark:hover:bg-brand-900/30"
-          >
-            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 4h18M6 8h12M10 12h4" />
-            </svg>
+            className="flex items-center px-4 py-3 gap-1.5 rounded-xl border bg-brand-200/30 hover:bg-brand-200/50 border-brand-200/60
+            dark:text-brand-300 dark:hover:bg-brand-900/30 active:scale-90 duration-200
+            dark:border-brand-900/40 dark:bg-surface-darkdark:text-brand-300 dark:bg-surface-dark
+            ">
+            <Funnel />
             Filters
-          </button>
+          </button>{/* Filters BTN */}
 
           <button
             type="submit"
-            className="flex items-center gap-1.5 rounded-full bg-brand-900 px-5 py-2 text-sm font-medium text-white hover:bg-brand-800 dark:bg-brand-700 dark:hover:bg-brand-600"
-          >
-            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
-            </svg>
+            className="flex items-center px-4 py-3 gap-1.5 rounded-xl border bg-black border-brand-200/60
+            text-white dark:text-brand-300 dark:hover:bg-brand-900/30 active:scale-90 duration-200
+            dark:border-brand-900/40 dark:bg-surface-darkdark:text-brand-300 dark:bg-surface-dark
+            ">
+            <Search />
             Search
-          </button>
+          </button>{/* Search BTN */}
         </form>
 
         {/* Category / Subcategory — بنفس عرض Koda، وبتظهر لما تدوس Filters بس */}
@@ -193,7 +183,7 @@ const ProductsContent = () => {
           <button
             key={opt.key}
             onClick={() => applyStatus(opt.key)}
-            className={`rounded-full px-3 py-1.5 text-xs font-medium ${status === opt.key
+            className={`rounded-xl px-3 py-1.5 text-xs sm:text-lg font-medium duration-200 ${status === opt.key
               ? "bg-brand-900 text-white dark:bg-brand-800"
               : "bg-brand-100/70 text-brand-700 hover:bg-brand-100 dark:bg-brand-900/30 dark:text-brand-300 dark:hover:bg-brand-900/50"
               }`}
@@ -208,7 +198,23 @@ const ProductsContent = () => {
       {error && <p className="text-sm text-rose-500">{error}</p>}
 
       {!loading && !error && products.length === 0 && (
-        <p className="text-sm text-brand-500">No products found matching your search.</p>
+        <div className="bg-white rounded-2xl">
+          <div colSpan={4} className="px-6 py-16 text-center">
+            <div className="mx-auto flex max-w-sm flex-col items-center justify-center">
+              <div className="rounded-2xl bg-[#FFEFDD] dark:bg-[#161B26] p-4 text-[#A36037] mb-3">
+                {products.length === 0 ? <SearchX size={32} /> : <Users size={32} />}
+              </div>
+              <h4 className="text-base font-bold text-gray-900 dark:text-white">
+                {products.length === 0 ? 'No matching users found' : 'No users available'}
+              </h4>
+              <p className="mt-1 text-xs text-gray-400 dark:text-[#8E9BAE]">
+                {products.length === 0
+                  ? `No users matched "${products.length === 0}". Try searching with a different keyword.`
+                  : 'There are currently no users in the database.'}
+              </p>
+            </div>
+          </div>
+        </div>
       )}
 
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -216,7 +222,7 @@ const ProductsContent = () => {
           <ProductCard
             key={product._id}
             product={product}
-            isAdmin={isAdmin}
+
             onView={(p) => navigate(`/products/view/${p._id || p.id}`)}
             onQuickEdit={(p) => setQuickEditProduct(p)}
             onEdit={(p) => navigate(`/products/${p._id || p.id}/edit`)}
@@ -247,7 +253,7 @@ const ProductsContent = () => {
           </button>
         </div>
       )}
-      
+
       {/* Quick Edit Modal */}
       {quickEditProduct && (
         <QuickEditModal
