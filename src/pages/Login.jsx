@@ -40,27 +40,27 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-[55%_45%]">
+    <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-[55%_45%] bg-white dark:bg-[#0B0C0F]">
 
       {/* Left Side - Hero Section */}
       <div
         className="hidden lg:flex relative flex-col justify-center items-center p-12 bg-cover bg-center"
-        style={{ backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url(${heroBg})` }}
+        style={{ backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(11, 12, 15, 0.8)), url(${heroBg})` }}
       >
-        <div className="relative z-10 w-full max-w-190.5 space-y-5">
-          <p className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-medium tracking-wide text-gray-200 drop-shadow-sm">
+        <div className="relative z-10 w-full max-w-[500px] space-y-6">
+          <p className="text-sm font-semibold uppercase tracking-widest text-[#C98156]">
             Lamsa Admin Dashboard
           </p>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold leading-tight drop-shadow-sm text-gray-200">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold leading-tight text-white">
             Manage Your Store Like a Pro
           </h1>
 
-          <p className="text-gray-400 text-base sm:text-lg lg:text-xl xl:text-2xl leading-relaxed font-normal">
-            Control products, orders, users, carts and analytics from a modern dashboard experience.
+          <p className="text-gray-300 text-base leading-relaxed">
+            Control products, orders, users, carts and analytics from a modern luxury dashboard experience.
           </p>
 
-          <div className="relative z-10 space-y-4 my-auto mb-6 pt-6 w-full">
+          <div className="space-y-3 pt-4 w-full">
             {[
               'Product Management',
               'Order Tracking',
@@ -68,43 +68,45 @@ export default function LoginPage() {
             ].map((feature, idx) => (
               <div
                 key={idx}
-                className="flex items-center space-x-3 bg-white/20 backdrop-blur-md border border-white/20 p-3 sm:p-4 rounded-xl w-full"
+                className="flex items-center space-x-3 bg-white/10 backdrop-blur-md border border-white/15 p-3.5 rounded-xl w-full"
               >
-                <Check className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                <span className="text-sm lg:text-base text-white">{feature}</span>
+                <div className="w-5 h-5 rounded-full bg-[#C98156] flex items-center justify-center text-white shrink-0">
+                  <Check className="w-3.5 h-3.5" />
+                </div>
+                <span className="text-sm font-medium text-white">{feature}</span>
               </div>
             ))}
           </div>
 
-          <div className="relative z-10 text-xs text-gray-400">
+          <div className="text-xs text-gray-400 pt-6">
             © Lamsa Home Furniture. All rights reserved.
           </div>
         </div>
       </div>
 
       {/* Right Side - Form Section */}
-      <div className="bg-white p-8 md:p-12 flex flex-col justify-center items-center">
-        <div className="w-full max-w-2xl space-y-6">
+      <div className="bg-white dark:bg-[#0B0C0F] p-8 md:p-12 flex flex-col justify-center items-center border-l border-brand-200/60 dark:border-white/[0.06]">
+        <div className="w-full max-w-md space-y-6">
 
           <div className="text-center space-y-2">
             <div className="inline-block p-2 mb-2">
-              <img src={logo} alt="Lamsa Logo" className="h-28 sm:h-32 lg:h-40 w-auto object-contain mx-auto" />
+              <img src={logo} alt="Lamsa Logo" className="h-20 sm:h-24 w-auto object-contain mx-auto" />
             </div>
-            <h2 className="text-xl sm:text-4xl font-semibold font-Inter text-gray-800">Welcome Back</h2>
-            <p className="text-xs sm:text-lg font-Inter text-gray-500">Sign in to your admin dashboard</p>
+            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-brand-950 dark:text-[#F5F1EA]">Welcome Back</h2>
+            <p className="text-xs sm:text-sm text-brand-600/70 dark:text-[#8A8378]">Sign in to your admin dashboard</p>
           </div>
 
           {errorMessage && (
-            <div className="p-3 bg-red-50 border border-red-200 text-red-600 rounded-lg text-sm font-Inter text-center">
+            <div className="p-3 bg-rose-500/10 border border-rose-500/20 text-rose-500 rounded-xl text-sm text-center font-medium">
               {errorMessage}
             </div>
           )}
 
-          <form onSubmit={onSubmit} className="space-y-4 pt-2  font-Inter">
+          <form onSubmit={onSubmit} className="space-y-4 pt-2">
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold mb-3 text-gray-700 block">Email Address</label>
+              <label className="text-xs font-semibold text-brand-900 dark:text-[#B9B2A8] block">Email Address</label>
               <div className="relative">
-                <Mail className="w-5 h-5 text-gray-400 absolute left-5 top-1/2 -translate-y-1/2" />
+                <Mail className="w-4 h-4 text-brand-400 dark:text-[#8A8378] absolute left-4 top-1/2 -translate-y-1/2" />
                 <input
                   type="email"
                   placeholder="Enter your email"
@@ -112,17 +114,15 @@ export default function LoginPage() {
                   onChange={(e) => setForm({ ...form, email: e.target.value })}
                   disabled={isLoading}
                   required
-                  className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 text-gray-900  font-Inter
-                  placeholder-gray-400 rounded-md text-sm focus:outline-none focus:ring-2
-                  focus:ring-[#B67352] focus:border-transparent transition disabled:opacity-60"
+                  className="w-full h-11 pl-11 pr-4 bg-brand-50/30 dark:bg-[#1F232B] border border-brand-200 dark:border-white/[0.08] text-brand-950 dark:text-[#F5F1EA] placeholder-brand-400 dark:placeholder:text-[#8A8378] rounded-xl text-sm focus:outline-none focus:ring-1 focus:ring-[#C98156] focus:border-[#C98156] transition disabled:opacity-60"
                 />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold mb-3 text-gray-700 block">Password</label>
+              <label className="text-xs font-semibold text-brand-900 dark:text-[#B9B2A8] block">Password</label>
               <div className="relative">
-                <Lock className="w-5 h-5 text-gray-400 absolute left-5 top-1/2 -translate-y-1/2" />
+                <Lock className="w-4 h-4 text-brand-400 dark:text-[#8A8378] absolute left-4 top-1/2 -translate-y-1/2" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Enter your password"
@@ -130,15 +130,13 @@ export default function LoginPage() {
                   onChange={(e) => setForm({ ...form, password: e.target.value })}
                   disabled={isLoading}
                   required
-                  className="w-full h-14 pl-12 pr-12 bg-gray-50 border border-gray-200 text-gray-900
-                  font-Inter placeholder-gray-400 rounded-md text-sm focus:outline-none focus:ring-2
-                  focus:ring-[#B67352] focus:border-transparent transition disabled:opacity-60"
+                  className="w-full h-11 pl-11 pr-11 bg-brand-50/30 dark:bg-[#1F232B] border border-brand-200 dark:border-white/[0.08] text-brand-950 dark:text-[#F5F1EA] placeholder-brand-400 dark:placeholder:text-[#8A8378] rounded-xl text-sm focus:outline-none focus:ring-1 focus:ring-[#C98156] focus:border-[#C98156] transition disabled:opacity-60"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   disabled={isLoading}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md text-gray-400 hover:text-gray-600"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-brand-400 dark:text-[#8A8378] hover:text-brand-700 dark:hover:text-[#F5F1EA] cursor-pointer"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -148,10 +146,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={isLoading}
-              className="
-              w-full h-12 bg-brand-300 hover:bg-[#a06243] text-white font-bold rounded-md
-              shadow-md transition duration-200 text-sm mt-2 flex items-center justify-center space-x-2
-              disabled:bg-[#B67352]/70 disabled:cursor-not-allowed active:scale-95"
+              className="w-full h-11 bg-[#C98156] hover:bg-[#b06f47] text-white font-medium rounded-xl shadow-xs transition duration-200 text-sm mt-2 flex items-center justify-center space-x-2 disabled:opacity-60 disabled:cursor-not-allowed cursor-pointer"
             >
               {isLoading ? (
                 <>
@@ -162,31 +157,28 @@ export default function LoginPage() {
                 <span>Sign In</span>
               )}
             </button>
-
           </form>
 
-          <div className="relative flex items-center justify-center py-1">
-            <div className="border-t border-gray-200 w-full"></div>
-            <span className="bg-white px-3 text-xs text-gray-400 uppercase font-semibold absolute">OR</span>
+          <div className="relative flex items-center justify-center py-2">
+            <div className="border-t border-brand-200 dark:border-white/[0.08] w-full"></div>
+            <span className="bg-white dark:bg-[#0B0C0F] px-3 text-xs text-brand-400 dark:text-[#8A8378] uppercase font-semibold absolute">OR</span>
           </div>
 
           <a
             href="https://accounts.google.com"
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full h-12 flex items-center justify-center gap-2 border border-[#CCCCCC] 
-            hover:bg-black hover:text-white text-[#2B231F] font-semibold rounded-md transition
-            duration-200 text-sm no-underline cursor-pointer active:scale-95"
+            className="w-full h-11 flex items-center justify-center gap-2 border border-brand-200 dark:border-white/[0.08] bg-white dark:bg-[#181B22] hover:bg-brand-50 dark:hover:bg-[#1F232B] text-brand-900 dark:text-[#F5F1EA] font-medium rounded-xl transition duration-200 text-sm no-underline cursor-pointer"
           >
             <img
               src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
               alt="google"
-              className="h-5 w-5 object-contain"
+              className="h-4 w-4 object-contain"
             />
             <span>Continue with Google</span>
           </a>
 
-          <p className="text-center text-xs text-gray-400 pt-1 select-none">
+          <p className="text-center text-xs text-brand-400 dark:text-[#8A8378] pt-2 select-none">
             Secure Admin Access
           </p>
 

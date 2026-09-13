@@ -1,16 +1,14 @@
-const Btn = ({ Text = 'button', Type, Icon, className }) => {
-    return (<>
-        <button type={Type} className={`
-            bg-brand-300 
-            px-4 py-3
-            rounded-md
-            capitalize
-            text-3xl
-            inline-flex items-center gap-2
-            hover:bg-brand-500
-            ${className}`}>
-            {Icon}{Text}</button>
-    </>);
-}
+const Btn = ({ Text = 'button', Type = 'button', Icon, className = '', ...props }) => {
+    return (
+        <button
+            type={Type}
+            {...props}
+            className={`bg-[#C98156] hover:bg-[#b06f47] text-white px-4 py-2.5 rounded-xl font-medium text-sm inline-flex items-center justify-center gap-2 transition-colors cursor-pointer shadow-xs ${className}`}
+        >
+            {Icon}
+            <span>{Text}</span>
+        </button>
+    );
+};
 
 export default Btn;

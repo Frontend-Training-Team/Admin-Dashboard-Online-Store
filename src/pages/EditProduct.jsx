@@ -4,6 +4,7 @@ import ProductForm from "../components/ui/products/AddProductForm";
 import ProductFormHeader from "../components/ui/products/ProductFormHeader";
 import { getSingleproduct, patchUpdateProductAdmin } from "../api/products.api";
 import { toast } from "react-toastify";
+import { Loader2 } from "lucide-react";
 
 function EditProduct() {
   const { id } = useParams();
@@ -25,21 +26,28 @@ function EditProduct() {
     }
   };
 
-  if (!product) return <p>Loading...</p>;
+  if (!product) {
+    return (
+      <div className="flex h-96 items-center justify-center gap-2 text-[#C98156]">
+        <Loader2 size={24} className="animate-spin" />
+        <span className="text-sm font-medium text-brand-900 dark:text-[#F5F1EA]">Loading product...</span>
+      </div>
+    );
+  }
 
   return (
-    <div>
+    <div className="space-y-6">
       <ProductFormHeader
         mode="edit"
         statusLabel="LIVE"
         statusDescription="Connected to the real product update API."
       />
       <ProductForm
-       mode="edit" 
-       initialData={product} 
-       onSubmit={handleUpdate} 
-       onCancel={() => navigate("/products")}
-       />
+        mode="edit" 
+        initialData={product} 
+        onSubmit={handleUpdate} 
+        onCancel={() => navigate("/products")}
+      />
     </div>
   );
 }

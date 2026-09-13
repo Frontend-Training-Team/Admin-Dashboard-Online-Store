@@ -5,14 +5,14 @@ const OrdersTableRow = ({ order, onViewDetails }) => {
   const shortId = (order._id || order.id || '').slice(-8).toUpperCase();
   const customerName = order.user?.username || order.shippingAddress?.fullName || 'Customer';
   const customerEmail = order.user?.email || '';
-  
+
   // Format date helper
   const formattedDate = order.createdAt
     ? new Date(order.createdAt).toLocaleDateString('en-GB', {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric',
-      })
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    })
     : order.date || 'N/A';
 
   // Format currency helper
@@ -25,10 +25,10 @@ const OrdersTableRow = ({ order, onViewDetails }) => {
   const paymentStatus = (order.paymentStatus || 'pending').toUpperCase();
 
   return (
-    <tr className="group transition-colors hover:bg-[#FFEFDD]/20 dark:hover:bg-[#161B26]/60">
+    <tr className="group transition-colors hover:bg-[#FFEFDD]/20 dark:hover:bg-[#22262F]">
       {/* Order ID */}
       <td className="px-6 py-4">
-        <span className="text-sm font-bold text-gray-900 dark:text-white font-mono">
+        <span className="text-sm font-bold text-gray-900 dark:text-[#F5F1EA] font-mono">
           #{shortId}
         </span>
       </td>
@@ -36,15 +36,15 @@ const OrdersTableRow = ({ order, onViewDetails }) => {
       {/* Customer Info */}
       <td className="px-6 py-4">
         <div className="flex items-center gap-3">
-          <div className="h-9 w-9 rounded-full bg-[#A36037]/10 dark:bg-[#A36037]/20 text-[#A36037] dark:text-[#D9875A] font-bold text-xs flex items-center justify-center shrink-0">
+          <div className="h-9 w-9 rounded-full bg-[#A36037]/10 dark:bg-[#2A1B12] text-[#A36037] dark:text-[#F0CDAF] dark:border dark:border-[rgba(201,129,86,0.25)] font-bold text-xs flex items-center justify-center shrink-0">
             {customerName.slice(0, 2).toUpperCase()}
           </div>
           <div className="min-w-0">
-            <p className="text-sm font-semibold text-gray-900 dark:text-white truncate">
+            <p className="text-sm font-semibold text-gray-900 dark:text-[#F5F1EA] truncate">
               {customerName}
             </p>
             {customerEmail && (
-              <p className="text-xs text-gray-400 dark:text-[#8E9BAE] truncate max-w-[180px]">
+              <p className="text-xs text-gray-400 dark:text-[#8A8378] truncate max-w-[180px]">
                 {customerEmail}
               </p>
             )}
@@ -54,7 +54,7 @@ const OrdersTableRow = ({ order, onViewDetails }) => {
 
       {/* Date */}
       <td className="px-6 py-4 whitespace-nowrap">
-        <span className="text-xs sm:text-sm text-gray-600 dark:text-[#8E9BAE]">
+        <span className="text-xs sm:text-sm text-gray-600 dark:text-[#8A8378]">
           {formattedDate}
         </span>
       </td>
@@ -70,11 +70,10 @@ const OrdersTableRow = ({ order, onViewDetails }) => {
           <span className="text-xs font-semibold text-gray-800 dark:text-gray-200">
             {paymentMethod}
           </span>
-          <span className={`text-[10px] font-bold uppercase tracking-wider ${
-            paymentStatus === 'PAID'
-              ? 'text-emerald-600 dark:text-emerald-400'
-              : 'text-amber-600 dark:text-amber-400'
-          }`}>
+          <span className={`text-[10px] font-bold uppercase tracking-wider ${paymentStatus === 'PAID'
+              ? 'text-emerald-600 dark:text-[#4ADE9B]'
+              : 'text-amber-600 dark:text-[#F5B544]'
+            }`}>
             {paymentStatus}
           </span>
         </div>
@@ -82,7 +81,7 @@ const OrdersTableRow = ({ order, onViewDetails }) => {
 
       {/* Total */}
       <td className="px-6 py-4 whitespace-nowrap">
-        <span className="text-sm font-bold text-gray-900 dark:text-white">
+        <span className="text-sm font-bold text-gray-900 dark:text-[#F5F1EA]">
           {totalAmount} EGP
         </span>
       </td>
@@ -92,7 +91,7 @@ const OrdersTableRow = ({ order, onViewDetails }) => {
         <button
           type="button"
           onClick={() => onViewDetails(order)}
-          className="flex items-center gap-1.5 rounded-xl border border-gray-200 dark:border-[#242B3F] bg-white dark:bg-[#161B26] px-3.5 py-1.5 text-xs font-semibold text-gray-700 dark:text-gray-200 transition shadow-xs hover:border-[#A36037] dark:hover:border-[#A36037] hover:text-[#A36037] dark:hover:text-[#D9875A] active:scale-95 cursor-pointer"
+          className="flex items-center gap-1.5 rounded-xl border border-gray-200 dark:border-[#262B34] bg-white dark:bg-[#181B22] px-3.5 py-1.5 text-xs font-semibold text-gray-700 dark:text-[#F5F1EA] transition shadow-xs hover:border-[#A36037] dark:hover:border-[#C98156] hover:text-[#A36037] dark:hover:bg-[#22262F] active:scale-95 cursor-pointer"
         >
           <Eye size={14} />
           <span>View</span>

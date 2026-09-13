@@ -25,7 +25,6 @@ const ViewProduct = () => {
                 setLoading(true);
                 setError(null);
                 const res = await getSingleproduct(id);
-                // السيرفر يرجع { success: true, product: { ... } }
                 setProduct(res.data?.product || res.data);
             } catch (err) {
                 console.error("Error fetching product:", err);
@@ -40,24 +39,23 @@ const ViewProduct = () => {
         }
     }, [id]);
 
-    // أثناء التحميل
     if (loading) {
         return (
-            <div className="flex h-96 items-center justify-center gap-2 text-[#E8B58F]">
+            <div className="flex h-96 items-center justify-center gap-2 text-[#C98156]">
                 <Loader2 size={24} className="animate-spin" />
-                <span className="text-sm font-medium">Loading product details...</span>
+                <span className="text-sm font-medium text-brand-900 dark:text-[#F5F1EA]">Loading product details...</span>
             </div>
         );
     }
 
-    // لو حدث خطأ أو لم يجد المنتج
     if (error || !product) {
         return (
-            <div className="p-8 text-center">
+            <div className="p-8 text-center rounded-2xl border border-brand-200/60 dark:border-white/[0.06]
+            bg-white dark:bg-[#12141A]">
                 <p className="text-rose-500 font-medium mb-4">{error || "Product not found."}</p>
                 <button
                     onClick={() => navigate("/products")}
-                    className="px-4 py-2 bg-brand-900 text-white rounded-xl text-sm"
+                    className="px-4 py-2 bg-[#C98156] hover:bg-[#b06f47] text-white rounded-xl text-sm font-medium transition cursor-pointer"
                 >
                     Back to Products
                 </button>
@@ -65,7 +63,6 @@ const ViewProduct = () => {
         );
     }
 
-    // تجهيز الصور البديلة بشكل آمن
     const defaultImages = [{ url: Image1 }];
     const productImages = product.images && product.images.length > 0 ? product.images : defaultImages;
 
@@ -85,20 +82,20 @@ const ViewProduct = () => {
     };
 
     return (
-        <div className="space-y-4">
+        <div className="space-y-6">
             {/* زر الرجوع للخلف */}
             <button
                 type="button"
                 onClick={() => navigate("/products")}
-                className="flex items-center gap-2 text-sm font-medium text-brand-600 hover:text-brand-800 dark:text-[#B9B2A8] transition cursor-pointer"
+                className="flex items-center gap-2 text-sm font-medium text-brand-600 hover:text-brand-900 dark:text-[#8A8378] dark:hover:text-[#F5F1EA] transition-colors cursor-pointer w-fit"
             >
                 <ArrowLeft size={18} />
                 <span>Back to Products</span>
             </button>
 
-            <div className="grid grid-cols-1 items-start lg:grid-cols-2 p-6 rounded-2xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-[#12141A] shadow-sm">
+            <div className="grid grid-cols-1 items-start lg:grid-cols-12 gap-6 p-6 sm:p-8 rounded-2xl border border-brand-200/60 dark:border-white/[0.06] bg-white dark:bg-[#12141A] shadow-xs">
                 {/* Left Side */}
-                <div className="grid h-fit grid-cols-1 gap-4 self-start">
+                <div className="grid h-fit grid-cols-1 gap-4 self-start lg:col-span-7">
                     <NameCard
                         title={productData.title}
                         description={productData.description}
@@ -125,7 +122,7 @@ const ViewProduct = () => {
                 </div>
 
                 {/* Right Side - Gallery */}
-                <div className="p-0 lg:pl-6">
+                <div className="p-0 lg:col-span-5 h-full">
                     <ProductGallery
                         images={productData.images}
                         productName={productData.title}

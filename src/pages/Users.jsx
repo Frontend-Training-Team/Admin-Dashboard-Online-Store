@@ -115,16 +115,15 @@ export default function Users() {
     <div className="space-y-6">
       {/* Overview & Search Card Header */}
       <div
-        className={`relative overflow-hidden rounded-2xl border-0 shadow-sm
-          bg-cover bg-center bg-no-repeat p-6 sm:px-8 sm:py-6 bg-[url(${bannerBg})] dark:bg-[url(null)]! dark:bg-[#12141A]`}
+        className="relative overflow-hidden rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] shadow-xs bg-cover bg-center bg-no-repeat p-6 sm:px-8 sm:py-6 dark:!bg-none dark:bg-[#12141A]"
         style={{ backgroundImage: `url(${bannerBg})` }}
       >
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <p className="text-[12px] font-semibold tracking-wider text-[#E8B58F] uppercase">
+            <p className="text-xs font-semibold tracking-wider text-brand-500 dark:text-[#C98156] uppercase">
               USER MANAGEMENT
             </p>
-            <h1 className="text-2xl sm:text-[28px] font-semibold text-white mt-0.5 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-bold text-[#592309] dark:text-[#F5F1EA] mt-0.5 tracking-tight">
               Manage Users
             </h1>
           </div>
@@ -138,13 +137,11 @@ export default function Users() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search Users..."
-                className="w-full h-11 sm:h-12 rounded-xl border border-white/25 bg-white/10 backdrop-blur-md pl-11 pr-10
-                text-sm text-white placeholder-white/60 outline-none transition focus:border-white/50 focus:bg-white/15
-                focus:ring-1 focus:ring-white/30"
+                className="w-full h-11 sm:h-12 rounded-xl border border-white/25 bg-white/10 backdrop-blur-md pl-11 pr-10 text-sm text-white placeholder-white/60 outline-none transition focus:border-white/50 focus:bg-white/15 focus:ring-1 focus:ring-white/30 dark:border-[#262B34] dark:bg-[#1F232B] dark:text-[#F5F1EA] dark:placeholder-[#5C574F] dark:focus:border-[#C98156]"
               />
               <Search
                 size={18}
-                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/80 pointer-events-none z-10"
+                className="absolute left-3.5 top-1/2 -translate-y-1/2 text-white/80 dark:text-[#8A8378] pointer-events-none z-10"
               />
               {searchQuery && (
                 <button
@@ -162,13 +159,13 @@ export default function Users() {
             <button
               type="button"
               onClick={() => setIsAddOpen((prev) => !prev)}
-              className="flex items-center justify-center gap-2.5 px-5 h-11 sm:h-12 rounded-xl border border-white/25 bg-white/10 hover:bg-white/20 backdrop-blur-md text-sm font-medium text-white shadow-sm transition active:scale-95 shrink-0 cursor-pointer"
+              className="flex items-center justify-center gap-2.5 px-5 h-11 sm:h-12 rounded-xl border border-white/25 bg-white/10 hover:bg-white/20 backdrop-blur-md text-sm font-medium text-white shadow-sm transition active:scale-95 shrink-0 cursor-pointer dark:border-transparent dark:bg-[#9C6647] dark:hover:bg-[#A8653F]/50 dark:text-white/90 dark:font-semibold"
             >
-              <UserRoundPlus size={20} className="text-white/90" />
+              <UserRoundPlus size={20} className="text-white/90 dark:text-white/90" />
               <span>Add User</span>
               <ChevronDown
                 size={16}
-                className={`text-white/80 transition-transform duration-200 ${isAddOpen ? 'rotate-180' : ''
+                className={`text-white/80 transition-transform duration-200 dark:text-white/90 ${isAddOpen ? 'rotate-180' : ''
                   }`}
               />
             </button>

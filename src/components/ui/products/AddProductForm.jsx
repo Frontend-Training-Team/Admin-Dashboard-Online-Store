@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
@@ -24,17 +25,12 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCar
     formState: { errors },
   } = useForm();
 
-  const getImageKey = (img) => img.public_id || img.previewUrl;
-
   const [images, setImages] = useState([]);
   const [markedKeys, setMarkedKeys] = useState([]);
-
   const imageDisplayStyle = mode === "create" ? "instant" : "overlay";
-
   const [tags, setTags] = useState([]);
   const [featured, setFeatured] = useState(false);
   const [isActive, setIsActive] = useState(false);
-
   const [imageError, setImageError] = useState("");
 
   useEffect(() => {
@@ -58,16 +54,14 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCar
     }
   }, [initialData, reset]);
 
-
   const toggleMark = (key) => {
     setMarkedKeys((prev) => (prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]));
   };
 
   const submitHandler = (data) => {
-
     const remainingCount = images.filter((img) => {
-      const key = img.public_id || img.previewUrl; // stable identity per image
-      return !markedKeys.includes(key); // keep it if it's NOT marked for removal
+      const key = img.public_id || img.previewUrl;
+      return !markedKeys.includes(key);
     }).length;
 
     if (remainingCount === 0) {
@@ -77,35 +71,28 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCar
     }
 
     setImageError("");
-
     const formData = new FormData();
 
     Object.entries(data).forEach(([key, value]) => {
-
       if (value !== "" && value !== undefined) {
         formData.append(key, value);
       }
     });
 
     tags.forEach((tag) => formData.append("tags", tag));
-
     const deletedImageIds = [];
-
     formData.append("featured", featured);
     formData.append("isActive", isActive);
-
 
     images.forEach((img) => {
       const key = img.public_id || img.previewUrl;
       const marked = markedKeys.includes(key);
-
       if (img.file) {
         if (!marked) formData.append("images", img.file);
       } else {
         if (marked) deletedImageIds.push(img.public_id);
       }
     });
-
 
     if (mode === "edit") {
       formData.append("deletedImages", JSON.stringify(deletedImageIds));
@@ -116,7 +103,7 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCar
 
   const fieldsContent = (
     <>
-      <div className={`${showCard ? "" : "order-2 lg:order-1 border-t border-gray-200 pt-6 dark:border-slate-700 lg:border-t-0 lg:pt-0"} flex flex-col ${showCard ? "gap-4" : "gap-3"}`}>
+      <div className={`${showCard ? "" : "order-2 lg:order-1 border-t border-brand-200/60 pt-6 dark:border-white/[0.06] lg:border-t-0 lg:pt-0"} flex flex-col ${showCard ? "gap-4" : "gap-3"}`}>
         <Input label="Product Name" placeholder="Example" error={errors.name?.message} compact={!showCard} {...register("name", { required: "Product name is required" })} />
         <Input label="Short Description" placeholder="Minimum 10 characters" error={errors.shortDescription?.message} compact={!showCard} {...register("shortDescription", { required: "Short description is required", minLength: { value: 10, message: "Minimum 10 characters" } })} />
         <Input label="Description" textarea placeholder="Minimum 20 characters" error={errors.description?.message} compact={!showCard} {...register("description", { required: "Description is required", minLength: { value: 20, message: "Minimum 20 characters" } })} />
@@ -155,7 +142,6 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCar
         )}
 
         <Input label="Brand" compact={!showCard} {...register("brand")} />
-
         <ProductTagsInput tags={tags} onChange={setTags} compact={!showCard} />
 
         <div className="flex gap-3">
@@ -173,7 +159,7 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCar
           displayStyle={imageDisplayStyle}
           compact={!showCard}
         />
-        {imageError && <p className="text-red-500 text-xs mt-2">{imageError}</p>}
+        {imageError && <p className="text-rose-500 text-xs mt-2">{imageError}</p>}
       </div>
     </>
   );
@@ -193,7 +179,7 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCar
         <div className="grid min-h-0 grid-cols-1 gap-6 lg:grid-cols-[1.08fr_0.92fr]">
           {fieldsContent}
         </div>
-        <div className="shrink-0 flex justify-start gap-3 pt-2 mt-4 border-t border-gray-200 dark:border-slate-700">
+        <div className="shrink-0 flex justify-start gap-3 pt-4 mt-5 border-t border-brand-200/60 dark:border-white/[0.06]">
           {buttonsContent}
         </div>
       </form>
@@ -201,10 +187,10 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCar
   }
 
   return (
-    <div className="dark:shadow-xl rounded-lg bg-white dark:bg-[#0000] p-6 shadow-sm">
-      <form onSubmit={handleSubmit(submitHandler, onInvalid)} className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+    <div className="rounded-2xl bg-white dark:bg-[#12141A] border border-brand-200/60 dark:border-white/[0.06] p-6 sm:p-8 shadow-xs">
+      <form onSubmit={handleSubmit(submitHandler, onInvalid)} className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {fieldsContent}
-        <div className="col-span-full flex justify-end gap-3 pt-4">
+        <div className="col-span-full flex justify-end gap-3 pt-4 border-t border-brand-200/60 dark:border-white/[0.06]">
           {buttonsContent}
         </div>
       </form>

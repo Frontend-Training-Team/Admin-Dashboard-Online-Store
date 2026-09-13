@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import { useEffect, useMemo, useState, useCallback } from "react";
 import { Search, X, ChevronLeft, ChevronRight } from "lucide-react";
 import toast from "react-hot-toast";
@@ -133,36 +134,36 @@ const OrdersPage = () => {
 
   return (
     <div className="space-y-6">
-      
+
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold tracking-wider text-[#A05A32] dark:text-[#E8B58F] uppercase">
+          <p className="text-xs font-semibold tracking-wider text-[#A05A32] dark:text-[#C98156] uppercase">
             ORDER MANAGEMENT
           </p>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-1 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-[#F5F1EA] mt-1 tracking-tight">
             Orders
           </h1>
-          <p className="mt-1 text-xs sm:text-sm text-gray-500 dark:text-[#8E9BAE]">
+          <p className="mt-1 text-xs sm:text-sm text-gray-500 dark:text-[#8A8378]">
             Track customer orders, manage payments, and update fulfillment in real time.
           </p>
         </div>
 
         {/* Prominent Orders Count Badge (Matches Koda & screenshot) */}
-        <div className="self-start sm:self-auto flex items-center px-4 py-2.5 rounded-xl bg-gray-100/90 dark:bg-[#161B26] border border-gray-200 dark:border-[#242B3F] shadow-xs">
-          <span className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white tracking-tight">
+        <div className="self-start sm:self-auto flex items-center px-4 py-2.5 rounded-xl bg-gray-100/90 dark:bg-[#181B22] border border-gray-200 dark:border-[rgba(255,255,255,0.06)] shadow-xs">
+          <span className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-[#F5F1EA] tracking-tight">
             {totalOrders}
           </span>
-          <span className="ml-2.5 text-xs sm:text-sm font-medium text-gray-500 dark:text-[#8E9BAE]">
+          <span className="ml-2.5 text-xs sm:text-sm font-medium text-gray-500 dark:text-[#8A8378]">
             total orders
           </span>
         </div>
-      </div>
+      </div >
 
       {/* Search & Filters Card */}
-      <div className="rounded-2xl border border-gray-100 dark:border-0 bg-white dark:bg-[#1E2435] p-5 shadow-xs transition-colors">
+      < div className="rounded-2xl border border-gray-100 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-[#12141A] p-5 shadow-xs transition-colors" >
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-          
+
           {/* Live Search Input */}
           <div className="relative flex items-center w-full lg:max-w-md">
             <input
@@ -170,7 +171,7 @@ const OrdersPage = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search ID, customer, email..."
-              className="w-full h-11 rounded-xl border border-gray-200 dark:border-[#242B3F] bg-gray-50/70 dark:bg-[#161B26] pl-10 pr-9 text-sm text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder:text-[#5E6C84] outline-none transition focus:border-[#A05A32] dark:focus:border-[#A05A32] focus:bg-white dark:focus:bg-[#161B26]"
+              className="w-full h-11 rounded-xl border border-gray-200 dark:border-[#262B34] bg-gray-50/70 dark:bg-[#1F232B] pl-10 pr-9 text-sm text-gray-900 dark:text-[#F5F1EA] placeholder-gray-400 dark:placeholder-[#5C574F] outline-none transition focus:border-[#A05A32] dark:focus:border-[#C98156] focus:bg-white dark:focus:bg-[#1F232B]"
             />
             <Search
               size={17}
@@ -195,7 +196,7 @@ const OrdersPage = () => {
               <select
                 value={statusFilter}
                 onChange={(e) => handleStatusChange(e.target.value)}
-                className="w-full h-11 rounded-xl border border-gray-200 dark:border-[#242B3F] bg-white dark:bg-[#161B26] px-3.5 text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-200 outline-none transition focus:border-[#A05A32] dark:focus:border-[#A05A32]"
+                className="w-full h-11 rounded-xl border border-gray-200 dark:border-[#262B34] bg-white dark:bg-[#1F232B] px-3.5 text-xs sm:text-sm font-medium text-gray-700 dark:text-[#F5F1EA] outline-none transition focus:border-[#A05A32] dark:focus:border-[#C98156]"
               >
                 <option value="All">All Statuses</option>
                 <option value="pending">Pending</option>
@@ -213,7 +214,7 @@ const OrdersPage = () => {
               <select
                 value={paymentFilter}
                 onChange={(e) => handlePaymentChange(e.target.value)}
-                className="w-full h-11 rounded-xl border border-gray-200 dark:border-[#242B3F] bg-white dark:bg-[#161B26] px-3.5 text-xs sm:text-sm font-medium text-gray-700 dark:text-gray-200 outline-none transition focus:border-[#A05A32] dark:focus:border-[#A05A32]"
+                className="w-full h-11 rounded-xl border border-gray-200 dark:border-[#262B34] bg-white dark:bg-[#1F232B] px-3.5 text-xs sm:text-sm font-medium text-gray-700 dark:text-[#F5F1EA] outline-none transition focus:border-[#A05A32] dark:focus:border-[#C98156]"
               >
                 <option value="All">All Payments</option>
                 <option value="pending">Payment: Pending</option>
@@ -222,9 +223,9 @@ const OrdersPage = () => {
             </div>
 
             {/* In-view count badge */}
-            <div className="h-11 px-4 rounded-xl bg-gray-50 dark:bg-[#161B26] border border-gray-200/70 dark:border-[#242B3F] flex items-center text-xs font-medium text-gray-500 dark:text-[#8E9BAE] shrink-0">
+            <div className="h-11 px-4 rounded-xl bg-gray-50 dark:bg-[#181B22] border border-gray-200/70 dark:border-[rgba(255,255,255,0.06)] flex items-center text-xs font-medium text-gray-500 dark:text-[#8A8378] shrink-0">
               <span>
-                Showing <strong className="text-gray-900 dark:text-white font-bold">{filteredOrders.length}</strong> on this page
+                Showing <strong className="text-gray-900 dark:text-[#F5F1EA] font-bold">{filteredOrders.length}</strong> on this page
               </span>
             </div>
           </div>
@@ -233,7 +234,7 @@ const OrdersPage = () => {
       </div>
 
       {/* Orders Table Container */}
-      <div className="overflow-hidden rounded-2xl border border-gray-100 dark:border-0 bg-white dark:bg-[#1E2435] shadow-xs">
+      < div className="overflow-hidden rounded-2xl border border-gray-100 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-[#12141A] shadow-xs" >
         <div className="overflow-x-auto">
           <OrdersTable
             orders={filteredOrders}
@@ -245,7 +246,7 @@ const OrdersPage = () => {
         </div>
 
         {/* Pagination Footer (Matches Koda & uploaded screenshot) */}
-        <div className="border-t border-gray-100 dark:border-[#242B3F]/50 bg-gray-50/50 dark:bg-[#161B26]/60 px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="border-t border-gray-100 dark:border-[#262B34]/50 bg-gray-50/50 dark:bg-[#181B22]/60 px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Left: Page 1 of 13 */}
           <div className="text-xs sm:text-sm text-gray-500 dark:text-[#8E9BAE]">
             Page <strong className="font-semibold text-gray-900 dark:text-white">{currentPage}</strong> of{" "}
@@ -270,11 +271,10 @@ const OrdersPage = () => {
                 type="button"
                 onClick={() => handlePageChange(p)}
                 disabled={loading}
-                className={`h-8 min-w-[32px] px-2.5 rounded-lg text-xs sm:text-sm font-semibold transition cursor-pointer ${
-                  p === currentPage
-                    ? "bg-gray-900 text-white dark:bg-white dark:text-gray-950 shadow-xs"
-                    : "text-gray-600 dark:text-[#8E9BAE] hover:bg-gray-200/60 dark:hover:text-white dark:hover:bg-white/5"
-                }`}
+                className={`h-8 min-w-[32px] px-2.5 rounded-lg text-xs sm:text-sm font-semibold transition cursor-pointer ${p === currentPage
+                  ? "bg-gray-900 text-white dark:bg-white dark:text-gray-950 shadow-xs"
+                  : "text-gray-600 dark:text-[#8E9BAE] hover:bg-gray-200/60 dark:hover:text-white dark:hover:bg-white/5"
+                  }`}
               >
                 {p}
               </button>
@@ -294,7 +294,7 @@ const OrdersPage = () => {
       </div>
 
       {/* Order Details Slide-over Drawer */}
-      <OrderDetailsDrawer
+      < OrderDetailsDrawer
         order={selectedOrder}
         isOpen={Boolean(selectedOrder)}
         onClose={() => setSelectedOrder(null)}
