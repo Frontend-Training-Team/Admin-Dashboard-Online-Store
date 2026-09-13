@@ -52,7 +52,7 @@ const ProductCard = ({ product, isAdmin = false, onView, onQuickEdit, onEdit, on
             className="h-full w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center text-xs text-brand-500">
+          <div className="flex h-full w-full items-center justify-center text-xs text-[#E8B58F]">
             No Image
           </div>
         )}
@@ -101,13 +101,13 @@ const ProductCard = ({ product, isAdmin = false, onView, onQuickEdit, onEdit, on
       <div className="flex flex-1 flex-col justify-between p-3.5">
         <h3 className="text-sm font-semibold text-brand-900 dark:text-brand-50">{name}</h3>
         {breadcrumb && (
-          <p className="mt-0.5 text-[11px] uppercase tracking-wide text-brand-500">
+          <p className="mt-0.5 text-[11px] uppercase tracking-wide text-[#E8B58F]">
             {breadcrumb}
           </p>
         )}
 
         {shortDescription && (
-          <p className="mt-2 line-clamp-2 text-xs text-brand-500">
+          <p className="mt-2 line-clamp-2 text-xs text-[#E8B58F]">
             {shortDescription}
           </p>
         )}
@@ -126,7 +126,7 @@ const ProductCard = ({ product, isAdmin = false, onView, onQuickEdit, onEdit, on
             {visibleTags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-brand-200/60 px-2.5 py-0.5 text-[11px] text-brand-600 dark:border-brand-800 dark:text-brand-300"
+                className="rounded-full border border-brand-200/60 px-2.5 py-0.5 text-[11px] text-brand-600 dark:border-brand-800 dark:text-[#B9B2A8]"
               >
                 {tag}
               </span>
@@ -141,7 +141,7 @@ const ProductCard = ({ product, isAdmin = false, onView, onQuickEdit, onEdit, on
           <button
             type="button"
             onClick={() => onView?.(product)}
-            className="flex items-center gap-1 rounded-lg border border-brand-200/60 bg-surface-light/60 px-3 py-1 text-xs font-medium text-brand-900 hover:bg-brand-100 dark:border-brand-900/40 dark:bg-brand-950/30 dark:text-brand-300 dark:hover:bg-brand-900/50"
+            className="flex items-center gap-1 rounded-lg border border-brand-200/60 bg-surface-light/60 px-3 py-1 text-xs font-medium text-brand-900 hover:bg-brand-100 dark:border-brand-900/40 dark:bg-brand-950/30 dark:text-[#B9B2A8] dark:hover:bg-brand-900/50"
           >
             <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -153,7 +153,7 @@ const ProductCard = ({ product, isAdmin = false, onView, onQuickEdit, onEdit, on
           <button
             type="button"
             onClick={() => onEdit?.(product)}
-            className="flex items-center gap-1 rounded-lg border border-brand-200/60 bg-surface-light/60 px-2 py-1 text-xs font-medium text-brand-900 hover:bg-brand-100 dark:border-brand-900/40 dark:bg-brand-950/30 dark:text-brand-300 dark:hover:bg-brand-900/50"
+            className="flex items-center gap-1 rounded-lg border border-brand-200/60 bg-surface-light/60 px-2 py-1 text-xs font-medium text-brand-900 hover:bg-brand-100 dark:border-brand-900/40 dark:bg-brand-950/30 dark:text-[#B9B2A8] dark:hover:bg-brand-900/50"
           >
             <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
@@ -164,7 +164,7 @@ const ProductCard = ({ product, isAdmin = false, onView, onQuickEdit, onEdit, on
           <button
             type="button"
             onClick={() => onQuickEdit?.(product)}
-            className="flex items-center gap-1 rounded-lg border border-brand-200/60 bg-surface-light/60 px-2 py-1 text-xs font-medium text-brand-900 hover:bg-brand-100 dark:border-brand-900/40 dark:bg-brand-950/30 dark:text-brand-300 dark:hover:bg-brand-900/50"
+            className="flex items-center gap-1 rounded-lg border border-brand-200/60 bg-surface-light/60 px-2 py-1 text-xs font-medium text-brand-900 hover:bg-brand-100 dark:border-brand-900/40 dark:bg-brand-950/30 dark:text-[#B9B2A8] dark:hover:bg-brand-900/50"
           >
             <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 10V3L4 14h7v7l9-11h-7z" />

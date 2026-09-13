@@ -3,7 +3,7 @@ import SkeletonAvatar from './SkeletonAvatar';
 
 function TableSkeleton({ rows = 5 }) {
   return (
-    <div className="w-full p-6 rounded-2xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark shadow-sm space-y-4">
+    <div className="w-full p-6 rounded-2xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-[#12141A] shadow-sm space-y-4">
       <div className="flex justify-between items-center mb-4">
         <SkeletonLine width="w-48" height="h-6" />
         <SkeletonLine width="w-24" height="h-8" className="rounded-lg" />

@@ -12,7 +12,7 @@ function BestSellerItem({ name, details, img }) {
         <h4 className="text-base sm:text-xl font-semibold text-brand-900 dark:text-brand-50 truncate">
           {name}
         </h4>
-        <p className="text-xs sm:text-[14px] font-medium text-[#666666] dark:text-brand-300 mt-0.5 truncate">
+        <p className="text-xs sm:text-sm font-medium text-[#666666] dark:text-[#B9B2A8] mt-0.5 truncate">
           {details}
         </p>
       </div>

@@ -105,11 +105,11 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
         }`}
     >
       <div className="overflow-hidden">
-        <div className="rounded-2xl border border-gray-200/80 dark:border-0 bg-white dark:bg-[#1E2435] shadow-md overflow-hidden">
+        <div className="rounded-2xl border border-gray-200/80 dark:border-0 bg-white dark:bg-[#12141A] shadow-md overflow-hidden">
           {/* Top Banner Header */}
           <div
-            className="relative overflow-hidden bg-cover bg-center bg-no-repeat px-6 sm:px-8 py-4 sm:py-5 flex items-center justify-between"
-            style={{ backgroundImage: `url(${bannerBg})` }}
+            className={`relative overflow-hidden bg-cover bg-center bg-no-repeat px-6 sm:px-8 py-4 sm:py-5
+               flex items-center justify-between bg-[url(${bannerBg})] dark:bg-[url(null)]! dark:bg-[#181b23]`}
           >
             <div className="flex items-center gap-3.5">
               <div className="rounded-xl bg-[#A36037] p-2 sm:p-2.5 text-white shadow-sm flex items-center justify-center shrink-0">
@@ -117,7 +117,7 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
                 <UserRoundPlus size={20} className="text-white/90" />
               </div>
               <div>
-                <h3 className="text-base sm:text-lg font-bold text-[#592309] leading-tight">
+                <h3 className="text-base sm:text-lg font-bold text-white leading-tight">
                   Create New User
                 </h3>
                 <p className="text-xs text-[#8C5A3C] mt-0.5 font-normal">

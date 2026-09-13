@@ -1,14 +1,14 @@
 import UserRow from './UserRow';
 import { Users, SearchX } from 'lucide-react';
 
-function UserTable({ users, loading, onEdit, onToggleRole, onDelete, togglingUserId, searchQuery, onClearSearch,}) {
-  
+function UserTable({ users, loading, onEdit, onToggleRole, onDelete, togglingUserId, searchQuery, onClearSearch, }) {
+
   return (
-    <div className="overflow-hidden rounded-2xl border border-gray-100 dark:border-0 bg-white dark:bg-gray-900 shadow-sm">
+    <div className="overflow-hidden rounded-2xl border border-gray-100 dark:border-0 bg-white dark:bg-[#181B22] shadow-sm">
       <div className="overflow-x-auto">
         <table className="min-w-full text-left">
           {/* Table Header matching Figma (#FFEFDD in light, #1E2435 in dark) */}
-          <thead className="bg-[#FFEFDD] dark:bg-gray-900">
+          <thead className="bg-[#FFEFDD] dark:bg-[#181B22]">
             <tr>
               <th className="px-6 py-4 text-xs sm:text-[13px] font-semibold text-gray-700 dark:text-[#D1D5DB]">
                 User
@@ -29,7 +29,7 @@ function UserTable({ users, loading, onEdit, onToggleRole, onDelete, togglingUse
             {/* Loading Skeleton */}
             {loading ? (
               Array.from({ length: 5 }).map((_, index) => (
-                <tr key={index} className="animate-pulse">
+                <tr key={index} className="animate-pulse dark:bg-[#1E2435]">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3.5">
                       <div className="h-10 w-10 sm:h-11 sm:w-11 rounded-full bg-gray-200/70 dark:bg-[#161B26]" />
@@ -101,7 +101,7 @@ function UserTable({ users, loading, onEdit, onToggleRole, onDelete, togglingUse
 
       {/* Table Footer */}
       {!loading && users.length > 0 && (
-        <div className="border-t border-gray-100 dark:border-brand-900/40 bg-[#FFEFDD]/30 dark:bg-brand-950/20 px-6 py-3.5 flex items-center justify-between text-xs text-gray-500 dark:text-brand-300/70">
+        <div className="border-t border-gray-100 dark:border-brand-900/40 bg-[#FFEFDD]/30 dark:bg-brand-950/20 px-6 py-3.5 flex items-center justify-between text-xs text-gray-500 dark:text-[#B9B2A8]/70">
           <span>
             Showing <strong className="font-semibold text-gray-900 dark:text-brand-50">{users.length}</strong> {users.length === 1 ? 'user' : 'users'}
           </span>

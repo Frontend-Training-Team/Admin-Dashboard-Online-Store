@@ -9,7 +9,7 @@ function UserRow({ user, onEdit, onToggleRole, onDelete, isToggling }) {
   const isAdmin = user?.role === 'admin';
 
   return (
-    <tr className="transition-colors hover:bg-[#FFEFDD]/20 dark:hover:bg-[#161B26]/60">
+    <tr className="transition-colors dark:bg-[#12141A] hover:bg-[#FFEFDD]/20 dark:hover:bg-[#161B26]/60">
       {/* User Info */}
       <td className="px-6 py-3.5 sm:py-4">
         <div className="flex items-center gap-3.5">

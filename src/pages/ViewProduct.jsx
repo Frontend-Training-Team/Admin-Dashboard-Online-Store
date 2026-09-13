@@ -43,7 +43,7 @@ const ViewProduct = () => {
     // أثناء التحميل
     if (loading) {
         return (
-            <div className="flex h-96 items-center justify-center gap-2 text-brand-500">
+            <div className="flex h-96 items-center justify-center gap-2 text-[#E8B58F]">
                 <Loader2 size={24} className="animate-spin" />
                 <span className="text-sm font-medium">Loading product details...</span>
             </div>
@@ -90,13 +90,13 @@ const ViewProduct = () => {
             <button
                 type="button"
                 onClick={() => navigate("/products")}
-                className="flex items-center gap-2 text-sm font-medium text-brand-600 hover:text-brand-800 dark:text-brand-300 transition cursor-pointer"
+                className="flex items-center gap-2 text-sm font-medium text-brand-600 hover:text-brand-800 dark:text-[#B9B2A8] transition cursor-pointer"
             >
                 <ArrowLeft size={18} />
                 <span>Back to Products</span>
             </button>
 
-            <div className="grid grid-cols-1 items-start lg:grid-cols-2 p-6 rounded-2xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark shadow-sm">
+            <div className="grid grid-cols-1 items-start lg:grid-cols-2 p-6 rounded-2xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-[#12141A] shadow-sm">
                 {/* Left Side */}
                 <div className="grid h-fit grid-cols-1 gap-4 self-start">
                     <NameCard

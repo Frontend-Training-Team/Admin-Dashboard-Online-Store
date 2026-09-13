@@ -108,7 +108,7 @@ function OrderDetailsDrawer({ order, isOpen, onClose, onOrderUpdated }) {
           {/* Top Header */}
           <div className="p-6 border-b border-gray-100 dark:border-[#242B3F] flex items-center justify-between shrink-0">
             <div>
-              <p className="text-[11px] font-bold uppercase tracking-wider text-[#A05A32] dark:text-[#AB755D]">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-[#A05A32] dark:text-[#E8B58F]">
                 ORDER DETAIL
               </p>
               <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mt-0.5 tracking-tight">
@@ -155,7 +155,7 @@ function OrderDetailsDrawer({ order, isOpen, onClose, onOrderUpdated }) {
               <div className="rounded-2xl bg-gray-50/80 dark:bg-[#161B26] border border-gray-100/90 dark:border-[#242B3F] p-4.5 space-y-3 text-xs sm:text-sm">
                 <div className="flex items-center justify-between">
                   <span className="text-gray-500 dark:text-[#8E9BAE] flex items-center gap-2">
-                    <Calendar size={15} className="text-[#A05A32] dark:text-[#AB755D]" /> Placed
+                    <Calendar size={15} className="text-[#A05A32] dark:text-[#E8B58F]" /> Placed
                   </span>
                   <span className="font-semibold text-gray-900 dark:text-white">
                     {formatDate(order.createdAt)}
@@ -164,7 +164,7 @@ function OrderDetailsDrawer({ order, isOpen, onClose, onOrderUpdated }) {
 
                 <div className="flex items-center justify-between">
                   <span className="text-gray-500 dark:text-[#8E9BAE] flex items-center gap-2">
-                    <User size={15} className="text-[#A05A32] dark:text-[#AB755D]" /> Customer
+                    <User size={15} className="text-[#A05A32] dark:text-[#E8B58F]" /> Customer
                   </span>
                   <span className="font-semibold text-gray-900 dark:text-white flex items-center gap-1.5">
                     {customerName}
@@ -174,7 +174,7 @@ function OrderDetailsDrawer({ order, isOpen, onClose, onOrderUpdated }) {
 
                 <div className="flex items-center justify-between">
                   <span className="text-gray-500 dark:text-[#8E9BAE] flex items-center gap-2">
-                    <Mail size={15} className="text-[#A05A32] dark:text-[#AB755D]" /> Email
+                    <Mail size={15} className="text-[#A05A32] dark:text-[#E8B58F]" /> Email
                   </span>
                   <span className="font-medium text-gray-800 dark:text-gray-300 truncate max-w-[200px]" title={customerEmail}>
                     {customerEmail}
@@ -183,7 +183,7 @@ function OrderDetailsDrawer({ order, isOpen, onClose, onOrderUpdated }) {
 
                 <div className="flex items-start justify-between gap-3 pt-1 border-t border-gray-200/50 dark:border-[#242B3F]/50">
                   <span className="text-gray-500 dark:text-[#8E9BAE] flex items-center gap-2 shrink-0">
-                    <MapPin size={15} className="text-[#A05A32] dark:text-[#AB755D]" /> Ship to
+                    <MapPin size={15} className="text-[#A05A32] dark:text-[#E8B58F]" /> Ship to
                   </span>
                   <span className="font-medium text-gray-800 dark:text-gray-300 text-right">
                     {shippingAddress}

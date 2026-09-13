@@ -8,7 +8,7 @@ export default function Navbar({ onToggleSidebar }) {
   const { isDark, toggleTheme } = useDarkMode();
 
   return (
-    <header className="h-24 px-4 sm:px-8 flex items-center justify-between border-b border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark transition-colors">
+    <header className="h-24 px-4 sm:px-8 flex items-center justify-between border-b border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-[#12141A] transition-colors">
 
       <div className="flex items-center gap-2 sm:gap-6 min-w-0">
 
@@ -16,7 +16,7 @@ export default function Navbar({ onToggleSidebar }) {
           type="button"
           onClick={onToggleSidebar}
           aria-label="Open Menu"
-          className="p-2 rounded-xl bg-brand-100 dark:bg-brand-900 text-brand-700 dark:text-brand-300 lg:hidden shrink-0">
+          className="p-2 rounded-xl bg-brand-100 dark:bg-brand-900 text-brand-700 dark:text-[#B9B2A8] lg:hidden shrink-0">
           <Menu size={20} />
         </button>
 
@@ -29,7 +29,7 @@ export default function Navbar({ onToggleSidebar }) {
             Lamsa Dashboard
           </h2>
 
-          <p className="text-xs text-[#939393] dark:text-brand-300">E-Commerce Admin Panel</p>
+          <p className="text-xs text-[#939393] dark:text-[#B9B2A8]">E-Commerce Admin Panel</p>
         </div>
 
       </div>
@@ -37,13 +37,13 @@ export default function Navbar({ onToggleSidebar }) {
       <div className="flex items-center gap-2 sm:gap-3 pr-0 sm:pr-4 shrink-0">
 
         <button
-          className="p-2 sm:p-3 bg-brand-100 rounded-xl text-brand-700 dark:bg-brand-900 dark:text-brand-300 hover:bg-brand-100/60 dark:hover:bg-brand-900/40 transition-colors active:scale-90">
+          className="p-2 sm:p-3 bg-brand-100 rounded-xl text-brand-700 dark:bg-brand-900 dark:text-[#B9B2A8] hover:bg-brand-100/60 dark:hover:bg-brand-900/40 transition-colors active:scale-90">
           <Bell size={18} />
         </button>
 
         <button
           onClick={toggleTheme}
-          className="p-2 sm:p-3 bg-brand-100 rounded-xl text-brand-700 dark:bg-brand-900 dark:text-brand-300 hover:bg-brand-100/60 dark:hover:bg-brand-900/40 transition-colors active:scale-90">
+          className="p-2 sm:p-3 bg-brand-100 rounded-xl text-brand-700 dark:bg-brand-900 dark:text-[#B9B2A8] hover:bg-brand-100/60 dark:hover:bg-brand-900/40 transition-colors active:scale-90">
           {isDark ? <Sun size={18} className="text-amber-400" /> : <Moon size={18} />}
         </button>
 

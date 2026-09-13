@@ -115,15 +115,16 @@ export default function Users() {
     <div className="space-y-6">
       {/* Overview & Search Card Header */}
       <div
-        className="relative overflow-hidden rounded-2xl border-0 shadow-sm bg-cover bg-center bg-no-repeat p-6 sm:px-8 sm:py-6"
+        className={`relative overflow-hidden rounded-2xl border-0 shadow-sm
+          bg-cover bg-center bg-no-repeat p-6 sm:px-8 sm:py-6 bg-[url(${bannerBg})] dark:bg-[url(null)]! dark:bg-[#12141A]`}
         style={{ backgroundImage: `url(${bannerBg})` }}
       >
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <p className="text-[12px] font-semibold tracking-wider text-brand-500 uppercase">
+            <p className="text-[12px] font-semibold tracking-wider text-[#E8B58F] uppercase">
               USER MANAGEMENT
             </p>
-            <h1 className="text-2xl sm:text-[28px] font-bold text-[#592309] mt-0.5 tracking-tight">
+            <h1 className="text-2xl sm:text-[28px] font-semibold text-white mt-0.5 tracking-tight">
               Manage Users
             </h1>
           </div>
@@ -137,7 +138,9 @@ export default function Users() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search Users..."
-                className="w-full h-11 sm:h-12 rounded-xl border border-white/25 bg-white/10 backdrop-blur-md pl-11 pr-10 text-sm text-white placeholder-white/60 outline-none transition focus:border-white/50 focus:bg-white/15 focus:ring-1 focus:ring-white/30"
+                className="w-full h-11 sm:h-12 rounded-xl border border-white/25 bg-white/10 backdrop-blur-md pl-11 pr-10
+                text-sm text-white placeholder-white/60 outline-none transition focus:border-white/50 focus:bg-white/15
+                focus:ring-1 focus:ring-white/30"
               />
               <Search
                 size={18}

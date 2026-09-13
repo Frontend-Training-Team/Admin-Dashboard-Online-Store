@@ -1,6 +1,6 @@
 function StatCard({ title, value, desc, icon, color, borderLeft }) {
   return (
-    <div className={`flex-1 p-4 sm:p-5 rounded-2xl bg-surface-cardLight dark:bg-surface-cardDark 
+    <div className={`flex-1 p-4 sm:p-5 rounded-2xl bg-surface-cardLight dark:bg-[#12141A] 
     border border-brand-200/60 dark:border-brand-900/40 border-l-[3px] ${borderLeft} shadow-sm shrink-0`}>
 
       <div className={`flex items-center gap-2 text-xs sm:text-sm font-semibold ${color}`}>
@@ -12,7 +12,7 @@ function StatCard({ title, value, desc, icon, color, borderLeft }) {
         {value}
       </h3>
 
-      <p className="text-[11px] sm:text-xs text-brand-700/80 dark:text-brand-300/80 mt-1">
+      <p className="text-[11px] sm:text-xs text-brand-700/80 dark:text-[#B9B2A8]/80 mt-1">
         {desc}
       </p>
 

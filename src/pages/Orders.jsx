@@ -137,7 +137,7 @@ const OrdersPage = () => {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold tracking-wider text-[#A05A32] dark:text-[#AB755D] uppercase">
+          <p className="text-xs font-semibold tracking-wider text-[#A05A32] dark:text-[#E8B58F] uppercase">
             ORDER MANAGEMENT
           </p>
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mt-1 tracking-tight">

@@ -185,20 +185,20 @@ export default function DashboardPage() {
     <div className="space-y-6">
       {/* Top Header Section */}
       {isLoading ? (
-        <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark shadow-sm animate-pulse space-y-3">
+        <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-[#12141A] shadow-sm animate-pulse space-y-3">
           <div className="h-3.5 w-32 bg-gray-200 dark:bg-brand-800 rounded"></div>
           <div className="h-8 w-72 bg-gray-200 dark:bg-brand-800 rounded"></div>
           <div className="h-4 w-60 bg-gray-200 dark:bg-brand-800 rounded"></div>
         </div>
       ) : (
-        <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark shadow-sm">
-          <span className="text-[14px] font-Regular tracking-widest text-brand-500 uppercase">
+        <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-[#12141A] shadow-sm">
+          <span className="text-sm font-Regular tracking-widest text-[#E8B58F] uppercase">
             ADMIN OVERVIEW
           </span>
           <h1 className="text-3xl font-bold text-black dark:text-brand-50 mt-1">
             Real-time Store Health
           </h1>
-          <p className="text-[14px] text-gray-400 dark:text-brand-300 mt-1">
+          <p className="text-sm text-gray-400 dark:text-[#B9B2A8] mt-1">
             Monitor your storefront with live API metrics.
           </p>
         </div>
@@ -228,7 +228,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Order Status Section */}
-      <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark shadow-sm">
+      <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-[#12141A] shadow-sm">
         {isLoading ? (
           <div className="space-y-2 mb-4 animate-pulse">
             <div className="h-3.5 w-28 bg-gray-200 dark:bg-brand-800 rounded"></div>
@@ -237,7 +237,7 @@ export default function DashboardPage() {
         ) : (
           <div className="flex items-center justify-between mb-4">
             <div>
-              <span className="text-[14px] font-Regular tracking-widest text-brand-500 uppercase">
+              <span className="text-sm font-Regular tracking-widest text-[#E8B58F] uppercase">
                 ORDER STATUS
               </span>
               <h2 className="text-2xl font-bold text-brand-900 dark:text-brand-50">
@@ -277,7 +277,7 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
         {/* Best Sellers */}
-        <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark shadow-sm">
+        <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-[#12141A] shadow-sm">
           {isLoading ? (
             <div className="space-y-2 mb-4 animate-pulse">
               <div className="h-3.5 w-28 bg-gray-200 dark:bg-brand-800 rounded"></div>
@@ -285,7 +285,7 @@ export default function DashboardPage() {
             </div>
           ) : (
             <div className="mb-4">
-              <span className="text-[14px] font-Regular tracking-widest text-brand-500 uppercase">
+              <span className="text-sm font-Regular tracking-widest text-[#E8B58F] uppercase">
                 TOP PRODUCTS
               </span>
               <h2 className="text-2xl font-bold text-brand-900 dark:text-brand-50">
@@ -316,7 +316,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Recent Orders */}
-        <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark shadow-sm">
+        <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-[#12141A] shadow-sm">
           {isLoading ? (
             <div className="space-y-2 mb-4 animate-pulse">
               <div className="h-3.5 w-28 bg-gray-200 dark:bg-brand-800 rounded"></div>
@@ -324,7 +324,7 @@ export default function DashboardPage() {
             </div>
           ) : (
             <div className="mb-4">
-              <span className="text-[14px] font-Regular tracking-widest text-brand-500 uppercase">
+              <span className="text-sm font-Regular tracking-widest text-[#E8B58F] uppercase">
                 RECENT ORDERS
               </span>
               <h2 className="text-2xl font-bold text-brand-900 dark:text-brand-50">

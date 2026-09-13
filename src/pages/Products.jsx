@@ -73,11 +73,11 @@ const ProductsContent = () => {
     <div>
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-brand-200/60 bg-gradient-to-r from-brand-50 to-white p-6 dark:border-brand-900/40 dark:from-brand-900/20 dark:to-surface-dark">
         <div className="flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-100 text-brand-700 dark:bg-brand-900/40 dark:text-brand-300">
+          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-100 text-brand-700 dark:bg-brand-900/40 dark:text-[#B9B2A8]">
             <Package size={24} />
           </div>
           <div>
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-brand-500">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-[#E8B58F]">
               Product Dashboard
             </p>
             <h1 className="text-2xl font-bold text-brand-900 dark:text-brand-50">
@@ -92,8 +92,8 @@ const ProductsContent = () => {
             navigate("/products/new")
           }}
           className="flex items-center px-4 py-3 gap-1.5 rounded-xl border bg-brand-200/30 hover:bg-brand-200/50 border-brand-200/60
-            dark:text-brand-300 dark:hover:bg-brand-900/30 active:scale-90 duration-200
-            dark:border-brand-900/40 dark:bg-surface-darkdark:text-brand-300 dark:bg-surface-dark
+            dark:text-[#B9B2A8] dark:hover:bg-brand-900/30 active:scale-90 duration-200
+            dark:border-brand-900/40 dark:bg-surface-darkdark:text-[#B9B2A8] dark:bg-surface-dark
             "
         >
           <span> <Plus /> </span>
@@ -122,8 +122,8 @@ const ProductsContent = () => {
             type="button"
             onClick={() => setFiltersOpen((v) => !v)}
             className="flex items-center px-4 py-3 gap-1.5 rounded-xl border bg-brand-200/30 hover:bg-brand-200/50 border-brand-200/60
-            dark:text-brand-300 dark:hover:bg-brand-900/30 active:scale-90 duration-200
-            dark:border-brand-900/40 dark:bg-surface-darkdark:text-brand-300 dark:bg-surface-dark
+            dark:text-[#B9B2A8] dark:hover:bg-brand-900/30 active:scale-90 duration-200
+            dark:border-brand-900/40 dark:bg-surface-darkdark:text-[#B9B2A8] dark:bg-surface-dark
             ">
             <Funnel />
             Filters
@@ -132,8 +132,8 @@ const ProductsContent = () => {
           <button
             type="submit"
             className="flex items-center px-4 py-3 gap-1.5 rounded-xl border bg-black border-brand-200/60
-            text-white dark:text-brand-300 dark:hover:bg-brand-900/30 active:scale-90 duration-200
-            dark:border-brand-900/40 dark:bg-surface-darkdark:text-brand-300 dark:bg-surface-dark
+            text-white dark:text-[#B9B2A8] dark:hover:bg-brand-900/30 active:scale-90 duration-200
+            dark:border-brand-900/40 dark:bg-surface-darkdark:text-[#B9B2A8] dark:bg-surface-dark
             ">
             <Search />
             Search
@@ -143,13 +143,13 @@ const ProductsContent = () => {
         {filtersOpen && (
           <div className="mt-4 grid grid-cols-1 gap-4 border-t border-brand-200/60 pt-4 sm:grid-cols-2 dark:border-brand-900/40">
             <div>
-              <label className="mb-1 flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wide text-brand-500">
+              <label className="mb-1 flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wide text-[#E8B58F]">
                 📁 Category
               </label>
               <select
                 value={category}
                 onChange={(e) => applyCategory(e.target.value)}
-                className="w-full rounded-full border border-brand-200/60 bg-white px-4 py-2 text-sm text-brand-700 dark:border-brand-900/40 dark:bg-surface-dark dark:text-brand-300"
+                className="w-full rounded-full border border-brand-200/60 bg-white px-4 py-2 text-sm text-brand-700 dark:border-brand-900/40 dark:bg-surface-dark dark:text-[#B9B2A8]"
               >
                 <option value="">All Categories</option>
                 <option value="electronics">Electronics</option>
@@ -162,7 +162,7 @@ const ProductsContent = () => {
             </div>
 
             <div>
-              <label className="mb-1 flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wide text-brand-500">
+              <label className="mb-1 flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wide text-[#E8B58F]">
                 🏷️ Subcategory
               </label>
               <input
@@ -185,7 +185,7 @@ const ProductsContent = () => {
             onClick={() => applyStatus(opt.key)}
             className={`rounded-xl px-3 py-1.5 text-xs sm:text-lg font-medium duration-200 ${status === opt.key
               ? "bg-brand-900 text-white dark:bg-brand-800"
-              : "bg-brand-100/70 text-brand-700 hover:bg-brand-100 dark:bg-brand-900/30 dark:text-brand-300 dark:hover:bg-brand-900/50"
+              : "bg-brand-100/70 text-brand-700 hover:bg-brand-100 dark:bg-brand-900/30 dark:text-[#B9B2A8] dark:hover:bg-brand-900/50"
               }`}
           >
             {opt.label}
@@ -194,11 +194,11 @@ const ProductsContent = () => {
       </div>
 
       {/* Grid */}
-      {loading && <p className="text-sm text-brand-500">Loading products...</p>}
+      {loading && <p className="text-sm text-[#E8B58F]">Loading products...</p>}
       {error && <p className="text-sm text-rose-500">{error}</p>}
 
       {!loading && !error && products.length === 0 && (
-        <div className="bg-white dark:bg-gray-900 rounded-2xl">
+        <div className="bg-white dark:bg-[#181B22] rounded-2xl">
           <div colSpan={4} className="px-6 py-16 text-center">
             <div className="mx-auto flex max-w-sm flex-col items-center justify-center">
               <div className="rounded-2xl bg-[#FFEFDD] dark:bg-[#161B26] p-4 text-[#A36037] mb-3">
@@ -237,17 +237,17 @@ const ProductsContent = () => {
           <button
             disabled={page === 1}
             onClick={() => setPage(page - 1)}
-            className="rounded-md border border-brand-200/60 px-3 py-1.5 text-xs text-brand-700 disabled:opacity-40 dark:border-brand-900/40 dark:text-brand-300"
+            className="rounded-md border border-brand-200/60 px-3 py-1.5 text-xs text-brand-700 disabled:opacity-40 dark:border-brand-900/40 dark:text-[#B9B2A8]"
           >
             Prev
           </button>
-          <span className="px-2 py-1.5 text-xs text-brand-500">
+          <span className="px-2 py-1.5 text-xs text-[#E8B58F]">
             {page} / {totalPages}
           </span>
           <button
             disabled={page === totalPages}
             onClick={() => setPage(page + 1)}
-            className="rounded-md border border-brand-200/60 px-3 py-1.5 text-xs text-brand-700 disabled:opacity-40 dark:border-brand-900/40 dark:text-brand-300"
+            className="rounded-md border border-brand-200/60 px-3 py-1.5 text-xs text-brand-700 disabled:opacity-40 dark:border-brand-900/40 dark:text-[#B9B2A8]"
           >
             Next
           </button>
