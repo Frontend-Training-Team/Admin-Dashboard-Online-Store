@@ -2,14 +2,14 @@ import { forwardRef } from "react";
 
 const Input = forwardRef(function Input({ label, error, textarea = false, compact = false, ...rest }, ref) {
   const baseStyle =
-    `w-full rounded-lg px-3 ${compact ? "py-1" : "py-2"} text-sm border-1 border-[#CCCCCC] ` +
+    `w-full rounded-lg px-3 ${compact ? "py-1" : "py-2"} text-sm border-1 border-[#CCCCCC] h-[40px] ` +
     " text-gray-900 border-gray-300 " +
     " dark:text-gray-100 dark:border-[#2E364F]";
 
   return (
     <div className="flex flex-col gap-1">
       {label && (
-        <label className="text-sm font-medium text-gray-500 dark:text-gray-400">
+        <label className="text-sm uppercase font-medium text-gray-500 dark:text-gray-400">
           {label}
         </label>
       )}
