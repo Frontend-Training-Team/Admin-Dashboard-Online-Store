@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { ProductsProvider, useProductsState } from "../components/ui/products/ProductsState";
 import ProductCard from "../components/ui/products/ProductCard";
+import ProductsSkeleton from "../components/ui/products/ProductsSkeleton";
 import ProductsStats from "../components/ui/products/ProductsStats";
-import { useAuth } from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import QuickEditModal from "../components/ui/products/QuickEditModal";
 import { patchUpdateProductAdmin } from "../api/products.api";
@@ -17,8 +17,6 @@ const STATUS_OPTIONS = [
 
 const ProductsContent = () => {
   const navigate = useNavigate();
-  const { user } = useAuth();
-  const isAdmin = user?.role === "admin";
   const [searchInput, setSearchInput] = useState("");
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [quickEditProduct, setQuickEditProduct] = useState(null);
@@ -66,9 +64,12 @@ const ProductsContent = () => {
     }
   };
 
+  if (loading) {
+    return <ProductsSkeleton />;
+  }
+
   return (
     <div>
-      {/* Header banner — دلوقتي فيه Tint خفيف بلون البراند بدل الأبيض العادي */}
       <div className="mb-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-brand-200/60 bg-gradient-to-r from-brand-50 to-white p-6 dark:border-brand-900/40 dark:from-brand-900/20 dark:to-surface-dark">
         <div className="flex items-center gap-4">
           <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-100 text-brand-700 dark:bg-brand-900/40 dark:text-brand-300">
@@ -84,27 +85,22 @@ const ProductsContent = () => {
           </div>
         </div>
 
-        {isAdmin && (
-          <button
-            onClick={() => {
-              /* افتح modal / روح لصفحة Add Product */
-            }}
-            className="flex items-center gap-1.5 rounded-full bg-brand-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-brand-800 dark:bg-brand-700 dark:hover:bg-brand-600"
-          >
-            <span>+</span>
-            <span>Add Product</span>
-          </button>
-        )}
+        <button
+          onClick={() => navigate("/products/new")}
+          className="flex items-center gap-1.5 rounded-full bg-brand-900 px-5 py-2.5 text-sm font-medium text-white hover:bg-brand-800 dark:bg-brand-700 dark:hover:bg-brand-600"
+        >
+          <span>+</span>
+          <span>Add Product</span>
+        </button>
       </div>
 
-      {/* Stats */}
       <ProductsStats stats={stats} />
 
       {/* Search bar */}
       <div className="mb-4 rounded-2xl border border-brand-200/60 bg-white p-4 dark:border-brand-900/40 dark:bg-surface-dark">
         <form onSubmit={handleSearchSubmit} className="flex flex-wrap items-center gap-2">
           <div className="relative min-w-[240px] flex-1">
-            {/* أيقونة العدسة جوه الصندوق */}
+
             <svg
               className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-brand-400"
               fill="none"
@@ -149,7 +145,6 @@ const ProductsContent = () => {
           </button>
         </form>
 
-        {/* Category / Subcategory — بنفس عرض Koda، وبتظهر لما تدوس Filters بس */}
         {filtersOpen && (
           <div className="mt-4 grid grid-cols-1 gap-4 border-t border-brand-200/60 pt-4 sm:grid-cols-2 dark:border-brand-900/40">
             <div>
@@ -203,27 +198,30 @@ const ProductsContent = () => {
         ))}
       </div>
 
-      {/* Grid */}
-      {loading && <p className="text-sm text-brand-500">Loading products...</p>}
-      {error && <p className="text-sm text-rose-500">{error}</p>}
-
-      {!loading && !error && products.length === 0 && (
+      {loading ? (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {Array.from({ length: 6 }).map((_, index) => (
+            <ProductCardSkeleton key={index} />
+          ))}
+        </div>
+      ) : error ? (
+        <p className="text-sm text-rose-500">{error}</p>
+      ) : products.length === 0 ? (
         <p className="text-sm text-brand-500">No products found matching your search.</p>
+      ) : (
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {products.map((product) => (
+            <ProductCard
+              key={product._id}
+              product={product}
+              onView={(p) => navigate(`/products/view/${p._id || p.id}`)}
+              onQuickEdit={(p) => setQuickEditProduct(p)}
+              onEdit={(p) => navigate(`/products/${p._id || p.id}/edit`)}
+              onDelete={handleDelete}
+            />
+          ))}
+        </div>
       )}
-
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {products.map((product) => (
-          <ProductCard
-            key={product._id}
-            product={product}
-            isAdmin={isAdmin}
-            onView={(p) => navigate(`/products/view/${p._id || p.id}`)}
-            onQuickEdit={(p) => setQuickEditProduct(p)}
-            onEdit={(p) => navigate(`/products/${p._id || p.id}/edit`)}
-            onDelete={handleDelete}
-          />
-        ))}
-      </div>
 
       {/* Pagination */}
       {totalPages > 1 && (
@@ -247,7 +245,7 @@ const ProductsContent = () => {
           </button>
         </div>
       )}
-      
+
       {/* Quick Edit Modal */}
       {quickEditProduct && (
         <QuickEditModal
