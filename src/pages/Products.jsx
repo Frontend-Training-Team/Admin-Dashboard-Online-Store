@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { ProductsProvider, useProductsState } from "../components/ui/products/ProductsState";
 import ProductCard from "../components/ui/products/ProductCard";
-import ProductsSkeleton from "../components/ui/products/ProductsSkeleton";
+import ProductsSkeleton from "../components/ui/skeletons/ProductsSkeleton";
 import ProductsStats from "../components/ui/products/ProductsStats";
 import { useNavigate } from "react-router-dom";
 import QuickEditModal from "../components/ui/products/QuickEditModal";
