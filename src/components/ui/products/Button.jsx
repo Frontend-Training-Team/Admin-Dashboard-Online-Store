@@ -1,4 +1,4 @@
-function Button({ variant = "primary", children, compact = false, ...rest }) {
+function Button({ variant = "primary", children, compact = false, disabled = false, ...rest }) {
   const styles = {
     primary:
       "bg-[#C98156] hover:bg-[#b06f47] text-white font-medium shadow-xs",
@@ -9,7 +9,8 @@ function Button({ variant = "primary", children, compact = false, ...rest }) {
   return (
     <button
       {...rest}
-      className={`rounded-xl px-4 text-sm font-medium transition-colors cursor-pointer inline-flex items-center justify-center ${styles[variant]} ${compact ? "h-8 py-1" : "h-10 py-2"}`}
+      disabled={disabled}
+      className={`rounded-xl px-4 text-sm font-medium transition-colors cursor-pointer inline-flex items-center justify-center disabled:opacity-60 disabled:cursor-not-allowed ${styles[variant]} ${compact ? "h-8 py-1" : "h-10 py-2"}`}
     >
       {children}
     </button>

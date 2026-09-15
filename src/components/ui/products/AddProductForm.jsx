@@ -8,6 +8,7 @@ import Button from "./Button";
 import ToggleButton from "./ToggleButton";
 import ProductImageUploader from "./ProductImageUploader";
 import ProductTagsInput from "./ProductTagsInput";
+import { Loader2 } from "lucide-react";
 
 function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCard = true }) {
   const onInvalid = (errors) => {
@@ -32,6 +33,7 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCar
   const [featured, setFeatured] = useState(false);
   const [isActive, setIsActive] = useState(false);
   const [imageError, setImageError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     if (initialData) {
@@ -58,7 +60,7 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCar
     setMarkedKeys((prev) => (prev.includes(key) ? prev.filter((k) => k !== key) : [...prev, key]));
   };
 
-  const submitHandler = (data) => {
+  const submitHandler = async (data) => {
     const remainingCount = images.filter((img) => {
       const key = img.public_id || img.previewUrl;
       return !markedKeys.includes(key);
@@ -98,7 +100,14 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCar
       formData.append("deletedImages", JSON.stringify(deletedImageIds));
     }
 
-    onSubmit(formData);
+    try {
+      setIsSubmitting(true);
+      await onSubmit(formData);
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const fieldsContent = (
@@ -166,9 +175,28 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCar
 
   const buttonsContent = (
     <>
-      <Button variant="secondary" type="button" onClick={onCancel}>Cancel</Button>
-      <Button variant="primary" type="submit">
-        {mode === "create" ? "Create Product" : "Save Changes"}
+      <Button 
+        variant="secondary" 
+        type="button" 
+        onClick={onCancel}
+        disabled={isSubmitting}
+      >
+        Cancel
+      </Button>
+
+      <Button 
+        variant="primary" 
+        type="submit"
+        disabled={isSubmitting}
+      >
+        {isSubmitting ? (
+          <span className="flex items-center justify-center gap-2">
+            <Loader2 size={16} className="animate-spin" />
+            <span>{mode === "create" ? "Adding..." : "Saving..."}</span>
+          </span>
+        ) : (
+          mode === "create" ? "Create Product" : "Save Changes"
+        )}
       </Button>
     </>
   );

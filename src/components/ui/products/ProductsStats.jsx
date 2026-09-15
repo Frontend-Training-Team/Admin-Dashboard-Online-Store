@@ -1,4 +1,5 @@
 import { Package, Star, TrendingUp, AlertTriangle } from 'lucide-react';
+import UserStatCard from '../user/UserStatCard';
 
 const StatCard = ({ icon: Icon, label, value, loading = false }) => (
   <div className="flex flex-col gap-3 rounded-2xl border border-brand-200/60 bg-white p-4 sm:p-5 shadow-xs dark:border-[rgba(255,255,255,0.06)] dark:bg-[#12141A]">
@@ -21,10 +22,14 @@ const ProductsStats = ({ stats, loading = false }) => {
 
   return (
     <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-      <StatCard icon={Package} label="Total" value={total} loading={loading} />
-      <StatCard icon={Star} label="Featured" value={featured} loading={loading} />
+      {/* <StatCard icon={Package} label="Total" value={total} loading={loading} /> */}
+      <UserStatCard title="Total" value={stats.total} icon={<Package size={24} />}/>
+      <UserStatCard title="Featured" value={stats.featured} icon={<Star size={24} />}/>
+      <UserStatCard title="In Stock" value={stats.inStock} icon={<TrendingUp size={24} />}/>
+      <UserStatCard title="Out of Stock" value={stats.outOfStock} icon={<AlertTriangle size={24} />}/>
+      {/* <StatCard icon={Star} label="Featured" value={featured} loading={loading} />
       <StatCard icon={TrendingUp} label="In Stock" value={inStock} loading={loading} />
-      <StatCard icon={AlertTriangle} label="Out of Stock" value={outOfStock} loading={loading} />
+      <StatCard icon={AlertTriangle} label="Out of Stock" value={outOfStock} loading={loading} /> */}
     </div>
   );
 };
