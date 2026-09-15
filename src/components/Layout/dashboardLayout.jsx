@@ -9,7 +9,7 @@ function dashboardLayout() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="h-screen flex overflow-hidden bg-surface-light dark:bg-surface-dark transition-colors font-Inter">
+    <div className="h-screen flex overflow-hidden bg-surface-light dark:bg-[#0B0C0F] dark:text-[#B9B2A8] transition-colors font-Inter">
 
       <Sidebar
         isOpen={sidebarOpen}
@@ -20,7 +20,7 @@ function dashboardLayout() {
         <Navbar onToggleSidebar={() => setSidebarOpen(!sidebarOpen)} />
 
         <main className="flex-1 p-8 overflow-y-scroll">
-          <Outlet />
+       <Outlet />
         </main>
 
       </div>

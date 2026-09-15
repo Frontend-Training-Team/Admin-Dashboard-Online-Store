@@ -40,7 +40,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-[55%_45%]">
+    <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-[55%_45%] bg-white dark:bg-[#0B0C0F]">
 
       {/* Left Side - Hero Section */}
       <div
@@ -48,15 +48,15 @@ export default function LoginPage() {
         style={{ backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.4)), url(${heroBg})` }}
       >
         <div className="relative z-10 w-full max-w-190.5 space-y-5">
-          <p className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-medium tracking-wide text-gray-200 drop-shadow-sm">
+          <p className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-semibold font-Inter tracking-wide text-gray-200 drop-shadow-sm">
             Lamsa Admin Dashboard
           </p>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold leading-tight drop-shadow-sm text-gray-200">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-semibold font-Inter leading-tight drop-shadow-sm text-gray-200">
             Manage Your Store Like a Pro
           </h1>
 
-          <p className="text-gray-400 text-base sm:text-lg lg:text-xl xl:text-2xl leading-relaxed font-normal">
+          <p className="text-gray-300 text-base sm:text-lg lg:text-xl xl:text-2xl leading-relaxed font-normal">
             Control products, orders, users, carts and analytics from a modern dashboard experience.
           </p>
 
@@ -77,21 +77,21 @@ export default function LoginPage() {
           </div>
 
           <div className="relative z-10 text-xs text-gray-400">
-            © Lamsa Home Furniture. All rights reserved.
+            Â© Lamsa Home Furniture. All rights reserved.
           </div>
         </div>
       </div>
 
       {/* Right Side - Form Section */}
-      <div className="bg-white p-8 md:p-12 flex flex-col justify-center items-center">
+      <div className="bg-white  dark:bg-[#0B0C0F] p-8 md:p-12 flex flex-col justify-center items-center dark:border-white/[0.06]">
         <div className="w-full max-w-2xl space-y-6">
 
           <div className="text-center space-y-2">
             <div className="inline-block p-2 mb-2">
               <img src={logo} alt="Lamsa Logo" className="h-28 sm:h-32 lg:h-40 w-auto object-contain mx-auto" />
             </div>
-            <h2 className="text-xl sm:text-4xl font-semibold font-Inter text-gray-800">Welcome Back</h2>
-            <p className="text-xs sm:text-lg font-Inter text-gray-500">Sign in to your admin dashboard</p>
+            <h2 className="text-xl sm:text-4xl font-semibold font-Inter text-gray-800 dark:text-[#F5F1EA]">Welcome Back</h2>
+            <p className="text-xs sm:text-lg font-Inter text-gray-500 dark:text-[#8A8378]">Sign in to your admin dashboard</p>
           </div>
 
           {errorMessage && (
@@ -102,9 +102,9 @@ export default function LoginPage() {
 
           <form onSubmit={onSubmit} className="space-y-4 pt-2  font-Inter">
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold mb-3 text-gray-700 block">Email Address</label>
+              <label className="text-xs font-semibold mb-3 text-gray-700 block dark:text-[#B9B2A8]">Email Address</label>
               <div className="relative">
-                <Mail className="w-5 h-5 text-gray-400 absolute left-5 top-1/2 -translate-y-1/2" />
+                <Mail className="w-5 h-5 text-gray-400 absolute left-5 top-1/2 -translate-y-1/2 dark:text-[#8A8378]" />
                 <input
                   type="email"
                   placeholder="Enter your email"
@@ -114,15 +114,15 @@ export default function LoginPage() {
                   required
                   className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 text-gray-900  font-Inter
                   placeholder-gray-400 rounded-md text-sm focus:outline-none focus:ring-2
-                  focus:ring-[#B67352] focus:border-transparent transition disabled:opacity-60"
+                  focus:ring-[#B67352] focus:border-transparent transition disabled:opacity-60 dark:bg-[#1F232B] dark:border-white/[0.08] dark:text-[#F5F1EA] dark:placeholder:text-[#8A8378]"
                 />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold mb-3 text-gray-700 block">Password</label>
+              <label className="text-xs font-semibold mb-3 text-gray-700 block dark:text-[#B9B2A8]">Password</label>
               <div className="relative">
-                <Lock className="w-5 h-5 text-gray-400 absolute left-5 top-1/2 -translate-y-1/2" />
+                <Lock className="w-5 h-5 text-gray-400 absolute left-5 top-1/2 -translate-y-1/2 dark:text-[#8A8378]" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Enter your password"
@@ -132,13 +132,13 @@ export default function LoginPage() {
                   required
                   className="w-full h-14 pl-12 pr-12 bg-gray-50 border border-gray-200 text-gray-900
                   font-Inter placeholder-gray-400 rounded-md text-sm focus:outline-none focus:ring-2
-                  focus:ring-[#B67352] focus:border-transparent transition disabled:opacity-60"
+                  focus:ring-[#B67352] focus:border-transparent transition disabled:opacity-60 dark:bg-[#1F232B] dark:border-white/[0.08] dark:text-[#F5F1EA] dark:placeholder:text-[#8A8378]"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   disabled={isLoading}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md text-gray-400 hover:text-gray-600"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md text-gray-400 hover:text-gray-600 dark:text-[#8A8378] dark:hover:text-[#F5F1EA]"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -166,8 +166,8 @@ export default function LoginPage() {
           </form>
 
           <div className="relative flex items-center justify-center py-1">
-            <div className="border-t border-gray-200 w-full"></div>
-            <span className="bg-white px-3 text-xs text-gray-400 uppercase font-semibold absolute">OR</span>
+            <div className="border-t border-gray-200 w-full dark:border-white/[0.08]"></div>
+            <span className="bg-white px-3 text-xs text-gray-400 uppercase font-semibold absolute dark:bg-[#0B0C0F] dark:text-[#8A8378]">OR</span>
           </div>
 
           <a
@@ -176,7 +176,7 @@ export default function LoginPage() {
             rel="noopener noreferrer"
             className="w-full h-12 flex items-center justify-center gap-2 border border-[#CCCCCC] 
             hover:bg-black hover:text-white text-[#2B231F] font-semibold rounded-md transition
-            duration-200 text-sm no-underline cursor-pointer active:scale-95"
+            duration-200 text-sm no-underline cursor-pointer active:scale-95 dark:border-white/[0.08] dark:bg-[#181B22] dark:hover:bg-[#1F232B] dark:text-[#F5F1EA]"
           >
             <img
               src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
@@ -186,7 +186,7 @@ export default function LoginPage() {
             <span>Continue with Google</span>
           </a>
 
-          <p className="text-center text-xs text-gray-400 pt-1 select-none">
+          <p className="text-center text-xs text-gray-400 pt-1 select-none dark:text-[#8A8378]">
             Secure Admin Access
           </p>
 

@@ -8,7 +8,7 @@ export default function Navbar({ onToggleSidebar }) {
   const { isDark, toggleTheme } = useDarkMode();
 
   return (
-    <header className="h-24 px-4 sm:px-8 flex items-center justify-between border-b border-brand-200/60 dark:border-brand-900/40 bg-surface-cardLight dark:bg-surface-cardDark transition-colors">
+    <header className="h-24 px-4 sm:px-8 flex items-center justify-between border-b border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-surface-cardLight dark:bg-[#12141A]/80 dark:backdrop-blur-md transition-colors">
 
       <div className="flex items-center gap-2 sm:gap-6 min-w-0">
 
@@ -16,7 +16,7 @@ export default function Navbar({ onToggleSidebar }) {
           type="button"
           onClick={onToggleSidebar}
           aria-label="Open Menu"
-          className="p-2 rounded-xl bg-brand-100 dark:bg-brand-900 text-brand-700 dark:text-brand-300 lg:hidden shrink-0">
+          className="p-2 rounded-xl bg-brand-100 dark:bg-[#181B22] text-brand-700 dark:text-[#8A8378] dark:hover:bg-[#22262F] dark:hover:text-[#F5F1EA] lg:hidden shrink-0">
           <Menu size={20} />
         </button>
 
@@ -25,11 +25,11 @@ export default function Navbar({ onToggleSidebar }) {
         />
 
         <div className="min-w-0">
-          <h2 className="text-sm sm:text-xl font-bold mt-0.5 sm:mt-1 text-black dark:text-brand-50 leading-tight truncate">
+          <h2 className="text-sm sm:text-xl font-bold mt-0.5 sm:mt-1 text-black dark:text-[#F5F1EA] leading-tight truncate">
             Lamsa Dashboard
           </h2>
 
-          <p className="text-xs text-[#939393] dark:text-brand-300">E-Commerce Admin Panel</p>
+          <p className="text-xs text-[#939393] dark:text-[#8A8378]">E-Commerce Admin Panel</p>
         </div>
 
       </div>
@@ -37,19 +37,19 @@ export default function Navbar({ onToggleSidebar }) {
       <div className="flex items-center gap-2 sm:gap-3 pr-0 sm:pr-4 shrink-0">
 
         <button
-          className="p-2 sm:p-3 bg-brand-100 rounded-xl text-brand-700 dark:bg-brand-900 dark:text-brand-300 hover:bg-brand-100/60 dark:hover:bg-brand-900/40 transition-colors active:scale-90">
+          className="p-2 sm:p-3 bg-brand-100 rounded-xl text-brand-700 dark:bg-[#181B22] dark:text-[#8A8378] hover:bg-brand-100/60 dark:hover:bg-[#22262F] dark:hover:text-[#F5F1EA] transition-colors active:scale-90">
           <Bell size={18} />
         </button>
 
         <button
           onClick={toggleTheme}
-          className="p-2 sm:p-3 bg-brand-100 rounded-xl text-brand-700 dark:bg-brand-900 dark:text-brand-300 hover:bg-brand-100/60 dark:hover:bg-brand-900/40 transition-colors active:scale-90">
-          {isDark ? <Sun size={18} className="text-amber-400" /> : <Moon size={18} />}
+          className="p-2 sm:p-3 bg-brand-100 rounded-xl text-brand-700 dark:bg-[#181B22] dark:text-[#8A8378] hover:bg-brand-100/60 dark:hover:bg-[#22262F] dark:hover:text-[#F5F1EA] transition-colors active:scale-90">
+          {isDark ? <Sun size={18} className="text-[#F5B544]" /> : <Moon size={18} />}
         </button>
 
-        <div className="flex items-center gap-2 pl-1.5 sm:pl-2 border-l border-brand-200/60 dark:border-brand-900/40">
+        <div className="flex items-center gap-2 pl-1.5 sm:pl-2 border-l border-brand-200/60 dark:border-[rgba(255,255,255,0.06)]">
           <img src={imgUser} alt="Admin Avatar"
-            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover ring-2 ring-brand-500/30"
+            className="w-8 h-8 sm:w-10 sm:h-10 rounded-full object-cover ring-2 ring-brand-500/30 dark:ring-[rgba(201,129,86,0.45)]"
           />
         </div>
 

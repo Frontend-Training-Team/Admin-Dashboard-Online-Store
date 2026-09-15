@@ -1,17 +1,12 @@
-const Input = ({ placeholder = 'Placeholder', Type, className }) => {
+const Input = ({ placeholder = 'Placeholder', Type = 'text', className = '', ...props }) => {
     return (
-        <input type={Type}
+        <input
+            type={Type}
             placeholder={placeholder}
-            className={`
-                w-full
-                border-2
-                py-3 pr-4 ps-5
-                rounded-2xl
-                text-2xl
-                font-bold
-                inline-flex items-center gap-2
-            ${className}`} />
+            {...props}
+            className={`w-full bg-white dark:bg-[#1F232B] border border-brand-200 dark:border-white/[0.08] text-brand-950 dark:text-[#F5F1EA] placeholder:text-brand-400 dark:placeholder:text-[#8A8378] py-2.5 px-4 rounded-xl text-sm font-medium focus:outline-none focus:ring-1 focus:ring-[#C98156] focus:border-[#C98156] transition-colors ${className}`}
+        />
     );
-}
+};
 
 export default Input;

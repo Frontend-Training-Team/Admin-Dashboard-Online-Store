@@ -11,4 +11,4 @@ export const getSingleproduct = (productid) => { return api.get(`/products/${pro
 // Delete product (Admin)
 export const deleteProductAdmin = (productid) => { return api.delete(`/products/${productid}`) }
 // update product (Admin)
-export const patchUpdateProductAdmin = (productid) => { return api.patch(`/products/update/${productid}`) }
+export const patchUpdateProductAdmin = (productid, payload) => { return api.patch(`/products/update/${productid}`, payload) }
