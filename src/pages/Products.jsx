@@ -9,6 +9,7 @@ import DeleteProductModal from "../components/ui/products/DeleteProductModal";
 import { patchUpdateProductAdmin } from "../api/products.api";
 import toast from "react-hot-toast";
 import { Funnel, Package, Plus, Search, SearchX } from "lucide-react";
+import bannerBg from '../assets/images/users-banner-bg.jpg';
 
 const STATUS_OPTIONS = [
   { key: "all", label: "Total" },
@@ -66,13 +67,17 @@ const ProductsContent = () => {
     if (!deletingProduct) return;
     try {
       setIsDeleting(true);
-      const productId = deletingProduct._id || deletingProduct.id;
+      const productId = typeof deletingProduct === 'object' 
+        ? (deletingProduct._id || deletingProduct.id) 
+        : deletingProduct;
+
       await removeProduct(productId);
-      toast.success(`Product "${deletingProduct.name || deletingProduct.title || ''}" deleted successfully`);
+      toast.success(`Product "${deletingProduct.name || deletingProduct.title || 'Product'}" deleted successfully`);
       setDeletingProduct(null);
     } catch (err) {
       console.error("Failed to delete product:", err);
-      toast.error(err.response?.data?.message || err.userMessage || "Failed to delete product");
+      console.error(err.response?.data?.message || err.userMessage)
+      toast.error("Failed to delete product");
     } finally {
       setIsDeleting(false);
     }
@@ -85,29 +90,40 @@ const ProductsContent = () => {
   return (
     <div>
       {/* Header Banner */}
-      <div className="mb-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-brand-200/60 bg-gradient-to-r from-brand-50 to-white p-6 shadow-xs dark:border-[rgba(255,255,255,0.06)] dark:from-[#12141A] dark:to-[#181B22]">
-        <div className="flex items-center gap-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-100 text-brand-700 dark:bg-[#181B22] dark:text-[#C98156]">
-            <Package size={24} />
+      <div
+        className="relative mb-6 overflow-hidden rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] shadow-xs 
+        bg-cover bg-center bg-no-repeat p-6 sm:px-8 sm:py-6 dark:!bg-none dark:bg-[#12141A]"
+        style={{ backgroundImage: `url(${bannerBg})` }}
+      >
+        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+          
+          <div className="flex items-center gap-4">
+            <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-white/25 bg-white/20 
+            text-[#592309] backdrop-blur-md shadow-xs dark:border-white/[0.08] dark:bg-[#181B22] dark:text-[#C98156]">
+              <Package size={24} />
+            </div>
+            <div>
+              <p className="text-[12px] font-semibold tracking-wider text-brand-500 dark:text-[#C98156] uppercase">
+                PRODUCT DASHBOARD
+              </p>
+              <h1 className="text-2xl sm:text-[28px] font-bold text-[#592309] dark:text-[#F5F1EA] mt-0.5 tracking-tight">
+                Products
+              </h1>
+            </div>
           </div>
-          <div>
-            <p className="text-[11px] font-semibold uppercase tracking-widest text-brand-500 dark:text-[#C98156]">
-              Product Dashboard
-            </p>
-            <h1 className="text-2xl font-bold text-brand-900 dark:text-[#F5F1EA]">
-              Products
-            </h1>
-          </div>
-        </div>
 
-        <button
-          type="button"
-          onClick={() => navigate("/products/new")}
-          className="flex items-center gap-2 rounded-xl bg-brand-900 px-5 py-2.5 text-sm font-semibold text-white shadow-xs transition-all hover:bg-brand-800 active:scale-95 dark:bg-[#C98156] dark:hover:bg-[#A8653F] dark:text-[#14100C] cursor-pointer"
-        >
-          <Plus size={18} />
-          <span>Add Product</span>
-        </button>
+          <button
+            type="button"
+            onClick={() => navigate("/products/new")}
+            className="flex items-center justify-center gap-2 px-5 h-11 sm:h-12 rounded-xl border border-white/25 bg-white/10 hover:bg-white/20 backdrop-blur-md 
+            text-sm font-medium text-white shadow-sm transition active:scale-95 shrink-0 cursor-pointer dark:border-transparent dark:bg-[#C98156] dark:hover:bg-[#A8653F] 
+            dark:text-white dark:font-semibold"
+          >
+            <Plus size={20} className="text-white/90" />
+            <span>Add Product</span>
+          </button>
+
+        </div>
       </div>
 
       {/* 4 Stats Cards */}
@@ -126,14 +142,17 @@ const ProductsContent = () => {
               value={searchInput}
               placeholder="Search products..."
               onChange={(e) => setSearchInput(e.target.value)}
-              className="w-full rounded-xl border border-brand-200/60 bg-white py-2.5 pl-10 pr-4 text-sm text-brand-900 placeholder:text-brand-400 focus:border-brand-500 focus:outline-none dark:border-[#262B34] dark:bg-[#1F232B] dark:text-[#F5F1EA] dark:placeholder-[#5C574F] dark:focus:border-[#C98156]"
+              className="w-full rounded-xl border border-brand-200/60 bg-white py-2.5 pl-10 pr-4 text-sm text-brand-900 placeholder:text-brand-400 
+              focus:border-brand-500 focus:outline-none dark:border-[#262B34] dark:bg-[#1F232B] dark:text-[#F5F1EA] dark:placeholder-[#5C574F] 
+              dark:focus:border-[#C98156]"
             />
           </div>
 
           <button
             type="button"
             onClick={() => setFiltersOpen((v) => !v)}
-            className="flex items-center gap-1.5 rounded-xl border border-brand-200/60 bg-white px-4 py-2.5 text-sm font-medium text-brand-700 hover:bg-brand-50 active:scale-95 transition-all dark:border-[#262B34] dark:bg-[#181B22] dark:text-[#B9B2A8] dark:hover:bg-[#22262F] cursor-pointer"
+            className="flex items-center gap-1.5 rounded-xl border border-brand-200/60 bg-white px-4 py-2.5 text-sm font-medium text-brand-700 
+            hover:bg-brand-50 active:scale-95 transition-all dark:border-[#262B34] dark:bg-[#181B22] dark:text-[#B9B2A8] dark:hover:bg-[#22262F] cursor-pointer"
           >
             <Funnel size={16} />
             <span>Filters</span>
@@ -141,7 +160,8 @@ const ProductsContent = () => {
 
           <button
             type="submit"
-            className="flex items-center gap-1.5 rounded-xl bg-brand-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-800 active:scale-95 transition-all dark:bg-[#C98156] dark:hover:bg-[#A8653F] dark:text-[#14100C] cursor-pointer"
+            className="flex items-center gap-1.5 rounded-xl bg-[#A36037] px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-800 active:scale-95 
+            transition-all dark:bg-[#C98156] dark:hover:bg-[#A8653F] cursor-pointer"
           >
             <Search size={16} />
             <span>Search</span>

@@ -112,7 +112,7 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
             style={{ backgroundImage: `url(${bannerBg})` }}
           >
             <div className="flex items-center gap-3.5">
-              <div className="rounded-xl bg-[#A36037] dark:bg-[#2A1B12] dark:text-[#F0CDAF] dark:border dark:border-[rgba(201,129,86,0.25)] p-2 sm:p-2.5 text-white shadow-sm flex items-center justify-center shrink-0">
+              <div className="rounded-xl bg-[#A36037] dark:bg-[#9C6647] dark:text-[#F0CDAF] dark:border dark:border-[rgba(201,129,86,0.25)] p-2 sm:p-2.5 text-white shadow-sm flex items-center justify-center shrink-0">
                 {/* <UserPlus size={20} /> */}
                 <UserRoundPlus size={20} className="text-white/90" />
               </div>
@@ -257,7 +257,7 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-[#8F4F28] hover:bg-[#A36037] dark:bg-[#9C6647] dark:hover:bg-[#A8653F]/50 text-sm font-medium text-white dark:text-white/90 dark:font-semibold shadow-sm transition disabled:opacity-60 active:scale-95 cursor-pointer"
+                  className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-[#8e4726e1] hover:bg-[#A36037] dark:bg-[#A8653F] dark:hover:bg-[#A8653F]/50 text-sm font-medium text-white dark:text-white/90 dark:font-semibold shadow-sm transition disabled:opacity-60 active:scale-95 cursor-pointer"
                 >
                   {loading ? (
                     <>

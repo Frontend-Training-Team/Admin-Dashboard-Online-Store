@@ -161,7 +161,7 @@ export default function Users() {
               onClick={() => setIsAddOpen((prev) => !prev)}
               className="flex items-center justify-center gap-2.5 px-5 h-11 sm:h-12 rounded-xl border border-white/25 bg-white/10 hover:bg-white/20 backdrop-blur-md text-sm font-medium text-white shadow-sm transition active:scale-95 shrink-0 cursor-pointer dark:border-transparent dark:bg-[#9C6647] dark:hover:bg-[#A8653F]/50 dark:text-white/90 dark:font-semibold"
             >
-              <UserRoundPlus size={20} className="text-white/90 dark:text-white/90" />
+              <UserRoundPlus size={20} className="text-white/90 " />
               <span>Add User</span>
               <ChevronDown
                 size={16}

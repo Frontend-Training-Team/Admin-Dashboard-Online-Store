@@ -1,6 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import bannerImage from "../../../assets/images/img5.jpg";
+// import bannerImage from "../../../assets/images/img5.jpg";
+import bannerBg from '../../../assets/images/users-banner-bg.jpg';
 
 function ProductFormHeader({ mode = "create" }) {
   const navigate = useNavigate();
@@ -18,11 +19,9 @@ function ProductFormHeader({ mode = "create" }) {
 
   return (
     <div
-      className="relative rounded-2xl overflow-hidden p-6 sm:p-8 bg-cover bg-center border border-brand-200/60 dark:border-white/[0.06] shadow-xs"
-      style={{ backgroundImage: `url(${bannerImage})` }}
+      className="relative rounded-2xl overflow-hidden p-6 sm:p-8 bg-cover bg-center dark:bg-[#12141A] dark:border dark:!bg-none dark:border-white/[0.06] shadow-xs"
+      style={{ backgroundImage: `url(${bannerBg})` }}
     >
-      {/* Semi-transparent overlay */}
-      <div className="absolute inset-0 bg-white/85 dark:bg-[#0B0C0F]/85 backdrop-blur-[2px]" />
 
       <div className="relative z-10 space-y-2.5">
         <button

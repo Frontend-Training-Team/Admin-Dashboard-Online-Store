@@ -1,171 +1,216 @@
-import { Eye, Pencil, SlidersHorizontal, Trash2 } from 'lucide-react';
+import { useState } from "react";
+import { Eye, Pencil, SlidersHorizontal, Trash2, ChevronLeft, ChevronRight } from "lucide-react";
 
 const MAX_TAGS = 4;
 
-const ProductCard = ({
-  product,
-  isAdmin = false,
-  onView,
-  onQuickEdit,
-  onEdit,
-  onDelete,
-}) => {
+const ProductCard = ({ product = {}, onView, onQuickEdit, onEdit, onDelete }) => {
   const {
     _id,
-    name,
-    images,
+    id,
+    name = "Unnamed Product",
+    images = [],
+    image: singleImage,
     shortDescription,
     description,
     stock = 0,
     category,
     brand,
     tags = [],
-    price,
+    price = 0,
     discountPrice,
-  } = product || {};
+    featured,
+    isFeatured,
+  } = product;
 
+  const productId = _id || id;
+  const isProductFeatured = Boolean(featured === true || isFeatured === true || tags.includes("featured"));
   const inStock = stock > 0;
-  const isFeatured = Boolean(
-    product?.featured === true || product?.isFeatured === true || tags.includes('featured')
-  );
-  const visibleTags = tags.filter((t) => t !== 'featured').slice(0, MAX_TAGS);
-  const image = images?.[0]?.url;
+  
+  // Format category & brand labels
+  const categoryName = typeof category === "object" ? category?.name : category;
+  const brandName = typeof brand === "object" ? brand?.name : brand;
 
-  const handleDeleteClick = () => {
-    onDelete?.(product);
+  // Process image list
+  const imageList = Array.isArray(images) && images.length > 0
+    ? images.map((img) => (typeof img === "string" ? img : img?.url)).filter(Boolean)
+    : singleImage
+    ? [singleImage]
+    : [];
+
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+
+  const handlePrevImage = (e) => {
+    e.stopPropagation();
+    setActiveImageIndex((prev) => (prev === 0 ? imageList.length - 1 : prev - 1));
   };
 
+  const handleNextImage = (e) => {
+    e.stopPropagation();
+    setActiveImageIndex((prev) => (prev === imageList.length - 1 ? 0 : prev + 1));
+  };
+
+  const currentImage = imageList[activeImageIndex] || imageList[0];
+  const visibleTags = tags.filter((t) => t !== "featured").slice(0, MAX_TAGS);
+
   return (
-    <div className="group relative flex flex-col overflow-hidden rounded-[28px] border border-gray-100/80 bg-white shadow-xs transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg dark:border-[rgba(255,255,255,0.06)] dark:bg-[#12141A]">
-      {/* 1. Image Container */}
-      <div className="relative h-64 sm:h-72 w-full overflow-hidden bg-gray-100 dark:bg-[#181B22]">
-        {image ? (
+    <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200/80 bg-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl hover:border-gray-300 dark:border-brand-900/40 dark:bg-[#12141A] dark:hover:border-brand-700/60">
+      {/* Image Container */}
+      <div className="relative aspect-[500/348] w-full overflow-hidden bg-[#F8F7F4] dark:bg-brand-900/20">
+        {currentImage ? (
           <img
-            src={image}
+            src={currentImage}
             alt={name}
-            className="h-full w-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105 dark:brightness-[0.92]"
+            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
           />
         ) : (
-          <div className="flex h-full w-full items-center justify-center text-xs font-medium text-gray-400 dark:text-[#8A8378]">
-            No Image
+          <div className="flex h-full w-full items-center justify-center text-xs font-medium text-gray-400 dark:text-brand-500">
+            No Image Available
           </div>
         )}
 
-        {/* FEATURED Badge matching Figma */}
-        {isFeatured && (
-          <span className="absolute left-5 top-5 z-10 rounded-full bg-[#F59E0B] px-4 py-1.5 text-[11px] font-extrabold uppercase tracking-wider text-black shadow-xs">
+        {/* Featured Badge */}
+        {isProductFeatured && (
+          <span className="absolute left-4 top-4 z-10 rounded-full bg-[#F6B704] px-3.5 py-1 text-[11px] font-bold tracking-wider text-black uppercase shadow-sm">
             FEATURED
           </span>
         )}
 
-        {/* Stock Status Badge */}
-        <span
-          className={`absolute right-5 top-5 z-10 inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-semibold backdrop-blur-md ${
-            inStock
-              ? 'bg-[#10B981]/15 text-[#10B981] border border-[#10B981]/30 dark:bg-[#132B1F] dark:text-[#7CE38B] dark:border-[#7CE38B]/30'
-              : 'bg-rose-500/15 text-rose-600 border border-rose-500/30 dark:bg-[#2B1214] dark:text-[#F87171] dark:border-[#F87171]/30'
-          }`}
-        >
-          <span
-            className={`h-1.5 w-1.5 rounded-full ${
-              inStock ? 'bg-[#10B981] dark:bg-[#7CE38B]' : 'bg-rose-500 dark:bg-[#F87171]'
-            }`}
-          />
-          {inStock ? 'In Stock' : 'Out of Stock'}
-        </span>
-      </div>
-
-      {/* 2. Content Container */}
-      <div className="flex flex-1 flex-col p-6">
-        {/* Category */}
-        <p className="text-[11px] font-semibold uppercase tracking-widest text-[#C98156]">
-          {category || 'Uncategorized'}
-        </p>
-
-        {/* Product Title */}
-        <h3
-          className="mt-1 line-clamp-1 text-lg font-bold text-gray-900 dark:text-[#F5F1EA]"
-          title={name}
-        >
-          {name}
-        </h3>
-
-        {/* Short Description */}
-        <p className="mt-1.5 line-clamp-2 text-xs text-gray-500 leading-relaxed dark:text-[#8A8378]">
-          {shortDescription || description || 'No description available for this product.'}
-        </p>
-
-        {/* Price & Stock Section */}
-        <div className="mt-4 flex items-baseline justify-between border-t border-gray-100 dark:border-[rgba(255,255,255,0.06)] pt-4">
-          <div className="flex items-baseline gap-2">
-            <span className="text-2xl font-bold tracking-tight text-gray-900 dark:text-[#F5F1EA]">
-              ${price ?? 0}
-            </span>
-            {discountPrice && discountPrice > 0 ? (
-              <span className="text-xs text-gray-400 line-through dark:text-[#8A8378]">
-                ${discountPrice}
-              </span>
-            ) : null}
-          </div>
-          <span className="text-xs font-medium text-gray-500 dark:text-[#8A8378]">
-            {stock} units
+        {/* Stock Status Badge (if out of stock) */}
+        {!inStock && (
+          <span className="absolute right-4 top-4 z-10 rounded-full bg-rose-500/90 px-3 py-1 text-[11px] font-semibold text-white backdrop-blur-xs shadow-sm">
+            Out of Stock
           </span>
-        </div>
-
-        {/* Tags */}
-        {visibleTags.length > 0 && (
-          <div className="mt-3 flex flex-wrap gap-1.5">
-            {visibleTags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-lg bg-gray-100 px-2.5 py-1 text-[10px] font-medium text-gray-600 dark:bg-[#181B22] dark:text-[#B9B2A8]"
-              >
-                #{tag}
-              </span>
-            ))}
-          </div>
         )}
 
-        {/* Divider */}
-        <hr className="border-gray-200/60 dark:border-[rgba(255,255,255,0.06)] my-3" />
-
-        {/* Actions Row */}
-        <div className="flex flex-wrap items-center justify-between gap-2 pt-1">
-          <div className="flex items-center gap-2">
+        {/* Multi-image Carousel Arrows */}
+        {imageList.length > 1 && (
+          <>
             <button
               type="button"
-              onClick={() => onView?.(product)}
-              className="flex items-center gap-1.5 rounded-xl bg-[#EFF2F6] px-3.5 py-2 text-xs font-medium text-gray-700 transition-colors hover:bg-gray-200 dark:bg-[#181B22] dark:text-[#F5F1EA] dark:hover:bg-[#22262F] cursor-pointer"
+              onClick={handlePrevImage}
+              aria-label="Previous image"
+              className="absolute left-2.5 top-1/2 -translate-y-1/2 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-gray-800 shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-white dark:bg-gray-800/90 dark:text-white dark:hover:bg-gray-800"
             >
-              <Eye size={16} strokeWidth={1.75} />
-              <span>View</span>
+              <ChevronLeft size={16} />
             </button>
-
             <button
               type="button"
-              onClick={() => onEdit?.(product)}
-              className="flex items-center gap-1.5 rounded-xl bg-[#EFF2F6] px-3.5 py-2 text-xs font-medium text-gray-700 transition-colors hover:bg-gray-200 dark:bg-[#181B22] dark:text-[#F5F1EA] dark:hover:bg-[#22262F] cursor-pointer"
+              onClick={handleNextImage}
+              aria-label="Next image"
+              className="absolute right-2.5 top-1/2 -translate-y-1/2 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-gray-800 shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-200 hover:bg-white dark:bg-gray-800/90 dark:text-white dark:hover:bg-gray-800"
             >
-              <Pencil size={16} strokeWidth={1.75} />
-              <span>Edit</span>
+              <ChevronRight size={16} />
             </button>
 
-            <button
-              type="button"
-              onClick={() => onQuickEdit?.(product)}
-              className="flex items-center gap-1.5 rounded-xl bg-[#EFF2F6] px-3.5 py-2 text-xs font-medium text-gray-700 transition-colors hover:bg-gray-200 dark:bg-[#181B22] dark:text-[#F5F1EA] dark:hover:bg-[#22262F] cursor-pointer"
-            >
-              <SlidersHorizontal size={16} strokeWidth={1.75} />
-              <span>Quick Edit</span>
-            </button>
+            {/* Dots */}
+            <div className="absolute bottom-2.5 left-1/2 -translate-x-1/2 z-10 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+              {imageList.map((_, idx) => (
+                <span
+                  key={idx}
+                  className={`h-1.5 rounded-full transition-all duration-200 ${
+                    idx === activeImageIndex
+                      ? "w-4 bg-white shadow-xs"
+                      : "w-1.5 bg-white/60"
+                  }`}
+                />
+              ))}
+            </div>
+          </>
+        )}
+      </div>
+
+      {/* Card Content Body */}
+      <div className="flex flex-1 flex-col justify-between p-6 gap-4">
+        <div className="space-y-2">
+          {/* Category & Brand */}
+          <div className="flex items-center justify-between gap-2">
+            <span className="text-xs font-bold uppercase tracking-wider text-[#8E4726] dark:text-brand-300 line-clamp-1">
+              {categoryName || "ELECTRONICS"}
+            </span>
+            {brandName && (
+              <span className="text-sm font-medium text-gray-400 dark:text-gray-400 line-clamp-1">
+                {brandName}
+              </span>
+            )}
           </div>
+
+          {/* Title */}
+          <h3
+            className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-brand-50 line-clamp-1 group-hover:text-brand-500 dark:group-hover:text-brand-300 transition-colors"
+            title={name}
+          >
+            {name}
+          </h3>
+
+          {/* Short Description */}
+          {(shortDescription || description) && (
+            <p className="text-sm text-gray-500 dark:text-gray-400 line-clamp-2 leading-relaxed">
+              {shortDescription || description}
+            </p>
+          )}
+
+          {/* Price & Discount */}
+          <div className="flex items-baseline gap-2.5 pt-1">
+            <span className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-brand-50">
+              ${price}
+            </span>
+            {discountPrice != null && discountPrice > 0 && (
+              <span className="text-sm font-semibold text-[#34A853]">
+                -${discountPrice} off
+              </span>
+            )}
+          </div>
+
+          {/* Tags */}
+          {visibleTags.length > 0 && (
+            <div className="flex flex-wrap gap-2 pt-1">
+              {visibleTags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-md bg-[#F1F5F9] px-3 py-1 text-xs font-medium text-gray-700 dark:bg-brand-900/40 dark:text-brand-200"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+
+        {/* Action Buttons Toolbar */}
+        <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-gray-100 dark:border-brand-900/40">
+          <button
+            type="button"
+            onClick={() => onView?.(product)}
+            className="flex items-center gap-1.5 rounded-lg bg-[#F1F5F9] px-3.5 py-2 text-xs font-semibold text-gray-800 hover:bg-slate-200 dark:bg-brand-900/40 dark:text-brand-100 dark:hover:bg-brand-900/70 transition-colors cursor-pointer"
+          >
+            <Eye size={15} />
+            <span>View</span>
+          </button>
 
           <button
             type="button"
-            onClick={handleDeleteClick}
-            className="flex items-center gap-1.5 rounded-xl border border-rose-400 bg-white px-4 py-2 text-xs font-medium text-rose-600 transition-colors hover:bg-rose-50 dark:border-[rgba(248,113,113,0.24)] dark:bg-transparent dark:text-[#F87171] dark:hover:bg-[rgba(248,113,113,0.10)] cursor-pointer"
+            onClick={() => onEdit?.(product)}
+            className="flex items-center gap-1.5 rounded-lg bg-[#F1F5F9] px-3.5 py-2 text-xs font-semibold text-gray-800 hover:bg-slate-200 dark:bg-brand-900/40 dark:text-brand-100 dark:hover:bg-brand-900/70 transition-colors cursor-pointer"
           >
-            <Trash2 size={16} strokeWidth={1.75} />
+            <Pencil size={15} />
+            <span>Edit</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => onQuickEdit?.(product)}
+            className="flex items-center gap-1.5 rounded-lg bg-[#F1F5F9] px-3.5 py-2 text-xs font-semibold text-gray-800 hover:bg-slate-200 dark:bg-brand-900/40 dark:text-brand-100 dark:hover:bg-brand-900/70 transition-colors cursor-pointer"
+          >
+            <SlidersHorizontal size={15} />
+            <span>Quick Edit</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => onDelete?.(product)}
+            className="ml-auto flex items-center gap-1.5 rounded-lg border border-[#E54335] px-3.5 py-2 text-xs font-semibold text-[#E54335] hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors cursor-pointer"
+          >
+            <Trash2 size={15} />
             <span>Delete</span>
           </button>
         </div>
@@ -175,3 +220,4 @@ const ProductCard = ({
 };
 
 export default ProductCard;
+

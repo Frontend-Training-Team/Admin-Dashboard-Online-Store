@@ -77,7 +77,7 @@ function EditUserModal({ isOpen, user, onClose, onUserUpdated }) {
         {/* Header */}
         <div className="flex items-center justify-between border-b border-gray-100 dark:border-[#262B34] px-6 py-4">
           <div className="flex items-center gap-3">
-            <div className="rounded-xl bg-blue-500 p-2 text-white shadow-sm">
+            <div className="rounded-xl bg-[#8F4F28] p-2 text-white shadow-sm">
               <Pencil size={18} />
             </div>
             <div>
@@ -178,7 +178,7 @@ function EditUserModal({ isOpen, user, onClose, onUserUpdated }) {
             <button
               type="submit"
               disabled={loading}
-              className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-blue-500 hover:bg-blue-600 text-sm font-semibold text-white shadow-sm transition disabled:opacity-60 active:scale-95"
+              className="flex items-center gap-2 px-6 py-2.5 rounded-xl bg-[#8F4F28] hover:bg-[#A36037]  dark:hover:bg-[#A8653F] text-sm font-semibold text-white shadow-sm transition disabled:opacity-60 active:scale-95"
             >
               {loading ? (
                 <>

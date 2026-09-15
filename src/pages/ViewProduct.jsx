@@ -82,7 +82,7 @@ const ViewProduct = () => {
 
     return (
         <div className="space-y-6">
-            {/* زر الرجوع للخلف */}
+
             <button
                 type="button"
                 onClick={() => navigate("/products")}
