@@ -50,7 +50,8 @@ const ViewProduct = () => {
 
     if (error || !product) {
         return (
-            <div className="p-8 text-center rounded-2xl border border-brand-200/60 dark:border-white/[0.06] bg-white dark:bg-[#12141A]">
+            <div className="p-8 text-center rounded-2xl border border-brand-200/60 dark:border-white/[0.06]
+            bg-white dark:bg-[#12141A]">
                 <p className="text-rose-500 font-medium mb-4">{error || "Product not found."}</p>
                 <button
                     onClick={() => navigate("/products")}

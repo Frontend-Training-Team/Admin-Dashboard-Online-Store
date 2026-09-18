@@ -1,8 +1,8 @@
 import UserRow from './UserRow';
 import { Users, SearchX } from 'lucide-react';
 
-function UserTable({ users, loading, onEdit, onToggleRole, onDelete, togglingUserId, searchQuery, onClearSearch,}) {
-  
+function UserTable({ users, loading, onEdit, onToggleRole, onDelete, togglingUserId, searchQuery, onClearSearch, }) {
+
   return (
     <div className="overflow-hidden rounded-2xl border border-gray-100 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-[#12141A] shadow-sm">
       <div className="overflow-x-auto">
@@ -10,16 +10,16 @@ function UserTable({ users, loading, onEdit, onToggleRole, onDelete, togglingUse
           {/* Table Header matching Figma (#FFEFDD in light, #1E2435 in dark) */}
           <thead className="bg-[#FFEFDD] dark:bg-[#181B22] border-b border-transparent dark:border-[#262B34]">
             <tr>
-              <th className="px-6 py-4 text-xs sm:text-[13px] font-semibold text-gray-700 dark:text-[#8A8378] uppercase tracking-wider">
+              <th className="px-6 py-4 text-xs sm:text-sm font-semibold text-gray-700 dark:text-[#8A8378] uppercase tracking-wider">
                 User
               </th>
-              <th className="px-6 py-4 text-xs sm:text-[13px] font-semibold text-gray-700 dark:text-[#8A8378] uppercase tracking-wider">
+              <th className="px-6 py-4 text-xs sm:text-sm font-semibold text-gray-700 dark:text-[#8A8378] uppercase tracking-wider">
                 Role
               </th>
-              <th className="px-6 py-4 text-xs sm:text-[13px] font-semibold text-gray-700 dark:text-[#8A8378] uppercase tracking-wider">
+              <th className="px-6 py-4 text-xs sm:text-sm font-semibold text-gray-700 dark:text-[#8A8378] uppercase tracking-wider">
                 Verified
               </th>
-              <th className="px-6 py-4 text-xs sm:text-[13px] font-semibold text-gray-700 dark:text-[#8A8378] uppercase tracking-wider">
+              <th className="px-6 py-4 text-xs sm:text-sm font-semibold text-gray-700 dark:text-[#8A8378] uppercase tracking-wider">
                 Actions
               </th>
             </tr>
@@ -29,7 +29,7 @@ function UserTable({ users, loading, onEdit, onToggleRole, onDelete, togglingUse
             {/* Loading Skeleton */}
             {loading ? (
               Array.from({ length: 5 }).map((_, index) => (
-                <tr key={index} className="animate-pulse">
+                <tr key={index} className="animate-pulse dark:bg-[#1E2435]">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3.5">
                       <div className="h-10 w-10 sm:h-11 sm:w-11 rounded-full bg-gray-200/70 dark:bg-[#181B22]" />

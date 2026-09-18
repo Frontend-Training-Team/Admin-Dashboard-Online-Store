@@ -26,24 +26,8 @@ const ProductsContent = () => {
   const [deletingProduct, setDeletingProduct] = useState(null);
   const [isDeleting, setIsDeleting] = useState(false);
 
-  const {
-    products,
-    loading,
-    error,
-    stats,
-    page,
-    totalPages,
-    setPage,
-    status,
-    category,
-    subcategory,
-    applySearch,
-    applyCategory,
-    applySubcategory,
-    applyStatus,
-    removeProduct,
-    refetch,
-  } = useProductsState();
+  const { products, loading, error, stats, page, totalPages, setPage, status, category, subcategory, applySearch,
+    applyCategory, applySubcategory, applyStatus, removeProduct, refetch, } = useProductsState();
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
@@ -212,11 +196,10 @@ const ProductsContent = () => {
             key={opt.key}
             type="button"
             onClick={() => applyStatus(opt.key)}
-            className={`rounded-xl px-4 py-2 text-xs sm:text-sm font-medium transition-all cursor-pointer ${
-              status === opt.key
-                ? "bg-brand-900 text-white dark:bg-[#2A1B12] dark:text-[#F0CDAF] dark:border dark:border-[#C98156]"
-                : "bg-brand-100/70 text-brand-700 hover:bg-brand-100 dark:bg-[#181B22] dark:text-[#8A8378] dark:hover:bg-[#22262F] dark:hover:text-[#F5F1EA]"
-            }`}
+            className={`rounded-xl px-4 py-2 text-xs sm:text-sm font-medium transition-all cursor-pointer ${status === opt.key
+              ? "bg-brand-900 text-white dark:bg-[#2A1B12] dark:text-[#F0CDAF] dark:border dark:border-[#C98156]"
+              : "bg-brand-100/70 text-brand-700 hover:bg-brand-100 dark:bg-[#181B22] dark:text-[#8A8378] dark:hover:bg-[#22262F] dark:hover:text-[#F5F1EA]"
+              }`}
           >
             {opt.label}
           </button>

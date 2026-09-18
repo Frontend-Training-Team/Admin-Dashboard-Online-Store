@@ -1,6 +1,7 @@
-function UserStatCard({ title, value, icon,className = "" }) {
+function UserStatCard({ title, value, icon, className = "" }) {
   return (
-    <div className="flex items-center justify-between p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#12141A] border border-gray-100/80 dark:border-[rgba(255,255,255,0.06)] shadow-xs transition-all hover:shadow-md">
+    <div className="flex items-center justify-between p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#12141A]
+    border border-gray-100/80 dark:border-[rgba(255,255,255,0.06)] shadow-xs transition-all hover:shadow-md">
       {/* Left side: Label + Value */}
       <div className="min-w-0 pr-3">
         <p className={`text-xs sm:text-[14px] font-medium font-Inter text-[#8E4726] dark:text-[#A8653F] uppercase tracking-wider truncate ${className}`}>

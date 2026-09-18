@@ -104,7 +104,7 @@ function OrderDetailsDrawer({ order, isOpen, onClose, onOrderUpdated }) {
       {/* Slide-over Drawer Panel */}
       <div className="fixed inset-y-0 right-0 flex max-w-full pl-6 sm:pl-10">
         <div className="w-screen max-w-md sm:max-w-lg bg-white dark:bg-[#1F232B] text-gray-900 dark:text-[#F5F1EA] shadow-2xl flex flex-col border-l border-gray-100 dark:border-[#262B34]">
-          
+
           {/* Top Header */}
           <div className="p-6 border-b border-gray-100 dark:border-[#262B34] flex items-center justify-between shrink-0">
             <div>
@@ -124,20 +124,19 @@ function OrderDetailsDrawer({ order, isOpen, onClose, onOrderUpdated }) {
             >
               <X size={20} />
             </button>
-          </div>
+          </div >
 
           {/* Scrollable Content */}
-          <div className="flex-1 overflow-y-auto p-6 space-y-6">
-            
+          < div className="flex-1 overflow-y-auto p-6 space-y-6" >
+
             {/* Status & Payment Row */}
-            <div className="flex items-center justify-between flex-wrap gap-2.5 pb-2">
+            <div div className="flex items-center justify-between flex-wrap gap-2.5 pb-2" >
               <div className="flex items-center gap-2">
                 <OrderStatusBadge status={order.status} />
-                <span className={`px-2.5 py-1 rounded-full text-xs font-semibold uppercase ${
-                  paymentStatus === 'PAID'
-                    ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-[rgba(74,222,155,0.10)] dark:text-[#4ADE9B] dark:border-[rgba(74,222,155,0.24)]'
-                    : 'bg-amber-50 text-amber-700 border border-amber-200 dark:bg-[rgba(245,181,68,0.10)] dark:text-[#F5B544] dark:border-[rgba(245,181,68,0.24)]'
-                }`}>
+                <span className={`px-2.5 py-1 rounded-full text-xs font-semibold uppercase ${paymentStatus === 'PAID'
+                  ? 'bg-emerald-50 text-emerald-700 border border-emerald-200 dark:bg-[rgba(74,222,155,0.10)] dark:text-[#4ADE9B] dark:border-[rgba(74,222,155,0.24)]'
+                  : 'bg-amber-50 text-amber-700 border border-amber-200 dark:bg-[rgba(245,181,68,0.10)] dark:text-[#F5B544] dark:border-[rgba(245,181,68,0.24)]'
+                  }`}>
                   {paymentStatus}
                 </span>
               </div>
@@ -148,7 +147,7 @@ function OrderDetailsDrawer({ order, isOpen, onClose, onOrderUpdated }) {
             </div>
 
             {/* Info Card */}
-            <div>
+            < div >
               <p className="text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-[#8A8378] mb-2.5">
                 INFO
               </p>
@@ -190,10 +189,10 @@ function OrderDetailsDrawer({ order, isOpen, onClose, onOrderUpdated }) {
                   </span>
                 </div>
               </div>
-            </div>
+            </div >
 
             {/* Items Section */}
-            <div>
+            <div div >
               <p className="text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-[#8A8378] mb-2.5">
                 ITEMS ({order.items?.length || 0})
               </p>
@@ -235,10 +234,10 @@ function OrderDetailsDrawer({ order, isOpen, onClose, onOrderUpdated }) {
                   <p className="text-xs text-gray-400 p-4 text-center">No items recorded in this order.</p>
                 )}
               </div>
-            </div>
+            </div >
 
             {/* Financials Card */}
-            <div>
+            <div div >
               <p className="text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-[#8A8378] mb-2.5">
                 FINANCIALS
               </p>
@@ -270,10 +269,10 @@ function OrderDetailsDrawer({ order, isOpen, onClose, onOrderUpdated }) {
                   <span className="text-lg text-[#A05A32] dark:text-[#D9875A]">{formatEGP(order.totalPrice)}</span>
                 </div>
               </div>
-            </div>
+            </div >
 
             {/* Update Status Section */}
-            <div>
+            <div div >
               <p className="text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-[#8A8378] mb-2.5">
                 UPDATE STATUS
               </p>
@@ -326,10 +325,10 @@ function OrderDetailsDrawer({ order, isOpen, onClose, onOrderUpdated }) {
               </div>
             </div>
 
-          </div>
-        </div>
-      </div>
-    </div>
+          </div >
+        </div >
+      </div >
+    </div >
   );
 }
 

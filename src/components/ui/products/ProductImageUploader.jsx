@@ -20,7 +20,8 @@ function ProductImageUploader({ images, onChange, markedKeys, onToggleMark, disp
   return (
     <div className="flex flex-col gap-3">
       {images.length === 0 ? (
-        <div className="w-48 border border-dashed border-brand-200 dark:border-white/[0.08] rounded-xl overflow-hidden bg-brand-50/20 dark:bg-[#181B22]">
+        <div className="w-48 border border-dashed border-brand-200 dark:border-white/[0.08] rounded-xl
+        overflow-hidden bg-brand-50/20 dark:bg-[#181B22]">
           <img
             src={placeholderImage}
             alt="No images uploaded yet"
@@ -74,11 +75,12 @@ function ProductImageUploader({ images, onChange, markedKeys, onToggleMark, disp
                 key={key}
                 type="button"
                 onClick={() => onToggleMark(key)}
-                className={`flex items-center justify-center gap-1 text-xs border rounded-full px-3 py-1 cursor-pointer transition ${
-                  marked
+                className={`flex items-center justify-center gap-1 text-xs border rounded-full px-3 py-1
+                  cursor-pointer transition
+                  ${marked
                     ? "border-rose-500 text-rose-500 bg-rose-500/10"
                     : "border-brand-200 dark:border-white/[0.08] text-brand-600 dark:text-[#8A8378]"
-                }`}
+                  }`}
               >
                 <X size={12} />
                 Remove

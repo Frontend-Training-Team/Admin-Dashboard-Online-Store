@@ -55,7 +55,7 @@ function DeleteProductModal({ isOpen, product, onClose, onConfirm, loading }) {
                 <span className="text-gray-700 dark:text-slate-300">
                   {[categoryName, priceDisplay].filter(Boolean).join(' • ')}
                 </span>
-              )</>
+                )</>
             ) : null}?
             This action cannot be undone.
           </p>

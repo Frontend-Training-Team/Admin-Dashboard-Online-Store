@@ -2,7 +2,7 @@ function OrderStatusCard({ label, count, textColor, bgStyle }) {
   return (
     <div className={`p-3.5 sm:p-5 rounded-xl text-left border ${bgStyle}`}>
 
-      <p className={`text-xs sm:text-[14px] font-light ${textColor} dark:text-[#8A8378] tracking-wider truncate`}>
+      <p className={`text-xs sm:text-sm font-light ${textColor} dark:text-[#8A8378] tracking-wider truncate`}>
         {label}
       </p> 
 

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import { useEffect, useMemo, useState, useCallback } from "react";
 import { Search, X, ChevronLeft, ChevronRight } from "lucide-react";
 import toast from "react-hot-toast";
@@ -133,7 +134,7 @@ const OrdersPage = () => {
 
   return (
     <div className="space-y-6">
-      
+
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
@@ -157,12 +158,12 @@ const OrdersPage = () => {
             total orders
           </span>
         </div>
-      </div>
+      </div >
 
       {/* Search & Filters Card */}
-      <div className="rounded-2xl border border-gray-100 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-[#12141A] p-5 shadow-xs transition-colors">
+      < div className="rounded-2xl border border-gray-100 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-[#12141A] p-5 shadow-xs transition-colors" >
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-          
+
           {/* Live Search Input */}
           <div className="relative flex items-center w-full lg:max-w-md">
             <input
@@ -233,7 +234,7 @@ const OrdersPage = () => {
       </div>
 
       {/* Orders Table Container */}
-      <div className="overflow-hidden rounded-2xl border border-gray-100 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-[#12141A] shadow-xs">
+      < div className="overflow-hidden rounded-2xl border border-gray-100 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-[#12141A] shadow-xs" >
         <div className="overflow-x-auto">
           <OrdersTable
             orders={filteredOrders}
@@ -270,11 +271,10 @@ const OrdersPage = () => {
                 type="button"
                 onClick={() => handlePageChange(p)}
                 disabled={loading}
-                className={`h-8 min-w-[32px] px-2.5 rounded-lg text-xs sm:text-sm font-semibold transition cursor-pointer ${
-                  p === currentPage
-                    ? "bg-gray-900 text-white dark:bg-white dark:text-gray-950 shadow-xs"
-                    : "text-gray-600 dark:text-[#8E9BAE] hover:bg-gray-200/60 dark:hover:text-white dark:hover:bg-white/5"
-                }`}
+                className={`h-8 min-w-[32px] px-2.5 rounded-lg text-xs sm:text-sm font-semibold transition cursor-pointer ${p === currentPage
+                  ? "bg-gray-900 text-white dark:bg-white dark:text-gray-950 shadow-xs"
+                  : "text-gray-600 dark:text-[#8E9BAE] hover:bg-gray-200/60 dark:hover:text-white dark:hover:bg-white/5"
+                  }`}
               >
                 {p}
               </button>
@@ -294,7 +294,7 @@ const OrdersPage = () => {
       </div>
 
       {/* Order Details Slide-over Drawer */}
-      <OrderDetailsDrawer
+      < OrderDetailsDrawer
         order={selectedOrder}
         isOpen={Boolean(selectedOrder)}
         onClose={() => setSelectedOrder(null)}

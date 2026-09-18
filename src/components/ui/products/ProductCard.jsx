@@ -25,7 +25,7 @@ const ProductCard = ({ product = {}, onView, onQuickEdit, onEdit, onDelete }) =>
   const productId = _id || id;
   const isProductFeatured = Boolean(featured === true || isFeatured === true || tags.includes("featured"));
   const inStock = stock > 0;
-  
+
   // Format category & brand labels
   const categoryName = typeof category === "object" ? category?.name : category;
   const brandName = typeof brand === "object" ? brand?.name : brand;
@@ -34,8 +34,8 @@ const ProductCard = ({ product = {}, onView, onQuickEdit, onEdit, onDelete }) =>
   const imageList = Array.isArray(images) && images.length > 0
     ? images.map((img) => (typeof img === "string" ? img : img?.url)).filter(Boolean)
     : singleImage
-    ? [singleImage]
-    : [];
+      ? [singleImage]
+      : [];
 
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
@@ -107,11 +107,10 @@ const ProductCard = ({ product = {}, onView, onQuickEdit, onEdit, onDelete }) =>
               {imageList.map((_, idx) => (
                 <span
                   key={idx}
-                  className={`h-1.5 rounded-full transition-all duration-200 ${
-                    idx === activeImageIndex
+                  className={`h-1.5 rounded-full transition-all duration-200 ${idx === activeImageIndex
                       ? "w-4 bg-white shadow-xs"
                       : "w-1.5 bg-white/60"
-                  }`}
+                    }`}
                 />
               ))}
             </div>
@@ -213,9 +212,9 @@ const ProductCard = ({ product = {}, onView, onQuickEdit, onEdit, onDelete }) =>
             <Trash2 size={15} />
             <span>Delete</span>
           </button>
-        </div>
-      </div>
-    </div>
+        </div >
+      </div >
+    </div >
   );
 };
 

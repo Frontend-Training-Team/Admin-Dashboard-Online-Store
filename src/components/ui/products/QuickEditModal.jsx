@@ -4,8 +4,10 @@ import { X } from "lucide-react";
 function QuickEditModal({ product, onClose, onSubmit }) {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/60 p-4 backdrop-blur-sm">
-      <div className="flex max-h-[calc(100vh-2rem)] w-full max-w-[1120px] flex-col overflow-hidden rounded-2xl bg-white dark:bg-[#181B22] border border-brand-200/60 dark:border-white/[0.08] shadow-2xl">
-        <div className="flex shrink-0 items-center justify-between border-b border-brand-200/60 dark:border-white/[0.06] px-6 py-4">
+      <div className="flex max-h-[calc(100vh-2rem)] w-full max-w-[1120px] flex-col overflow-hidden rounded-2xl
+      bg-white dark:bg-[#181B22] border border-brand-200/60 dark:border-white/[0.08] shadow-2xl">
+        <div className="flex shrink-0 items-center justify-between border-b border-brand-200/60
+        dark:border-white/[0.06] px-6 py-4">
           <div>
             <span className="text-xs font-semibold tracking-wider text-[#C98156] uppercase">Quick Edit</span>
             <h2 className="text-xl font-serif font-bold text-brand-950 dark:text-[#F5F1EA]">

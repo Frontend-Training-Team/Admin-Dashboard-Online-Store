@@ -11,7 +11,8 @@ function ProductTagsInput({ tags, onChange, compact = false }) {
   };
 
   return (
-    <div className={`border border-brand-200 dark:border-white/[0.08] rounded-xl bg-white dark:bg-[#181B22] ${compact ? "p-3" : "p-4"}`}>
+    <div className={`border border-brand-200 dark:border-white/[0.08] rounded-xl bg-white
+    dark:bg-[#181B22] ${compact ? "p-3" : "p-4"}`}>
       <p className="text-xs font-semibold text-brand-900 dark:text-[#B9B2A8] mb-2">Tags</p>
 
       <div className="flex gap-2">

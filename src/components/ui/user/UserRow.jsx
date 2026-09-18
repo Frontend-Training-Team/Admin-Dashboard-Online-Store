@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { SquarePen, UserShield , Trash2, Check, X, Loader2 } from 'lucide-react';
+import { SquarePen, UserShield, Trash2, Check, X, Loader2 } from 'lucide-react';
 import defaultAvatar from '../../../assets/images/Guest.jpg';
 
 function UserRow({ user, onEdit, onToggleRole, onDelete, isToggling }) {
@@ -33,11 +33,10 @@ function UserRow({ user, onEdit, onToggleRole, onDelete, isToggling }) {
       {/* Role */}
       <td className="px-6 py-3.5 sm:py-4">
         <span
-          className={`font-semibold text-sm ${
-            isAdmin
+          className={`font-semibold text-sm ${isAdmin
               ? 'text-[#F06A5D] dark:text-[#F87171]'
               : 'text-gray-900 dark:text-white'
-          }`}
+            }`}
         >
           {isAdmin ? 'Admin' : 'Customer'}
         </span>

@@ -8,8 +8,6 @@ import BestSellerItem from '../components/ui/dashboard/BestSellerItem';
 import RecentOrderItem from '../components/ui/dashboard/RecentOrderItem';
 import StatCardSkeleton from '../components/ui/skeletons/StatCardSkeleton';
 import ProductCardSkeleton from '../components/ui/skeletons/ProductCardSkeleton';
-// import SkeletonLine from '../components/ui/skeletons/SkeletonLine';
-// import SkeletonBlock from '../components/ui/skeletons/SkeletonBlock';
 
 export default function DashboardPage() {
   const [data, setData] = useState({});
@@ -192,17 +190,18 @@ export default function DashboardPage() {
         </div>
       ) : (
         <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-surface-cardLight dark:bg-[#12141A] shadow-sm">
-          <span className="text-[14px] font-Regular tracking-widest text-brand-500 dark:text-[#C98156] uppercase">
+          <span className="text-sm font-Regular tracking-widest text-brand-500 dark:text-[#C98156] uppercase">
             ADMIN OVERVIEW
           </span>
           <h1 className="text-3xl font-bold text-black dark:text-[#F5F1EA] mt-1">
             Real-time Store Health
           </h1>
-          <p className="text-[14px] text-gray-400 dark:text-[#B9B2A8] mt-1">
+          <p className="text-sm text-gray-400 dark:text-[#B9B2A8] mt-1">
             Monitor your storefront with live API metrics.
           </p>
         </div>
-      )}
+      )
+      }
 
       {/* Top Stat Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -237,7 +236,7 @@ export default function DashboardPage() {
         ) : (
           <div className="flex items-center justify-between mb-4">
             <div>
-              <span className="text-[14px] font-Regular tracking-widest text-brand-500 dark:text-[#C98156] uppercase">
+              <span className="text-sm font-Regular tracking-widest text-brand-500 dark:text-[#C98156] uppercase">
                 ORDER STATUS
               </span>
               <h2 className="text-2xl font-bold text-brand-900 dark:text-[#F5F1EA]">
@@ -247,7 +246,7 @@ export default function DashboardPage() {
             <span className="block text-[11px] px-4 py-1.5 rounded-full font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 dark:bg-[rgba(74,222,155,0.10)] dark:text-[#4ADE9B] dark:border-[rgba(74,222,155,0.24)]">
               Updated from API
             </span>
-          </div>
+          </div >
         )}
 
         <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-6 gap-3">
@@ -271,28 +270,29 @@ export default function DashboardPage() {
             </>
           )}
         </div>
-      </div>
+      </div >
 
       {/* Top Products & Recent Activity Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      < div className="grid grid-cols-1 lg:grid-cols-2 gap-6" >
 
         {/* Best Sellers */}
         <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-surface-cardLight dark:bg-[#12141A] shadow-sm">
-          {isLoading ? (
-            <div className="space-y-2 mb-4 animate-pulse">
-              <div className="h-3.5 w-28 bg-gray-200 dark:bg-[#181B22] rounded"></div>
-              <div className="h-7 w-48 bg-gray-200 dark:bg-[#181B22] rounded"></div>
-            </div>
-          ) : (
-            <div className="mb-4">
-              <span className="text-[14px] font-Regular tracking-widest text-brand-500 dark:text-[#C98156] uppercase">
-                TOP PRODUCTS
-              </span>
-              <h2 className="text-2xl font-bold text-brand-900 dark:text-[#F5F1EA]">
-                Best Sellers
-              </h2>
-            </div>
-          )}
+          {
+            isLoading ? (
+              <div className="space-y-2 mb-4 animate-pulse" >
+                <div className="h-3.5 w-28 bg-gray-200 dark:bg-[#181B22] rounded"></div>
+                <div className="h-7 w-48 bg-gray-200 dark:bg-[#181B22] rounded"></div>
+              </div>
+            ) : (
+              <div className="mb-4">
+                <span className="text-sm font-Regular tracking-widest text-brand-500 dark:text-[#C98156] uppercase">
+                  TOP PRODUCTS
+                </span>
+                <h2 className="text-2xl font-bold text-brand-900 dark:text-[#F5F1EA]">
+                  Best Sellers
+                </h2>
+              </div>
+            )}
 
           <div className="space-y-3">
             {isLoading ? (
@@ -313,25 +313,26 @@ export default function DashboardPage() {
               </>
             )}
           </div>
-        </div>
+        </div >
 
         {/* Recent Orders */}
         <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-surface-cardLight dark:bg-[#12141A] shadow-sm">
-          {isLoading ? (
-            <div className="space-y-2 mb-4 animate-pulse">
-              <div className="h-3.5 w-28 bg-gray-200 dark:bg-[#181B22] rounded"></div>
-              <div className="h-7 w-64 bg-gray-200 dark:bg-[#181B22] rounded"></div>
-            </div>
-          ) : (
-            <div className="mb-4">
-              <span className="text-[14px] font-Regular tracking-widest text-brand-500 dark:text-[#C98156] uppercase">
-                RECENT ORDERS
-              </span>
-              <h2 className="text-2xl font-bold text-brand-900 dark:text-[#F5F1EA]">
-                Latest Customer Activity
-              </h2>
-            </div>
-          )}
+          {
+            isLoading ? (
+              <div className="space-y-2 mb-4 animate-pulse" >
+                <div className="h-3.5 w-28 bg-gray-200 dark:bg-[#181B22] rounded"></div>
+                <div className="h-7 w-64 bg-gray-200 dark:bg-[#181B22] rounded"></div>
+              </div>
+            ) : (
+              <div className="mb-4">
+                <span className="text-sm font-Regular tracking-widest text-brand-500 dark:text-[#C98156] uppercase">
+                  RECENT ORDERS
+                </span>
+                <h2 className="text-2xl font-bold text-brand-900 dark:text-[#F5F1EA]">
+                  Latest Customer Activity
+                </h2>
+              </div>
+            )}
 
           <div className="space-y-3">
             {isLoading ? (
@@ -352,9 +353,9 @@ export default function DashboardPage() {
               </>
             )}
           </div>
-        </div>
-      </div>
+        </div >
+      </div >
 
-    </div>
+    </div >
   );
 }

@@ -8,7 +8,9 @@ export default function Navbar({ onToggleSidebar }) {
   const { isDark, toggleTheme } = useDarkMode();
 
   return (
-    <header className="h-24 px-4 sm:px-8 flex items-center justify-between border-b border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-surface-cardLight dark:bg-[#12141A]/80 dark:backdrop-blur-md transition-colors">
+    <header className="h-24 px-4 sm:px-8 flex items-center justify-between border-b
+    border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-surface-cardLight
+    dark:bg-[#12141A]/80 dark:backdrop-blur-md transition-colors">
 
       <div className="flex items-center gap-2 sm:gap-6 min-w-0">
 
@@ -30,9 +32,9 @@ export default function Navbar({ onToggleSidebar }) {
           </h2>
 
           <p className="text-xs text-[#939393] dark:text-[#8A8378]">E-Commerce Admin Panel</p>
-        </div>
+        </div >
 
-      </div>
+      </div >
 
       <div className="flex items-center gap-2 sm:gap-3 pr-0 sm:pr-4 shrink-0">
 
@@ -55,6 +57,6 @@ export default function Navbar({ onToggleSidebar }) {
 
       </div>
 
-    </header>
+    </header >
   );
 }

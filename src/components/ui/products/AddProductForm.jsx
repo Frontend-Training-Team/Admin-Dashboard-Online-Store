@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import { useForm } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";

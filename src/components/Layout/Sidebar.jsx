@@ -26,14 +26,13 @@ function Sidebar({ isOpen, onClose }) {
       )}
 
       <aside
-        className={`w-64 h-screen shrink-0 p-5 flex flex-col justify-between border-r border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-surface-cardLight dark:bg-[#12141A] transition-transform duration-200 z-50 fixed inset-y-0 left-0 lg:static ${
-          isOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full lg:translate-x-0'
-        }`}
+        className={`w-64 h-screen shrink-0 p-5 flex flex-col justify-between border-r border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-surface-cardLight dark:bg-[#12141A] transition-transform duration-200 z-50 fixed inset-y-0 left-0 lg:static ${isOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full lg:translate-x-0'
+          }`}
       >
         <div>
           <div className="flex items-start justify-between mb-8 px-2">
             <div>
-              <span className="text-xs font-bold tracking-widest text-brand-500 uppercase">
+              <span className="text-xs font-bold tracking-widest text-[#E8B58F] uppercase">
                 COMMERCE
               </span>
               <h1 className="text-xl font-bold text-brand-900 dark:text-[#F5F1EA]">
@@ -57,7 +56,7 @@ function Sidebar({ isOpen, onClose }) {
                 to={item.path}
                 onClick={onClose}
                 className={({ isActive }) =>
-                  `w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-[18px] font-Inter
+                  `w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-lg font-Inter
                   font-medium transition-all duration-150 active:scale-90 hover:scale-105 
                 ${isActive
                     ? 'bg-brand-900 dark:bg-[#2A1B12] text-white dark:text-[#F0CDAF] dark:border-l-2 dark:border-[#C98156] shadow-sm'

@@ -124,7 +124,7 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
                   Fill in the details below to add a new user
                 </p>
               </div>
-            </div>
+            </div >
 
             <button
               type="button"
@@ -134,10 +134,10 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
             >
               <X size={20} />
             </button>
-          </div>
+          </div >
 
           {/* Form Content */}
-          <form onSubmit={handleSubmit} className="p-6 sm:p-8">
+          <form onSubmit={handleSubmit} className="p-6 sm:p-8" >
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {/* Username */}
               <div className="flex flex-col">
@@ -156,7 +156,7 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
                     }`}
                 />
                 {errors.username && (
-                  <p className="text-[12px] text-rose-500 dark:text-rose-400 mt-1.5 font-medium animate-fade-in">
+                  <p className="text-xs text-rose-500 dark:text-rose-400 mt-1.5 font-medium animate-fade-in">
                     {errors.username}
                   </p>
                 )}
@@ -179,7 +179,7 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
                     }`}
                 />
                 {errors.email && (
-                  <p className="text-[12px] text-rose-500 dark:text-rose-400 mt-1.5 font-medium animate-fade-in">
+                  <p className="text-xs text-rose-500 dark:text-rose-400 mt-1.5 font-medium animate-fade-in">
                     {errors.email}
                   </p>
                 )}
@@ -202,7 +202,7 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
                     }`}
                 />
                 {errors.password && (
-                  <p className="text-[12px] text-rose-500 dark:text-rose-400 mt-1.5 font-medium animate-fade-in">
+                  <p className="text-xs text-rose-500 dark:text-rose-400 mt-1.5 font-medium animate-fade-in">
                     {errors.password}
                   </p>
                 )}
@@ -225,7 +225,7 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
                     }`}
                 />
                 {errors.phone && (
-                  <p className="text-[12px] text-rose-500 dark:text-rose-400 mt-1.5 font-medium animate-fade-in">
+                  <p className="text-xs text-rose-500 dark:text-rose-400 mt-1.5 font-medium animate-fade-in">
                     {errors.phone}
                   </p>
                 )}
@@ -233,11 +233,13 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
             </div>
 
             {/* General API error if applicable */}
-            {errors.general && (
-              <div className="mt-4 p-3 rounded-xl bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900/40 text-xs font-medium text-rose-600 dark:text-rose-400">
-                {errors.general}
-              </div>
-            )}
+            {
+              errors.general && (
+                <div className="mt-4 p-3 rounded-xl bg-rose-50 dark:bg-rose-950/30 border border-rose-200 dark:border-rose-900/40 text-xs font-medium text-rose-600 dark:text-rose-400">
+                  {errors.general}
+                </div>
+              )
+            }
 
             {/* Footer actions */}
             <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-4 border-t border-gray-100 dark:border-[rgba(255,255,255,0.06)] pt-5">
@@ -274,9 +276,9 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
               </div>
             </div>
           </form>
-        </div>
-      </div>
-    </div>
+        </div >
+      </div >
+    </div >
   );
 }
 

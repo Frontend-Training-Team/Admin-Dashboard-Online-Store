@@ -120,10 +120,10 @@ export default function Users() {
       >
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <p className="text-[12px] font-semibold tracking-wider text-brand-500 dark:text-[#C98156] uppercase">
+            <p className="text-xs font-semibold tracking-wider text-brand-500 dark:text-[#C98156] uppercase">
               USER MANAGEMENT
             </p>
-            <h1 className="text-2xl sm:text-[28px] font-bold text-[#592309] dark:text-[#F5F1EA] mt-0.5 tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-bold text-[#592309] dark:text-[#F5F1EA] mt-0.5 tracking-tight">
               Manage Users
             </h1>
           </div>

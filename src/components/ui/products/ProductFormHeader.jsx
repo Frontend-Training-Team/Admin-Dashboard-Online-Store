@@ -9,13 +9,13 @@ function ProductFormHeader({ mode = "create" }) {
   const content =
     mode === "create"
       ? {
-          title: "Launch a polished product entry",
-          description: "Add products with validation, image previews, multi-upload support and smooth UX.",
-        }
+        title: "Launch a polished product entry",
+        description: "Add products with validation, image previews, multi-upload support and smooth UX.",
+      }
       : {
-          title: "Update and refine the product entry",
-          description: "Review the current product data, add new images, remove existing ones, and save your updates safely.",
-        };
+        title: "Update and refine the product entry",
+        description: "Review the current product data, add new images, remove existing ones, and save your updates safely.",
+      };
 
   return (
     <div

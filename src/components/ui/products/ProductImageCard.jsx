@@ -25,7 +25,8 @@ function ProductImageCard({ src, index, onRemove, marked, displayStyle = "instan
           <button
             type="button"
             onClick={onRemove}
-            className="absolute top-1.5 right-1.5 bg-white/90 dark:bg-[#1F232B]/90 hover:bg-white dark:hover:bg-[#1F232B] text-brand-700 dark:text-[#F5F1EA] rounded-full p-1 shadow cursor-pointer transition"
+            className="absolute top-1.5 right-1.5 bg-white/90 dark:bg-[#1F232B]/90 hover:bg-white
+            dark:hover:bg-[#1F232B] text-brand-700 dark:text-[#F5F1EA] rounded-full p-1 shadow cursor-pointer transition"
           >
             <X size={14} />
           </button>
@@ -35,11 +36,10 @@ function ProductImageCard({ src, index, onRemove, marked, displayStyle = "instan
           <button
             type="button"
             onClick={onToggleMark}
-            className={`absolute top-1.5 right-1.5 rounded-full p-1.5 shadow cursor-pointer transition ${
-              marked
+            className={`absolute top-1.5 right-1.5 rounded-full p-1.5 shadow cursor-pointer transition ${marked
                 ? "bg-rose-500 text-white"
                 : "bg-white/90 dark:bg-[#1F232B]/90 text-brand-600 dark:text-[#8A8378]"
-            }`}
+              }`}
           >
             <Trash2 size={14} />
           </button>

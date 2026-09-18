@@ -5,14 +5,14 @@ const OrdersTableRow = ({ order, onViewDetails }) => {
   const shortId = (order._id || order.id || '').slice(-8).toUpperCase();
   const customerName = order.user?.username || order.shippingAddress?.fullName || 'Customer';
   const customerEmail = order.user?.email || '';
-  
+
   // Format date helper
   const formattedDate = order.createdAt
     ? new Date(order.createdAt).toLocaleDateString('en-GB', {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric',
-      })
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+    })
     : order.date || 'N/A';
 
   // Format currency helper
@@ -70,11 +70,10 @@ const OrdersTableRow = ({ order, onViewDetails }) => {
           <span className="text-xs font-semibold text-gray-800 dark:text-gray-200">
             {paymentMethod}
           </span>
-          <span className={`text-[10px] font-bold uppercase tracking-wider ${
-            paymentStatus === 'PAID'
+          <span className={`text-[10px] font-bold uppercase tracking-wider ${paymentStatus === 'PAID'
               ? 'text-emerald-600 dark:text-[#4ADE9B]'
               : 'text-amber-600 dark:text-[#F5B544]'
-          }`}>
+            }`}>
             {paymentStatus}
           </span>
         </div>
