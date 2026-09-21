@@ -27,7 +27,7 @@ function ProductImageUploader({ images, onChange, markedKeys, onToggleMark, disp
             alt="No images uploaded yet"
             className="w-full h-36 object-cover"
           />
-          <span className="block text-center text-xs text-brand-500 dark:text-[#8A8378] p-2.5">
+          <span className="block text-center text-xs text-brand-500 dark:text-content-muted p-2.5">
             No image selected
           </span>
         </div>
@@ -48,13 +48,13 @@ function ProductImageUploader({ images, onChange, markedKeys, onToggleMark, disp
         </div>
       )}
 
-      <label className={`w-full flex flex-col items-center justify-center gap-2 border-2 border-dashed border-[#C98156]/40 hover:border-[#C98156] bg-copper-500/5 dark:bg-coal-700 dark:hover:bg-[#1F232B] rounded-2xl cursor-pointer transition-all ${compact ? "p-3" : "p-6"}`}>
+      <label className={`w-full flex flex-col items-center justify-center gap-2 border-2 border-dashed border-copper-500/40 hover:border-copper-500 bg-copper-500/5 dark:bg-coal-700 dark:hover:bg-coal-600 rounded-2xl cursor-pointer transition-all ${compact ? "p-3" : "p-6"}`}>
         <div className="flex flex-col items-center gap-1.5 text-center">
-          <div className="w-10 h-10 rounded-xl bg-copper-500/10 dark:bg-[#2A1B12] flex items-center justify-center text-copper-500">
+          <div className="w-10 h-10 rounded-xl bg-copper-500/10 dark:bg-copper-900 flex items-center justify-center text-copper-500">
             <ImagePlus size={20} />
           </div>
-          <span className="text-sm font-semibold text-brand-950 dark:text-[#F5F1EA]">Upload Images</span>
-          <span className="text-xs text-brand-500 dark:text-[#8A8378]">PNG, JPG, WEBP • multiple files supported</span>
+          <span className="text-sm font-semibold text-brand-950 dark:text-content-primary">Upload Images</span>
+          <span className="text-xs text-brand-500 dark:text-content-muted">PNG, JPG, WEBP • multiple files supported</span>
         </div>
         <input
           type="file"
@@ -79,7 +79,7 @@ function ProductImageUploader({ images, onChange, markedKeys, onToggleMark, disp
                   cursor-pointer transition
                   ${marked
                     ? "border-rose-500 text-rose-500 bg-rose-500/10"
-                    : "border-brand-200 dark:border-white/[0.08] text-brand-600 dark:text-[#8A8378]"
+                    : "border-brand-200 dark:border-white/[0.08] text-brand-600 dark:text-content-muted"
                   }`}
               >
                 <X size={12} />

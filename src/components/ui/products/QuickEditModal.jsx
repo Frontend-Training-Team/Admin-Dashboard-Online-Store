@@ -10,13 +10,13 @@ function QuickEditModal({ product, onClose, onSubmit }) {
         dark:border-white/[0.06] px-6 py-4">
           <div>
             <span className="text-xs font-semibold tracking-wider text-copper-500 uppercase">Quick Edit</span>
-            <h2 className="text-xl font-serif font-bold text-brand-950 dark:text-[#F5F1EA]">
+            <h2 className="text-xl font-serif font-bold text-brand-950 dark:text-content-primary">
               {product?.name || "Edit Product"}
             </h2>
           </div>
           <button
             onClick={onClose}
-            className="rounded-xl p-2 text-brand-500 hover:text-brand-900 hover:bg-brand-100 dark:text-[#8A8378] dark:hover:text-[#F5F1EA] dark:hover:bg-[#1F232B] transition cursor-pointer"
+            className="rounded-xl p-2 text-brand-500 hover:text-brand-900 hover:bg-brand-100 dark:text-content-muted dark:hover:text-content-primary dark:hover:bg-coal-600 transition cursor-pointer"
           >
             <X size={18} />
           </button>

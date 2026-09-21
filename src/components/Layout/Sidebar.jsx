@@ -3,7 +3,6 @@ import { House, Users, Package, PlusCircle, ClipboardList, ShoppingCart, Setting
 import { useAuth } from '../../context/AuthContext';
 
 
-
 function Sidebar({ isOpen, onClose }) {
   const { logout } = useAuth();
   const menuItems = [
@@ -26,16 +25,18 @@ function Sidebar({ isOpen, onClose }) {
       )}
 
       <aside
-        className={`w-64 h-screen shrink-0 p-5 flex flex-col justify-between border-r border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-surface-cardLight dark:bg-[#12141A] transition-transform duration-200 z-50 fixed inset-y-0 left-0 lg:static ${isOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full lg:translate-x-0'
+        className={`w-64 h-screen shrink-0 p-5 flex flex-col justify-between border-r border-brand-200/60 
+          dark:border-[rgba(255,255,255,0.06)] bg-surface-cardLight dark:bg-coal-800 transition-transform duration-200 z-50 
+          fixed inset-y-0 left-0 lg:static ${isOpen ? 'translate-x-0 shadow-2xl' : '-translate-x-full lg:translate-x-0'
           }`}
       >
         <div>
           <div className="flex items-start justify-between mb-8 px-2">
             <div>
-              <span className="text-xs font-bold tracking-widest text-[#E8B58F] uppercase">
+              <span className="text-xs font-bold tracking-widest text-copper-300 uppercase">
                 COMMERCE
               </span>
-              <h1 className="text-xl font-bold text-brand-900 dark:text-[#F5F1EA]">
+              <h1 className="text-xl font-bold text-brand-900 dark:text-content-primary">
                 Admin Panel
               </h1>
             </div>
@@ -43,7 +44,7 @@ function Sidebar({ isOpen, onClose }) {
             <button
               type="button"
               onClick={onClose}
-              className="p-1.5 rounded-lg text-brand-700 dark:text-[#8A8378] hover:bg-brand-100 dark:hover:bg-coal-500 dark:hover:text-[#F5F1EA] lg:hidden"
+              className="p-1.5 rounded-lg text-brand-700 dark:text-content-muted hover:bg-brand-100 dark:hover:bg-coal-500 dark:hover:text-content-primary lg:hidden"
             >
               <X size={20} />
             </button>
@@ -59,8 +60,8 @@ function Sidebar({ isOpen, onClose }) {
                   `w-full flex items-center gap-3 px-4 py-2.5 rounded-xl text-lg font-Inter
                   font-medium transition-all duration-150 active:scale-90 hover:scale-105 
                 ${isActive
-                    ? 'bg-brand-900 dark:bg-[#2A1B12] text-white dark:text-[#F0CDAF] dark:border-l-2 dark:border-[#C98156] shadow-sm'
-                    : 'text-brand-700 dark:text-[#8A8378] hover:bg-brand-100/70 dark:hover:bg-coal-500 dark:hover:text-[#F5F1EA]'
+                    ? 'bg-brand-900 dark:bg-copper-900 text-white dark:text-copper-200 dark:border-l-2 dark:border-copper-500 shadow-sm'
+                    : 'text-brand-700 dark:text-content-muted hover:bg-brand-100/70 dark:hover:bg-coal-500 dark:hover:text-content-primary'
                   }`
                 }
               >
@@ -75,7 +76,7 @@ function Sidebar({ isOpen, onClose }) {
           <button
             onClick={() => { logout(); }}
             className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl border border-rose-600 dark:border-[rgba(248,113,113,0.24)] active:scale-90
-            text-lg font-semibold text-red-500 dark:text-[#F87171] hover:bg-rose-600 hover:text-white dark:hover:bg-[rgba(248,113,113,0.10)] shadow-sm transition-all"
+            text-lg font-semibold text-red-500 dark:text-state-danger hover:bg-rose-600 hover:text-white dark:hover:bg-[rgba(248,113,113,0.10)] shadow-sm transition-all"
           >
             <LogOut size={16} />
             <span>Logout</span>

@@ -53,7 +53,7 @@ const ProductCard = ({ product = {}, onView, onQuickEdit, onEdit, onDelete }) =>
   const visibleTags = tags.filter((t) => t !== "featured").slice(0, MAX_TAGS);
 
   return (
-    <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200/80 bg-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl hover:border-gray-300 dark:border-brand-900/40 dark:bg-[#12141A] dark:hover:border-brand-700/60">
+    <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200/80 bg-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl hover:border-gray-300 dark:border-brand-900/40 dark:bg-coal-800 dark:hover:border-brand-700/60">
       {/* Image Container */}
       <div className="relative aspect-[500/348] w-full overflow-hidden bg-[#F8F7F4] dark:bg-brand-900/20">
         {currentImage ? (

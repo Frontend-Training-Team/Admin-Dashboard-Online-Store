@@ -25,7 +25,7 @@ const ProductGallery = ({ images = [], productName = 'Product' }) => {
               aria-pressed={selectedImage === index}
               className={`h-20 overflow-hidden rounded-xl border-2 transition-all cursor-pointer ${
                 selectedImage === index
-                  ? 'border-[#C98156] shadow-xs'
+                  ? 'border-copper-500 shadow-xs'
                   : 'border-transparent hover:border-brand-300 dark:hover:border-white/20'
               }`}
             >

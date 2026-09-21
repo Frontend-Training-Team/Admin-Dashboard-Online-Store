@@ -52,10 +52,10 @@ const OrdersTable = ({ orders = [], loading = false, onViewDetails, searchQuery 
                 <div className="rounded-2xl bg-[#FFEFDD] dark:bg-coal-700 p-4 text-[#A36037] mb-3">
                   {searchQuery ? <SearchX size={32} /> : <Package size={32} />}
                 </div>
-                <h4 className="text-base font-bold text-gray-900 dark:text-[#F5F1EA]">
+                <h4 className="text-base font-bold text-gray-900 dark:text-content-primary">
                   {searchQuery ? "No matching orders found" : "No orders recorded yet"}
                 </h4>
-                <p className="mt-1 text-xs text-gray-400 dark:text-[#8A8378]">
+                <p className="mt-1 text-xs text-gray-400 dark:text-content-muted">
                   {searchQuery
                     ? `No orders matched "${searchQuery}". Try a different keyword.`
                     : "When customers place orders, they will appear here in real-time."}
@@ -64,7 +64,8 @@ const OrdersTable = ({ orders = [], loading = false, onViewDetails, searchQuery 
                   <button
                     type="button"
                     onClick={onClearSearch}
-                    className="mt-4 px-4 py-2 text-xs font-semibold rounded-xl bg-[#A36037] hover:bg-[#8F4F28] text-white dark:bg-copper-500 dark:hover:bg-[#A8653F] dark:text-[#14100C] transition cursor-pointer"
+                    className="mt-4 px-4 py-2 text-xs font-semibold rounded-xl bg-[#A36037] hover:bg-[#8F4F28] text-white 
+                    dark:bg-copper-500 dark:hover:bg-copper-600 dark:text-content-inverse transition cursor-pointer"
                   >
                     Clear Search Filter
                   </button>

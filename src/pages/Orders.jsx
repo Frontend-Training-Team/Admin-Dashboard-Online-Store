@@ -18,7 +18,6 @@ const OrdersPage = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [totalOrders, setTotalOrders] = useState(0);
 
-  // Fetch orders from admin API with pagination & filters
   const fetchOrders = useCallback(
     async (page = 1, status = statusFilter, payment = paymentFilter) => {
       try {
@@ -55,33 +54,28 @@ const OrdersPage = () => {
     [statusFilter, paymentFilter]
   );
 
-  // Initial load
   useEffect(() => {
     fetchOrders(1, statusFilter, paymentFilter);
   }, []);
 
-  // Handle status filter change
   const handleStatusChange = (newStatus) => {
     setStatusFilter(newStatus);
     setCurrentPage(1);
     fetchOrders(1, newStatus, paymentFilter);
   };
 
-  // Handle payment filter change
   const handlePaymentChange = (newPayment) => {
     setPaymentFilter(newPayment);
     setCurrentPage(1);
     fetchOrders(1, statusFilter, newPayment);
   };
 
-  // Handle page change
   const handlePageChange = (newPage) => {
     if (newPage < 1 || newPage > totalPages || newPage === currentPage) return;
     setCurrentPage(newPage);
     fetchOrders(newPage, statusFilter, paymentFilter);
   };
 
-  // Update order in state when edited in drawer
   const handleOrderUpdated = (updatedOrder) => {
     if (!updatedOrder?._id) return;
     setOrders((prev) =>
@@ -92,7 +86,6 @@ const OrdersPage = () => {
     }
   };
 
-  // Search filter across current page items (by short ID, full ID, customer username, email, phone)
   const filteredOrders = useMemo(() => {
     if (!searchQuery.trim()) return orders;
 
@@ -118,7 +111,6 @@ const OrdersPage = () => {
     });
   }, [orders, searchQuery]);
 
-  // Dynamic pagination numbers window (up to 5 buttons, e.g. 1 2 3 4 5)
   const getPageNumbers = () => {
     const pages = [];
     let start = Math.max(1, currentPage - 2);
@@ -141,27 +133,27 @@ const OrdersPage = () => {
           <p className="text-xs font-semibold tracking-wider text-[#A05A32] dark:text-copper-500 uppercase">
             ORDER MANAGEMENT
           </p>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-[#F5F1EA] mt-1 tracking-tight">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-content-primary mt-1 tracking-tight">
             Orders
           </h1>
-          <p className="mt-1 text-xs sm:text-sm text-gray-500 dark:text-[#8A8378]">
+          <p className="mt-1 text-xs sm:text-sm text-gray-500 dark:text-content-muted">
             Track customer orders, manage payments, and update fulfillment in real time.
           </p>
         </div>
 
-        {/* Prominent Orders Count Badge (Matches Koda & screenshot) */}
-        <div className="self-start sm:self-auto flex items-center px-4 py-2.5 rounded-xl bg-gray-100/90 dark:bg-coal-700 border border-gray-200 dark:border-[rgba(255,255,255,0.06)] shadow-xs">
-          <span className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-[#F5F1EA] tracking-tight">
+        <div className="self-start sm:self-auto flex items-center px-4 py-2.5 rounded-xl bg-gray-100/90 dark:bg-coal-700 
+        border border-gray-200 dark:border-[rgba(255,255,255,0.06)] shadow-xs">
+          <span className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-content-primary tracking-tight">
             {totalOrders}
           </span>
-          <span className="ml-2.5 text-xs sm:text-sm font-medium text-gray-500 dark:text-[#8A8378]">
+          <span className="ml-2.5 text-xs sm:text-sm font-medium text-gray-500 dark:text-content-muted">
             total orders
           </span>
         </div>
       </div >
 
-      {/* Search & Filters Card */}
-      < div className="rounded-2xl border border-gray-100 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-[#12141A] p-5 shadow-xs transition-colors" >
+      < div className="rounded-2xl border border-gray-100 dark:border-[rgba(255,255,255,0.06)] bg-white 
+      dark:bg-coal-800 p-5 shadow-xs transition-colors" >
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
 
           {/* Live Search Input */}
@@ -171,7 +163,10 @@ const OrdersPage = () => {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search ID, customer, email..."
-              className="w-full h-11 rounded-xl border border-gray-200 dark:border-[#262B34] bg-gray-50/70 dark:bg-[#1F232B] pl-10 pr-9 text-sm text-gray-900 dark:text-[#F5F1EA] placeholder-gray-400 dark:placeholder-[#5C574F] outline-none transition focus:border-[#A05A32] dark:focus:border-[#C98156] focus:bg-white dark:focus:bg-[#1F232B]"
+              className="w-full h-11 rounded-xl border border-gray-200 dark:border-surface-borderDark bg-gray-50/70 
+              dark:bg-coal-600 pl-10 pr-9 text-sm text-gray-900 dark:text-content-primary placeholder-gray-400 
+              dark:placeholder-content-disabled outline-none transition focus:border-[#A05A32] dark:focus:border-copper-500 
+              focus:bg-white dark:focus:bg-coal-600"
             />
             <Search
               size={17}
@@ -196,7 +191,9 @@ const OrdersPage = () => {
               <select
                 value={statusFilter}
                 onChange={(e) => handleStatusChange(e.target.value)}
-                className="w-full h-11 rounded-xl border border-gray-200 dark:border-[#262B34] bg-white dark:bg-[#1F232B] px-3.5 text-xs sm:text-sm font-medium text-gray-700 dark:text-[#F5F1EA] outline-none transition focus:border-[#A05A32] dark:focus:border-[#C98156]"
+                className="w-full h-11 rounded-xl border border-gray-200 dark:border-surface-borderDark bg-white 
+                dark:bg-coal-600 px-3.5 text-xs sm:text-sm font-medium text-gray-700 dark:text-content-primary 
+                outline-none transition focus:border-[#A05A32] dark:focus:border-copper-500"
               >
                 <option value="All">All Statuses</option>
                 <option value="pending">Pending</option>
@@ -214,7 +211,9 @@ const OrdersPage = () => {
               <select
                 value={paymentFilter}
                 onChange={(e) => handlePaymentChange(e.target.value)}
-                className="w-full h-11 rounded-xl border border-gray-200 dark:border-[#262B34] bg-white dark:bg-[#1F232B] px-3.5 text-xs sm:text-sm font-medium text-gray-700 dark:text-[#F5F1EA] outline-none transition focus:border-[#A05A32] dark:focus:border-[#C98156]"
+                className="w-full h-11 rounded-xl border border-gray-200 dark:border-surface-borderDark bg-white dark:bg-coal-600 
+                px-3.5 text-xs sm:text-sm font-medium text-gray-700 dark:text-content-primary outline-none transition 
+                focus:border-[#A05A32] dark:focus:border-copper-500"
               >
                 <option value="All">All Payments</option>
                 <option value="pending">Payment: Pending</option>
@@ -223,9 +222,11 @@ const OrdersPage = () => {
             </div>
 
             {/* In-view count badge */}
-            <div className="h-11 px-4 rounded-xl bg-gray-50 dark:bg-coal-700 border border-gray-200/70 dark:border-[rgba(255,255,255,0.06)] flex items-center text-xs font-medium text-gray-500 dark:text-[#8A8378] shrink-0">
+            <div className="h-11 px-4 rounded-xl bg-gray-50 dark:bg-coal-700 border border-gray-200/70 
+            dark:border-[rgba(255,255,255,0.06)] flex items-center text-xs font-medium text-gray-500 
+            dark:text-content-muted shrink-0">
               <span>
-                Showing <strong className="text-gray-900 dark:text-[#F5F1EA] font-bold">{filteredOrders.length}</strong> on this page
+                Showing <strong className="text-gray-900 dark:text-content-primary font-bold">{filteredOrders.length}</strong> on this page
               </span>
             </div>
           </div>
@@ -234,7 +235,7 @@ const OrdersPage = () => {
       </div>
 
       {/* Orders Table Container */}
-      < div className="overflow-hidden rounded-2xl border border-gray-100 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-[#12141A] shadow-xs" >
+      < div className="overflow-hidden rounded-2xl border border-gray-100 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-coal-800 shadow-xs" >
         <div className="overflow-x-auto">
           <OrdersTable
             orders={filteredOrders}
@@ -246,7 +247,7 @@ const OrdersPage = () => {
         </div>
 
         {/* Pagination Footer (Matches Koda & uploaded screenshot) */}
-        <div className="border-t border-gray-100 dark:border-[#262B34]/50 bg-gray-50/50 dark:bg-coal-700/60 px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="border-t border-gray-100 dark:border-surface-borderDark/50 bg-gray-50/50 dark:bg-coal-700/60 px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Left: Page 1 of 13 */}
           <div className="text-xs sm:text-sm text-gray-500 dark:text-[#8E9BAE]">
             Page <strong className="font-semibold text-gray-900 dark:text-white">{currentPage}</strong> of{" "}

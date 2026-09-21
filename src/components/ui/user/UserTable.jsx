@@ -4,22 +4,22 @@ import { Users, SearchX } from 'lucide-react';
 function UserTable({ users, loading, onEdit, onToggleRole, onDelete, togglingUserId, searchQuery, onClearSearch, }) {
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-gray-100 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-[#12141A] shadow-sm">
+    <div className="overflow-hidden rounded-2xl border border-gray-100 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-coal-800 shadow-sm">
       <div className="overflow-x-auto">
         <table className="min-w-full text-left">
           {/* Table Header matching Figma (#FFEFDD in light, #1E2435 in dark) */}
-          <thead className="bg-[#FFEFDD] dark:bg-coal-700 border-b border-transparent dark:border-[#262B34]">
+          <thead className="bg-[#FFEFDD] dark:bg-coal-700 border-b border-transparent dark:border-surface-borderDark">
             <tr>
-              <th className="px-6 py-4 text-xs sm:text-sm font-semibold text-gray-700 dark:text-[#8A8378] uppercase tracking-wider">
+              <th className="px-6 py-4 text-xs sm:text-sm font-semibold text-gray-700 dark:text-content-muted uppercase tracking-wider">
                 User
               </th>
-              <th className="px-6 py-4 text-xs sm:text-sm font-semibold text-gray-700 dark:text-[#8A8378] uppercase tracking-wider">
+              <th className="px-6 py-4 text-xs sm:text-sm font-semibold text-gray-700 dark:text-content-muted uppercase tracking-wider">
                 Role
               </th>
-              <th className="px-6 py-4 text-xs sm:text-sm font-semibold text-gray-700 dark:text-[#8A8378] uppercase tracking-wider">
+              <th className="px-6 py-4 text-xs sm:text-sm font-semibold text-gray-700 dark:text-content-muted uppercase tracking-wider">
                 Verified
               </th>
-              <th className="px-6 py-4 text-xs sm:text-sm font-semibold text-gray-700 dark:text-[#8A8378] uppercase tracking-wider">
+              <th className="px-6 py-4 text-xs sm:text-sm font-semibold text-gray-700 dark:text-content-muted uppercase tracking-wider">
                 Actions
               </th>
             </tr>
@@ -62,10 +62,10 @@ function UserTable({ users, loading, onEdit, onToggleRole, onDelete, togglingUse
                     <div className="rounded-2xl bg-[#FFEFDD] dark:bg-coal-700 p-4 text-[#A36037] mb-3">
                       {searchQuery ? <SearchX size={32} /> : <Users size={32} />}
                     </div>
-                    <h4 className="text-base font-bold text-gray-900 dark:text-[#F5F1EA]">
+                    <h4 className="text-base font-bold text-gray-900 dark:text-content-primary">
                       {searchQuery ? 'No matching users found' : 'No users available'}
                     </h4>
-                    <p className="mt-1 text-xs text-gray-400 dark:text-[#8A8378]">
+                    <p className="mt-1 text-xs text-gray-400 dark:text-content-muted">
                       {searchQuery
                         ? `No users matched "${searchQuery}". Try searching with a different keyword.`
                         : 'There are currently no users in the database.'}
@@ -74,7 +74,7 @@ function UserTable({ users, loading, onEdit, onToggleRole, onDelete, togglingUse
                       <button
                         type="button"
                         onClick={onClearSearch}
-                        className="mt-4 px-4 py-2 text-xs font-semibold rounded-xl bg-[#A36037] hover:bg-[#8F4F28] text-white dark:bg-copper-500 dark:hover:bg-[#A8653F] dark:text-[#14100C] transition cursor-pointer"
+                        className="mt-4 px-4 py-2 text-xs font-semibold rounded-xl bg-[#A36037] hover:bg-[#8F4F28] text-white dark:bg-copper-500 dark:hover:bg-copper-600 dark:text-content-inverse transition cursor-pointer"
                       >
                         Clear Search Filter
                       </button>
@@ -101,9 +101,9 @@ function UserTable({ users, loading, onEdit, onToggleRole, onDelete, togglingUse
 
       {/* Table Footer */}
       {!loading && users.length > 0 && (
-        <div className="border-t border-gray-100 dark:border-[rgba(255,255,255,0.06)] bg-[#FFEFDD]/30 dark:bg-coal-700 px-6 py-3.5 flex items-center justify-between text-xs text-gray-500 dark:text-[#8A8378]">
+        <div className="border-t border-gray-100 dark:border-[rgba(255,255,255,0.06)] bg-[#FFEFDD]/30 dark:bg-coal-700 px-6 py-3.5 flex items-center justify-between text-xs text-gray-500 dark:text-content-muted">
           <span>
-            Showing <strong className="font-semibold text-gray-900 dark:text-[#F5F1EA]">{users.length}</strong> {users.length === 1 ? 'user' : 'users'}
+            Showing <strong className="font-semibold text-gray-900 dark:text-content-primary">{users.length}</strong> {users.length === 1 ? 'user' : 'users'}
           </span>
           {searchQuery && (
             <span className="italic">

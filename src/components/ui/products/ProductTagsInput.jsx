@@ -13,7 +13,7 @@ function ProductTagsInput({ tags, onChange, compact = false }) {
   return (
     <div className={`border border-brand-200 dark:border-white/[0.08] rounded-xl bg-white
     dark:bg-coal-700 ${compact ? "p-3" : "p-4"}`}>
-      <p className="text-xs font-semibold text-brand-900 dark:text-[#B9B2A8] mb-2">Tags</p>
+      <p className="text-xs font-semibold text-brand-900 dark:text-content-secondary mb-2">Tags</p>
 
       <div className="flex gap-2">
         <input
@@ -26,7 +26,7 @@ function ProductTagsInput({ tags, onChange, compact = false }) {
             }
           }}
           placeholder="Add a tag..."
-          className="flex-1 bg-white dark:bg-[#1F232B] border border-brand-200 dark:border-white/[0.08] text-brand-950 dark:text-[#F5F1EA] placeholder:text-brand-400 dark:placeholder:text-[#8A8378] rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-[#C98156] focus:border-[#C98156]"
+          className="flex-1 bg-white dark:bg-coal-600 border border-brand-200 dark:border-white/[0.08] text-brand-950 dark:text-content-primary placeholder:text-brand-400 dark:placeholder:text-content-muted rounded-xl px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-copper-500 focus:border-copper-500"
         />
         <button
           type="button"
@@ -37,7 +37,7 @@ function ProductTagsInput({ tags, onChange, compact = false }) {
         </button>
       </div>
 
-      <p className="text-xs text-brand-500 dark:text-[#8A8378] mt-2">
+      <p className="text-xs text-brand-500 dark:text-content-muted mt-2">
         Add one or more tags to organize the product.
       </p>
 
@@ -46,7 +46,7 @@ function ProductTagsInput({ tags, onChange, compact = false }) {
           {tags.map((tag, i) => (
             <span
               key={i}
-              className="inline-flex items-center gap-1.5 bg-copper-500/10 dark:bg-[#2A1B12] text-copper-500 dark:text-[#F0CDAF] border border-[#C98156]/30 text-xs font-medium px-2.5 py-1 rounded-lg"
+              className="inline-flex items-center gap-1.5 bg-copper-500/10 dark:bg-copper-900 text-copper-500 dark:text-copper-200 border border-copper-500/30 text-xs font-medium px-2.5 py-1 rounded-lg"
             >
               #{tag}
               <button

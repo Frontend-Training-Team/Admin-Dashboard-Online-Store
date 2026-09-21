@@ -108,19 +108,19 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
         <div className="rounded-2xl border border-gray-200/80 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-coal-700 shadow-md overflow-hidden">
           {/* Top Banner Header */}
           <div
-            className="relative overflow-hidden bg-cover bg-center bg-no-repeat px-6 sm:px-8 py-4 sm:py-5 flex items-center justify-between dark:!bg-none dark:bg-[#12141A] dark:border-b dark:border-[rgba(255,255,255,0.06)]"
+            className="relative overflow-hidden bg-cover bg-center bg-no-repeat px-6 sm:px-8 py-4 sm:py-5 flex items-center justify-between dark:!bg-none dark:bg-coal-800 dark:border-b dark:border-[rgba(255,255,255,0.06)]"
             style={{ backgroundImage: `url(${bannerBg})` }}
           >
             <div className="flex items-center gap-3.5">
-              <div className="rounded-xl bg-[#A36037] dark:bg-[#9C6647] dark:text-[#F0CDAF] dark:border dark:border-[rgba(201,129,86,0.25)] p-2 sm:p-2.5 text-white shadow-sm flex items-center justify-center shrink-0">
+              <div className="rounded-xl bg-[#A36037] dark:bg-[#9C6647] dark:text-copper-200 dark:border dark:border-[rgba(201,129,86,0.25)] p-2 sm:p-2.5 text-white shadow-sm flex items-center justify-center shrink-0">
                 {/* <UserPlus size={20} /> */}
                 <UserRoundPlus size={20} className="text-white/90" />
               </div>
               <div>
-                <h3 className="text-base sm:text-lg font-bold text-[#592309] dark:text-[#F5F1EA] leading-tight">
+                <h3 className="text-base sm:text-lg font-bold text-[#592309] dark:text-content-primary leading-tight">
                   Create New User
                 </h3>
-                <p className="text-xs text-[#8C5A3C] dark:text-[#8A8378] mt-0.5 font-normal">
+                <p className="text-xs text-[#8C5A3C] dark:text-content-muted mt-0.5 font-normal">
                   Fill in the details below to add a new user
                 </p>
               </div>
@@ -141,7 +141,7 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {/* Username */}
               <div className="flex flex-col">
-                <label className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-[#8A8378] mb-2">
+                <label className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-content-muted mb-2">
                   USERNAME <span className="text-red-500 font-bold">*</span>
                 </label>
                 <input
@@ -150,9 +150,9 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
                   value={formData.username}
                   onChange={handleChange}
                   placeholder="eg. user_name"
-                  className={`w-full rounded-xl border px-4 py-3 text-sm text-gray-900 dark:text-[#F5F1EA] placeholder:text-gray-400 dark:placeholder-[#5C574F] outline-none transition ${errors.username
+                  className={`w-full rounded-xl border px-4 py-3 text-sm text-gray-900 dark:text-content-primary placeholder:text-gray-400 dark:placeholder-content-disabled outline-none transition ${errors.username
                     ? 'border-rose-400 dark:border-rose-500 bg-rose-50/40 dark:bg-rose-950/30 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/30'
-                    : 'border-gray-200 dark:border-[#262B34] bg-white dark:bg-[#1F232B] focus:border-brand-500 dark:focus:border-[#C98156] focus:ring-1 focus:ring-brand-500/20'
+                    : 'border-gray-200 dark:border-surface-borderDark bg-white dark:bg-coal-600 focus:border-brand-500 dark:focus:border-copper-500 focus:ring-1 focus:ring-brand-500/20'
                     }`}
                 />
                 {errors.username && (
@@ -164,7 +164,7 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
 
               {/* Email */}
               <div className="flex flex-col">
-                <label className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-[#8A8378] mb-2">
+                <label className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-content-muted mb-2">
                   EMAIL <span className="text-red-500 font-bold">*</span>
                 </label>
                 <input
@@ -173,9 +173,9 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="e.g. name@email.com"
-                  className={`w-full rounded-xl border px-4 py-3 text-sm text-gray-900 dark:text-[#F5F1EA] placeholder:text-gray-400 dark:placeholder-[#5C574F] outline-none transition ${errors.email
+                  className={`w-full rounded-xl border px-4 py-3 text-sm text-gray-900 dark:text-content-primary placeholder:text-gray-400 dark:placeholder-content-disabled outline-none transition ${errors.email
                     ? 'border-rose-400 dark:border-rose-500 bg-rose-50/40 dark:bg-rose-950/30 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/30'
-                    : 'border-gray-200 dark:border-[#262B34] bg-white dark:bg-[#1F232B] focus:border-brand-500 dark:focus:border-[#C98156] focus:ring-1 focus:ring-brand-500/20'
+                    : 'border-gray-200 dark:border-surface-borderDark bg-white dark:bg-coal-600 focus:border-brand-500 dark:focus:border-copper-500 focus:ring-1 focus:ring-brand-500/20'
                     }`}
                 />
                 {errors.email && (
@@ -187,7 +187,7 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
 
               {/* Password */}
               <div className="flex flex-col">
-                <label className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-[#8A8378] mb-2">
+                <label className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-content-muted mb-2">
                   PASSWORD <span className="text-red-500 font-bold">*</span>
                 </label>
                 <input
@@ -196,9 +196,9 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="Min. 6 characters"
-                  className={`w-full rounded-xl border px-4 py-3 text-sm text-gray-900 dark:text-[#F5F1EA] placeholder:text-gray-400 dark:placeholder-[#5C574F] outline-none transition ${errors.password
+                  className={`w-full rounded-xl border px-4 py-3 text-sm text-gray-900 dark:text-content-primary placeholder:text-gray-400 dark:placeholder-content-disabled outline-none transition ${errors.password
                     ? 'border-rose-400 dark:border-rose-500 bg-rose-50/40 dark:bg-rose-950/30 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/30'
-                    : 'border-gray-200 dark:border-[#262B34] bg-white dark:bg-[#1F232B] focus:border-brand-500 dark:focus:border-[#C98156] focus:ring-1 focus:ring-brand-500/20'
+                    : 'border-gray-200 dark:border-surface-borderDark bg-white dark:bg-coal-600 focus:border-brand-500 dark:focus:border-copper-500 focus:ring-1 focus:ring-brand-500/20'
                     }`}
                 />
                 {errors.password && (
@@ -210,7 +210,7 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
 
               {/* Phone */}
               <div className="flex flex-col">
-                <label className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-[#8A8378] mb-2">
+                <label className="text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-content-muted mb-2">
                   PHONE
                 </label>
                 <input
@@ -219,9 +219,9 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="e.g. +1 234 567 890"
-                  className={`w-full rounded-xl border px-4 py-3 text-sm text-gray-900 dark:text-[#F5F1EA] placeholder:text-gray-400 dark:placeholder-[#5C574F] outline-none transition ${errors.phone
+                  className={`w-full rounded-xl border px-4 py-3 text-sm text-gray-900 dark:text-content-primary placeholder:text-gray-400 dark:placeholder-content-disabled outline-none transition ${errors.phone
                     ? 'border-rose-400 dark:border-rose-500 bg-rose-50/40 dark:bg-rose-950/30 focus:border-rose-500 focus:ring-1 focus:ring-rose-500/30'
-                    : 'border-gray-200 dark:border-[#262B34] bg-white dark:bg-[#1F232B] focus:border-brand-500 dark:focus:border-[#C98156] focus:ring-1 focus:ring-brand-500/20'
+                    : 'border-gray-200 dark:border-surface-borderDark bg-white dark:bg-coal-600 focus:border-brand-500 dark:focus:border-copper-500 focus:ring-1 focus:ring-brand-500/20'
                     }`}
                 />
                 {errors.phone && (
@@ -252,14 +252,14 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
                   type="button"
                   onClick={handleClear}
                   disabled={loading}
-                  className="px-6 py-2.5 rounded-xl border border-gray-300 dark:border-[#262B34] bg-white dark:bg-transparent hover:bg-gray-50 dark:hover:bg-coal-500 text-sm font-medium text-gray-700 dark:text-[#B9B2A8] transition disabled:opacity-50 cursor-pointer"
+                  className="px-6 py-2.5 rounded-xl border border-gray-300 dark:border-surface-borderDark bg-white dark:bg-transparent hover:bg-gray-50 dark:hover:bg-coal-500 text-sm font-medium text-gray-700 dark:text-content-secondary transition disabled:opacity-50 cursor-pointer"
                 >
                   Clear
                 </button>
                 <button
                   type="submit"
                   disabled={loading}
-                  className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-[#8e4726e1] hover:bg-[#A36037] dark:bg-[#A8653F] dark:hover:bg-[#A8653F]/50 text-sm font-medium text-white dark:text-white/90 dark:font-semibold shadow-sm transition disabled:opacity-60 active:scale-95 cursor-pointer"
+                  className="flex items-center justify-center gap-2 px-6 py-2.5 rounded-xl bg-[#8e4726e1] hover:bg-[#A36037] dark:bg-copper-600 dark:hover:bg-copper-600/50 text-sm font-medium text-white dark:text-white/90 dark:font-semibold shadow-sm transition disabled:opacity-60 active:scale-95 cursor-pointer"
                 >
                   {loading ? (
                     <>

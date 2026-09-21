@@ -12,10 +12,10 @@ function BestSellerItem({ name, details, img }) {
       />
 
       <div className="min-w-0 flex-1">
-        <h4 className="text-base sm:text-xl font-semibold text-brand-900 dark:text-[#F5F1EA] truncate">
+        <h4 className="text-base sm:text-xl font-semibold text-brand-900 dark:text-content-primary truncate">
           {name}
         </h4>
-        <p className="text-xs sm:text-sm font-medium text-[#666666] dark:text-[#B9B2A8] mt-0.5 truncate">
+        <p className="text-xs sm:text-sm font-medium text-[#666666] dark:text-content-secondary mt-0.5 truncate">
           {details}
         </p>
       </div>

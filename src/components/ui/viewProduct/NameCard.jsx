@@ -4,10 +4,10 @@ const NameCard = ({ title, description }) => {
       <h2 className="uppercase text-xs font-semibold text-copper-500 tracking-[2px] mb-2">
         Overview
       </h2>
-      <h1 className="text-2xl sm:text-3xl font-serif font-bold text-brand-950 dark:text-[#F5F1EA] mb-3 leading-snug">
+      <h1 className="text-2xl sm:text-3xl font-serif font-bold text-brand-950 dark:text-content-primary mb-3 leading-snug">
         {title}
       </h1>
-      <p className="text-sm text-brand-600/80 dark:text-[#8A8378] leading-relaxed">
+      <p className="text-sm text-brand-600/80 dark:text-content-muted leading-relaxed">
         {description}
       </p>
     </div>

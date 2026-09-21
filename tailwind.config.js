@@ -51,21 +51,24 @@ export default {
                     inverse: '#14100C',
                 },
                 state: {
-                    success: '#4ADE9B',
+                    success: '#34A353',
                     warning: '#F5B544',
                     danger: '#F87171',
                     info: '#5FA8F5',
                     confirmed: '#3FD3B0',
                     shipped: '#A78BFA',
+                    muted: '#8A8377',
                 },
                 surface: {
                     light: '#FAFAF8',
                     dark: '#141110',
                     cardLight: '#FFFFFF',
                     cardDark: '#1F1A17',
+                    borderDark: '#262B34',
                 },
             },
         },
     },
     plugins: [],
 }
+//border-surface-borderDark

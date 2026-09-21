@@ -188,4 +188,4 @@ Single source of truth — put in `index.css` so non-Tailwind CSS (charts, scrol
 4. **Don't reuse light-mode hues.** Light-mode `brand/300 #D88D68` and every saturated status color must swap to the dark-tuned values in §5.
 5. **No pure black, no pure white, no shadow-only elevation.**
 6. **Images get a guard:** photos and product shots on dark take `filter: brightness(0.92)` plus a `border/subtle` outline so they don't float.
-7. **Migrate the hardcoded hexes.** `dark:bg-[#16181D]`, `dark:text-[#9CA3AF]`, `dark:border-[#2A2E38]` scattered in `UserTable`, `EditUserModal`, `UserRow` etc. map to `surface/1`, `text/muted`, `border/default`.
+7. **Migrate the hardcoded hexes.** `dark:bg-brand-950`, `dark:text-[#9CA3AF]`, `dark:border-brand-800` scattered in `UserTable`, `EditUserModal`, `UserRow` etc. map to `surface/1`, `text/muted`, `border/default`.

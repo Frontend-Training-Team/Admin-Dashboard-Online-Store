@@ -40,7 +40,7 @@ export default function LoginPage() {
   }
 
   return (
-    <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-[55%_45%] bg-white dark:bg-[#0B0C0F]">
+    <div className="w-full min-h-screen grid grid-cols-1 lg:grid-cols-[55%_45%] bg-white dark:bg-coal-900">
 
       {/* Left Side - Hero Section */}
       <div
@@ -83,15 +83,15 @@ export default function LoginPage() {
       </div>
 
       {/* Right Side - Form Section */}
-      <div className="bg-white  dark:bg-[#0B0C0F] p-8 md:p-12 flex flex-col justify-center items-center dark:border-white/[0.06]">
+      <div className="bg-white  dark:bg-coal-900 p-8 md:p-12 flex flex-col justify-center items-center dark:border-white/[0.06]">
         <div className="w-full max-w-2xl space-y-6">
 
           <div className="text-center space-y-2">
             <div className="inline-block p-2 mb-2">
               <img src={logo} alt="Lamsa Logo" className="h-28 sm:h-32 lg:h-40 w-auto object-contain mx-auto" />
             </div>
-            <h2 className="text-xl sm:text-4xl font-semibold font-Inter text-gray-800 dark:text-[#F5F1EA]">Welcome Back</h2>
-            <p className="text-xs sm:text-lg font-Inter text-gray-500 dark:text-[#8A8378]">Sign in to your admin dashboard</p>
+            <h2 className="text-xl sm:text-4xl font-semibold font-Inter text-gray-800 dark:text-content-primary">Welcome Back</h2>
+            <p className="text-xs sm:text-lg font-Inter text-gray-500 dark:text-content-muted">Sign in to your admin dashboard</p>
           </div>
 
           {errorMessage && (
@@ -102,9 +102,9 @@ export default function LoginPage() {
 
           <form onSubmit={onSubmit} className="space-y-4 pt-2  font-Inter">
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold mb-3 text-gray-700 block dark:text-[#B9B2A8]">Email Address</label>
+              <label className="text-xs font-semibold mb-3 text-gray-700 block dark:text-content-secondary">Email Address</label>
               <div className="relative">
-                <Mail className="w-5 h-5 text-gray-400 absolute left-5 top-1/2 -translate-y-1/2 dark:text-[#8A8378]" />
+                <Mail className="w-5 h-5 text-gray-400 absolute left-5 top-1/2 -translate-y-1/2 dark:text-content-muted" />
                 <input
                   type="email"
                   placeholder="Enter your email"
@@ -114,15 +114,16 @@ export default function LoginPage() {
                   required
                   className="w-full h-14 pl-12 pr-4 bg-gray-50 border border-gray-200 text-gray-900  font-Inter
                   placeholder-gray-400 rounded-md text-sm focus:outline-none focus:ring-2
-                  focus:ring-[#B67352] focus:border-transparent transition disabled:opacity-60 dark:bg-[#1F232B] dark:border-white/[0.08] dark:text-[#F5F1EA] dark:placeholder:text-[#8A8378]"
+                  focus:ring-brand-500 focus:border-transparent transition disabled:opacity-60 dark:bg-coal-600 
+                  dark:border-white/[0.08] dark:text-content-primary dark:placeholder:text-content-muted"
                 />
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-semibold mb-3 text-gray-700 block dark:text-[#B9B2A8]">Password</label>
+              <label className="text-xs font-semibold mb-3 text-gray-700 block dark:text-content-secondary">Password</label>
               <div className="relative">
-                <Lock className="w-5 h-5 text-gray-400 absolute left-5 top-1/2 -translate-y-1/2 dark:text-[#8A8378]" />
+                <Lock className="w-5 h-5 text-gray-400 absolute left-5 top-1/2 -translate-y-1/2 dark:text-content-muted" />
                 <input
                   type={showPassword ? 'text' : 'password'}
                   placeholder="Enter your password"
@@ -132,13 +133,15 @@ export default function LoginPage() {
                   required
                   className="w-full h-14 pl-12 pr-12 bg-gray-50 border border-gray-200 text-gray-900
                   font-Inter placeholder-gray-400 rounded-md text-sm focus:outline-none focus:ring-2
-                  focus:ring-[#B67352] focus:border-transparent transition disabled:opacity-60 dark:bg-[#1F232B] dark:border-white/[0.08] dark:text-[#F5F1EA] dark:placeholder:text-[#8A8378]"
+                  focus:ring-brand-500 focus:border-transparent transition disabled:opacity-60 dark:bg-coal-600 
+                  dark:border-white/[0.08] dark:text-content-primary dark:placeholder:text-content-muted"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
                   disabled={isLoading}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md text-gray-400 hover:text-gray-600 dark:text-[#8A8378] dark:hover:text-[#F5F1EA]"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 rounded-md text-gray-400 hover:text-gray-600 
+                  dark:text-content-muted dark:hover:text-content-primary"
                 >
                   {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                 </button>
@@ -151,7 +154,7 @@ export default function LoginPage() {
               className="
               w-full h-12 bg-brand-300 hover:bg-[#a06243] text-white font-bold rounded-md
               shadow-md transition duration-200 text-sm mt-2 flex items-center justify-center space-x-2
-              disabled:bg-[#B67352]/70 disabled:cursor-not-allowed active:scale-95"
+              disabled:bg-brand-500/70 disabled:cursor-not-allowed active:scale-95"
             >
               {isLoading ? (
                 <>
@@ -167,7 +170,8 @@ export default function LoginPage() {
 
           <div className="relative flex items-center justify-center py-1">
             <div className="border-t border-gray-200 w-full dark:border-white/[0.08]"></div>
-            <span className="bg-white px-3 text-xs text-gray-400 uppercase font-semibold absolute dark:bg-[#0B0C0F] dark:text-[#8A8378]">OR</span>
+            <span className="bg-white px-3 text-xs text-gray-400 uppercase font-semibold absolute dark:bg-coal-900 
+            dark:text-content-muted">OR</span>
           </div>
 
           <a
@@ -176,7 +180,8 @@ export default function LoginPage() {
             rel="noopener noreferrer"
             className="w-full h-12 flex items-center justify-center gap-2 border border-[#CCCCCC] 
             hover:bg-black hover:text-white text-[#2B231F] font-semibold rounded-md transition
-            duration-200 text-sm no-underline cursor-pointer active:scale-95 dark:border-white/[0.08] dark:bg-coal-700 dark:hover:bg-[#1F232B] dark:text-[#F5F1EA]"
+            duration-200 text-sm no-underline cursor-pointer active:scale-95 dark:border-white/[0.08] dark:bg-coal-700 
+            dark:hover:bg-coal-600 dark:text-content-primary"
           >
             <img
               src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
@@ -186,7 +191,7 @@ export default function LoginPage() {
             <span>Continue with Google</span>
           </a>
 
-          <p className="text-center text-xs text-gray-400 pt-1 select-none dark:text-[#8A8378]">
+          <p className="text-center text-xs text-gray-400 pt-1 select-none dark:text-content-muted">
             Secure Admin Access
           </p>
 

@@ -2,7 +2,7 @@ const ProductsSkeleton = () => {
     return (
         <div className="space-y-6 animate-pulse">
             {/* 1. Header Banner Skeleton */}
-            <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-[#12141A] p-6 shadow-xs">
+            <div className="flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-coal-800 p-6 shadow-xs">
                 <div className="flex items-center gap-4">
                     <div className="h-12 w-12 rounded-xl bg-gray-200 dark:bg-coal-700" />
                     <div className="space-y-2">
@@ -18,7 +18,7 @@ const ProductsSkeleton = () => {
                 {Array.from({ length: 4 }).map((_, i) => (
                     <div
                         key={i}
-                        className="flex flex-col gap-3 rounded-xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-[#12141A] p-4 shadow-xs"
+                        className="flex flex-col gap-3 rounded-xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-coal-800 p-4 shadow-xs"
                     >
                         <div className="h-6 w-6 rounded-md bg-gray-200 dark:bg-coal-700" />
                         <div className="space-y-1.5">
@@ -30,8 +30,8 @@ const ProductsSkeleton = () => {
             </div>
 
             {/* 3. Search & Filter Bar Skeleton */}
-            <div className="rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-[#12141A] p-4 shadow-xs flex flex-wrap items-center gap-2">
-                <div className="h-11 flex-1 min-w-[240px] rounded-xl bg-gray-200 dark:bg-[#1F232B]" />
+            <div className="rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-coal-800 p-4 shadow-xs flex flex-wrap items-center gap-2">
+                <div className="h-11 flex-1 min-w-[240px] rounded-xl bg-gray-200 dark:bg-coal-600" />
                 <div className="h-11 w-28 rounded-xl bg-gray-200 dark:bg-coal-700" />
                 <div className="h-11 w-28 rounded-xl bg-gray-200 dark:bg-coal-700" />
             </div>
@@ -48,7 +48,7 @@ const ProductsSkeleton = () => {
                 {Array.from({ length: 6 }).map((_, i) => (
                     <div
                         key={i}
-                        className="flex flex-col overflow-hidden rounded-[28px] border border-gray-100/80 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-[#12141A] shadow-xs"
+                        className="flex flex-col overflow-hidden rounded-[28px] border border-gray-100/80 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-coal-800 shadow-xs"
                     >
                         {/* Image Placeholder */}
                         <div className="h-64 sm:h-72 w-full bg-gray-200 dark:bg-coal-700" />

@@ -33,48 +33,48 @@ export default function DashboardPage() {
       value: `${data?.dashboard?.orders?.total || 0}`,
       desc: 'All Orders Received',
       icon: <ShoppingBag size={18} />,
-      color: 'text-[#34A353]',
-      borderLeft: 'border-l-emerald-500 dark:border-l-[#4ADE9B]',
+      color: 'text-state-success',
+      borderLeft: 'border-l-state-success dark:border-l-state-success',
     },
     {
       title: 'Pending Orders',
       value: `${data?.dashboard?.orders?.pending || 0}`,
       desc: 'Awaiting Action',
       icon: <Clock size={18} />,
-      color: 'text-amber-500',
-      borderLeft: 'border-l-amber-500 dark:border-l-[#F5B544]',
+      color: 'text-state-warning',
+      borderLeft: 'border-l-state-warning dark:border-l-state-warning',
     },
     {
       title: 'This Month',
       value: `$${data?.dashboard?.revenue?.thisMonth || 0}`,
       desc: 'Monthly Sales Target',
       icon: <ShoppingCart size={18} />,
-      color: 'text-sky-500',
-      borderLeft: 'border-l-sky-500 dark:border-l-[#5FA8F5]',
+      color: 'text-state-info',
+      borderLeft: 'border-l-state-info dark:border-l-state-info',
     },
     {
       title: 'Revenue',
       value: `$${data?.dashboard?.revenue?.total || 0}`,
       desc: 'Total Gross Revenue',
       icon: <DollarSign size={18} />,
-      color: 'text-rose-500',
-      borderLeft: 'border-l-rose-500 dark:border-l-[#F87171]',
+      color: 'text-state-danger',
+      borderLeft: 'border-l-state-danger dark:border-l-state-danger',
     },
     {
       title: 'Top Product',
       value: `${data?.dashboard?.topProducts?.[0]?.name || 'N/A'}`,
       desc: '53 Units Sold',
       icon: <Package size={18} />,
-      color: 'text-purple-500',
-      borderLeft: 'border-l-purple-500 dark:border-l-[#A78BFA]',
+      color: 'text-state-shipped',
+      borderLeft: 'border-l-state-shipped dark:border-l-state-shipped',
     },
     {
       title: 'Users',
       value: `${data?.dashboard?.totalCustomers || 0}`,
       desc: 'Registered Customers',
       icon: <Users size={18} />,
-      color: 'text-slate-500',
-      borderLeft: 'border-l-slate-500 dark:border-l-[#8A8378]',
+      color: 'text-state-muted',
+      borderLeft: 'border-l-state-muted dark:border-l-state-muted',
     },
   ];
 
@@ -82,19 +82,19 @@ export default function DashboardPage() {
     {
       label: 'PENDING',
       count: `${data?.dashboard?.ordersByStatus?.[5]?.count || 0}`,
-      textColor: 'text-[#F6B704] dark:text-[#F5B544]',
+      textColor: 'text-[#F6B704] dark:text-state-warning',
       bgStyle: 'bg-[#FFF4D3] dark:bg-[rgba(245,181,68,0.10)] border-[#FFDF88] dark:border-[rgba(245,181,68,0.24)]'
     },
     {
       label: 'PROCESSING',
       count: `${data?.dashboard?.ordersByStatus?.[4]?.count || 0}`,
-      textColor: 'text-[#4280EF] dark:text-[#5FA8F5]',
+      textColor: 'text-[#4280EF] dark:text-state-info',
       bgStyle: 'bg-[#E5F5FC] dark:bg-[rgba(95,168,245,0.10)] border-[#ADE6FF] dark:border-[rgba(95,168,245,0.24)]'
     },
     {
       label: 'CONFIRMED',
       count: `${data?.dashboard?.ordersByStatus?.[0]?.count || 0}`,
-      textColor: 'text-[#008E5C] dark:text-[#3FD3B0]',
+      textColor: 'text-[#008E5C] dark:text-state-confirmed',
       bgStyle: 'bg-[#E6F7F1] dark:bg-[rgba(63,211,176,0.10)] border-[#AEFFE2] dark:border-[rgba(63,211,176,0.24)]'
     },
     {
@@ -106,13 +106,13 @@ export default function DashboardPage() {
     {
       label: 'DELIVERED',
       count: `${data?.dashboard?.ordersByStatus?.[2]?.count || 0}`,
-      textColor: 'text-[#008E5C] dark:text-[#4ADE9B]',
+      textColor: 'text-[#008E5C] dark:text-state-confirmed',
       bgStyle: 'bg-[#E6F7F1] dark:bg-[rgba(74,222,155,0.10)] border-[#AEFFE2] dark:border-[rgba(74,222,155,0.24)]'
     },
     {
       label: 'CANCELLED',
       count: `${data?.dashboard?.ordersByStatus?.[1]?.count || 0}`,
-      textColor: 'text-[#E54335] dark:text-[#F87171]',
+      textColor: 'text-[#E54335] dark:text-state-danger',
       bgStyle: 'bg-[#FDEAEE] dark:bg-[rgba(248,113,113,0.10)] border-[#FFB8C7] dark:border-[rgba(248,113,113,0.24)]'
     },
   ];
@@ -183,20 +183,22 @@ export default function DashboardPage() {
     <div className="space-y-6">
       {/* Top Header Section */}
       {isLoading ? (
-        <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-surface-cardLight dark:bg-[#12141A] shadow-sm animate-pulse space-y-3">
+        <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] 
+        bg-surface-cardLight dark:bg-coal-800 shadow-sm animate-pulse space-y-3">
           <div className="h-3.5 w-32 bg-gray-200 dark:bg-coal-700 rounded"></div>
           <div className="h-8 w-72 bg-gray-200 dark:bg-coal-700 rounded"></div>
           <div className="h-4 w-60 bg-gray-200 dark:bg-coal-700 rounded"></div>
         </div>
       ) : (
-        <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-surface-cardLight dark:bg-[#12141A] shadow-sm">
+        <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] 
+        bg-surface-cardLight dark:bg-coal-800 shadow-sm">
           <span className="text-sm font-Regular tracking-widest text-brand-500 dark:text-copper-500 uppercase">
             ADMIN OVERVIEW
           </span>
-          <h1 className="text-3xl font-bold text-black dark:text-[#F5F1EA] mt-1">
+          <h1 className="text-3xl font-bold text-black dark:text-content-primary mt-1">
             Real-time Store Health
           </h1>
-          <p className="text-sm text-gray-400 dark:text-[#B9B2A8] mt-1">
+          <p className="text-sm text-gray-400 dark:text-content-secondary mt-1">
             Monitor your storefront with live API metrics.
           </p>
         </div>
@@ -227,7 +229,8 @@ export default function DashboardPage() {
       </div>
 
       {/* Order Status Section */}
-      <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-surface-cardLight dark:bg-[#12141A] shadow-sm">
+      <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] 
+      bg-surface-cardLight dark:bg-coal-800 shadow-sm">
         {isLoading ? (
           <div className="space-y-2 mb-4 animate-pulse">
             <div className="h-3.5 w-28 bg-gray-200 dark:bg-coal-700 rounded"></div>
@@ -239,11 +242,13 @@ export default function DashboardPage() {
               <span className="text-sm font-Regular tracking-widest text-brand-500 dark:text-copper-500 uppercase">
                 ORDER STATUS
               </span>
-              <h2 className="text-2xl font-bold text-brand-900 dark:text-[#F5F1EA]">
+              <h2 className="text-2xl font-bold text-brand-900 dark:text-content-primary">
                 Live Fulfillment Breakdown
               </h2>
             </div>
-            <span className="block text-[11px] px-4 py-1.5 rounded-full font-medium bg-emerald-500/10 text-emerald-500 border border-emerald-500/20 dark:bg-[rgba(74,222,155,0.10)] dark:text-[#4ADE9B] dark:border-[rgba(74,222,155,0.24)]">
+            <span className="block text-[11px] px-4 py-1.5 rounded-full font-medium bg-emerald-500/10 
+            text-emerald-500 border border-emerald-500/20 dark:bg-[rgba(74,222,155,0.10)] 
+            dark:text-state-confirmed dark:border-[rgba(74,222,155,0.24)]">
               Updated from API
             </span>
           </div >
@@ -276,7 +281,8 @@ export default function DashboardPage() {
       < div className="grid grid-cols-1 lg:grid-cols-2 gap-6" >
 
         {/* Best Sellers */}
-        <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-surface-cardLight dark:bg-[#12141A] shadow-sm">
+        <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] 
+        bg-surface-cardLight dark:bg-coal-800 shadow-sm">
           {
             isLoading ? (
               <div className="space-y-2 mb-4 animate-pulse" >
@@ -288,7 +294,7 @@ export default function DashboardPage() {
                 <span className="text-sm font-Regular tracking-widest text-brand-500 dark:text-copper-500 uppercase">
                   TOP PRODUCTS
                 </span>
-                <h2 className="text-2xl font-bold text-brand-900 dark:text-[#F5F1EA]">
+                <h2 className="text-2xl font-bold text-brand-900 dark:text-content-primary">
                   Best Sellers
                 </h2>
               </div>
@@ -316,7 +322,8 @@ export default function DashboardPage() {
         </div >
 
         {/* Recent Orders */}
-        <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-surface-cardLight dark:bg-[#12141A] shadow-sm">
+        <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] 
+        bg-surface-cardLight dark:bg-coal-800 shadow-sm">
           {
             isLoading ? (
               <div className="space-y-2 mb-4 animate-pulse" >
@@ -328,7 +335,7 @@ export default function DashboardPage() {
                 <span className="text-sm font-Regular tracking-widest text-brand-500 dark:text-copper-500 uppercase">
                   RECENT ORDERS
                 </span>
-                <h2 className="text-2xl font-bold text-brand-900 dark:text-[#F5F1EA]">
+                <h2 className="text-2xl font-bold text-brand-900 dark:text-content-primary">
                   Latest Customer Activity
                 </h2>
               </div>

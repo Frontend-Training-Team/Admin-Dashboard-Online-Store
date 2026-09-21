@@ -30,7 +30,7 @@ function EditProduct() {
     return (
       <div className="flex h-96 items-center justify-center gap-2 text-copper-500">
         <Loader2 size={24} className="animate-spin" />
-        <span className="text-sm font-medium text-brand-900 dark:text-[#F5F1EA]">Loading product...</span>
+        <span className="text-sm font-medium text-brand-900 dark:text-content-primary">Loading product...</span>
       </div>
     );
   }

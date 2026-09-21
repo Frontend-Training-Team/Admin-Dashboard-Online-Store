@@ -43,7 +43,7 @@ const ViewProduct = () => {
         return (
             <div className="flex h-96 items-center justify-center gap-2 text-copper-500">
                 <Loader2 size={24} className="animate-spin" />
-                <span className="text-sm font-medium text-brand-900 dark:text-[#F5F1EA]">Loading product details...</span>
+                <span className="text-sm font-medium text-brand-900 dark:text-content-primary">Loading product details...</span>
             </div>
         );
     }
@@ -51,7 +51,7 @@ const ViewProduct = () => {
     if (error || !product) {
         return (
             <div className="p-8 text-center rounded-2xl border border-brand-200/60 dark:border-white/[0.06]
-            bg-white dark:bg-[#12141A]">
+            bg-white dark:bg-coal-800">
                 <p className="text-rose-500 font-medium mb-4">{error || "Product not found."}</p>
                 <button
                     onClick={() => navigate("/products")}
@@ -87,13 +87,15 @@ const ViewProduct = () => {
             <button
                 type="button"
                 onClick={() => navigate("/products")}
-                className="flex items-center gap-2 text-sm font-medium text-brand-600 hover:text-brand-900 dark:text-[#8A8378] dark:hover:text-[#F5F1EA] transition-colors cursor-pointer w-fit"
+                className="flex items-center gap-2 text-sm font-medium text-brand-600 hover:text-brand-900 dark:text-content-muted 
+                dark:hover:text-content-primary transition-colors cursor-pointer w-fit"
             >
                 <ArrowLeft size={18} />
                 <span>Back to Products</span>
             </button>
 
-            <div className="grid grid-cols-1 items-start lg:grid-cols-12 gap-6 p-6 sm:p-8 rounded-2xl border border-brand-200/60 dark:border-white/[0.06] bg-white dark:bg-[#12141A] shadow-xs">
+            <div className="grid grid-cols-1 items-start lg:grid-cols-12 gap-6 p-6 sm:p-8 rounded-2xl border border-brand-200/60 
+            dark:border-white/[0.06] bg-white dark:bg-coal-800 shadow-xs">
                 {/* Left Side */}
                 <div className="grid h-fit grid-cols-1 gap-4 self-start lg:col-span-7">
                     <NameCard

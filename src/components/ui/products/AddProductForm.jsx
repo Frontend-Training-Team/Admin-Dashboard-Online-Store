@@ -215,7 +215,7 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCar
   }
 
   return (
-    <div className="rounded-2xl bg-white dark:bg-[#12141A] border border-brand-200/60 dark:border-white/[0.06] p-6 sm:p-8 shadow-xs">
+    <div className="rounded-2xl bg-white dark:bg-coal-800 border border-brand-200/60 dark:border-white/[0.06] p-6 sm:p-8 shadow-xs">
       <form onSubmit={handleSubmit(submitHandler, onInvalid)} className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {fieldsContent}
         <div className="col-span-full flex justify-end gap-3 pt-4 border-t border-brand-200/60 dark:border-white/[0.06]">
