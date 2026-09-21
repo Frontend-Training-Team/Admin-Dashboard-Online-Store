@@ -12,8 +12,7 @@ import Settings from './pages/Settings';
 import LoginPage from './pages/Login';
 import DashboardLayout from './components/Layout/dashboardLayout';
 import ViewProduct from './pages/ViewProduct';
-import StoreLayout from './layouts/StoreLayout';
-import Home from './pages/Home';
+
 // import TestQuickEdit from './pages/TestQuickEdit';
 import { ToastContainer, Slide  } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -30,26 +29,27 @@ function App() {
     toastClassName="!rounded-2xl !shadow-md !h-12 !w-60 !text-sm !p-2 !m-2 !text-center"
     closeButton={false}
   />
-   <Routes>
-  <Route element={<StoreLayout />}>
-    <Route path="/" element={<Home />} />
-  </Route>
-  <Route path="/login" element={<LoginPage />} />
-  <Route element={<ProtectedRoute allowedRole="admin" />}>
-    <Route element={<DashboardLayout />}>
-      <Route path="/dashboard" element={<Dashboard />} />
-      <Route path="/products" element={<Products />} />
-      <Route path="/products/new" element={<AddProduct />} />
-      <Route path="/products/:id/edit" element={<EditProduct />} />
-      <Route path="/products/view/:id" element={<ViewProduct />} />
-      <Route path="/orders" element={<Orders />} />
-      <Route path="/orders/:id" element={<OrderDetails />} />
-      <Route path="/users" element={<Users />} />
-      <Route path="/carts" element={<Carts />} />
-      <Route path="/settings" element={<Settings />} />
-    </Route>
-  </Route>
-</Routes>
+    <Routes>
+      {/* Public route */}
+      <Route path="/" element={<Navigate to="/dashboard" replace />} />
+      <Route path="/login" element={<LoginPage />} />
+
+      {/* Private routes — everything inside requires admin auth */}
+      <Route element={<ProtectedRoute allowedRole="admin" />}>
+        <Route element={<DashboardLayout />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/new" element={<AddProduct />} />
+          <Route path="/products/:id/edit" element={<EditProduct />} />
+          <Route path="/products/view/:id" element={<ViewProduct />} />
+          <Route path="/orders" element={<Orders />} />
+          <Route path="/orders/:id" element={<OrderDetails />} />
+          <Route path="/users" element={<Users />} />
+          <Route path="/carts" element={<Carts />} />
+          <Route path="/settings" element={<Settings />} />
+        </Route>
+      </Route>
+    </Routes>
     <Toaster
       position="top-center"
       toastOptions={{
