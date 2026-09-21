@@ -1,23 +1,16 @@
 function ProductCardSkeleton() {
+  // making Skeleton on the RecentOrderItem and BestSellerItem
   return (
-    <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm dark:border-gray-700 dark:bg-gray-800">
-      
-      {/* Product Image */}
-      <div className="h-56 w-full animate-pulse bg-gray-200 dark:bg-gray-700" />
-
-      {/* Product Info */}
-      <div className="space-y-3 p-4">
-        
-        {/* Product Name */}
-        <div className="h-5 w-3/4 animate-pulse rounded bg-gray-200 dark:bg-gray-700" />
-
-        {/* Category */}
-        <div className="h-4 w-1/2 animate-pulse rounded bg-gray-200 dark:bg-gray-700" />
-
-        {/* Price */}
-        <div className="h-5 w-1/3 animate-pulse rounded bg-gray-200 dark:bg-gray-700" />
-
+    <div className="flex items-center justify-between p-3 rounded-xl border border-brand-200/60
+    dark:border-[rgba(255,255,255,0.06)] bg-surface-cardLight dark:bg-[#181B22] shadow-sm h-[64px] w-full ">
+      <div className="flex items-center gap-3 ">
+        <div className={`bg-gray-200 dark:bg-[#22262F] animate-pulse w-10 h-10 rounded-lg shrink-0`} />
+        <div className="space-y-1.5">
+          <div className={`w-32 h-4 bg-gray-200 dark:bg-[#22262F] rounded-md animate-pulse`} />
+          <div className={`w-24 h-3 bg-gray-200 dark:bg-[#22262F] rounded-md animate-pulse`} />
+        </div>
       </div>
+      <div className={`w-12 h-4 bg-gray-200 dark:bg-[#22262F] rounded-md animate-pulse`} />
     </div>
   );
 }
