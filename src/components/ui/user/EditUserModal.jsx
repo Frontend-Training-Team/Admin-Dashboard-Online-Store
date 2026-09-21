@@ -102,7 +102,7 @@ function EditUserModal({ isOpen, user, onClose, onUserUpdated }) {
         {/* Form */}
         <form onSubmit={handleSubmit} className="p-6 space-y-4">
           {/* Avatar Preview */}
-          <div className="flex items-center gap-4 p-3 rounded-xl bg-gray-50 dark:bg-[#181B22] border border-gray-200/60 dark:border-[#262B34]">
+          <div className="flex items-center gap-4 p-3 rounded-xl bg-gray-50 dark:bg-coal-700 border border-gray-200/60 dark:border-[#262B34]">
             <img
               src={previewSrc}
               alt="Avatar Preview"
@@ -130,7 +130,7 @@ function EditUserModal({ isOpen, user, onClose, onUserUpdated }) {
               value={formData.username}
               onChange={handleChange}
               placeholder="Username"
-              className="rounded-xl border border-gray-200 dark:border-[#262B34] bg-white dark:bg-[#181B22] px-4 py-2.5 text-sm text-gray-900 dark:text-[#F5F1EA] placeholder:text-gray-400 dark:placeholder-[#5C574F] outline-none transition focus:border-brand-500 dark:focus:border-[#C98156] focus:ring-1 focus:ring-brand-500"
+              className="rounded-xl border border-gray-200 dark:border-[#262B34] bg-white dark:bg-coal-700 px-4 py-2.5 text-sm text-gray-900 dark:text-[#F5F1EA] placeholder:text-gray-400 dark:placeholder-[#5C574F] outline-none transition focus:border-brand-500 dark:focus:border-[#C98156] focus:ring-1 focus:ring-brand-500"
             />
           </div>
 
@@ -145,7 +145,7 @@ function EditUserModal({ isOpen, user, onClose, onUserUpdated }) {
               value={formData.phone}
               onChange={handleChange}
               placeholder="e.g. +20 123 456 7890"
-              className="rounded-xl border border-gray-200 dark:border-[#262B34] bg-white dark:bg-[#181B22] px-4 py-2.5 text-sm text-gray-900 dark:text-[#F5F1EA] placeholder:text-gray-400 dark:placeholder-[#5C574F] outline-none transition focus:border-brand-500 dark:focus:border-[#C98156] focus:ring-1 focus:ring-brand-500"
+              className="rounded-xl border border-gray-200 dark:border-[#262B34] bg-white dark:bg-coal-700 px-4 py-2.5 text-sm text-gray-900 dark:text-[#F5F1EA] placeholder:text-gray-400 dark:placeholder-[#5C574F] outline-none transition focus:border-brand-500 dark:focus:border-[#C98156] focus:ring-1 focus:ring-brand-500"
             />
           </div>
 
@@ -161,7 +161,7 @@ function EditUserModal({ isOpen, user, onClose, onUserUpdated }) {
               value={formData.avatar}
               onChange={handleChange}
               placeholder="https://example.com/photo.jpg"
-              className="rounded-xl border border-gray-200 dark:border-[#262B34] bg-white dark:bg-[#181B22] px-4 py-2.5 text-sm text-gray-900 dark:text-[#F5F1EA] placeholder:text-gray-400 dark:placeholder-[#5C574F] outline-none transition focus:border-brand-500 dark:focus:border-[#C98156] focus:ring-1 focus:ring-brand-500"
+              className="rounded-xl border border-gray-200 dark:border-[#262B34] bg-white dark:bg-coal-700 px-4 py-2.5 text-sm text-gray-900 dark:text-[#F5F1EA] placeholder:text-gray-400 dark:placeholder-[#5C574F] outline-none transition focus:border-brand-500 dark:focus:border-[#C98156] focus:ring-1 focus:ring-brand-500"
             />
           </div>
 

@@ -115,12 +115,13 @@ export default function Users() {
     <div className="space-y-6">
       {/* Overview & Search Card Header */}
       <div
-        className="relative overflow-hidden rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] shadow-xs bg-cover bg-center bg-no-repeat p-6 sm:px-8 sm:py-6 dark:!bg-none dark:bg-[#12141A]"
+        className="relative overflow-hidden rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)]
+        shadow-xs bg-cover bg-center bg-no-repeat p-6 sm:px-8 sm:py-6 dark:bg-none! dark:bg-[#12141A]"
         style={{ backgroundImage: `url(${bannerBg})` }}
       >
         <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
           <div>
-            <p className="text-xs font-semibold tracking-wider text-brand-500 dark:text-[#C98156] uppercase">
+            <p className="text-xs font-semibold tracking-wider text-brand-500 dark:text-copper-500 uppercase">
               USER MANAGEMENT
             </p>
             <h1 className="text-2xl sm:text-3xl font-bold text-[#592309] dark:text-[#F5F1EA] mt-0.5 tracking-tight">

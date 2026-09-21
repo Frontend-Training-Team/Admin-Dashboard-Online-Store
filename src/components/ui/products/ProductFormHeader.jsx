@@ -27,7 +27,7 @@ function ProductFormHeader({ mode = "create" }) {
         <button
           type="button"
           onClick={() => navigate("/products")}
-          className="flex items-center gap-2 text-xs font-semibold tracking-wider text-[#C98156] dark:text-[#F0CDAF] uppercase hover:underline cursor-pointer w-fit"
+          className="flex items-center gap-2 text-xs font-semibold tracking-wider text-copper-500 dark:text-[#F0CDAF] uppercase hover:underline cursor-pointer w-fit"
         >
           <ArrowLeft size={16} />
           <span>Back to Products</span>

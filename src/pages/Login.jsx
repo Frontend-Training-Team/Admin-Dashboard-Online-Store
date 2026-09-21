@@ -176,7 +176,7 @@ export default function LoginPage() {
             rel="noopener noreferrer"
             className="w-full h-12 flex items-center justify-center gap-2 border border-[#CCCCCC] 
             hover:bg-black hover:text-white text-[#2B231F] font-semibold rounded-md transition
-            duration-200 text-sm no-underline cursor-pointer active:scale-95 dark:border-white/[0.08] dark:bg-[#181B22] dark:hover:bg-[#1F232B] dark:text-[#F5F1EA]"
+            duration-200 text-sm no-underline cursor-pointer active:scale-95 dark:border-white/[0.08] dark:bg-coal-700 dark:hover:bg-[#1F232B] dark:text-[#F5F1EA]"
           >
             <img
               src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"

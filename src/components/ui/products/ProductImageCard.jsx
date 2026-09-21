@@ -13,7 +13,7 @@ function ProductImageCard({ src, index, onRemove, marked, displayStyle = "instan
   }
 
   return (
-    <div className={`flex flex-col border border-brand-200/60 dark:border-white/[0.08] bg-white dark:bg-[#181B22] rounded-xl overflow-hidden shadow-xs ${compact ? "h-36" : "h-48"} ${marked ? "opacity-60" : ""}`}>
+    <div className={`flex flex-col border border-brand-200/60 dark:border-white/[0.08] bg-white dark:bg-coal-700 rounded-xl overflow-hidden shadow-xs ${compact ? "h-36" : "h-48"} ${marked ? "opacity-60" : ""}`}>
       <div className="relative flex-1 bg-brand-50/30 dark:bg-[#12141A] overflow-hidden">
         <img
           src={src}

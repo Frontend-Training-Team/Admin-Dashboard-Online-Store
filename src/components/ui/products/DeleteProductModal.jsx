@@ -67,7 +67,7 @@ function DeleteProductModal({ isOpen, product, onClose, onConfirm, loading }) {
             type="button"
             onClick={onClose}
             disabled={loading}
-            className="px-5 py-2.5 rounded-xl border border-gray-200 dark:border-[#262B34] text-sm font-semibold text-gray-700 dark:text-[#B9B2A8] hover:bg-gray-50 dark:hover:bg-[#22262F] transition disabled:opacity-50 cursor-pointer"
+            className="px-5 py-2.5 rounded-xl border border-gray-200 dark:border-[#262B34] text-sm font-semibold text-gray-700 dark:text-[#B9B2A8] hover:bg-gray-50 dark:hover:bg-coal-500 transition disabled:opacity-50 cursor-pointer"
           >
             Cancel
           </button>

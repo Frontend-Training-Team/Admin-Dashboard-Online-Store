@@ -21,7 +21,7 @@ function ProductImageUploader({ images, onChange, markedKeys, onToggleMark, disp
     <div className="flex flex-col gap-3">
       {images.length === 0 ? (
         <div className="w-48 border border-dashed border-brand-200 dark:border-white/[0.08] rounded-xl
-        overflow-hidden bg-brand-50/20 dark:bg-[#181B22]">
+        overflow-hidden bg-brand-50/20 dark:bg-coal-700">
           <img
             src={placeholderImage}
             alt="No images uploaded yet"
@@ -48,9 +48,9 @@ function ProductImageUploader({ images, onChange, markedKeys, onToggleMark, disp
         </div>
       )}
 
-      <label className={`w-full flex flex-col items-center justify-center gap-2 border-2 border-dashed border-[#C98156]/40 hover:border-[#C98156] bg-[#C98156]/5 dark:bg-[#181B22] dark:hover:bg-[#1F232B] rounded-2xl cursor-pointer transition-all ${compact ? "p-3" : "p-6"}`}>
+      <label className={`w-full flex flex-col items-center justify-center gap-2 border-2 border-dashed border-[#C98156]/40 hover:border-[#C98156] bg-copper-500/5 dark:bg-coal-700 dark:hover:bg-[#1F232B] rounded-2xl cursor-pointer transition-all ${compact ? "p-3" : "p-6"}`}>
         <div className="flex flex-col items-center gap-1.5 text-center">
-          <div className="w-10 h-10 rounded-xl bg-[#C98156]/10 dark:bg-[#2A1B12] flex items-center justify-center text-[#C98156]">
+          <div className="w-10 h-10 rounded-xl bg-copper-500/10 dark:bg-[#2A1B12] flex items-center justify-center text-copper-500">
             <ImagePlus size={20} />
           </div>
           <span className="text-sm font-semibold text-brand-950 dark:text-[#F5F1EA]">Upload Images</span>

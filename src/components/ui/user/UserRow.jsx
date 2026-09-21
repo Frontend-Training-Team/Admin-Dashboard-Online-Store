@@ -9,7 +9,7 @@ function UserRow({ user, onEdit, onToggleRole, onDelete, isToggling }) {
   const isAdmin = user?.role === 'admin';
 
   return (
-    <tr className="transition-colors hover:bg-[#FFEFDD]/20 dark:hover:bg-[#22262F]">
+    <tr className="transition-colors hover:bg-[#FFEFDD]/20 dark:hover:bg-coal-500">
       {/* User Info */}
       <td className="px-6 py-3.5 sm:py-4">
         <div className="flex items-center gap-3.5">
@@ -17,7 +17,7 @@ function UserRow({ user, onEdit, onToggleRole, onDelete, isToggling }) {
             src={avatarSrc}
             alt={user.username || 'User'}
             onError={() => setImgError(true)}
-            className="h-10 w-10 sm:h-11 sm:w-11 rounded-full object-cover bg-brand-100 dark:bg-[#181B22] dark:brightness-[0.92] dark:border dark:border-[rgba(255,255,255,0.06)] shrink-0"
+            className="h-10 w-10 sm:h-11 sm:w-11 rounded-full object-cover bg-brand-100 dark:bg-coal-700 dark:brightness-[0.92] dark:border dark:border-[rgba(255,255,255,0.06)] shrink-0"
           />
           <div className="min-w-0">
             <p className="font-semibold text-sm sm:text-[15px] text-gray-900 dark:text-[#F5F1EA] truncate">

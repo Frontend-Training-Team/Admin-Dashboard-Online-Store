@@ -83,11 +83,11 @@ const ProductsContent = () => {
           
           <div className="flex items-center gap-4">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-white/25 bg-white/20 
-            text-[#592309] backdrop-blur-md shadow-xs dark:border-white/[0.08] dark:bg-[#181B22] dark:text-[#C98156]">
+            text-[#592309] backdrop-blur-md shadow-xs dark:border-white/[0.08] dark:bg-coal-700 dark:text-copper-500">
               <Package size={24} />
             </div>
             <div>
-              <p className="text-[12px] font-semibold tracking-wider text-brand-500 dark:text-[#C98156] uppercase">
+              <p className="text-[12px] font-semibold tracking-wider text-brand-500 dark:text-copper-500 uppercase">
                 PRODUCT DASHBOARD
               </p>
               <h1 className="text-2xl sm:text-[28px] font-bold text-[#592309] dark:text-[#F5F1EA] mt-0.5 tracking-tight">
@@ -100,7 +100,7 @@ const ProductsContent = () => {
             type="button"
             onClick={() => navigate("/products/new")}
             className="flex items-center justify-center gap-2 px-5 h-11 sm:h-12 rounded-xl border border-white/25 bg-white/10 hover:bg-white/20 backdrop-blur-md 
-            text-sm font-medium text-white shadow-sm transition active:scale-95 shrink-0 cursor-pointer dark:border-transparent dark:bg-[#C98156] dark:hover:bg-[#A8653F] 
+            text-sm font-medium text-white shadow-sm transition active:scale-95 shrink-0 cursor-pointer dark:border-transparent dark:bg-copper-500 dark:hover:bg-[#A8653F] 
             dark:text-white dark:font-semibold"
           >
             <Plus size={20} className="text-white/90" />
@@ -136,7 +136,7 @@ const ProductsContent = () => {
             type="button"
             onClick={() => setFiltersOpen((v) => !v)}
             className="flex items-center gap-1.5 rounded-xl border border-brand-200/60 bg-white px-4 py-2.5 text-sm font-medium text-brand-700 
-            hover:bg-brand-50 active:scale-95 transition-all dark:border-[#262B34] dark:bg-[#181B22] dark:text-[#B9B2A8] dark:hover:bg-[#22262F] cursor-pointer"
+            hover:bg-brand-50 active:scale-95 transition-all dark:border-[#262B34] dark:bg-coal-700 dark:text-[#B9B2A8] dark:hover:bg-coal-500 cursor-pointer"
           >
             <Funnel size={16} />
             <span>Filters</span>
@@ -145,7 +145,7 @@ const ProductsContent = () => {
           <button
             type="submit"
             className="flex items-center gap-1.5 rounded-xl bg-[#A36037] px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-800 active:scale-95 
-            transition-all dark:bg-[#C98156] dark:hover:bg-[#A8653F] cursor-pointer"
+            transition-all dark:bg-copper-500 dark:hover:bg-[#A8653F] cursor-pointer"
           >
             <Search size={16} />
             <span>Search</span>
@@ -198,7 +198,7 @@ const ProductsContent = () => {
             onClick={() => applyStatus(opt.key)}
             className={`rounded-xl px-4 py-2 text-xs sm:text-sm font-medium transition-all cursor-pointer ${status === opt.key
               ? "bg-brand-900 text-white dark:bg-[#2A1B12] dark:text-[#F0CDAF] dark:border dark:border-[#C98156]"
-              : "bg-brand-100/70 text-brand-700 hover:bg-brand-100 dark:bg-[#181B22] dark:text-[#8A8378] dark:hover:bg-[#22262F] dark:hover:text-[#F5F1EA]"
+              : "bg-brand-100/70 text-brand-700 hover:bg-brand-100 dark:bg-coal-700 dark:text-[#8A8378] dark:hover:bg-coal-500 dark:hover:text-[#F5F1EA]"
               }`}
           >
             {opt.label}
@@ -213,7 +213,7 @@ const ProductsContent = () => {
       {!loading && !error && products.length === 0 && (
         <div className="rounded-2xl border border-brand-200/60 bg-white p-12 text-center shadow-xs dark:border-[rgba(255,255,255,0.06)] dark:bg-[#12141A]">
           <div className="mx-auto flex max-w-sm flex-col items-center justify-center">
-            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-100 text-brand-700 dark:bg-[#181B22] dark:text-[#C98156]">
+            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-100 text-brand-700 dark:bg-coal-700 dark:text-copper-500">
               <SearchX size={30} />
             </div>
             <h4 className="text-lg font-bold text-brand-900 dark:text-[#F5F1EA]">
@@ -249,7 +249,7 @@ const ProductsContent = () => {
             type="button"
             disabled={page === 1}
             onClick={() => setPage(page - 1)}
-            className="rounded-xl border border-brand-200/60 bg-white px-4 py-2 text-xs font-medium text-brand-700 transition-all hover:bg-brand-50 disabled:opacity-40 dark:border-[#262B34] dark:bg-[#181B22] dark:text-[#B9B2A8] dark:hover:bg-[#22262F] cursor-pointer"
+            className="rounded-xl border border-brand-200/60 bg-white px-4 py-2 text-xs font-medium text-brand-700 transition-all hover:bg-brand-50 disabled:opacity-40 dark:border-[#262B34] dark:bg-coal-700 dark:text-[#B9B2A8] dark:hover:bg-coal-500 cursor-pointer"
           >
             Prev
           </button>
@@ -260,7 +260,7 @@ const ProductsContent = () => {
             type="button"
             disabled={page === totalPages}
             onClick={() => setPage(page + 1)}
-            className="rounded-xl border border-brand-200/60 bg-white px-4 py-2 text-xs font-medium text-brand-700 transition-all hover:bg-brand-50 disabled:opacity-40 dark:border-[#262B34] dark:bg-[#181B22] dark:text-[#B9B2A8] dark:hover:bg-[#22262F] cursor-pointer"
+            className="rounded-xl border border-brand-200/60 bg-white px-4 py-2 text-xs font-medium text-brand-700 transition-all hover:bg-brand-50 disabled:opacity-40 dark:border-[#262B34] dark:bg-coal-700 dark:text-[#B9B2A8] dark:hover:bg-coal-500 cursor-pointer"
           >
             Next
           </button>

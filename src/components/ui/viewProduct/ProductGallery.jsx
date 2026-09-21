@@ -6,7 +6,7 @@ const ProductGallery = ({ images = [], productName = 'Product' }) => {
 
   return (
     <section className="flex h-full flex-col gap-4" aria-label={`${productName} gallery`}>
-      <div className="flex min-h-[340px] flex-1 items-center justify-center overflow-hidden rounded-2xl border border-brand-200/60 bg-brand-50/20 dark:border-white/[0.06] dark:bg-[#181B22]">
+      <div className="flex min-h-[340px] flex-1 items-center justify-center overflow-hidden rounded-2xl border border-brand-200/60 bg-brand-50/20 dark:border-white/[0.06] dark:bg-coal-700">
         <img
           src={activeImage?.url || ''}
           alt={`${productName} view ${selectedImage + 1}`}

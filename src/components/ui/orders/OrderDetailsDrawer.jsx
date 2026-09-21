@@ -108,7 +108,7 @@ function OrderDetailsDrawer({ order, isOpen, onClose, onOrderUpdated }) {
           {/* Top Header */}
           <div className="p-6 border-b border-gray-100 dark:border-[#262B34] flex items-center justify-between shrink-0">
             <div>
-              <p className="text-[11px] font-bold uppercase tracking-wider text-[#A05A32] dark:text-[#C98156]">
+              <p className="text-[11px] font-bold uppercase tracking-wider text-[#A05A32] dark:text-copper-500">
                 ORDER DETAIL
               </p>
               <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-[#F5F1EA] mt-0.5 tracking-tight">
@@ -151,10 +151,10 @@ function OrderDetailsDrawer({ order, isOpen, onClose, onOrderUpdated }) {
               <p className="text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-[#8A8378] mb-2.5">
                 INFO
               </p>
-              <div className="rounded-2xl bg-gray-50/80 dark:bg-[#181B22] border border-gray-100/90 dark:border-[rgba(255,255,255,0.06)] p-4.5 space-y-3 text-xs sm:text-sm">
+              <div className="rounded-2xl bg-gray-50/80 dark:bg-coal-700 border border-gray-100/90 dark:border-[rgba(255,255,255,0.06)] p-4.5 space-y-3 text-xs sm:text-sm">
                 <div className="flex items-center justify-between">
                   <span className="text-gray-500 dark:text-[#8A8378] flex items-center gap-2">
-                    <Calendar size={15} className="text-[#A05A32] dark:text-[#C98156]" /> Placed
+                    <Calendar size={15} className="text-[#A05A32] dark:text-copper-500" /> Placed
                   </span>
                   <span className="font-semibold text-gray-900 dark:text-[#F5F1EA]">
                     {formatDate(order.createdAt)}
@@ -163,7 +163,7 @@ function OrderDetailsDrawer({ order, isOpen, onClose, onOrderUpdated }) {
 
                 <div className="flex items-center justify-between">
                   <span className="text-gray-500 dark:text-[#8A8378] flex items-center gap-2">
-                    <User size={15} className="text-[#A05A32] dark:text-[#C98156]" /> Customer
+                    <User size={15} className="text-[#A05A32] dark:text-copper-500" /> Customer
                   </span>
                   <span className="font-semibold text-gray-900 dark:text-[#F5F1EA] flex items-center gap-1.5">
                     {customerName}
@@ -173,7 +173,7 @@ function OrderDetailsDrawer({ order, isOpen, onClose, onOrderUpdated }) {
 
                 <div className="flex items-center justify-between">
                   <span className="text-gray-500 dark:text-[#8A8378] flex items-center gap-2">
-                    <Mail size={15} className="text-[#A05A32] dark:text-[#C98156]" /> Email
+                    <Mail size={15} className="text-[#A05A32] dark:text-copper-500" /> Email
                   </span>
                   <span className="font-medium text-gray-800 dark:text-gray-300 truncate max-w-[200px]" title={customerEmail}>
                     {customerEmail}
@@ -182,7 +182,7 @@ function OrderDetailsDrawer({ order, isOpen, onClose, onOrderUpdated }) {
 
                 <div className="flex items-start justify-between gap-3 pt-1 border-t border-gray-200/50 dark:border-[rgba(255,255,255,0.06)]/50">
                   <span className="text-gray-500 dark:text-[#8A8378] flex items-center gap-2 shrink-0">
-                    <MapPin size={15} className="text-[#A05A32] dark:text-[#C98156]" /> Ship to
+                    <MapPin size={15} className="text-[#A05A32] dark:text-copper-500" /> Ship to
                   </span>
                   <span className="font-medium text-gray-800 dark:text-gray-300 text-right">
                     {shippingAddress}
@@ -201,7 +201,7 @@ function OrderDetailsDrawer({ order, isOpen, onClose, onOrderUpdated }) {
                   order.items.map((item, index) => (
                     <div
                       key={item._id || index}
-                      className="flex items-center justify-between gap-3 p-3.5 rounded-2xl bg-gray-50/80 dark:bg-[#181B22] border border-gray-100/90 dark:border-[rgba(255,255,255,0.06)]"
+                      className="flex items-center justify-between gap-3 p-3.5 rounded-2xl bg-gray-50/80 dark:bg-coal-700 border border-gray-100/90 dark:border-[rgba(255,255,255,0.06)]"
                     >
                       <div className="flex items-center gap-3 min-w-0">
                         {item.image ? (
@@ -241,7 +241,7 @@ function OrderDetailsDrawer({ order, isOpen, onClose, onOrderUpdated }) {
               <p className="text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-[#8A8378] mb-2.5">
                 FINANCIALS
               </p>
-              <div className="rounded-2xl bg-gray-50/80 dark:bg-[#181B22] border border-gray-100/90 dark:border-[rgba(255,255,255,0.06)] p-4.5 space-y-2.5 text-xs sm:text-sm">
+              <div className="rounded-2xl bg-gray-50/80 dark:bg-coal-700 border border-gray-100/90 dark:border-[rgba(255,255,255,0.06)] p-4.5 space-y-2.5 text-xs sm:text-sm">
                 <div className="flex items-center justify-between text-gray-600 dark:text-gray-300">
                   <span>Subtotal</span>
                   <span className="font-semibold">{formatEGP(order.subtotal)}</span>
@@ -276,7 +276,7 @@ function OrderDetailsDrawer({ order, isOpen, onClose, onOrderUpdated }) {
               <p className="text-[11px] font-bold uppercase tracking-wider text-gray-400 dark:text-[#8A8378] mb-2.5">
                 UPDATE STATUS
               </p>
-              <div className="rounded-2xl bg-gray-50/80 dark:bg-[#181B22] border border-gray-100/90 dark:border-[rgba(255,255,255,0.06)] p-4.5 space-y-3.5">
+              <div className="rounded-2xl bg-gray-50/80 dark:bg-coal-700 border border-gray-100/90 dark:border-[rgba(255,255,255,0.06)] p-4.5 space-y-3.5">
                 <div>
                   <label className="block text-xs font-semibold text-gray-600 dark:text-[#8A8378] mb-1.5">
                     Order Status
@@ -311,7 +311,7 @@ function OrderDetailsDrawer({ order, isOpen, onClose, onOrderUpdated }) {
                   type="button"
                   onClick={handleSaveChanges}
                   disabled={isUpdating}
-                  className="w-full py-3 rounded-xl bg-[#A36037] hover:bg-[#8F4F28] text-white dark:bg-[#C98156] dark:hover:bg-[#A8653F] dark:text-[#14100C] text-sm font-semibold shadow-sm transition active:scale-[0.98] disabled:opacity-60 flex items-center justify-center gap-2 cursor-pointer"
+                  className="w-full py-3 rounded-xl bg-[#A36037] hover:bg-[#8F4F28] text-white dark:bg-copper-500 dark:hover:bg-[#A8653F] dark:text-[#14100C] text-sm font-semibold shadow-sm transition active:scale-[0.98] disabled:opacity-60 flex items-center justify-center gap-2 cursor-pointer"
                 >
                   {isUpdating ? (
                     <>

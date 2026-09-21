@@ -43,7 +43,7 @@ function Sidebar({ isOpen, onClose }) {
             <button
               type="button"
               onClick={onClose}
-              className="p-1.5 rounded-lg text-brand-700 dark:text-[#8A8378] hover:bg-brand-100 dark:hover:bg-[#22262F] dark:hover:text-[#F5F1EA] lg:hidden"
+              className="p-1.5 rounded-lg text-brand-700 dark:text-[#8A8378] hover:bg-brand-100 dark:hover:bg-coal-500 dark:hover:text-[#F5F1EA] lg:hidden"
             >
               <X size={20} />
             </button>
@@ -60,7 +60,7 @@ function Sidebar({ isOpen, onClose }) {
                   font-medium transition-all duration-150 active:scale-90 hover:scale-105 
                 ${isActive
                     ? 'bg-brand-900 dark:bg-[#2A1B12] text-white dark:text-[#F0CDAF] dark:border-l-2 dark:border-[#C98156] shadow-sm'
-                    : 'text-brand-700 dark:text-[#8A8378] hover:bg-brand-100/70 dark:hover:bg-[#22262F] dark:hover:text-[#F5F1EA]'
+                    : 'text-brand-700 dark:text-[#8A8378] hover:bg-brand-100/70 dark:hover:bg-coal-500 dark:hover:text-[#F5F1EA]'
                   }`
                 }
               >

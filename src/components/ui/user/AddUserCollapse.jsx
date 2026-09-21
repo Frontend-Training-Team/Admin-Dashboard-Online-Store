@@ -105,7 +105,7 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
         }`}
     >
       <div className="overflow-hidden">
-        <div className="rounded-2xl border border-gray-200/80 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-[#181B22] shadow-md overflow-hidden">
+        <div className="rounded-2xl border border-gray-200/80 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-coal-700 shadow-md overflow-hidden">
           {/* Top Banner Header */}
           <div
             className="relative overflow-hidden bg-cover bg-center bg-no-repeat px-6 sm:px-8 py-4 sm:py-5 flex items-center justify-between dark:!bg-none dark:bg-[#12141A] dark:border-b dark:border-[rgba(255,255,255,0.06)]"
@@ -252,7 +252,7 @@ function AddUserCollapse({ isOpen, onClose, onUserAdded }) {
                   type="button"
                   onClick={handleClear}
                   disabled={loading}
-                  className="px-6 py-2.5 rounded-xl border border-gray-300 dark:border-[#262B34] bg-white dark:bg-transparent hover:bg-gray-50 dark:hover:bg-[#22262F] text-sm font-medium text-gray-700 dark:text-[#B9B2A8] transition disabled:opacity-50 cursor-pointer"
+                  className="px-6 py-2.5 rounded-xl border border-gray-300 dark:border-[#262B34] bg-white dark:bg-transparent hover:bg-gray-50 dark:hover:bg-coal-500 text-sm font-medium text-gray-700 dark:text-[#B9B2A8] transition disabled:opacity-50 cursor-pointer"
                 >
                   Clear
                 </button>

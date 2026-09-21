@@ -184,13 +184,13 @@ export default function DashboardPage() {
       {/* Top Header Section */}
       {isLoading ? (
         <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-surface-cardLight dark:bg-[#12141A] shadow-sm animate-pulse space-y-3">
-          <div className="h-3.5 w-32 bg-gray-200 dark:bg-[#181B22] rounded"></div>
-          <div className="h-8 w-72 bg-gray-200 dark:bg-[#181B22] rounded"></div>
-          <div className="h-4 w-60 bg-gray-200 dark:bg-[#181B22] rounded"></div>
+          <div className="h-3.5 w-32 bg-gray-200 dark:bg-coal-700 rounded"></div>
+          <div className="h-8 w-72 bg-gray-200 dark:bg-coal-700 rounded"></div>
+          <div className="h-4 w-60 bg-gray-200 dark:bg-coal-700 rounded"></div>
         </div>
       ) : (
         <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-surface-cardLight dark:bg-[#12141A] shadow-sm">
-          <span className="text-sm font-Regular tracking-widest text-brand-500 dark:text-[#C98156] uppercase">
+          <span className="text-sm font-Regular tracking-widest text-brand-500 dark:text-copper-500 uppercase">
             ADMIN OVERVIEW
           </span>
           <h1 className="text-3xl font-bold text-black dark:text-[#F5F1EA] mt-1">
@@ -230,13 +230,13 @@ export default function DashboardPage() {
       <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] bg-surface-cardLight dark:bg-[#12141A] shadow-sm">
         {isLoading ? (
           <div className="space-y-2 mb-4 animate-pulse">
-            <div className="h-3.5 w-28 bg-gray-200 dark:bg-[#181B22] rounded"></div>
-            <div className="h-7 w-64 bg-gray-200 dark:bg-[#181B22] rounded"></div>
+            <div className="h-3.5 w-28 bg-gray-200 dark:bg-coal-700 rounded"></div>
+            <div className="h-7 w-64 bg-gray-200 dark:bg-coal-700 rounded"></div>
           </div>
         ) : (
           <div className="flex items-center justify-between mb-4">
             <div>
-              <span className="text-sm font-Regular tracking-widest text-brand-500 dark:text-[#C98156] uppercase">
+              <span className="text-sm font-Regular tracking-widest text-brand-500 dark:text-copper-500 uppercase">
                 ORDER STATUS
               </span>
               <h2 className="text-2xl font-bold text-brand-900 dark:text-[#F5F1EA]">
@@ -280,12 +280,12 @@ export default function DashboardPage() {
           {
             isLoading ? (
               <div className="space-y-2 mb-4 animate-pulse" >
-                <div className="h-3.5 w-28 bg-gray-200 dark:bg-[#181B22] rounded"></div>
-                <div className="h-7 w-48 bg-gray-200 dark:bg-[#181B22] rounded"></div>
+                <div className="h-3.5 w-28 bg-gray-200 dark:bg-coal-700 rounded"></div>
+                <div className="h-7 w-48 bg-gray-200 dark:bg-coal-700 rounded"></div>
               </div>
             ) : (
               <div className="mb-4">
-                <span className="text-sm font-Regular tracking-widest text-brand-500 dark:text-[#C98156] uppercase">
+                <span className="text-sm font-Regular tracking-widest text-brand-500 dark:text-copper-500 uppercase">
                   TOP PRODUCTS
                 </span>
                 <h2 className="text-2xl font-bold text-brand-900 dark:text-[#F5F1EA]">
@@ -320,12 +320,12 @@ export default function DashboardPage() {
           {
             isLoading ? (
               <div className="space-y-2 mb-4 animate-pulse" >
-                <div className="h-3.5 w-28 bg-gray-200 dark:bg-[#181B22] rounded"></div>
-                <div className="h-7 w-64 bg-gray-200 dark:bg-[#181B22] rounded"></div>
+                <div className="h-3.5 w-28 bg-gray-200 dark:bg-coal-700 rounded"></div>
+                <div className="h-7 w-64 bg-gray-200 dark:bg-coal-700 rounded"></div>
               </div>
             ) : (
               <div className="mb-4">
-                <span className="text-sm font-Regular tracking-widest text-brand-500 dark:text-[#C98156] uppercase">
+                <span className="text-sm font-Regular tracking-widest text-brand-500 dark:text-copper-500 uppercase">
                   RECENT ORDERS
                 </span>
                 <h2 className="text-2xl font-bold text-brand-900 dark:text-[#F5F1EA]">

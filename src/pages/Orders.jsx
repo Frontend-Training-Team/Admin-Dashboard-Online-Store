@@ -138,7 +138,7 @@ const OrdersPage = () => {
       {/* Page Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <p className="text-xs font-semibold tracking-wider text-[#A05A32] dark:text-[#C98156] uppercase">
+          <p className="text-xs font-semibold tracking-wider text-[#A05A32] dark:text-copper-500 uppercase">
             ORDER MANAGEMENT
           </p>
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-[#F5F1EA] mt-1 tracking-tight">
@@ -150,7 +150,7 @@ const OrdersPage = () => {
         </div>
 
         {/* Prominent Orders Count Badge (Matches Koda & screenshot) */}
-        <div className="self-start sm:self-auto flex items-center px-4 py-2.5 rounded-xl bg-gray-100/90 dark:bg-[#181B22] border border-gray-200 dark:border-[rgba(255,255,255,0.06)] shadow-xs">
+        <div className="self-start sm:self-auto flex items-center px-4 py-2.5 rounded-xl bg-gray-100/90 dark:bg-coal-700 border border-gray-200 dark:border-[rgba(255,255,255,0.06)] shadow-xs">
           <span className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-[#F5F1EA] tracking-tight">
             {totalOrders}
           </span>
@@ -223,7 +223,7 @@ const OrdersPage = () => {
             </div>
 
             {/* In-view count badge */}
-            <div className="h-11 px-4 rounded-xl bg-gray-50 dark:bg-[#181B22] border border-gray-200/70 dark:border-[rgba(255,255,255,0.06)] flex items-center text-xs font-medium text-gray-500 dark:text-[#8A8378] shrink-0">
+            <div className="h-11 px-4 rounded-xl bg-gray-50 dark:bg-coal-700 border border-gray-200/70 dark:border-[rgba(255,255,255,0.06)] flex items-center text-xs font-medium text-gray-500 dark:text-[#8A8378] shrink-0">
               <span>
                 Showing <strong className="text-gray-900 dark:text-[#F5F1EA] font-bold">{filteredOrders.length}</strong> on this page
               </span>
@@ -246,7 +246,7 @@ const OrdersPage = () => {
         </div>
 
         {/* Pagination Footer (Matches Koda & uploaded screenshot) */}
-        <div className="border-t border-gray-100 dark:border-[#262B34]/50 bg-gray-50/50 dark:bg-[#181B22]/60 px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="border-t border-gray-100 dark:border-[#262B34]/50 bg-gray-50/50 dark:bg-coal-700/60 px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Left: Page 1 of 13 */}
           <div className="text-xs sm:text-sm text-gray-500 dark:text-[#8E9BAE]">
             Page <strong className="font-semibold text-gray-900 dark:text-white">{currentPage}</strong> of{" "}

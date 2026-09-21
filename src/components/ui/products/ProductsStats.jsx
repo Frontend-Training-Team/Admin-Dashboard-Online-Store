@@ -3,12 +3,12 @@ import UserStatCard from '../user/UserStatCard';
 
 const StatCard = ({ icon: Icon, label, value, loading = false }) => (
   <div className="flex flex-col gap-3 rounded-2xl border border-brand-200/60 bg-white p-4 sm:p-5 shadow-xs dark:border-[rgba(255,255,255,0.06)] dark:bg-[#12141A]">
-    <span className="text-brand-500 dark:text-[#C98156] text-xl">
+    <span className="text-brand-500 dark:text-copper-500 text-xl">
       <Icon className="h-6 w-6" />
     </span>
     <div>
       {loading ? (
-        <div className="h-8 w-14 rounded-md bg-gray-200 dark:bg-[#181B22] animate-pulse my-0.5" />
+        <div className="h-8 w-14 rounded-md bg-gray-200 dark:bg-coal-700 animate-pulse my-0.5" />
       ) : (
         <p className="text-2xl sm:text-3xl font-bold text-brand-900 dark:text-[#F5F1EA]">{value}</p>
       )}

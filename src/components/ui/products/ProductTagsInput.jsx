@@ -12,7 +12,7 @@ function ProductTagsInput({ tags, onChange, compact = false }) {
 
   return (
     <div className={`border border-brand-200 dark:border-white/[0.08] rounded-xl bg-white
-    dark:bg-[#181B22] ${compact ? "p-3" : "p-4"}`}>
+    dark:bg-coal-700 ${compact ? "p-3" : "p-4"}`}>
       <p className="text-xs font-semibold text-brand-900 dark:text-[#B9B2A8] mb-2">Tags</p>
 
       <div className="flex gap-2">
@@ -31,7 +31,7 @@ function ProductTagsInput({ tags, onChange, compact = false }) {
         <button
           type="button"
           onClick={addTag}
-          className="bg-[#C98156] hover:bg-[#b06f47] text-white rounded-xl px-3.5 transition flex items-center justify-center cursor-pointer"
+          className="bg-copper-500 hover:bg-[#b06f47] text-white rounded-xl px-3.5 transition flex items-center justify-center cursor-pointer"
         >
           <Plus size={18} />
         </button>
@@ -46,7 +46,7 @@ function ProductTagsInput({ tags, onChange, compact = false }) {
           {tags.map((tag, i) => (
             <span
               key={i}
-              className="inline-flex items-center gap-1.5 bg-[#C98156]/10 dark:bg-[#2A1B12] text-[#C98156] dark:text-[#F0CDAF] border border-[#C98156]/30 text-xs font-medium px-2.5 py-1 rounded-lg"
+              className="inline-flex items-center gap-1.5 bg-copper-500/10 dark:bg-[#2A1B12] text-copper-500 dark:text-[#F0CDAF] border border-[#C98156]/30 text-xs font-medium px-2.5 py-1 rounded-lg"
             >
               #{tag}
               <button

@@ -25,7 +25,7 @@ const OrdersTableRow = ({ order, onViewDetails }) => {
   const paymentStatus = (order.paymentStatus || 'pending').toUpperCase();
 
   return (
-    <tr className="group transition-colors hover:bg-[#FFEFDD]/20 dark:hover:bg-[#22262F]">
+    <tr className="group transition-colors hover:bg-[#FFEFDD]/20 dark:hover:bg-coal-500">
       {/* Order ID */}
       <td className="px-6 py-4">
         <span className="text-sm font-bold text-gray-900 dark:text-[#F5F1EA] font-mono">
@@ -91,7 +91,7 @@ const OrdersTableRow = ({ order, onViewDetails }) => {
         <button
           type="button"
           onClick={() => onViewDetails(order)}
-          className="flex items-center gap-1.5 rounded-xl border border-gray-200 dark:border-[#262B34] bg-white dark:bg-[#181B22] px-3.5 py-1.5 text-xs font-semibold text-gray-700 dark:text-[#F5F1EA] transition shadow-xs hover:border-[#A36037] dark:hover:border-[#C98156] hover:text-[#A36037] dark:hover:bg-[#22262F] active:scale-95 cursor-pointer"
+          className="flex items-center gap-1.5 rounded-xl border border-gray-200 dark:border-[#262B34] bg-white dark:bg-coal-700 px-3.5 py-1.5 text-xs font-semibold text-gray-700 dark:text-[#F5F1EA] transition shadow-xs hover:border-[#A36037] dark:hover:border-[#C98156] hover:text-[#A36037] dark:hover:bg-coal-500 active:scale-95 cursor-pointer"
         >
           <Eye size={14} />
           <span>View</span>

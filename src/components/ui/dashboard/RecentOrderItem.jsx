@@ -1,7 +1,7 @@
 function RecentOrderItem({ customer, product, status, price }) {
   return (
     <div className="flex items-center justify-between p-2.5 sm:p-3 rounded-xl bg-surface-light/60
-    dark:bg-[#181B22] hover:dark:bg-[#22262F] border border-brand-200/50
+    dark:bg-coal-700 hover:dark:bg-coal-500 border border-brand-200/50
     dark:border-[rgba(255,255,255,0.06)] gap-3 duration-150 hover:scale-x-[1.02]">
 
       <div className="min-w-0 flex-1">
