@@ -1,35 +1,60 @@
 import { Package, Star, TrendingUp, AlertTriangle } from 'lucide-react';
-import UserStatCard from '../user/UserStatCard';
+import { motion } from 'framer-motion';
 
-const StatCard = ({ icon: Icon, label, value, loading = false }) => (
-  <div className="flex flex-col gap-3 rounded-2xl border border-brand-200/60 bg-white p-4 sm:p-5 shadow-xs dark:border-[rgba(255,255,255,0.06)] dark:bg-[#12141A]">
-    <span className="text-brand-500 dark:text-[#C98156] text-xl">
-      <Icon className="h-6 w-6" />
-    </span>
-    <div>
-      {loading ? (
-        <div className="h-8 w-14 rounded-md bg-gray-200 dark:bg-[#181B22] animate-pulse my-0.5" />
-      ) : (
-        <p className="text-2xl sm:text-3xl font-bold text-brand-900 dark:text-[#F5F1EA]">{value}</p>
-      )}
-      <p className="text-xs text-brand-500 dark:text-[#8A8378] uppercase tracking-wider mt-1">{label}</p>
-    </div>
-  </div>
-);
+function ProductStatCard({ title, value, icon, className = "" }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.2 }}
+      whileHover={{ y: -4, transition: { duration: 0.2 } }}
+      transition={{ duration: 0.35, ease: "easeOut" }}
+      className="flex items-center justify-between p-5 sm:p-6 rounded-2xl bg-white dark:bg-coal-800
+    border border-gray-100/80 dark:border-[rgba(255,255,255,0.06)] shadow-xs transition-all hover:shadow-md"
+    >
+      <div className="min-w-0 pr-3">
+        <p className={`text-xs sm:text-[14px] font-medium font-Inter text-[#8E4726] dark:text-copper-600 uppercase 
+          tracking-wider truncate ${className}`}>
+          {title}
+        </p>
+        <h3 className="text-2xl sm:text-4xl font-bold text-gray-900 dark:text-content-primary mt-1 truncate">
+          {value}
+        </h3>
+      </div>
 
-const ProductsStats = ({ stats, loading = false }) => {
+      <div className="w-11 h-11 sm:w-12 sm:h-12 rounded-2xl bg-[#8e4726e1] dark:bg-copper-600 dark:text-copper-200 
+      dark:border dark:border-[rgba(201,129,86,0.25)] flex items-center justify-center text-white shrink-0 shadow-xs">
+        {icon}
+      </div>
+    </motion.div>
+  );
+}
+
+const ProductsStats = ({ stats }) => {
   const { total = 0, featured = 0, inStock = 0, outOfStock = 0 } = stats || {};
 
   return (
-    <div className="mb-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
-      {/* <StatCard icon={Package} label="Total" value={total} loading={loading} /> */}
-      <UserStatCard title="Total" value={stats.total} icon={<Package size={24} />}/>
-      <UserStatCard title="Featured" value={stats.featured} icon={<Star size={24} />}/>
-      <UserStatCard title="In Stock" value={stats.inStock} icon={<TrendingUp size={24} />}/>
-      <UserStatCard title="Out of Stock" value={stats.outOfStock} icon={<AlertTriangle size={24} />}/>
-      {/* <StatCard icon={Star} label="Featured" value={featured} loading={loading} />
-      <StatCard icon={TrendingUp} label="In Stock" value={inStock} loading={loading} />
-      <StatCard icon={AlertTriangle} label="Out of Stock" value={outOfStock} loading={loading} /> */}
+    <div className="mb-6 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+      <ProductStatCard
+        title="Total"
+        value={total}
+        icon={<Package size={20} />}
+      />
+      <ProductStatCard
+        title="Featured"
+        value={featured}
+        icon={<Star size={20} />}
+      />
+      <ProductStatCard
+        title="In Stock"
+        value={inStock}
+        icon={<TrendingUp size={20} />}
+      />
+      <ProductStatCard
+        title="Out of Stock"
+        value={outOfStock}
+        icon={<AlertTriangle size={20} />}
+      />
     </div>
   );
 };

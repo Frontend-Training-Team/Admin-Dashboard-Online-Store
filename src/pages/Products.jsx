@@ -10,6 +10,7 @@ import { patchUpdateProductAdmin } from "../api/products.api";
 import toast from "react-hot-toast";
 import { Funnel, Package, Plus, Search, SearchX } from "lucide-react";
 import bannerBg from '../assets/images/users-banner-bg.jpg';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const STATUS_OPTIONS = [
   { key: "all", label: "Total" },
@@ -51,8 +52,8 @@ const ProductsContent = () => {
     if (!deletingProduct) return;
     try {
       setIsDeleting(true);
-      const productId = typeof deletingProduct === 'object' 
-        ? (deletingProduct._id || deletingProduct.id) 
+      const productId = typeof deletingProduct === 'object'
+        ? (deletingProduct._id || deletingProduct.id)
         : deletingProduct;
 
       await removeProduct(productId);
@@ -74,23 +75,28 @@ const ProductsContent = () => {
   return (
     <div>
       {/* Header Banner */}
-      <div
-        className="relative mb-6 overflow-hidden rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] shadow-xs 
-        bg-cover bg-center bg-no-repeat p-6 sm:px-8 sm:py-6 dark:!bg-none dark:bg-[#12141A]"
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="relative mb-6 overflow-hidden rounded-2xl border 
+        border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] shadow-xs 
+        bg-cover bg-center bg-no-repeat p-6 sm:px-8 sm:py-6 dark:!bg-none dark:bg-coal-800"
         style={{ backgroundImage: `url(${bannerBg})` }}
       >
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          
+
           <div className="flex items-center gap-4">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-white/25 bg-white/20 
-            text-[#592309] backdrop-blur-md shadow-xs dark:border-white/[0.08] dark:bg-[#181B22] dark:text-[#C98156]">
+            text-[#592309] backdrop-blur-md shadow-xs dark:border-white/[0.08] dark:bg-coal-700 dark:text-copper-500">
               <Package size={24} />
             </div>
             <div>
-              <p className="text-[12px] font-semibold tracking-wider text-brand-500 dark:text-[#C98156] uppercase">
+              <p className="text-[12px] font-semibold tracking-wider text-brand-500 dark:text-copper-500 uppercase">
                 PRODUCT DASHBOARD
               </p>
-              <h1 className="text-2xl sm:text-[28px] font-bold text-[#592309] dark:text-[#F5F1EA] mt-0.5 tracking-tight">
+              <h1 className="text-2xl sm:text-[28px] font-bold text-[#592309] dark:text-content-primary mt-0.5 tracking-tight">
                 Products
               </h1>
             </div>
@@ -99,8 +105,9 @@ const ProductsContent = () => {
           <button
             type="button"
             onClick={() => navigate("/products/new")}
-            className="flex items-center justify-center gap-2 px-5 h-11 sm:h-12 rounded-xl border border-white/25 bg-white/10 hover:bg-white/20 backdrop-blur-md 
-            text-sm font-medium text-white shadow-sm transition active:scale-95 shrink-0 cursor-pointer dark:border-transparent dark:bg-[#C98156] dark:hover:bg-[#A8653F] 
+            className="flex items-center justify-center gap-2 px-5 h-11 sm:h-12 rounded-xl border border-white/25 
+            bg-white/10 hover:bg-white/20 backdrop-blur-md text-sm font-medium text-white shadow-sm transition 
+            active:scale-95 shrink-0 cursor-pointer dark:border-transparent dark:bg-copper-500 dark:hover:bg-copper-600 
             dark:text-white dark:font-semibold"
           >
             <Plus size={20} className="text-white/90" />
@@ -108,18 +115,23 @@ const ProductsContent = () => {
           </button>
 
         </div>
-      </div>
+      </motion.div>
 
       {/* 4 Stats Cards */}
       <ProductsStats stats={stats} />
 
       {/* Search & Filters */}
-      <div className="mb-4 rounded-2xl border border-brand-200/60 bg-white p-4 shadow-xs dark:border-[rgba(255,255,255,0.06)] dark:bg-[#12141A]">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="mb-4 rounded-2xl border border-brand-200/60 bg-white p-4 shadow-xs dark:border-[rgba(255,255,255,0.06)] dark:bg-coal-800">
         <form onSubmit={handleSearchSubmit} className="flex flex-wrap items-center gap-2">
           <div className="relative min-w-[240px] flex-1">
             <Search
               size={18}
-              className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-brand-400 dark:text-[#8A8378]"
+              className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-brand-400 dark:text-content-muted"
             />
             <input
               type="text"
@@ -127,8 +139,8 @@ const ProductsContent = () => {
               placeholder="Search products..."
               onChange={(e) => setSearchInput(e.target.value)}
               className="w-full rounded-xl border border-brand-200/60 bg-white py-2.5 pl-10 pr-4 text-sm text-brand-900 placeholder:text-brand-400 
-              focus:border-brand-500 focus:outline-none dark:border-[#262B34] dark:bg-[#1F232B] dark:text-[#F5F1EA] dark:placeholder-[#5C574F] 
-              dark:focus:border-[#C98156]"
+              focus:border-brand-500 focus:outline-none dark:border-surface-borderDark dark:bg-coal-600 dark:text-content-primary dark:placeholder-content-disabled 
+              dark:focus:border-copper-500"
             />
           </div>
 
@@ -136,7 +148,7 @@ const ProductsContent = () => {
             type="button"
             onClick={() => setFiltersOpen((v) => !v)}
             className="flex items-center gap-1.5 rounded-xl border border-brand-200/60 bg-white px-4 py-2.5 text-sm font-medium text-brand-700 
-            hover:bg-brand-50 active:scale-95 transition-all dark:border-[#262B34] dark:bg-[#181B22] dark:text-[#B9B2A8] dark:hover:bg-[#22262F] cursor-pointer"
+            hover:bg-brand-50 active:scale-95 transition-all dark:border-surface-borderDark dark:bg-coal-700 dark:text-content-secondary dark:hover:bg-coal-500 cursor-pointer"
           >
             <Funnel size={16} />
             <span>Filters</span>
@@ -145,49 +157,61 @@ const ProductsContent = () => {
           <button
             type="submit"
             className="flex items-center gap-1.5 rounded-xl bg-[#A36037] px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-800 active:scale-95 
-            transition-all dark:bg-[#C98156] dark:hover:bg-[#A8653F] cursor-pointer"
+            transition-all dark:bg-copper-500 dark:hover:bg-copper-600 cursor-pointer"
           >
             <Search size={16} />
             <span>Search</span>
           </button>
         </form>
 
-        {filtersOpen && (
-          <div className="mt-4 grid grid-cols-1 gap-4 border-t border-brand-200/60 pt-4 sm:grid-cols-2 dark:border-[rgba(255,255,255,0.06)]">
-            <div>
-              <label className="mb-1.5 flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wide text-brand-500 dark:text-[#8A8378]">
-                Category
-              </label>
-              <select
-                value={category}
-                onChange={(e) => applyCategory(e.target.value)}
-                className="w-full rounded-xl border border-brand-200/60 bg-white px-4 py-2.5 text-sm text-brand-700 dark:border-[#262B34] dark:bg-[#1F232B] dark:text-[#F5F1EA]"
-              >
-                <option value="">All Categories</option>
-                <option value="electronics">Electronics</option>
-                <option value="phones">Phones</option>
-                <option value="fashion">Fashion</option>
-                <option value="home">Home</option>
-                <option value="beauty">Beauty</option>
-                <option value="sports">Sports</option>
-              </select>
-            </div>
+        <AnimatePresence>
+          {filtersOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="overflow-hidden"
+            >
+              <div className="mt-4 grid grid-cols-1 gap-4 border-t border-brand-200/60 pt-4 sm:grid-cols-2 dark:border-[rgba(255,255,255,0.06)]">
+                <div>
+                  <label className="mb-1.5 flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wide text-brand-500 dark:text-content-muted">
+                    Category
+                  </label>
+                  <select
+                    value={category}
+                    onChange={(e) => applyCategory(e.target.value)}
+                    className="w-full rounded-xl border border-brand-200/60 bg-white px-4 py-2.5 text-sm text-brand-700 dark:border-surface-borderDark dark:bg-coal-600 dark:text-content-primary"
+                  >
+                    <option value="">All Categories</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="phones">Phones</option>
+                    <option value="fashion">Fashion</option>
+                    <option value="home">Home</option>
+                    <option value="beauty">Beauty</option>
+                    <option value="sports">Sports</option>
+                  </select>
+                </div>
 
-            <div>
-              <label className="mb-1.5 flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wide text-brand-500 dark:text-[#8A8378]">
-                Subcategory
-              </label>
-              <input
-                type="text"
-                value={subcategory}
-                onChange={(e) => applySubcategory(e.target.value)}
-                placeholder="e.g. smartphones"
-                className="w-full rounded-xl border border-brand-200/60 bg-white px-4 py-2.5 text-sm text-brand-900 placeholder:text-brand-400 focus:border-brand-500 focus:outline-none dark:border-[#262B34] dark:bg-[#1F232B] dark:text-[#F5F1EA] dark:placeholder-[#5C574F] dark:focus:border-[#C98156]"
-              />
-            </div>
-          </div>
-        )}
-      </div>
+                <div>
+                  <label className="mb-1.5 flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wide text-brand-500 dark:text-content-muted">
+                    Subcategory
+                  </label>
+                  <input
+                    type="text"
+                    value={subcategory}
+                    onChange={(e) => applySubcategory(e.target.value)}
+                    placeholder="e.g. smartphones"
+                    className="w-full rounded-xl border border-brand-200/60 bg-white px-4 py-2.5 text-sm text-brand-900 
+                placeholder:text-brand-400 focus:border-brand-500 focus:outline-none dark:border-surface-borderDark dark:bg-coal-600 
+                dark:text-content-primary dark:placeholder-content-disabled dark:focus:border-copper-500"
+                  />
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
 
       {/* Status pills */}
       <div className="mb-6 flex flex-wrap gap-2">
@@ -197,8 +221,8 @@ const ProductsContent = () => {
             type="button"
             onClick={() => applyStatus(opt.key)}
             className={`rounded-xl px-4 py-2 text-xs sm:text-sm font-medium transition-all cursor-pointer ${status === opt.key
-              ? "bg-brand-900 text-white dark:bg-[#2A1B12] dark:text-[#F0CDAF] dark:border dark:border-[#C98156]"
-              : "bg-brand-100/70 text-brand-700 hover:bg-brand-100 dark:bg-[#181B22] dark:text-[#8A8378] dark:hover:bg-[#22262F] dark:hover:text-[#F5F1EA]"
+              ? "bg-brand-900 text-white dark:bg-copper-900 dark:text-copper-200 dark:border dark:border-copper-500"
+              : "bg-brand-100/70 text-brand-700 hover:bg-brand-100 dark:bg-coal-700 dark:text-content-muted dark:hover:bg-coal-500 dark:hover:text-content-primary"
               }`}
           >
             {opt.label}
@@ -207,19 +231,19 @@ const ProductsContent = () => {
       </div>
 
       {/* Error Message */}
-      {error && <p className="mb-4 text-sm text-rose-500 dark:text-[#F87171]">{error}</p>}
+      {error && <p className="mb-4 text-sm text-rose-500 dark:text-state-danger">{error}</p>}
 
       {/* Empty State */}
       {!loading && !error && products.length === 0 && (
-        <div className="rounded-2xl border border-brand-200/60 bg-white p-12 text-center shadow-xs dark:border-[rgba(255,255,255,0.06)] dark:bg-[#12141A]">
+        <div className="rounded-2xl border border-brand-200/60 bg-white p-12 text-center shadow-xs dark:border-[rgba(255,255,255,0.06)] dark:bg-coal-800">
           <div className="mx-auto flex max-w-sm flex-col items-center justify-center">
-            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-100 text-brand-700 dark:bg-[#181B22] dark:text-[#C98156]">
+            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-100 text-brand-700 dark:bg-coal-700 dark:text-copper-500">
               <SearchX size={30} />
             </div>
-            <h4 className="text-lg font-bold text-brand-900 dark:text-[#F5F1EA]">
+            <h4 className="text-lg font-bold text-brand-900 dark:text-content-primary">
               No matching products found
             </h4>
-            <p className="mt-1 text-xs text-brand-500 dark:text-[#8A8378]">
+            <p className="mt-1 text-xs text-brand-500 dark:text-content-muted">
               {searchInput
                 ? `No products matched "${searchInput}". Try adjusting your filters or keywords.`
                 : "There are currently no products available."}
@@ -249,18 +273,22 @@ const ProductsContent = () => {
             type="button"
             disabled={page === 1}
             onClick={() => setPage(page - 1)}
-            className="rounded-xl border border-brand-200/60 bg-white px-4 py-2 text-xs font-medium text-brand-700 transition-all hover:bg-brand-50 disabled:opacity-40 dark:border-[#262B34] dark:bg-[#181B22] dark:text-[#B9B2A8] dark:hover:bg-[#22262F] cursor-pointer"
+            className="rounded-xl border border-brand-200/60 bg-white px-4 py-2 text-xs font-medium text-brand-700 
+            transition-all hover:bg-brand-50 disabled:opacity-40 dark:border-surface-borderDark dark:bg-coal-700 dark:text-content-secondary 
+            dark:hover:bg-coal-500 cursor-pointer"
           >
             Prev
           </button>
-          <span className="px-3 py-2 text-xs font-medium text-brand-600 dark:text-[#8A8378]">
+          <span className="px-3 py-2 text-xs font-medium text-brand-600 dark:text-content-muted">
             {page} / {totalPages}
           </span>
           <button
             type="button"
             disabled={page === totalPages}
             onClick={() => setPage(page + 1)}
-            className="rounded-xl border border-brand-200/60 bg-white px-4 py-2 text-xs font-medium text-brand-700 transition-all hover:bg-brand-50 disabled:opacity-40 dark:border-[#262B34] dark:bg-[#181B22] dark:text-[#B9B2A8] dark:hover:bg-[#22262F] cursor-pointer"
+            className="rounded-xl border border-brand-200/60 bg-white px-4 py-2 text-xs font-medium text-brand-700 
+            transition-all hover:bg-brand-50 disabled:opacity-40 dark:border-surface-borderDark dark:bg-coal-700 dark:text-content-secondary 
+            dark:hover:bg-coal-500 cursor-pointer"
           >
             Next
           </button>
@@ -268,13 +296,15 @@ const ProductsContent = () => {
       )}
 
       {/* Quick Edit Modal */}
-      {quickEditProduct && (
-        <QuickEditModal
-          product={quickEditProduct}
-          onClose={() => setQuickEditProduct(null)}
-          onSubmit={handleQuickEditSubmit}
-        />
-      )}
+      <AnimatePresence>
+        {quickEditProduct && (
+          <QuickEditModal
+            product={quickEditProduct}
+            onClose={() => setQuickEditProduct(null)}
+            onSubmit={handleQuickEditSubmit}
+          />
+        )}
+      </AnimatePresence>
 
       {/* Delete Product Modal */}
       <DeleteProductModal

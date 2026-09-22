@@ -9,6 +9,7 @@ import ToggleButton from "./ToggleButton";
 import ProductImageUploader from "./ProductImageUploader";
 import ProductTagsInput from "./ProductTagsInput";
 import { Loader2 } from "lucide-react";
+import { motion } from "framer-motion";
 
 function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCard = true }) {
   const onInvalid = (errors) => {
@@ -175,17 +176,17 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCar
 
   const buttonsContent = (
     <>
-      <Button 
-        variant="secondary" 
-        type="button" 
+      <Button
+        variant="secondary"
+        type="button"
         onClick={onCancel}
         disabled={isSubmitting}
       >
         Cancel
       </Button>
 
-      <Button 
-        variant="primary" 
+      <Button
+        variant="primary"
         type="submit"
         disabled={isSubmitting}
       >
@@ -215,14 +216,19 @@ function ProductForm({ mode = "create", initialData, onSubmit, onCancel, showCar
   }
 
   return (
-    <div className="rounded-2xl bg-white dark:bg-[#12141A] border border-brand-200/60 dark:border-white/[0.06] p-6 sm:p-8 shadow-xs">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.1 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="rounded-2xl bg-white dark:bg-coal-800 border border-brand-200/60 dark:border-white/[0.06] p-6 sm:p-8 shadow-xs">
       <form onSubmit={handleSubmit(submitHandler, onInvalid)} className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         {fieldsContent}
         <div className="col-span-full flex justify-end gap-3 pt-4 border-t border-brand-200/60 dark:border-white/[0.06]">
           {buttonsContent}
         </div>
       </form>
-    </div>
+    </motion.div>
   );
 }
 

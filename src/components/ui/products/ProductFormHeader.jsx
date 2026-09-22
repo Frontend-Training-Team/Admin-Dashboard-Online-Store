@@ -1,7 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-// import bannerImage from "../../../assets/images/img5.jpg";
 import bannerBg from '../../../assets/images/users-banner-bg.jpg';
+import { motion } from "framer-motion";
 
 function ProductFormHeader({ mode = "create" }) {
   const navigate = useNavigate();
@@ -18,8 +18,12 @@ function ProductFormHeader({ mode = "create" }) {
       };
 
   return (
-    <div
-      className="relative rounded-2xl overflow-hidden p-6 sm:p-8 bg-cover bg-center dark:bg-[#12141A] dark:border dark:!bg-none dark:border-white/[0.06] shadow-xs"
+    <motion.div 
+      initial={{ opacity: 0, y: -20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.2 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+      className="relative rounded-2xl overflow-hidden p-6 sm:p-8 bg-cover bg-center dark:bg-coal-800 dark:border dark:!bg-none dark:border-white/[0.06] shadow-xs"
       style={{ backgroundImage: `url(${bannerBg})` }}
     >
 
@@ -27,20 +31,20 @@ function ProductFormHeader({ mode = "create" }) {
         <button
           type="button"
           onClick={() => navigate("/products")}
-          className="flex items-center gap-2 text-xs font-semibold tracking-wider text-[#C98156] dark:text-[#F0CDAF] uppercase hover:underline cursor-pointer w-fit"
+          className="flex items-center gap-2 text-xs font-semibold tracking-wider text-copper-500 dark:text-copper-200 uppercase hover:underline cursor-pointer w-fit"
         >
           <ArrowLeft size={16} />
           <span>Back to Products</span>
         </button>
 
-        <h1 className="text-2xl sm:text-3xl font-serif font-bold text-brand-950 dark:text-[#F5F1EA]">
+        <h1 className="text-2xl sm:text-3xl font-serif font-bold text-brand-950 dark:text-content-primary">
           {content.title}
         </h1>
-        <p className="text-sm text-brand-700/80 dark:text-[#8A8378] max-w-2xl leading-relaxed">
+        <p className="text-sm text-brand-700/80 dark:text-content-muted max-w-2xl leading-relaxed">
           {content.description}
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
