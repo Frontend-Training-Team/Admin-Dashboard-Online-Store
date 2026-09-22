@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Eye, Pencil, SlidersHorizontal, Trash2, ChevronLeft, ChevronRight } from "lucide-react";
+import { motion } from 'framer-motion';
 
 const MAX_TAGS = 4;
 
@@ -53,7 +54,13 @@ const ProductCard = ({ product = {}, onView, onQuickEdit, onEdit, onDelete }) =>
   const visibleTags = tags.filter((t) => t !== "featured").slice(0, MAX_TAGS);
 
   return (
-    <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200/80 bg-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl hover:border-gray-300 dark:border-brand-900/40 dark:bg-coal-800 dark:hover:border-brand-700/60">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.15 }}
+      whileHover={{ y: -6, transition: { duration: 0.25 } }}
+      transition={{ duration: 0.4, ease: 'easeOut' }}
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-gray-200/80 bg-white transition-all duration-300 ease-in-out hover:-translate-y-1 hover:shadow-xl hover:border-gray-300 dark:border-brand-900/40 dark:bg-coal-800 dark:hover:border-brand-700/60">
       {/* Image Container */}
       <div className="relative aspect-[500/348] w-full overflow-hidden bg-[#F8F7F4] dark:bg-brand-900/20">
         {currentImage ? (
@@ -108,8 +115,8 @@ const ProductCard = ({ product = {}, onView, onQuickEdit, onEdit, onDelete }) =>
                 <span
                   key={idx}
                   className={`h-1.5 rounded-full transition-all duration-200 ${idx === activeImageIndex
-                      ? "w-4 bg-white shadow-xs"
-                      : "w-1.5 bg-white/60"
+                    ? "w-4 bg-white shadow-xs"
+                    : "w-1.5 bg-white/60"
                     }`}
                 />
               ))}
@@ -177,44 +184,52 @@ const ProductCard = ({ product = {}, onView, onQuickEdit, onEdit, onDelete }) =>
 
         {/* Action Buttons Toolbar */}
         <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-gray-100 dark:border-brand-900/40">
-          <button
+          <motion.button
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.94 }}
             type="button"
             onClick={() => onView?.(product)}
             className="flex items-center gap-1.5 rounded-lg bg-[#F1F5F9] px-3.5 py-2 text-xs font-semibold text-gray-800 hover:bg-slate-200 dark:bg-brand-900/40 dark:text-brand-100 dark:hover:bg-brand-900/70 transition-colors cursor-pointer"
           >
             <Eye size={15} />
             <span>View</span>
-          </button>
+          </motion.button>
 
-          <button
+          <motion.button
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.94 }}
             type="button"
             onClick={() => onEdit?.(product)}
             className="flex items-center gap-1.5 rounded-lg bg-[#F1F5F9] px-3.5 py-2 text-xs font-semibold text-gray-800 hover:bg-slate-200 dark:bg-brand-900/40 dark:text-brand-100 dark:hover:bg-brand-900/70 transition-colors cursor-pointer"
           >
             <Pencil size={15} />
             <span>Edit</span>
-          </button>
+          </motion.button>
 
-          <button
+          <motion.button
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.94 }}
             type="button"
             onClick={() => onQuickEdit?.(product)}
             className="flex items-center gap-1.5 rounded-lg bg-[#F1F5F9] px-3.5 py-2 text-xs font-semibold text-gray-800 hover:bg-slate-200 dark:bg-brand-900/40 dark:text-brand-100 dark:hover:bg-brand-900/70 transition-colors cursor-pointer"
           >
             <SlidersHorizontal size={15} />
             <span>Quick Edit</span>
-          </button>
+          </motion.button>
 
-          <button
+          <motion.button
+            whileHover={{ scale: 1.04 }}
+            whileTap={{ scale: 0.94 }}
             type="button"
             onClick={() => onDelete?.(product)}
             className="ml-auto flex items-center gap-1.5 rounded-lg border border-[#E54335] px-3.5 py-2 text-xs font-semibold text-[#E54335] hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors cursor-pointer"
           >
             <Trash2 size={15} />
             <span>Delete</span>
-          </button>
+          </motion.button>
         </div >
       </div >
-    </div >
+    </motion.div >
   );
 };
 

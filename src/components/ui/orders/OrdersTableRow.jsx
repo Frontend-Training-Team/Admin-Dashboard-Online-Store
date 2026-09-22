@@ -1,5 +1,6 @@
 import { Eye } from 'lucide-react';
 import OrderStatusBadge from "./OrderStatusBadge";
+import { motion } from 'framer-motion';
 
 const OrdersTableRow = ({ order, onViewDetails }) => {
   const shortId = (order._id || order.id || '').slice(-8).toUpperCase();
@@ -25,7 +26,12 @@ const OrdersTableRow = ({ order, onViewDetails }) => {
   const paymentStatus = (order.paymentStatus || 'pending').toUpperCase();
 
   return (
-    <tr className="group transition-colors hover:bg-[#FFEFDD]/20 dark:hover:bg-coal-500">
+    <motion.tr
+      initial={{ opacity: 0, y: 10 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.15 }}
+      transition={{ duration: 0.25, ease: "easeOut" }}
+      className="group transition-colors hover:bg-[#FFEFDD]/20 dark:hover:bg-coal-500">
       {/* Order ID */}
       <td className="px-6 py-4">
         <span className="text-sm font-bold text-gray-900 dark:text-content-primary font-mono">
@@ -72,8 +78,8 @@ const OrdersTableRow = ({ order, onViewDetails }) => {
             {paymentMethod}
           </span>
           <span className={`text-[10px] font-bold uppercase tracking-wider ${paymentStatus === 'PAID'
-              ? 'text-emerald-600 dark:text-state-confirmed'
-              : 'text-amber-600 dark:text-state-warning'
+            ? 'text-emerald-600 dark:text-state-confirmed'
+            : 'text-amber-600 dark:text-state-warning'
             }`}>
             {paymentStatus}
           </span>
@@ -100,7 +106,7 @@ const OrdersTableRow = ({ order, onViewDetails }) => {
           <span>View</span>
         </button>
       </td>
-    </tr>
+    </motion.tr>
   );
 };
 

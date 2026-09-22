@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { X, Plus } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+
 
 function ProductTagsInput({ tags, onChange, compact = false }) {
   const [draft, setDraft] = useState("");
@@ -44,8 +46,12 @@ function ProductTagsInput({ tags, onChange, compact = false }) {
       {tags.length > 0 && (
         <div className="flex flex-wrap gap-2 mt-3">
           {tags.map((tag, i) => (
-            <span
+            <motion.span
               key={i}
+                              initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.15 }}
               className="inline-flex items-center gap-1.5 bg-copper-500/10 dark:bg-copper-900 text-copper-500 dark:text-copper-200 border border-copper-500/30 text-xs font-medium px-2.5 py-1 rounded-lg"
             >
               #{tag}
@@ -56,7 +62,7 @@ function ProductTagsInput({ tags, onChange, compact = false }) {
               >
                 <X size={12} />
               </button>
-            </span>
+            </motion.span>
           ))}
         </div>
       )}

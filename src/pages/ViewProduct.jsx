@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ArrowLeft, Loader2 } from "lucide-react";
+import { motion } from "framer-motion";
 
 import NameCard from "../components/ui/viewProduct/NameCard";
 import DetailsCard from '../components/ui/viewProduct/DetailsCard';
@@ -94,10 +95,20 @@ const ViewProduct = () => {
                 <span>Back to Products</span>
             </button>
 
-            <div className="grid grid-cols-1 items-start lg:grid-cols-12 gap-6 p-6 sm:p-8 rounded-2xl border border-brand-200/60 
+            <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.1 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="grid grid-cols-1 items-start lg:grid-cols-12 gap-6 p-6 sm:p-8 rounded-2xl border border-brand-200/60 
             dark:border-white/[0.06] bg-white dark:bg-coal-800 shadow-xs">
                 {/* Left Side */}
-                <div className="grid h-fit grid-cols-1 gap-4 self-start lg:col-span-7">
+                <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: false, amount: 0.1 }}
+                    transition={{ duration: 0.45, ease: "easeOut" }}
+                    className="grid h-fit grid-cols-1 gap-4 self-start lg:col-span-7">
                     <NameCard
                         title={productData.title}
                         description={productData.description}
@@ -121,16 +132,21 @@ const ViewProduct = () => {
                     )}
 
                     <HighlightsCard highlights={productData.highlights} />
-                </div>
+                </motion.div>
 
                 {/* Right Side - Gallery */}
-                <div className="p-0 lg:col-span-5 h-full">
+                <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: false, amount: 0.1 }}
+                    transition={{ duration: 0.45, ease: "easeOut" }}
+                    className="p-0 lg:col-span-5 h-full">
                     <ProductGallery
                         images={productData.images}
                         productName={productData.title}
                     />
-                </div>
-            </div>
+                </motion.div>
+            </motion.div>
         </div>
     );
 };

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { SquarePen, UserShield, Trash2, Check, X, Loader2 } from 'lucide-react';
 import defaultAvatar from '../../../assets/images/Guest.jpg';
+import { motion } from 'framer-motion';
 
 function UserRow({ user, onEdit, onToggleRole, onDelete, isToggling }) {
   const [imgError, setImgError] = useState(false);
@@ -9,7 +10,12 @@ function UserRow({ user, onEdit, onToggleRole, onDelete, isToggling }) {
   const isAdmin = user?.role === 'admin';
 
   return (
-    <tr className="transition-colors hover:bg-[#FFEFDD]/20 dark:hover:bg-coal-500">
+    <motion.tr
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.2 }}
+      transition={{ duration: 0.3, ease: 'easeOut' }}
+      className="transition-colors hover:bg-[#FFEFDD]/20 dark:hover:bg-coal-500">
       {/* User Info */}
       <td className="px-6 py-3.5 sm:py-4">
         <div className="flex items-center gap-3.5">
@@ -34,8 +40,8 @@ function UserRow({ user, onEdit, onToggleRole, onDelete, isToggling }) {
       <td className="px-6 py-3.5 sm:py-4">
         <span
           className={`font-semibold text-sm ${isAdmin
-              ? 'text-[#F06A5D] dark:text-state-danger'
-              : 'text-gray-900 dark:text-white'
+            ? 'text-[#F06A5D] dark:text-state-danger'
+            : 'text-gray-900 dark:text-white'
             }`}
         >
           {isAdmin ? 'Admin' : 'Customer'}
@@ -61,17 +67,19 @@ function UserRow({ user, onEdit, onToggleRole, onDelete, isToggling }) {
       <td className="px-6 py-3.5 sm:py-4">
         <div className="flex items-center gap-2.5">
           {/* Edit (Blue Outlined) */}
-          <button
+          <motion.button
+            whileTap={{ scale: 0.9 }}
             type="button"
             onClick={() => onEdit(user)}
             title="Edit User"
             className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl border border-blue-400/80 dark:border-[rgba(95,168,245,0.24)] bg-white dark:bg-[rgba(95,168,245,0.10)] text-blue-500 dark:text-state-info hover:bg-blue-50/70 dark:hover:bg-[rgba(95,168,245,0.20)] flex items-center justify-center transition shadow-sm hover:scale-105 active:scale-95 cursor-pointer"
           >
             <SquarePen size={18} />
-          </button>
+          </motion.button>
 
           {/* Toggle Role (Green Outlined) */}
-          <button
+          <motion.button
+            whileTap={{ scale: 0.9 }}
             type="button"
             onClick={() => onToggleRole(user)}
             disabled={isToggling}
@@ -83,20 +91,21 @@ function UserRow({ user, onEdit, onToggleRole, onDelete, isToggling }) {
             ) : (
               <UserShield size={18} />
             )}
-          </button>
+          </motion.button>
 
           {/* Delete (Red Outlined) */}
-          <button
+          <motion.button
+            whileTap={{ scale: 0.9 }}
             type="button"
             onClick={() => onDelete(user)}
             title="Delete User"
             className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl border border-rose-300 dark:border-[rgba(248,113,113,0.24)] bg-white dark:bg-[rgba(248,113,113,0.10)] text-[#F06A5D] dark:text-state-danger hover:bg-rose-50/70 dark:hover:bg-[rgba(248,113,113,0.20)] flex items-center justify-center transition shadow-sm hover:scale-105 active:scale-95 cursor-pointer"
           >
             <Trash2 size={18} />
-          </button>
+          </motion.button>
         </div>
       </td>
-    </tr>
+    </motion.tr>
   );
 }
 

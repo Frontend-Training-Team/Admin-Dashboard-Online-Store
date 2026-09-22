@@ -1,6 +1,14 @@
+import { motion } from "framer-motion";
+
 function BestSellerItem({ name, details, img }) {
   return (
-    <div className="flex items-center gap-3 p-2.5 sm:p-3 rounded-xl bg-surface-light/60 dark:bg-coal-700
+    <motion.div
+      initial={{ opacity: 0, y: 15 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.2 }}
+      whileHover={{ x: 4, transition: { duration: 0.2 } }}
+      transition={{ duration: 0.35, ease: "easeOut" }}
+      className="flex items-center gap-3 p-2.5 sm:p-3 rounded-xl bg-surface-light/60 dark:bg-coal-700
     hover:dark:bg-coal-500 border border-brand-200/50 dark:border-[rgba(255,255,255,0.06)] duration-150
     hover:scale-x-[1.02]">
 
@@ -20,7 +28,7 @@ function BestSellerItem({ name, details, img }) {
         </p>
       </div>
 
-    </div>
+    </motion.div>
   );
 }
 

@@ -10,6 +10,7 @@ import UserTable from '../components/ui/user/UserTable';
 import EditUserModal from '../components/ui/user/EditUserModal';
 import DeleteUserModal from '../components/ui/user/DeleteUserModal';
 import bannerBg from '../assets/images/users-banner-bg.jpg';
+import { motion } from 'framer-motion';
 
 export default function Users() {
   const [users, setUsers] = useState([]);
@@ -114,7 +115,11 @@ export default function Users() {
   return (
     <div className="space-y-6">
       {/* Overview & Search Card Header */}
-      <div
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
         className="relative overflow-hidden rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)]
         shadow-xs bg-cover bg-center bg-no-repeat p-6 sm:px-8 sm:py-6 dark:bg-none! dark:bg-coal-800"
         style={{ backgroundImage: `url(${bannerBg})` }}
@@ -177,17 +182,29 @@ export default function Users() {
             </button>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Add User Collapsible Card */}
-      <AddUserCollapse
-        isOpen={isAddOpen}
-        onClose={() => setIsAddOpen(false)}
-        onUserAdded={refreshUsers}
-      />
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+      >
+        <AddUserCollapse
+          isOpen={isAddOpen}
+          onClose={() => setIsAddOpen(false)}
+          onUserAdded={refreshUsers}
+        />
+      </motion.div>
 
       {/* 4 Stat Cards Grid (Figma Design) */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         <UserStatCard
           title="Total Users"
           value={stats.total}
@@ -208,7 +225,7 @@ export default function Users() {
           value={stats.verified}
           icon={<UserRoundCheck size={24} />}
         />
-      </div>
+      </motion.div>
 
       {/* Users Table */}
       <UserTable

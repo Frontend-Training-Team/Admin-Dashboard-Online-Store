@@ -1,11 +1,12 @@
 import UserRow from './UserRow';
 import { Users, SearchX } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 function UserTable({ users, loading, onEdit, onToggleRole, onDelete, togglingUserId, searchQuery, onClearSearch, }) {
 
   return (
     <div className="overflow-hidden rounded-2xl border border-gray-100 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-coal-800 shadow-sm">
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto overflow-y-hidden">
         <table className="min-w-full text-left">
           {/* Table Header matching Figma (#FFEFDD in light, #1E2435 in dark) */}
           <thead className="bg-[#FFEFDD] dark:bg-coal-700 border-b border-transparent dark:border-surface-borderDark">
@@ -25,7 +26,9 @@ function UserTable({ users, loading, onEdit, onToggleRole, onDelete, togglingUse
             </tr>
           </thead>
 
-          <tbody className="divide-y divide-gray-100 dark:divide-[rgba(255,255,255,0.06)]">
+          <tbody
+
+            className="divide-y divide-gray-100 dark:divide-[rgba(255,255,255,0.06)]">
             {/* Loading Skeleton */}
             {loading ? (
               Array.from({ length: 5 }).map((_, index) => (
@@ -56,7 +59,12 @@ function UserTable({ users, loading, onEdit, onToggleRole, onDelete, togglingUse
               ))
             ) : users.length === 0 ? (
               /* Empty State */
-              <tr>
+              <motion.tr
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: false, amount: 0.2 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+              >
                 <td colSpan={4} className="px-6 py-16 text-center">
                   <div className="mx-auto flex max-w-sm flex-col items-center justify-center">
                     <div className="rounded-2xl bg-[#FFEFDD] dark:bg-coal-700 p-4 text-[#A36037] mb-3">
@@ -81,7 +89,7 @@ function UserTable({ users, loading, onEdit, onToggleRole, onDelete, togglingUse
                     )}
                   </div>
                 </td>
-              </tr>
+              </motion.tr>
             ) : (
               /* Rows */
               users.map((user) => (

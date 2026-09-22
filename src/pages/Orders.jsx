@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import { getAllOrdersAdmin } from "../api/ordersAdmin.api";
 import OrdersTable from "../components/ui/orders/ordersTable";
 import OrderDetailsDrawer from "../components/ui/orders/OrderDetailsDrawer";
+import { motion } from "framer-motion";
 
 const OrdersPage = () => {
   const [orders, setOrders] = useState([]);
@@ -128,7 +129,12 @@ const OrdersPage = () => {
     <div className="space-y-6">
 
       {/* Page Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
           <p className="text-xs font-semibold tracking-wider text-[#A05A32] dark:text-copper-500 uppercase">
             ORDER MANAGEMENT
@@ -141,7 +147,7 @@ const OrdersPage = () => {
           </p>
         </div>
 
-        <div className="self-start sm:self-auto flex items-center px-4 py-2.5 rounded-xl bg-gray-100/90 dark:bg-coal-700 
+        <motion.div whileHover={{ scale: 1.03 }} className="self-start sm:self-auto flex items-center px-4 py-2.5 rounded-xl bg-gray-100/90 dark:bg-coal-700 
         border border-gray-200 dark:border-[rgba(255,255,255,0.06)] shadow-xs">
           <span className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-content-primary tracking-tight">
             {totalOrders}
@@ -149,10 +155,15 @@ const OrdersPage = () => {
           <span className="ml-2.5 text-xs sm:text-sm font-medium text-gray-500 dark:text-content-muted">
             total orders
           </span>
-        </div>
-      </div >
+        </motion.div>
+      </motion.div >
 
-      < div className="rounded-2xl border border-gray-100 dark:border-[rgba(255,255,255,0.06)] bg-white 
+      <motion.div
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 0.35, ease: "easeOut" }}
+        className="rounded-2xl border border-gray-100 dark:border-[rgba(255,255,255,0.06)] bg-white 
       dark:bg-coal-800 p-5 shadow-xs transition-colors" >
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
 
@@ -232,11 +243,16 @@ const OrdersPage = () => {
           </div>
 
         </div>
-      </div>
+      </motion.div>
 
       {/* Orders Table Container */}
-      < div className="overflow-hidden rounded-2xl border border-gray-100 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-coal-800 shadow-xs" >
-        <div className="overflow-x-auto">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.1 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="overflow-hidden rounded-2xl border border-gray-100 dark:border-[rgba(255,255,255,0.06)] bg-white dark:bg-coal-800 shadow-xs" >
+        <div className="overflow-x-auto overflow-y-hidden">
           <OrdersTable
             orders={filteredOrders}
             loading={loading}
@@ -292,7 +308,7 @@ const OrdersPage = () => {
             </button>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Order Details Slide-over Drawer */}
       < OrderDetailsDrawer

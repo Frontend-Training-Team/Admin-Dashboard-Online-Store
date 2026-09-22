@@ -1,7 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-// import bannerImage from "../../../assets/images/img5.jpg";
 import bannerBg from '../../../assets/images/users-banner-bg.jpg';
+import { motion } from "framer-motion";
 
 function ProductFormHeader({ mode = "create" }) {
   const navigate = useNavigate();
@@ -18,7 +18,11 @@ function ProductFormHeader({ mode = "create" }) {
       };
 
   return (
-    <div
+    <motion.div 
+      initial={{ opacity: 0, y: -20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.2 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
       className="relative rounded-2xl overflow-hidden p-6 sm:p-8 bg-cover bg-center dark:bg-coal-800 dark:border dark:!bg-none dark:border-white/[0.06] shadow-xs"
       style={{ backgroundImage: `url(${bannerBg})` }}
     >
@@ -40,7 +44,7 @@ function ProductFormHeader({ mode = "create" }) {
           {content.description}
         </p>
       </div>
-    </div>
+    </motion.div>
   );
 }
 

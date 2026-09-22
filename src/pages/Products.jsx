@@ -10,6 +10,7 @@ import { patchUpdateProductAdmin } from "../api/products.api";
 import toast from "react-hot-toast";
 import { Funnel, Package, Plus, Search, SearchX } from "lucide-react";
 import bannerBg from '../assets/images/users-banner-bg.jpg';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const STATUS_OPTIONS = [
   { key: "all", label: "Total" },
@@ -51,8 +52,8 @@ const ProductsContent = () => {
     if (!deletingProduct) return;
     try {
       setIsDeleting(true);
-      const productId = typeof deletingProduct === 'object' 
-        ? (deletingProduct._id || deletingProduct.id) 
+      const productId = typeof deletingProduct === 'object'
+        ? (deletingProduct._id || deletingProduct.id)
         : deletingProduct;
 
       await removeProduct(productId);
@@ -74,14 +75,18 @@ const ProductsContent = () => {
   return (
     <div>
       {/* Header Banner */}
-      <div
+      <motion.div
+        initial={{ opacity: 0, y: -20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
         className="relative mb-6 overflow-hidden rounded-2xl border 
         border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] shadow-xs 
         bg-cover bg-center bg-no-repeat p-6 sm:px-8 sm:py-6 dark:!bg-none dark:bg-coal-800"
         style={{ backgroundImage: `url(${bannerBg})` }}
       >
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          
+
           <div className="flex items-center gap-4">
             <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-white/25 bg-white/20 
             text-[#592309] backdrop-blur-md shadow-xs dark:border-white/[0.08] dark:bg-coal-700 dark:text-copper-500">
@@ -110,13 +115,18 @@ const ProductsContent = () => {
           </button>
 
         </div>
-      </div>
+      </motion.div>
 
       {/* 4 Stats Cards */}
       <ProductsStats stats={stats} />
 
       {/* Search & Filters */}
-      <div className="mb-4 rounded-2xl border border-brand-200/60 bg-white p-4 shadow-xs dark:border-[rgba(255,255,255,0.06)] dark:bg-coal-800">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.2 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="mb-4 rounded-2xl border border-brand-200/60 bg-white p-4 shadow-xs dark:border-[rgba(255,255,255,0.06)] dark:bg-coal-800">
         <form onSubmit={handleSearchSubmit} className="flex flex-wrap items-center gap-2">
           <div className="relative min-w-[240px] flex-1">
             <Search
@@ -154,44 +164,54 @@ const ProductsContent = () => {
           </button>
         </form>
 
-        {filtersOpen && (
-          <div className="mt-4 grid grid-cols-1 gap-4 border-t border-brand-200/60 pt-4 sm:grid-cols-2 dark:border-[rgba(255,255,255,0.06)]">
-            <div>
-              <label className="mb-1.5 flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wide text-brand-500 dark:text-content-muted">
-                Category
-              </label>
-              <select
-                value={category}
-                onChange={(e) => applyCategory(e.target.value)}
-                className="w-full rounded-xl border border-brand-200/60 bg-white px-4 py-2.5 text-sm text-brand-700 dark:border-surface-borderDark dark:bg-coal-600 dark:text-content-primary"
-              >
-                <option value="">All Categories</option>
-                <option value="electronics">Electronics</option>
-                <option value="phones">Phones</option>
-                <option value="fashion">Fashion</option>
-                <option value="home">Home</option>
-                <option value="beauty">Beauty</option>
-                <option value="sports">Sports</option>
-              </select>
-            </div>
+        <AnimatePresence>
+          {filtersOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="overflow-hidden"
+            >
+              <div className="mt-4 grid grid-cols-1 gap-4 border-t border-brand-200/60 pt-4 sm:grid-cols-2 dark:border-[rgba(255,255,255,0.06)]">
+                <div>
+                  <label className="mb-1.5 flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wide text-brand-500 dark:text-content-muted">
+                    Category
+                  </label>
+                  <select
+                    value={category}
+                    onChange={(e) => applyCategory(e.target.value)}
+                    className="w-full rounded-xl border border-brand-200/60 bg-white px-4 py-2.5 text-sm text-brand-700 dark:border-surface-borderDark dark:bg-coal-600 dark:text-content-primary"
+                  >
+                    <option value="">All Categories</option>
+                    <option value="electronics">Electronics</option>
+                    <option value="phones">Phones</option>
+                    <option value="fashion">Fashion</option>
+                    <option value="home">Home</option>
+                    <option value="beauty">Beauty</option>
+                    <option value="sports">Sports</option>
+                  </select>
+                </div>
 
-            <div>
-              <label className="mb-1.5 flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wide text-brand-500 dark:text-content-muted">
-                Subcategory
-              </label>
-              <input
-                type="text"
-                value={subcategory}
-                onChange={(e) => applySubcategory(e.target.value)}
-                placeholder="e.g. smartphones"
-                className="w-full rounded-xl border border-brand-200/60 bg-white px-4 py-2.5 text-sm text-brand-900 
+                <div>
+                  <label className="mb-1.5 flex items-center gap-1 text-[11px] font-semibold uppercase tracking-wide text-brand-500 dark:text-content-muted">
+                    Subcategory
+                  </label>
+                  <input
+                    type="text"
+                    value={subcategory}
+                    onChange={(e) => applySubcategory(e.target.value)}
+                    placeholder="e.g. smartphones"
+                    className="w-full rounded-xl border border-brand-200/60 bg-white px-4 py-2.5 text-sm text-brand-900 
                 placeholder:text-brand-400 focus:border-brand-500 focus:outline-none dark:border-surface-borderDark dark:bg-coal-600 
                 dark:text-content-primary dark:placeholder-content-disabled dark:focus:border-copper-500"
-              />
-            </div>
-          </div>
-        )}
-      </div>
+                  />
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.div>
 
       {/* Status pills */}
       <div className="mb-6 flex flex-wrap gap-2">
@@ -276,13 +296,15 @@ const ProductsContent = () => {
       )}
 
       {/* Quick Edit Modal */}
-      {quickEditProduct && (
-        <QuickEditModal
-          product={quickEditProduct}
-          onClose={() => setQuickEditProduct(null)}
-          onSubmit={handleQuickEditSubmit}
-        />
-      )}
+      <AnimatePresence>
+        {quickEditProduct && (
+          <QuickEditModal
+            product={quickEditProduct}
+            onClose={() => setQuickEditProduct(null)}
+            onSubmit={handleQuickEditSubmit}
+          />
+        )}
+      </AnimatePresence>
 
       {/* Delete Product Modal */}
       <DeleteProductModal

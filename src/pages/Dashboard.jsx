@@ -8,6 +8,7 @@ import BestSellerItem from '../components/ui/dashboard/BestSellerItem';
 import RecentOrderItem from '../components/ui/dashboard/RecentOrderItem';
 import StatCardSkeleton from '../components/ui/skeletons/StatCardSkeleton';
 import ProductCardSkeleton from '../components/ui/skeletons/ProductCardSkeleton';
+import { motion } from "framer-motion";
 
 export default function DashboardPage() {
   const [data, setData] = useState({});
@@ -184,14 +185,19 @@ export default function DashboardPage() {
       {/* Top Header Section */}
       {isLoading ? (
         <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] 
-        bg-surface-cardLight dark:bg-coal-800 shadow-sm animate-pulse space-y-3">
+        bg-surface-cardLight dark:bg-coal-800 shadow-sm animate-none space-y-3">
           <div className="h-3.5 w-32 bg-gray-200 dark:bg-coal-700 rounded"></div>
           <div className="h-8 w-72 bg-gray-200 dark:bg-coal-700 rounded"></div>
           <div className="h-4 w-60 bg-gray-200 dark:bg-coal-700 rounded"></div>
         </div>
       ) : (
-        <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] 
-        bg-surface-cardLight dark:bg-coal-800 shadow-sm">
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ duration: 0.4, ease: "easeOut" }}
+          className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] 
+       bg-surface-cardLight dark:bg-coal-800 shadow-sm">
           <span className="text-sm font-Regular tracking-widest text-brand-500 dark:text-copper-500 uppercase">
             ADMIN OVERVIEW
           </span>
@@ -201,7 +207,7 @@ export default function DashboardPage() {
           <p className="text-sm text-gray-400 dark:text-content-secondary mt-1">
             Monitor your storefront with live API metrics.
           </p>
-        </div>
+        </motion.div>
       )
       }
 
@@ -237,7 +243,12 @@ export default function DashboardPage() {
             <div className="h-7 w-64 bg-gray-200 dark:bg-coal-700 rounded"></div>
           </div>
         ) : (
-          <div className="flex items-center justify-between mb-4">
+          <motion.div
+            initial={{ opacity: 0, y: 25 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="flex items-center justify-between mb-4">
             <div>
               <span className="text-sm font-Regular tracking-widest text-brand-500 dark:text-copper-500 uppercase">
                 ORDER STATUS
@@ -251,7 +262,7 @@ export default function DashboardPage() {
             dark:text-state-confirmed dark:border-[rgba(74,222,155,0.24)]">
               Updated from API
             </span>
-          </div >
+          </motion.div >
         )}
 
         <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-6 gap-3">
@@ -281,7 +292,12 @@ export default function DashboardPage() {
       < div className="grid grid-cols-1 lg:grid-cols-2 gap-6" >
 
         {/* Best Sellers */}
-        <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] 
+        <motion.div
+          initial={{ opacity: 0, x: -25 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
+          className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] 
         bg-surface-cardLight dark:bg-coal-800 shadow-sm">
           {
             isLoading ? (
@@ -319,10 +335,15 @@ export default function DashboardPage() {
               </>
             )}
           </div>
-        </div >
+        </motion.div >
 
         {/* Recent Orders */}
-        <div className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] 
+        <motion.div
+          initial={{ opacity: 0, x: -25 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: false, amount: 0.2 }}
+          transition={{ duration: 0.45, ease: "easeOut" }}
+          className="p-6 rounded-2xl border border-brand-200/60 dark:border-[rgba(255,255,255,0.06)] 
         bg-surface-cardLight dark:bg-coal-800 shadow-sm">
           {
             isLoading ? (
@@ -360,7 +381,7 @@ export default function DashboardPage() {
               </>
             )}
           </div>
-        </div >
+        </motion.div >
       </div >
 
     </div >
