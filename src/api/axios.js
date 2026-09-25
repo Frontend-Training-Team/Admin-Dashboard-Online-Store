@@ -1,8 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  // baseURL: "https://e-commerce-api-3wara.vercel.app/",
-  baseURL: 'https://corsproxy.io/?https://e-commerce-api-3wara.vercel.app',
+  baseURL: "https://e-commerce-api-3wara.vercel.app/",
 });
 // Request Interceptor
 api.interceptors.request.use(
