@@ -15,7 +15,6 @@ export default function LoginPage() {
 
   const [showPassword, setShowPassword] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
-  const [errorMessage, setErrorMessage] = useState('')
 
   const navigate = useNavigate()
 
@@ -93,12 +92,6 @@ export default function LoginPage() {
             <h2 className="text-xl sm:text-4xl font-semibold font-Inter text-gray-800 dark:text-content-primary">Welcome Back</h2>
             <p className="text-xs sm:text-lg font-Inter text-gray-500 dark:text-content-muted">Sign in to your admin dashboard</p>
           </div>
-
-          {errorMessage && (
-            <div className="p-3 bg-red-50 border border-red-200 text-red-600 rounded-lg text-sm font-Inter text-center">
-              {errorMessage}
-            </div>
-          )}
 
           <form onSubmit={onSubmit} className="space-y-4 pt-2  font-Inter">
             <div className="space-y-1.5">
