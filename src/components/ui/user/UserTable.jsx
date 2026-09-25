@@ -32,27 +32,27 @@ function UserTable({ users, loading, onEdit, onToggleRole, onDelete, togglingUse
             {/* Loading Skeleton */}
             {loading ? (
               Array.from({ length: 5 }).map((_, index) => (
-                <tr key={index} className="animate-pulse dark:bg-[#1E2435]">
+                <tr key={index} className="animate-pulse dark:bg-bg-coal-700">
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-3.5">
-                      <div className="h-10 w-10 sm:h-11 sm:w-11 rounded-full bg-gray-200/70 dark:bg-coal-700" />
+                      <div className="h-10 w-10 sm:h-11 sm:w-11 rounded-full bg-gray-200/70 dark:bg-coal-500" />
                       <div className="space-y-2">
-                        <div className="h-4 w-28 rounded bg-gray-200/70 dark:bg-coal-700" />
-                        <div className="h-3 w-40 rounded bg-gray-200/40 dark:bg-coal-700/60" />
+                        <div className="h-4 w-28 rounded bg-gray-200/70 dark:bg-coal-500" />
+                        <div className="h-3 w-40 rounded bg-gray-200/40 dark:bg-coal-500/60" />
                       </div>
                     </div>
                   </td>
                   <td className="px-6 py-4">
-                    <div className="h-4 w-16 rounded bg-gray-200/70 dark:bg-coal-700" />
+                    <div className="h-4 w-16 rounded bg-gray-200/70 dark:bg-coal-500" />
                   </td>
                   <td className="px-6 py-4">
-                    <div className="h-4 w-20 rounded bg-gray-200/70 dark:bg-coal-700" />
+                    <div className="h-4 w-20 rounded bg-gray-200/70 dark:bg-coal-500" />
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex gap-2.5">
-                      <div className="h-9 w-9 rounded-xl bg-gray-200/70 dark:bg-coal-700" />
-                      <div className="h-9 w-9 rounded-xl bg-gray-200/70 dark:bg-coal-700" />
-                      <div className="h-9 w-9 rounded-xl bg-gray-200/70 dark:bg-coal-700" />
+                      <div className="h-9 w-9 rounded-xl bg-gray-200/70 dark:bg-coal-500" />
+                      <div className="h-9 w-9 rounded-xl bg-gray-200/70 dark:bg-coal-500" />
+                      <div className="h-9 w-9 rounded-xl bg-gray-200/70 dark:bg-coal-500" />
                     </div>
                   </td>
                 </tr>
